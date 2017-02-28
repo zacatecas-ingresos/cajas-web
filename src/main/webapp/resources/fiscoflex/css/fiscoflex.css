@@ -1,0 +1,60 @@
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none; /* This makes sure that we can still click outside of the modal to close it */
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events: all;
+}
+
+.fiscoflex.buttons {
+	margin-top: 20px;
+	text-align: center;
+	display: table;
+	width: 100%;
+}
+
+.inventory.product-image-upload .no-image-preview {	
+	border-style:solid;
+	border-color: #6f91ac;
+	border-width: 1px;
+	width:120px;
+	height:120px;
+	background-image: url("../img/no_image.png");
+	background-size:cover;
+	cursor:pointer;
+}
+
+.inventory.product-image-upload .button-actions {
+	margin-top: 15px;
+}
+
+.inventory.product-image-upload .button-actions .upload-btn {
+	pointer: cursor;
+}
+
+.inventory.product-stock {
+	border-top: 1px solid #dcdcdc;
+	margin-bottom: 20px;
+	padding-top: 20px;
+}
+
+.inventory.product.close {
+	float:left;
+}
+
+.inventory.product.ok {
+	float:right;
+}

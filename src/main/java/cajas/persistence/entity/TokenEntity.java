@@ -12,30 +12,35 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="tokens")
+@Table(name = "tokens")
 public class TokenEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="idtoken")
+	@Column(name = "idtoken")
 	private Integer id;
-	
-	@Column(name="token")
+
+	@Column(name = "token")
 	private String token;
-	
-	@Column(name="fechacreacion")
+
+	@Column(name = "fechacreacion")
 	private Date fechaCreacion;
-	
-	@Column(name="fechaexpiracion")
+
+	@Column(name = "hora_creacion")
+	private Date horaCreacion;
+
+	@Column(name = "fechaexpiracion")
 	private Date fechaExpiracion;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="IdUsuario")
+
+	@Column(name = "hora_expira")
+	private Date horaExpira;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "IdUsuario")
 	private UsuarioEntity usuario;
-	
-	@Column(name="Activo")
+
+	@Column(name = "Activo")
 	private Boolean activo;
 
 	public Integer getId() {
@@ -84,5 +89,22 @@ public class TokenEntity {
 
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
-	}	
+	}
+
+	public Date getHoraCreacion() {
+		return horaCreacion;
+	}
+
+	public void setHoraCreacion(Date horaCreacion) {
+		this.horaCreacion = horaCreacion;
+	}
+
+	public Date getHoraExpira() {
+		return horaExpira;
+	}
+
+	public void setHoraExpira(Date horaExpira) {
+		this.horaExpira = horaExpira;
+	}
+
 }

@@ -92,12 +92,12 @@
 		src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
 
 
-	<script type="text/javascript">
+	<script>
 		function login() {
 			$.post('/loginServlet', {
 				param : $('#nombreUsuario').val(),
 				param : $('#password').val()
-			};
+			});
 		}
 	</script>
 

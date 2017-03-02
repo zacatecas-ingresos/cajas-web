@@ -10,35 +10,45 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<!-- Bootstrap 3.3.5 -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css">
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<!-- Theme style -->
-<link
-	href="${pageContext.request.contextPath}/resources/admin-lte/css/Fonts.css"
-	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css"
-	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath}/resources/admin-lte/css/skins/_all-skins.min.css"
-	rel="stylesheet" />
-
-<!-- Bootstrap -->
-<link
-	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
-
-<!-- FiscoFlex -->
-<link
-	href="${pageContext.request.contextPath}/resources/fiscoflex/css/fiscoflex.css"
-	rel="stylesheet" />
+	
+		<!-- jQuery -->
+		<script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
+		
+		<!-- jQuery UI -->
+		<script src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
+		
+		<!-- jQuery Form -->
+		<script src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js"/></script>
+		
+		<!-- Bootstrap -->
+		<link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+		
+		<!-- Bootstrap WYSIHTML5 -->
+		<script src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+		
+		<!-- Font Awesome -->
+		<link href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+				
+		<!-- AdminLTE -->
+		<link href="${pageContext.request.contextPath}/resources/admin-lte/css/Fonts.css" rel="stylesheet" />
+		<link href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css" rel="stylesheet" />
+		<link href="${pageContext.request.contextPath}/resources/admin-lte/css/skins/_all-skins.min.css" rel="stylesheet" />
+		<script src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
+		
+		<!-- FiscoFlex -->
+		<link href="${pageContext.request.contextPath}/resources/fiscoflex/css/fiscoflex.css" rel="stylesheet" />
+		
+		<!-- Sweetalert -->
+		<link href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css" rel="stylesheet" type="text/css" >
+		<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"> </script> 
+			
+		<!-- FormValidation -->
+		<link href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css" rel="stylesheet" type="text/css">
+		<script src="${pageContext.request.contextPath}/resources/formvalidation/js/formValidation.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
 
 
 </head>
@@ -72,24 +82,6 @@
 		</div>
 	</div>
 	<!-- Fin Login -->
-
-	<!-- jQuery 2.1.4 -->
-	<script
-		src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
-	<!-- jQuery UI -->
-	<script
-		src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-
-	<!-- jQuery Form -->
-	<script
-		src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js" /></script>
-
-	<script
-		src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
 
 
 	<script>

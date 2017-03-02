@@ -8,7 +8,6 @@ import cajas.persistence.entity.UsuarioEntity;
 
 public class UsuarioPorNombreQuery {
 
-	@PersistenceContext(name = "cajasPU")
 	private EntityManager entityManager;
 	
 	private String nombre;

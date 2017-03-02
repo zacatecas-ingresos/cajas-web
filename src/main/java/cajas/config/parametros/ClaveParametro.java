@@ -14,5 +14,11 @@ public class ClaveParametro {
 	public static final String API_NAME = "CAJAS";
 	public static final String COOKIE_NORMAL = "CAJAS.COOKIE";
 	public static final String COOKIE_CHECKBOX = "CAJAS.COOKIECHECKBOX";
+	public static final String PATH = "/cajas/";
+	public static final String RECURSOS[] = {"/resources"};
+	
+	/******* Web Servlet ***********/
+	public static final String COOKIE = "CAJAS.COOKIE";
+	
 	
 }

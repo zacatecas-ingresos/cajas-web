@@ -4,9 +4,13 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import cajas.config.parametros.ClaveParametro;
+import cajas.util.Crypto;
 
 
 @WebServlet("/loginServlet")
@@ -20,22 +24,19 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		System.out.println("WEB SERVLET........");
 		String contextPath = request.getServletContext().getContextPath();
-
-		System.out.println("CONTEXT PATH::::" + contextPath);
-
-		String uri = contextPath + "/login";
-
-		System.out.println("URL::::" + uri);
-
-		String nombreUsuario = request.getParameter("nombreUsuario");
-		String password = request.getParameter("password");
-		System.out.print("NOMBRE DE USUARIO:::" + nombreUsuario + "PASSWORD:::::" + password);
-
 		
-		response.sendRedirect(uri);
+		String index = contextPath+"/index.jsp";
 		
+		String valorCookie = Crypto.hmac("PRUEBA.COOKIE"); 
+		Cookie cookie = new Cookie(ClaveParametro.COOKIE,valorCookie);
+		cookie.setPath(ClaveParametro.PATH);
+		cookie.setMaxAge(ClaveParametro.DURACION_MINIMA_SESION);
+		
+		response.addCookie(cookie);
+		response.sendRedirect(index);
 	}
 
 }

@@ -7,7 +7,6 @@ import cajas.persistence.entity.IpEntity;
 
 public class IpQuery {
 
-	@PersistenceContext(name = "cajasPU")
 	private EntityManager entityManager;
 
 	/******* Registra una ip que ha sido bloqueada *******/

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import cajas.config.parametros.ClaveParametro;
 import cajas.seguridad.token.Credenciales;
 import cajas.seguridad.usuario.Usuario;
 
@@ -48,15 +49,16 @@ public class Filtro implements Filter {
 		httpRequest = (HttpServletRequest) servletRequest;
 		httpResponse = (HttpServletResponse) servletResponse;
 		httpSession = httpRequest.getSession();
-
+		
 		filterChain.doFilter(servletRequest, servletResponse);
 	}
+	
 
 	@Override
 	public void destroy() {
 		LOG.info(String.format("[\t Fin del filtro:]"));
 	}
-
+	
 	public String abrirSesion(Credenciales login, Boolean checkbox) {
 		String token = "";
 		return token;

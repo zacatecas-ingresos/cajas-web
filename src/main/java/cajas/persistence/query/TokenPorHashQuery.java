@@ -7,7 +7,7 @@ import cajas.persistence.entity.TokenEntity;
 
 public class TokenPorHashQuery {
 
-	@PersistenceContext(name = "postgresqlDS")
+	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
 	
 	private String hash;

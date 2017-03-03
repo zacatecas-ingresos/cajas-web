@@ -7,7 +7,7 @@ import cajas.persistence.entity.ParametroEntity;
 
 public class ParametroPorClaveQuery {
 
-	@PersistenceContext(name = "postgresqlDS")
+	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
 	
 	private String clave;

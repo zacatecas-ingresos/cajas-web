@@ -57,10 +57,10 @@ public class Filtro implements Filter {
 			httpResponse.addHeader(ClaveParametro.HEADER, valorCookie);
 		}
 		
-		filterChain.doFilter(servletRequest, servletResponse);
+		filterChain.doFilter(servletRequest, servletResponse);		
 	}
 	
-
+	
 	@Override
 	public void destroy() {
 		LOG.info(String.format("[\t Fin del filtro:]"));

@@ -19,7 +19,6 @@ import cajas.exception.LoginException;
 import cajas.seguridad.token.Credenciales;
 import cajas.seguridad.token.TokenService;
 
-
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
 
@@ -29,54 +28,73 @@ public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = -2868430473913972878L;
 
 	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String contextPath = req.getServletContext().getContextPath();
+		try{
+			doPost(req, resp);
+		}catch(Exception ex){
+			ex.printStackTrace();
+			resp.sendRedirect(contextPath);
+		}
+	}
+	
+	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
 			
-			String contextPath = request.getServletContext().getContextPath();
-			String index = contextPath+ClaveParametro.INDEX;
+			System.out.println("WEB SERVLET................");
 			
+
+			String contextPath = request.getServletContext().getContextPath();
+			String index = contextPath + ClaveParametro.INDEX;
+
 			Context initContext = new InitialContext();
 			TokenService tokenService = (TokenService) initContext.lookup(ClaveParametro.TOKEN_SERVICE);
-			
+
 			String nombreUsuario = request.getParameter("nombreUsuario");
 			String password = request.getParameter("password");
-						
+
 			Credenciales credenciales = new Credenciales();
-			
+
 			credenciales.setNombreUsuario(nombreUsuario);
 			credenciales.setPassword(password);
-			
-			try{
+
+			try {
 				String token = tokenService.abrirSesion(credenciales, false);
-				
-				if(token != null && token != ""){
-					response.addCookie(crearCookie(token,ClaveParametro.DURACION_MINIMA_SESION));
+				if (token != null && token != "") {
+					response.addCookie(crearCookie(token, ClaveParametro.DURACION_MINIMA_SESION));
 					response.sendRedirect(index);
 				}
-			}catch(CredencialesInvalidasException ex){
+			} catch (CredencialesInvalidasException ex) {
 				ex.printStackTrace();
-				response.sendError(403);
-			}catch(LoginException ex){
+				String message = ClaveParametro.ERROR_LOGIN;
+				request.setAttribute("error", message);
+				request.getRequestDispatcher(ClaveParametro.PAGELOGIN).forward(request, response);
+			} catch (LoginException ex) {
 				ex.printStackTrace();
-				response.sendError(403);
-			}catch(BusinessException ex){
+				String message = ClaveParametro.ERROR_LOGIN;
+				request.setAttribute("error", message);
+				request.getRequestDispatcher(ClaveParametro.PAGELOGIN).forward(request, response);
+				return;
+			} catch (BusinessException ex) {
 				ex.printStackTrace();
-				response.sendError(500);
-			}					
+				String message = ClaveParametro.ERROR_SESION;
+				request.setAttribute("error", message);
+				request.getRequestDispatcher(ClaveParametro.PAGELOGIN).forward(request, response);
+			}
 		} catch (NamingException e) {
 			e.printStackTrace();
-			throw new LoginException("Ocurrio un problema al autenticar al usuario.");
+			throw new LoginException(ClaveParametro.ERROR_SESION);
 		}
 	}
 
-	
-	public Cookie crearCookie(String token,Integer duracion){
+	public Cookie crearCookie(String token, Integer duracion) {
 		Cookie cookie = new Cookie(ClaveParametro.COOKIE, token);
 		cookie.setPath(ClaveParametro.PATH);
 		cookie.setMaxAge(duracion);
 		return cookie;
 	}
-	
-	
+
 }

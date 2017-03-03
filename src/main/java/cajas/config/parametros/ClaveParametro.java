@@ -17,11 +17,14 @@ public class ClaveParametro {
 	public static final String PATH = "/cajas/";
 	public static final String RECURSOS[] = {"/resources"};
 	public static final String HEADER = "HEADER.COOKIE";
-	public static final String LOGIN = "/login.jsp";
+	public static final String LOGIN = "/views/seguridad/login.jsp";
 	public static final String INDEX = "/index.jsp";
 	
 	/******* Web Servlet ***********/
 	public static final String COOKIE = "CAJAS.COOKIE";
 	public static final String TOKEN_SERVICE = "java:global/cajas-web-17.03.10-SNAPSHOT/TokenService!cajas.seguridad.token.TokenService";
+	public static final String PAGELOGIN = "/views/seguridad/login.jsp";
+	public static final String ERROR_LOGIN = "El usuario y/o contraseña no son los correctos.";
+	public static final String ERROR_SESION = "Ocurrio un problema al iniciar sesión.";
 	
 }

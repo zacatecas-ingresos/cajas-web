@@ -7,7 +7,7 @@ import cajas.persistence.entity.UsuarioEntity;
 
 public class UsuarioPorNombreQuery {
 	
-	@PersistenceContext(name = "postgresqlDS")
+	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
 	
 	public UsuarioEntity consultar(String nombre) {

@@ -9,7 +9,7 @@ import cajas.persistence.entity.ConfiguracionPerfilEntity;
 
 public class ListaConfiguracionPerfilQuery {
 
-	@PersistenceContext(name = "postgresqlDS")
+	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
 	
 	private Integer idPerfil;

@@ -27,11 +27,11 @@
 		application -->
 	<filter-mapping>
 		<filter-name>login</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/views/*</url-pattern>
 	</filter-mapping>
 
 	<welcome-file-list>
-		<welcome-file>/WEB-INF/views/seguridad/login.jsp</welcome-file>
+		<welcome-file>/views/seguridad/login.jsp</welcome-file>
 	</welcome-file-list>
 
 	<servlet>
@@ -40,7 +40,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>javax.ws.rs.core.Application</servlet-name>
-		<url-pattern>/cajas/*</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
 </web-app>

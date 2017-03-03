@@ -7,7 +7,7 @@ import cajas.persistence.entity.TokenEntity;
 
 public class TokenQuery {
 
-	@PersistenceContext(name = "postgresqlDS")
+	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
 
 	/********* Registrar un token *********/

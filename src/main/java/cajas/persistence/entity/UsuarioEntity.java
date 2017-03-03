@@ -1,5 +1,8 @@
 package cajas.persistence.entity;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,35 +11,42 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="usuarios")
-public class UsuarioEntity {
+@Table(name = "usuarios", schema ="seguridad")
+public class UsuarioEntity implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8068013789268232633L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="idusuario")
-	private Integer id;
-	
-	@Column(name="nombre")
-	private String nombre;
-	
-	@Column(name="email")
-	private String email;
-	
-	@Column(name="password")
-	private String password;
-	
-	@Column(name="activo")
-	private Boolean activo;
-	
-	@Column(name="idperfil")
-	private Integer idPerfil;
+	@Column(name = "id_usuario")
+	private Integer idUsuario;
 
-	public Integer getId() {
-		return id;
+	@Column(name = "nombre")
+	private String nombre;
+
+	@Column(name = "email")
+	private String email;
+
+	@Column(name = "contrasenia")
+	private String password;
+
+	@Column(name = "activo")
+	private Integer activo;
+
+	@Column(name = "fecha_alta")
+	private Date fechaAlta;
+
+	/***********************************************************************/
+
+	public Integer getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdUsuario(Integer idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	public String getEmail() {
@@ -55,11 +65,11 @@ public class UsuarioEntity {
 		this.password = password;
 	}
 
-	public Boolean getActivo() {
+	public Integer getActivo() {
 		return activo;
 	}
-
-	public void setActivo(Boolean activo) {
+	
+	public void setActivo(Integer activo) {
 		this.activo = activo;
 	}
 
@@ -71,11 +81,4 @@ public class UsuarioEntity {
 		this.nombre = nombre;
 	}
 
-	public Integer getIdPerfil() {
-		return idPerfil;
-	}
-
-	public void setIdPerfil(Integer idPerfil) {
-		this.idPerfil = idPerfil;
-	}
 }

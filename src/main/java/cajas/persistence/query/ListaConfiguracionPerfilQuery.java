@@ -3,11 +3,13 @@ package cajas.persistence.query;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import cajas.persistence.entity.ConfiguracionPerfilEntity;
 
 public class ListaConfiguracionPerfilQuery {
 
+	@PersistenceContext(name = "postgresqlDS")
 	private EntityManager entityManager;
 	
 	private Integer idPerfil;

@@ -24,8 +24,10 @@ import cajas.util.Crypto;
 @Stateless
 public class TokenService {
 
+	@Inject
 	TokenQuery tokenQuery;
-
+	
+	@Inject
 	UsuarioPorNombreQuery usuarioPorNombreQuery;
 
 	/***********
@@ -39,23 +41,27 @@ public class TokenService {
 		}
 
 		if (login.getPassword().equals(null) || login.getPassword().length() == 0) {
-			throw new LoginException("Ingrese su contraseÃ±a.");
+			throw new LoginException("Ingrese su contraseña.");
 		}
 
 		boolean credencialesValidas = true;
 		UsuarioEntity usuarioEntity = new UsuarioEntity();
 
-		usuarioPorNombreQuery.setNombre(login.getNombreUsuario());
-		usuarioEntity = usuarioPorNombreQuery.consultar();
+		try{
+			usuarioEntity = usuarioPorNombreQuery.consultar(login.getNombreUsuario());
+		}catch(NoResultException ex){
+			ex.printStackTrace();
+			throw new LoginException("El usuario no existe.");
+		}
 
 		String hashPassword = Crypto.hmac(login.getPassword());
 		credencialesValidas = usuarioEntity.getPassword().equals(hashPassword);
 
 		if (!credencialesValidas) {
-			throw new CredencialesInvalidasException("La contraseÃ±a que ha ingresado es incorrecta.");
+			throw new CredencialesInvalidasException("La contraseña que ha ingresado es incorrecta.");
 		}
 
-		if (!usuarioEntity.getActivo()) {
+		if (usuarioEntity.getActivo() != 1) {
 			throw new CredencialesInvalidasException(
 					"El usuario ingresado se encuentra inactivo para utilizar el sistema.");
 		}
@@ -74,13 +80,13 @@ public class TokenService {
 
 		try {
 			TokenEntity tokenNuevo = new TokenEntity();
-			tokenNuevo.setId(usuarioEntity.getId());
+			tokenNuevo.setUsuario(usuarioEntity);
 			tokenNuevo.setFechaCreacion(fechaActual);
 			tokenNuevo.setHoraCreacion(fechaCreacion.getTime());
 			tokenNuevo.setFechaExpiracion(fechaActual);
 			tokenNuevo.setHoraExpira(fechaExpira.getTime());
 			tokenNuevo.setToken(hashToken);
-			tokenNuevo.setActivo(true);
+			tokenNuevo.setActivo(1);
 			tokenQuery.registrarToken(tokenNuevo);
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();
@@ -96,7 +102,7 @@ public class TokenService {
 			String hashToken = Crypto.hmac(token);
 			TokenEntity tokenEntity = new TokenEntity();
 			tokenEntity = tokenQuery.obtenerToken(hashToken);
-			tokenEntity.setActivo(false);
+			tokenEntity.setActivo(0);
 			tokenQuery.actualizarToken(tokenEntity);
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();
@@ -114,7 +120,7 @@ public class TokenService {
 				return true;
 			}
 
-			if (!tokenEntity.getActivo()) {
+			if (tokenEntity.getActivo() != 1) {
 				return true;
 			}
 

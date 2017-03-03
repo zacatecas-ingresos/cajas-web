@@ -2,6 +2,7 @@ package cajas.persistence.entity;
 
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,42 +14,44 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tokens")
+@Table(name = "tokens", schema = "seguridad")
 public class TokenEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idtoken")
-	private Integer id;
+	@Column(name = "id_token")
+	private Integer idToken;
 
 	@Column(name = "token")
 	private String token;
 
-	@Column(name = "fechacreacion")
+	@Column(name = "fecha_creacion")
 	private Date fechaCreacion;
 
 	@Column(name = "hora_creacion")
 	private Date horaCreacion;
 
-	@Column(name = "fechaexpiracion")
+	@Column(name = "fecha_expiracion")
 	private Date fechaExpiracion;
 
 	@Column(name = "hora_expira")
 	private Date horaExpira;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IdUsuario")
+	@JoinColumn(name = "id_usuario")
 	private UsuarioEntity usuario;
 
-	@Column(name = "Activo")
-	private Boolean activo;
-
-	public Integer getId() {
-		return id;
+	@Column(name = "activo")
+	private Integer activo;
+	
+	/**************************************************/
+	
+	public Integer getIdToken() {
+		return idToken;
 	}
-
-	public void setId(Integer id) {
-		this.id = id;
+	
+	public void setIdToken(Integer idToken) {
+		this.idToken = idToken;
 	}
 
 	public String getToken() {
@@ -83,11 +86,11 @@ public class TokenEntity {
 		this.usuario = usuario;
 	}
 
-	public Boolean getActivo() {
+	public Integer getActivo() {
 		return activo;
 	}
-
-	public void setActivo(Boolean activo) {
+	
+	public void setActivo(Integer activo) {
 		this.activo = activo;
 	}
 

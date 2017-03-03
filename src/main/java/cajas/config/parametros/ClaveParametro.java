@@ -16,9 +16,12 @@ public class ClaveParametro {
 	public static final String COOKIE_CHECKBOX = "CAJAS.COOKIECHECKBOX";
 	public static final String PATH = "/cajas/";
 	public static final String RECURSOS[] = {"/resources"};
+	public static final String HEADER = "HEADER.COOKIE";
+	public static final String LOGIN = "/login.jsp";
+	public static final String INDEX = "/index.jsp";
 	
 	/******* Web Servlet ***********/
 	public static final String COOKIE = "CAJAS.COOKIE";
-	
+	public static final String TOKEN_SERVICE = "java:global/cajas-web-17.03.10-SNAPSHOT/TokenService!cajas.seguridad.token.TokenService";
 	
 }

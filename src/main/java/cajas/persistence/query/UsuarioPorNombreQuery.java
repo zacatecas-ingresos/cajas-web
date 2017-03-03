@@ -5,37 +5,18 @@ import javax.persistence.PersistenceContext;
 
 import cajas.persistence.entity.UsuarioEntity;
 
-
 public class UsuarioPorNombreQuery {
-
+	
+	@PersistenceContext(name = "postgresqlDS")
 	private EntityManager entityManager;
 	
-	private String nombre;
-	
-	private UsuarioEntity usuario;
-	
-	public UsuarioPorNombreQuery(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
-	
-	public UsuarioEntity consultar() {
-		
+	public UsuarioEntity consultar(String nombre) {
+				
 		UsuarioEntity usuario =	entityManager.createQuery("FROM UsuarioEntity u WHERE u.nombre=:nombre", UsuarioEntity.class)
 				.setParameter("nombre", nombre)				
 				.getSingleResult();
 		
 		return usuario;
 	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public UsuarioEntity getUsuario() {
-		return usuario;
-	}
+	
 }

@@ -3,7 +3,8 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee                               
     http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-	<display-name>Store Admin Web Application</display-name>
+
+	<display-name>cajas</display-name>
 
 	<!-- Comentarios -->
 	<context-param>
@@ -33,15 +34,13 @@
 		<welcome-file>/WEB-INF/views/seguridad/login.jsp</welcome-file>
 	</welcome-file-list>
 
-
 	<servlet>
 		<servlet-name>javax.ws.rs.core.Application</servlet-name>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>javax.ws.rs.core.Application</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/cajas/*</url-pattern>
 	</servlet-mapping>
-
 
 </web-app>

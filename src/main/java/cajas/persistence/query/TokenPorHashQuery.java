@@ -1,11 +1,13 @@
 package cajas.persistence.query;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import cajas.persistence.entity.TokenEntity;
 
 public class TokenPorHashQuery {
 
+	@PersistenceContext(name = "postgresqlDS")
 	private EntityManager entityManager;
 	
 	private String hash;

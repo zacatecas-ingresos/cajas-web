@@ -7,6 +7,7 @@ import cajas.persistence.entity.IpEntity;
 
 public class IpQuery {
 
+	@PersistenceContext(name = "postgresqlDS")
 	private EntityManager entityManager;
 
 	/******* Registra una ip que ha sido bloqueada *******/

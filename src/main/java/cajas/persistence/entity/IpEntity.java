@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ips")
+@Table(name = "ips", schema = "seguridad")
 public class IpEntity implements Serializable {
 
 	/**

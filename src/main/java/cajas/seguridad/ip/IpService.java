@@ -33,7 +33,7 @@ public class IpService {
 			ipQuery.registrarIp(ipEntity);
 		} catch (PermisoException ex) {
 			ex.printStackTrace();
-			throw new BusinessException("Ocurri� un problema al registrar la IP.");
+			throw new BusinessException("Ocurrio un problema al registrar la IP.");
 		}
 	}
 
@@ -65,7 +65,7 @@ public class IpService {
 			return false;
 		} catch (NoResultException ex) {
 			ex.printStackTrace();
-			throw new BusinessException("Ocurri� un problema al obtener la IP.");
+			throw new BusinessException("Ocurrio un problema al obtener la IP.");
 		}
 	}
 
@@ -73,7 +73,7 @@ public class IpService {
 	 * Obtiene los minutos restantes para volver a permitir el ingreso del
 	 * usuario al sistema
 	 *********/
-	public Integer obtenerIP(String ip) {
+	public Integer obtenerMinutosIP(String ip) {
 		try {
 			int minutos = 0;
 			IpEntity ipEntity = ipQuery.obtenerIP(ip);
@@ -98,7 +98,7 @@ public class IpService {
 		} catch (NoResultException ex) {
 			ex.printStackTrace();
 			throw new BusinessException(
-					"Ocurri� un problema al obtener los minutos restantes para el ingreso al sistema.");
+					"Ocurrio un problema al obtener los minutos restantes para el ingreso al sistema.");
 		}
 	}
 

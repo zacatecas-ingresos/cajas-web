@@ -1,12 +1,21 @@
 package cajas.seguridad.usuario;
 
+import cajas.persistence.entity.UsuarioEntity;
+
 public class Usuario {
 
 	private Integer id;
 	private String nombre;
 	private String email;
 	private Boolean activo;
-	private Integer idPerfil;
+
+	public Usuario usuarioEntity(UsuarioEntity usuarioEntity) {
+		Usuario usuario = new Usuario();
+		usuario.setId(usuarioEntity.getIdUsuario());
+		usuario.setNombre(usuarioEntity.getNombre());
+		usuario.setEmail(usuarioEntity.getEmail());
+		return usuario;
+	}
 
 	/**************** Getters and Setters ****************/
 
@@ -40,14 +49,6 @@ public class Usuario {
 
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
-	}
-
-	public Integer getIdPerfil() {
-		return idPerfil;
-	}
-
-	public void setIdPerfil(Integer idPerfil) {
-		this.idPerfil = idPerfil;
 	}
 
 }

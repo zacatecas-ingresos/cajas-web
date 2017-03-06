@@ -1,112 +1,239 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!DOCTYPE html>
 <html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Mi titulo</title>
+		
+		<!-- jQuery -->
+		<script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
+		
+		<!-- jQuery UI -->
+		<script src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
+		
+		<!-- jQuery Form -->
+		<script src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js"/></script>
+		
+		<!-- Bootstrap -->
+		<link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+		
+		<!-- Bootstrap WYSIHTML5 -->
+		<script src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+		
+		<!-- Font Awesome -->
+		<link href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+				
+		<!-- AdminLTE -->
+		<link href="${pageContext.request.contextPath}/resources/admin-lte/css/Fonts.css" rel="stylesheet" />
+		<link href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css" rel="stylesheet" />
+		<link href="${pageContext.request.contextPath}/resources/admin-lte/css/skins/_all-skins.min.css" rel="stylesheet" />
+		<script src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
+		
+		<!-- FiscoFlex -->
+		<link href="${pageContext.request.contextPath}/resources/fiscoflex/css/fiscoflex.css" rel="stylesheet" />
+		
+		<!-- jsTree -->
+		<link href="${pageContext.request.contextPath}/resources/jstree/themes/default/style.css" rel="stylesheet" />
+		<script src="${pageContext.request.contextPath}/resources/jstree/jstree.min.js" type="text/javascript"></script>	
+		
+		<!-- Sweetalert -->
+		<link href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css" rel="stylesheet" type="text/css" >
+		<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"> </script> 
+			
+		<!-- FormValidation -->
+		<link href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css" rel="stylesheet" type="text/css">
+		<script src="${pageContext.request.contextPath}/resources/formvalidation/js/formValidation.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>			
+	
+	</head>
 
-<head>
-    <title>SpringMVC Starter Application</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/static/resources/css/screen.css"/>"/>
-</head>
-
-<body>
-<div id="container">
-    <div class="dualbrand">
-        <img src="<c:url value="/static/resources/gfx/rhjb_eap_logo.png"/>"/>
-    </div>
-    <div id="content">
-        <h1>Welcome to JBoss!</h1>
-
-        <div>
-            <p>You have successfully deployed a basic SpringMVC web application.</p>
-        </div>
-
-        <form:form commandName="newMember" id="reg">
-            <h2>Member Registration</h2>
-
-            <p>Enforces annotation-based constraints defined on the model class.</p>
-            <table>
-                <tbody>
-                <tr>
-                    <td><form:label path="name">Name:</form:label></td>
-                    <td><form:input path="name"/></td>
-                    <td><form:errors class="invalid" path="name"/></td>
-                </tr>
-                <tr>
-                    <td><form:label path="email">Email:</form:label></td>
-                    <td><form:input path="email"/></td>
-                    <td><form:errors class="invalid" path="email"/></td>
-                </tr>
-                <tr>
-                    <td><form:label path="phoneNumber">Phone #:</form:label></td>
-                    <td><form:input path="phoneNumber"/></td>
-                    <td><form:errors class="invalid" path="phoneNumber"/></td>
-                </tr>
-                <tr>
-                    <td><p style="color: red">${error}</p></td>
-                </tr>
-                </tbody>
-            </table>
-            <table>
-                <tr>
-                    <td>
-                        <input type="submit" value="Register" class="register"/>
-                        <input type="reset" value="Cancel" class="cancel"/>
-                    </td>
-                </tr>
-            </table>
-        </form:form>
-        <h2>Members</h2>
-        <c:choose>
-            <c:when test="${members.size()==0}">
-                <em>No registered members.</em>
-            </c:when>
-            <c:otherwise>
-                <table id="membersTable" class="simpletablestyle">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone #</th>
-                            <th>REST URL</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${members}" var="member">
-                            <tr>
-                                <td>${member.id}</td>
-                                <td>${member.name}</td>
-                                <td>${member.email}</td>
-                                <td>${member.phoneNumber}</td>
-                                <td><a href="<c:url value="/rest/members/${member.id}"/>">/rest/members/${member.id}</a></td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-                <table class="simpletablestyle">
-                    <tr>
-                        <td>
-                            REST URL for all members: <a href="<c:url value="/rest/members"/>">/rest/members</a>
-                        </td>
-                    </tr>
-                </table>
-            </c:otherwise>
-        </c:choose>
-    </div>
-    <div id="aside">
-        <p>Learn more about Red Hat JBoss Enterprise Application Platform 6.</p>
-        <ul>
-            <li><a href="https://access.redhat.com/site/documentation/JBoss_Enterprise_Application_Platform/">Documentation</a></li>
-            <li><a href="http://red.ht/jbeap-6">Product Information</a></li>
-        </ul>
-    </div>
-    <div id="footer">
-        <p>
-            This project was generated from a Maven archetype from
-            JBoss.<br/>
-        </p>
-    </div>
-</div>
-</body>
+	<body class="hold-transition skin-blue sidebar-mini">
+		<div class="wrapper">
+	
+			<header class="main-header">
+				<!-- Logo -->
+				<a href="index2.html" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+					<span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices -->
+					<span class="logo-lg"><b>Cajas</b></span>
+				</a>
+				<!-- Header Navbar: style can be found in header.less -->
+				<nav class="navbar navbar-static-top" role="navigation">
+					<!-- Sidebar toggle button-->
+					<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
+						role="button"> <span class="sr-only">Toggle navigation</span>
+					</a>
+					<div class="navbar-custom-menu">
+						<ul class="nav navbar-nav">
+	
+						</ul>
+					</div>
+				</nav>
+			</header>
+			<!-- Left side column. contains the logo and sidebar -->
+			<aside class="main-sidebar">
+				<!-- sidebar: style can be found in sidebar.less -->
+				<section class="sidebar">
+					<!-- sidebar menu: : style can be found in sidebar.less -->
+					<ul class="sidebar-menu">
+						<li class="active treeview"><a href="#"> <i
+								class="fa fa-dashboard"></i> <span>Productos</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a></li>
+					</ul>
+				</section>
+				<!-- /.sidebar -->
+			</aside>
+	
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<section class="content-header">
+        			<h1>
+	        			<span style="color: #798c9c">        		
+	            			<a href="${pageContext.request.contextPath}/inventory/products/">Productos / </a>       
+	        			</span>
+	        			Crear nuevo producto
+          			</h1>                    
+       	 		</section>
+	
+				<!-- Main content -->
+				<section class="content">
+					<!-- Main row -->
+					<div class="row">
+	
+						<!-- content column -->
+						<div class="col-md-12">
+							<div class="box box-primary">
+								<form id="product-form">
+									<div class="box-body">
+										<br/>  
+					           			<div class="row">      
+											<div class="col-xs-1"></div> 			
+					           				<div class="col-xs-3">
+					           					<label class="lead">Datos Generales</label>
+					           				</div>
+											<div class="col-xs-5">							
+												<div class="form-group">
+													<label>Nombre</label>
+													<input id="product-name" name="product-name" class="form-control"/>
+												</div>
+													
+												<div class="form-group">
+													<label>Codigo</label>
+													<input id="product-code" name="product-code" class="form-control"/>
+												</div>
+												
+												<div class="form-group">
+													<label>Categoria</label>
+													<div class="input-group">
+														<input id="category-id" type="hidden">
+										                <input id="category-name" type="text" class="form-control" readonly>
+										                    <span class="input-group-btn">
+										                      <button id="category-btn" type="button" class="btn btn-primary"  data-toggle="modal" data-target="#category-modal">
+										                      	<i class="fa fa-search"></i>
+										                      </button>
+										                    </span>
+										                    
+										            </div>													
+												</div>																																				
+												
+											</div>	
+											<div class="col-xs-2">
+																																																	
+											</div>		
+										</div>
+										<br>								
+										<div class="row">      
+											<div class="col-xs-1"></div> 			
+					           				<div class="col-xs-3">
+					           					<label class="lead">Precio</label>
+					           				</div>
+											<div class="col-xs-5">												
+								           	    <div id="price-list" class="form-horizontal"></div>
+								           	    								           	    
+												<div class="form-group">
+													<label>Impuesto</label>
+													<select id="tax" class="form-control">														
+													</select>
+												</div>												
+											</div>		
+																																						
+										</div>
+										<br>
+										<div class="row">      
+											<div class="col-xs-1"></div> 			
+					           				<div class="col-xs-3">
+					           					<label class="lead">Inventario</label>
+					           				</div>
+											<div class="col-xs-5">
+																																														
+												<div id="warehouse-list" class="form-horizontal"></div>	
+																							
+											</div>																													
+										</div>
+									</div>
+									<div class="box-footer clearfix">
+										<button id="cancel-btn" type="button" class="btn btn-default btn-lg pull-left">
+	            							<i class="fa fa-remove"></i> Cancelar
+	            						</button>
+										<button type="button" id="save-btn" class="btn btn-success btn-lg pull-right">
+	           	    						<i class="fa fa-credit-card"></i> Guardar
+	           	    					</button>
+									</div>
+								</form>
+								
+							</div>
+						</div>
+	
+	
+					</div>
+					<!-- /.row (main row) -->
+	
+				</section>
+				<!-- /.content -->
+			</div>
+			<!-- /.content-wrapper -->
+			<footer class="main-footer">
+				<div class="pull-right hidden-xs">
+					<b>Version</b> 2.3.0
+				</div>
+				<strong>Derechos de autor &copy; 2016 <a
+					href="http://fiscoflex.mx">FiscoFlex</a>.
+				</strong> Todos los derechos reservados.
+			</footer>
+	
+			<!-- Add the sidebar's background. This div must be placed
+	           immediately after the control sidebar -->
+			<div class="control-sidebar-bg"></div>
+		</div>
+		<!-- ./wrapper -->
+	
+		<!-- category-modal -->
+		<div id="category-modal" class="modal fade" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+		        			<h4 class="modal-title">Categor&iacutea</h4>        			
+						</div>
+						<div class="modal-body">
+					        <div id="category-tree"  style="overflow: auto; min-height: 150px; max-height: 150px"></div>
+					      </div>
+						<div class="modal-footer">
+			                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+			                <button id="category-ok-btn" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+			              </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ./category-modal  -->
+	</body>
+	
 </html>

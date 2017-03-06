@@ -41,7 +41,7 @@ public class TokenService {
 		}
 
 		if (login.getPassword().equals(null) || login.getPassword().length() == 0) {
-			throw new LoginException("Ingrese su contraseña.");
+			throw new LoginException("Ingrese su contraseï¿½a.");
 		}
 
 		boolean credencialesValidas = true;
@@ -58,7 +58,7 @@ public class TokenService {
 		credencialesValidas = usuarioEntity.getPassword().equals(hashPassword);
 
 		if (!credencialesValidas) {
-			throw new CredencialesInvalidasException("La contraseña que ha ingresado es incorrecta.");
+			throw new CredencialesInvalidasException("La contraseï¿½a que ha ingresado es incorrecta.");
 		}
 
 		if (usuarioEntity.getActivo() != 1) {
@@ -68,8 +68,7 @@ public class TokenService {
 
 		String token = RandomStringUtils.randomAlphabetic(20);
 		String hashToken = Crypto.hmac(token);
-		Integer duracionSegundos = checkbox ? ClaveParametro.DURACION_MAXIMA_SESION
-				: ClaveParametro.DURACION_MINIMA_SESION;
+		Integer duracionSegundos = ClaveParametro.DURACION_MAXIMA_SESION;
 
 		Calendar fechaCreacion = Calendar.getInstance();
 		Calendar fechaExpira = (Calendar) fechaCreacion.clone();

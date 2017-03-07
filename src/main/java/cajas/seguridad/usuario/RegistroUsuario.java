@@ -1,12 +1,17 @@
 package cajas.seguridad.usuario;
 
+import java.util.Date;
+
 public class RegistroUsuario {
 
 	private Integer id;
 	private String nombre;
 	private String email;
 	private String password;
-	private Boolean activo;
+	private Integer activo;
+	private Date fechaAlta;
+
+	/************************************************/
 
 	public Integer getId() {
 		return id;
@@ -40,12 +45,20 @@ public class RegistroUsuario {
 		this.password = password;
 	}
 
-	public Boolean getActivo() {
+	public Integer getActivo() {
 		return activo;
 	}
 
-	public void setActivo(Boolean activo) {
+	public void setActivo(Integer activo) {
 		this.activo = activo;
+	}
+
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
 	}
 
 }

@@ -11,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuarios", schema ="seguridad")
-public class UsuarioEntity implements Serializable{
+@Table(name = "usuarios", schema = "seguridad")
+public class UsuarioEntity implements Serializable {
 
 	/**
 	 * 
@@ -68,7 +68,7 @@ public class UsuarioEntity implements Serializable{
 	public Integer getActivo() {
 		return activo;
 	}
-	
+
 	public void setActivo(Integer activo) {
 		this.activo = activo;
 	}
@@ -79,6 +79,14 @@ public class UsuarioEntity implements Serializable{
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
 	}
 
 }

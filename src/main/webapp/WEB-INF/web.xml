@@ -6,17 +6,10 @@
 
 	<display-name>cajas</display-name>
 
-	<!-- Comentarios -->
-	<context-param>
-		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
-		<param-value>true</param-value>
-	</context-param>
-
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
 		<param-value>classpath:/log4j.properties</param-value>
 	</context-param>
-
 
 	<!-- login filter -->
 	<filter>

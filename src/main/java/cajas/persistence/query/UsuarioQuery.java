@@ -1,5 +1,7 @@
 package cajas.persistence.query;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -14,4 +16,22 @@ public class UsuarioQuery {
 		return entityManager.find(UsuarioEntity.class, idUsuario);
 	}
 
+	public List<UsuarioEntity> obtenerUsuarios() {
+		List<UsuarioEntity> usuarios = entityManager.createQuery("FROM UsuarioEntity a ", UsuarioEntity.class)
+				.getResultList();
+		return usuarios;
+	}
+
+	public void registrarUsuario(UsuarioEntity usuario) {
+		entityManager.persist(usuario);
+	}
+
+	public void actualizarUsuario(UsuarioEntity usuario) {
+		entityManager.merge(usuario);
+	}
+	
+	public void eliminarUsuario(UsuarioEntity usuario){
+		entityManager.remove(usuario);
+	}
+	
 }

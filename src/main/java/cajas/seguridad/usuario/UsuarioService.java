@@ -34,6 +34,7 @@ public class UsuarioService {
 	@Inject
 	TokenQuery tokenQuery;
 
+	/**********Registra un usuario**************/
 	public void crearUsuario(RegistroUsuario usuario) {
 		try {
 			UsuarioEntity usuarioPorNombre = usuarioPorNombreQuery.consultar(usuario.getNombre());
@@ -43,7 +44,7 @@ public class UsuarioService {
 
 			UsuarioEntity usuarioPorCorreo = usuarioPorCorreoQuery.consultarUsuarioPorCorreo(usuario.getNombre());
 			if (usuarioPorCorreo != null) {
-				throw new BusinessException("El correo electrónico ya existe.");
+				throw new BusinessException("El correo electrï¿½nico ya existe.");
 			}
 		} catch (NoResultException ex) {
 
@@ -66,8 +67,9 @@ public class UsuarioService {
 		}
 	}
 
+	/*************Actualiza la informaciï¿½n de un usuario registrado***************/
 	public void actualizarUsuario(RegistroUsuario usuario) {
-
+		
 		UsuarioEntity usuarioEntity = new UsuarioEntity();
 		try {
 			usuarioEntity = usuarioQuery.obtenerUsuarioPorId(usuario.getId());
@@ -82,7 +84,7 @@ public class UsuarioService {
 			if (!usuarioEntity.getEmail().equals(usuario.getEmail())) {
 				UsuarioEntity usuarioPorCorreo = usuarioPorCorreoQuery.consultarUsuarioPorCorreo(usuario.getEmail());
 				if (usuarioPorCorreo != null) {
-					throw new BusinessException("El correo electrónico ya existe.");
+					throw new BusinessException("El correo electrï¿½nico ya existe.");
 				}
 			}
 
@@ -93,14 +95,10 @@ public class UsuarioService {
 		try {
 			usuarioEntity.setNombre(usuario.getNombre());
 			usuarioEntity.setEmail(usuario.getEmail());
-			if(usuario.getPassword() != null){
+			
+			if(usuario.getPassword() != ""){
 				usuarioEntity.setPassword(Crypto.hmac(usuario.getPassword()));
-			}
-			if(usuario.getActivo() < 0 || usuario.getActivo() > 1){
-				throw new BusinessException("Solo se aceptan una valor para el registro cero o uno.");
-			}
-			usuarioEntity.setActivo(usuario.getActivo());
-			usuarioEntity.setFechaAlta(usuario.getFechaAlta());
+			}			
 			usuarioQuery.actualizarUsuario(usuarioEntity);
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();
@@ -108,6 +106,7 @@ public class UsuarioService {
 		}
 	}
 
+	/********Obtiene un usuario por su nombre*********/
 	public Usuario obtenerUsuarioPorNombre(String nombre) {
 		try {
 			UsuarioEntity usuarioEntity = usuarioPorNombreQuery.consultar(nombre);
@@ -119,6 +118,7 @@ public class UsuarioService {
 		}
 	}
 
+	/**********Obtiene un usuario por su correo electrï¿½nico********/
 	public Usuario obtenerUsuarioPorCorreo(String correo) {
 		try {
 			UsuarioEntity usuarioEntity = usuarioPorCorreoQuery.consultarUsuarioPorCorreo(correo);
@@ -129,7 +129,9 @@ public class UsuarioService {
 			throw new BusinessException("El usuario no existe.");
 		}
 	}
-
+	
+	
+	/********Obtiene un usuario por su ID**********/
 	public Usuario obtenerUsuarioPorId(Integer idUsuario) {
 		try {
 			UsuarioEntity usuarioEntity = usuarioQuery.obtenerUsuarioPorId(idUsuario);
@@ -141,6 +143,7 @@ public class UsuarioService {
 		}
 	}
 
+	/*******Obtiene la lista de usuarios registrados********/
 	public List<Usuario> obtenerUsuarios() {
 		try {
 			List<UsuarioEntity> usuariosEntity = usuarioQuery.obtenerUsuarios();
@@ -155,17 +158,39 @@ public class UsuarioService {
 			throw new BusinessException("No hay usuarios registrados.");
 		}
 	}
+	
+	/*******Obtiene la lista de aquellos usuarios que coincidan con el parametro recibido********/
+	public List<Usuario> obtenerUsuariosFiltro(String paramteroBusqueda) {
+		try {
+			List<UsuarioEntity> usuariosEntity = usuarioQuery.obtenerUsuariosFiltro(paramteroBusqueda);
+			List<Usuario> usuarios = new ArrayList<>();
+			for (UsuarioEntity usuarioEntity : usuariosEntity) {
+				Usuario usuario = new Usuario();
+				usuario = usuario.usuarioEntity(usuarioEntity);
+				usuarios.add(usuario);
+			}
+			return usuarios;
+		} catch (NoResultException ex) {
+			throw new BusinessException("No hay usuarios registrados.");
+		}
+	}
 
-	public void desactivarUsuario(Integer idUsuario) {
+	/*******Desactiva un usuario para que no pueda ingresar al sistema********/
+	public void desactivarActivarUsuario(Integer idUsuario) {
 		try {
 			UsuarioEntity usuarioEntity = usuarioQuery.obtenerUsuarioPorId(idUsuario);
-			usuarioEntity.setActivo(0);
+			if(usuarioEntity.getActivo().equals(1)){
+				usuarioEntity.setActivo(0);	
+			}else{
+				usuarioEntity.setActivo(1);
+			}
 			usuarioQuery.actualizarUsuario(usuarioEntity);
 		} catch (PersistenceException ex) {
 			throw new BusinessException("Ocurrio un problema al actualizar al usuario.");
 		}
 	}
 
+	/*********Elimina un usuario***********/
 	public void eliminarUsuario(Integer idUsuario) {
 		try {
 			UsuarioEntity usuarioEntity = usuarioQuery.obtenerUsuarioPorId(idUsuario);
@@ -174,7 +199,8 @@ public class UsuarioService {
 			throw new BusinessException("Ocurrio un problema al actualizar al usuario.");
 		}
 	}
-
+	
+	/*****Obtiene un usuario por el token enviado*********/
 	public Usuario obtenerUsuarioPorToken(String token) {
 		try {
 			TokenEntity tokenEntity = new TokenEntity();

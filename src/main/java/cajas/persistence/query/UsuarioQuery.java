@@ -21,6 +21,12 @@ public class UsuarioQuery {
 				.getResultList();
 		return usuarios;
 	}
+	
+	public List<UsuarioEntity> obtenerUsuariosFiltro(String parametroBusqueda) {
+		List<UsuarioEntity> usuarios = entityManager.createQuery("FROM UsuarioEntity a WHERE a.nombre LIKE :parametroBusqueda OR a.email LIKE :parametroBusqueda ", UsuarioEntity.class)
+				.setParameter("parametroBusqueda","%"+ parametroBusqueda+"%").getResultList();
+		return usuarios;
+	}
 
 	public void registrarUsuario(UsuarioEntity usuario) {
 		entityManager.persist(usuario);

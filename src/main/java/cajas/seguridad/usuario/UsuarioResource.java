@@ -1,6 +1,8 @@
 package cajas.seguridad.usuario;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -22,42 +24,149 @@ public class UsuarioResource {
 	@EJB
 	UsuarioService usuarioService;
 
+	/********Registra un nuevo usuario*******/
 	@POST
 	@Consumes({ "application/json" })
-	@Produces({ "application/json" })
 	public Response altaUsuario(RegistroUsuario usuario) {
 		try {
 			usuarioService.crearUsuario(usuario);
-			return Response.status(Status.OK).tag("Usuario registrado correctamente.").build();
+			return Response.ok(Status.OK,"application/json").tag("Usuario registrado correctamente.").build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			return Response.ok(Status.NOT_IMPLEMENTED,"application/json").tag(ex.getMessage()).build();
+		}
+	}
+	
+	
+	/*****Compureba si existe un usuario por su nombre de usuario*********/
+	@GET
+	@Path("/existeNombreUsuario")
+	@Produces({"application/json"})
+	public Response exiteNombreUsuario(@QueryParam("inputUser")String nombre){
+		Map<String,String> resultado = new HashMap<>();
+		try{
+			Usuario usuario = usuarioService.obtenerUsuarioPorNombre(nombre);
+			if(usuario.getNombre() != null){
+				resultado.put("valid", "false");//ya existe
+				return Response.ok(resultado).build();	
+			}
+			resultado.put("valid", "true");
+			return Response.ok(resultado).build();
+		}catch(BusinessException ex){
+			resultado.put("valid", "true");
+			return Response.ok(resultado).build();
+		}
+	}
+	
+	/*****Compureba si existe un usuario por su nombre de usuario usado en la edición*********/
+	@GET
+	@Path("/existeNombreUsuarioEdicion")
+	@Produces({"application/json"})
+	public Response exiteNombreUsuarioEdicion(@QueryParam("inputUser")String nombre,@QueryParam("idUsuario")Integer idUsuario){
+		Map<String,String> resultado = new HashMap<>();
+		try{
+			Usuario usuario = usuarioService.obtenerUsuarioPorId(idUsuario);
+			if(usuario.getNombre().equals(nombre)){
+				resultado.put("valid","true");//no existe
+				return Response.ok(resultado).build();
+			}else{
+				usuario = usuarioService.obtenerUsuarioPorNombre(nombre);
+				if(usuario.getNombre() != null){
+					resultado.put("valid","false");// ya existe
+					return Response.ok(resultado).build();	
+				}
+				resultado.put("valid","true");
+				return Response.ok(resultado).build();
+			}
+		}catch(BusinessException ex){
+			resultado.put("valid","true");
+			return Response.ok(resultado).build();
+		}
+	}
+	
+	/*****Compureba si existe un usuario por su email*********/
+	@GET
+	@Path("/existeEmail")
+	@Produces({"application/json"})
+	public Response existeEmail(@QueryParam("inputEmail")String email){
+		Map<String,String> resultado = new HashMap<>();
+		try{
+			Usuario usuario = usuarioService.obtenerUsuarioPorCorreo(email);
+			if(usuario.getEmail()!= null){
+				resultado.put("valid","false");
+				return Response.ok(resultado).build();	
+			}
+			resultado.put("valid","true");
+			return Response.ok(resultado).build();
+		}catch(BusinessException ex){
+			resultado.put("valid","true");
+			return Response.ok(resultado).build();
+		}
+	}
+	
+	/*****Compureba si existe un usuario por su email usado en edición*********/
+	@GET
+	@Path("/existeEmailEdicion")
+	@Produces({"application/json"})
+	public Response existeEmailEdicion(@QueryParam("inputEmail")String email,@QueryParam("idUsuario")Integer idUsuario){
+		Map<String,String> resultado = new HashMap<>();
+		try{
+			Usuario usuario = usuarioService.obtenerUsuarioPorId(idUsuario);
+			if(usuario.getEmail().equals(email)){
+				resultado.put("valid","true");
+				return Response.ok(resultado).build();
+			}else{
+				usuario = usuarioService.obtenerUsuarioPorNombre(email);
+				if(usuario.getEmail() != null){
+					resultado.put("valid","false");
+					return Response.ok(resultado).build();	
+				}
+				resultado.put("valid","true");
+				return Response.ok(resultado).build();
+			}
+		}catch(BusinessException ex){
+			resultado.put("valid","true");
+			return Response.ok(resultado).build();
 		}
 	}
 
+
+	/*****Actualiza un usuario*********/
 	@PUT
 	@Consumes({ "application/json" })
-	@Produces({ "application/json" })
 	public Response actualizarUsuario(RegistroUsuario usuario) {
 		try {
 			usuarioService.actualizarUsuario(usuario);
-			return Response.status(Status.OK).tag("Usuario actualizado correctamente.").build();
+			return Response.ok(Status.OK,"application/json").build();
 		} catch (BusinessException ex) {
 			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
 		}
 	}
 
+	/*****Solo desactiva a un usuario*********/
 	@PUT
 	@Path("/desactivarUsuario")
-	@Produces({ "application/json" })
 	public Response desactivarUsuario(@QueryParam("idUsuario") Integer idUsuario) {
 		try {
-			usuarioService.desactivarUsuario(idUsuario);
-			return Response.status(Status.OK).tag("Usuario desactivado correctamente.").build();
+			usuarioService.desactivarActivarUsuario(idUsuario);
+			return Response.ok(Status.OK,"application/json").build();
+		} catch (BusinessException ex) {
+			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+		}
+	}
+	
+	/*****Solo activa a un usuario*********/
+	@PUT
+	@Path("/activarUsuario")
+	public Response activarUsuario(@QueryParam("idUsuario") Integer idUsuario) {
+		try {
+			usuarioService.desactivarActivarUsuario(idUsuario);
+			return Response.ok(Status.OK,"application/json").build();
 		} catch (BusinessException ex) {
 			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
 		}
 	}
 
+	/*****Obtiene un usuario por email*********/
 	@GET
 	@Path("/usuarioPorCorreo")
 	@Produces({ "application/json" })
@@ -70,6 +179,7 @@ public class UsuarioResource {
 		}
 	}
 
+	/*****Obtiene un usuario por nombre de usuario*********/
 	@GET
 	@Path("/usuarioPorNombre")
 	@Produces({ "application/json" })
@@ -80,8 +190,9 @@ public class UsuarioResource {
 		} catch (BusinessException ex) {
 			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
 		}
-	}
-
+	}	
+	
+	/*****Obtiene un usuario por id*********/
 	@GET
 	@Path("/usuarioPorId")
 	@Produces({ "application/json" })
@@ -94,6 +205,7 @@ public class UsuarioResource {
 		}
 	}
 
+	/*****Obtiene los usuarios registrados*********/
 	@GET
 	@Produces({ "application/json" })
 	public Response obtenerUsuarios() {
@@ -104,13 +216,31 @@ public class UsuarioResource {
 			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
 		}
 	}
+	
+	
+	/************Obtiene una lista de usuarios de acuerdo al paramtero recibida y 
+	 * encontrando aquellos que coinciden
+	 */
+	@GET
+	@Path("/buscarUsuarios")
+	@Produces({"application/json"})
+	public Response obtenerUsuariosFiltro(@QueryParam("parametro")String parametroBusqueda){
+		try{
+			List<Usuario> usuarios = usuarioService.obtenerUsuariosFiltro(parametroBusqueda);
+			return Response.ok(usuarios).build();
+		}catch(BusinessException ex){
+			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+		}
+	}
+	
 
+	/*****Elimina un usuario*********/
 	@DELETE
 	@Produces({ "application/json" })
 	public Response eliminarUsuario(@QueryParam("idUsuario") Integer idUsuario) {
 		try {
 			usuarioService.eliminarUsuario(idUsuario);
-			return Response.status(Status.OK).tag("Usuario eliminado correctamente.").build();
+			return Response.ok(Status.OK,"application/json").build();
 		} catch (BusinessException ex) {
 			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
 		}

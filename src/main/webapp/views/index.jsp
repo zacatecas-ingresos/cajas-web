@@ -78,13 +78,7 @@
 			<aside class="main-sidebar">
 				<!-- sidebar: style can be found in sidebar.less -->
 				<section class="sidebar">
-					<!-- sidebar menu: : style can be found in sidebar.less -->
-					<ul class="sidebar-menu">
-						<li class="active treeview"><a href="#"> <i
-								class="fa fa-dashboard"></i> <span>Productos</span> <i
-								class="fa fa-angle-left pull-right"></i>
-						</a></li>
-					</ul>
+					<jsp:include page="/views/menu/menu.jsp"></jsp:include>
 				</section>
 				<!-- /.sidebar -->
 			</aside>
@@ -220,7 +214,7 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-		        			<h4 class="modal-title">Categor&iacutea</h4>        			
+		        			<h4 class="modal-title">Categor&iacute;a</h4>        			
 						</div>
 						<div class="modal-body">
 					        <div id="category-tree"  style="overflow: auto; min-height: 150px; max-height: 150px"></div>

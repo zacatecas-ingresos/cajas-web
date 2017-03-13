@@ -25,8 +25,8 @@ public class ClaveParametro {
 	public static final String USUARIO_EJB = "java:global/cajas-web-17.03.10-SNAPSHOT/UsuarioService!cajas.seguridad.usuario.UsuarioService";
 	public static final String TOKEN_SERVICE = "java:global/cajas-web/TokenService!cajas.seguridad.token.TokenService";
 	public static final String TOKEN_EJB = "java:global/cajas-web-17.03.10-SNAPSHOT/TokenService!cajas.seguridad.token.TokenService";
-	public static final String IP__SERVICE = "java:global/cajas-web-17.03.10-SNAPSHOT/IpService!cajas.seguridad.ip.IpService";
-	public static final String IP__EJB = "java:global/cajas-web/IpService!cajas.seguridad.ip.IpService";
+	public static final String IP_SERVICE = "java:global/cajas-web-17.03.10-SNAPSHOT/IpService!cajas.seguridad.ip.IpService";
+	public static final String IP_EJB = "java:global/cajas-web/IpService!cajas.seguridad.ip.IpService";
 	public static final String PAGELOGIN = "/views/seguridad/login.jsp";
 	public static final String ERROR_LOGIN = "El usuario y/o contraseña no son los correctos.";
 	public static final String ERROR_SESION = "Ocurrio un problema al iniciar sesión.";

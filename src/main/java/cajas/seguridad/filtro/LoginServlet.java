@@ -133,7 +133,7 @@ public class LoginServlet extends HttpServlet {
 			Ip ip = new Ip();
 			ip.setIp(obtenerIp(httpRequest));
 			Context initContext = new InitialContext();
-			IpService ipService = (IpService) initContext.lookup(ClaveParametro.IP__SERVICE);
+			IpService ipService = (IpService) initContext.lookup(ClaveParametro.IP_SERVICE);
 			ipService.registrarIP(ip);
 		} catch (NamingException | BusinessException e) {
 			throw new BusinessException("Ocurrio un problema al bloquear la IP.");
@@ -141,7 +141,7 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	/**
-	 * Método para obtener la IP del usuario
+	 * Mï¿½todo para obtener la IP del usuario
 	 * 
 	 * @return
 	 * @throws SocketException
@@ -158,7 +158,7 @@ public class LoginServlet extends HttpServlet {
 	public boolean revisarIP(HttpServletRequest httpRequest) {
 		try {
 			Context initContext = new InitialContext();
-			IpService ipService = (IpService) initContext.lookup(ClaveParametro.IP__SERVICE);
+			IpService ipService = (IpService) initContext.lookup(ClaveParametro.IP_SERVICE);
 			if (ipService.ip(obtenerIp(httpRequest))) {
 				return true;
 			}
@@ -173,7 +173,7 @@ public class LoginServlet extends HttpServlet {
 	public void minutosBloqueoIP(HttpServletRequest httpRequest) {
 		try {
 			Context initContext = new InitialContext();
-			IpService ipService = (IpService) initContext.lookup(ClaveParametro.IP__SERVICE);
+			IpService ipService = (IpService) initContext.lookup(ClaveParametro.IP_SERVICE);
 			minutos = ipService.obtenerMinutosIP(obtenerIp(httpRequest));
 		} catch (NamingException | BusinessException ex) {
 			throw new BusinessException(

@@ -348,39 +348,6 @@ $(document).ready(function() {
 						}
 					}
 				}
-	}).on('err.validator.fv', function(e, data) {
-		
-		console.log(data.field);
-		console.log(data.validator);
-		if(data.field === 'inputUser' && data.validator === 'remote'){
-			var result= data.result;
-			console.log(data.result);
-			
-			if(result === true){
-				data.fv.updateMessage('inputUser', 'remote', 'El usuario ya existe.');
-			}else{
-				if (data.field === 'inputUser') {
-					data.fv.updateMessage('inputUser', 'remote', 'Usuario Valido.');
-		            data.element.closest('.form-group').addClass('has-success').removeClass('has-error');
-		            
-		        }
-			}
-	}else if(data.field === 'inputEmail' && data.validator === 'remote'){
-		var result= data.result;
-		console.log(data.result);
-		
-		if(result === true){
-			data.fv.updateMessage('inputEmail', 'remote', 'Ya existe un usuario registrado con el mismo email.');
-		}else{
-			if (data.field === 'inputEmail') {
-				
-				data.fv.updateMessage('inputEmail', 'remote', 'Email Valido.');
-	            data.element.closest('.form-group').addClass('has-success').removeClass('has-error');
-	            
-	        }
-		}
-	}
-
 	});
 
 

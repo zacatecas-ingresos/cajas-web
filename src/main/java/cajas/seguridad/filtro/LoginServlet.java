@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import cajas.config.parametros.ClaveParametro;
 import cajas.exception.BusinessException;
 import cajas.exception.CredencialesInvalidasException;
@@ -22,6 +24,7 @@ import cajas.seguridad.token.Credenciales;
 import cajas.seguridad.token.TokenService;
 import cajas.seguridad.usuario.Usuario;
 import cajas.seguridad.usuario.UsuarioService;
+import cajas.util.ResponseMessage;
 
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
@@ -51,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 		try {
 
 			System.out.println("WEB SERVLET................");
-
+			
 			String contextPath = request.getServletContext().getContextPath();
 			String index = contextPath + ClaveParametro.INDEX;
 
@@ -67,7 +70,8 @@ public class LoginServlet extends HttpServlet {
 			credenciales.setPassword(password);
 
 			try {
-				if (intentos < 2 && !revisarIP(request)) {
+
+				if (!revisarIP(request)) {
 					String token = tokenService.abrirSesion(credenciales, true);
 					if (token != null && token != "") {
 						response.addCookie(crearCookie(token, ClaveParametro.DURACION_MAXIMA_SESION));
@@ -79,48 +83,51 @@ public class LoginServlet extends HttpServlet {
 						intentos = 0;
 						minutos = 0;
 					}
-				} else if (revisarIP(request)) {
-					minutosBloqueoIP(request);
-					String message = ClaveParametro.INTENTOS_SUPERADOS;
-					request.setAttribute("error",
-							message + minutos + " minutos para intentar ingresar de nueva cuenta.");
-					request.getRequestDispatcher(ClaveParametro.PAGELOGIN).forward(request, response);
-				} else {
-					bloquearIp(request);
-					minutosBloqueoIP(request);
-					String message = ClaveParametro.INTENTOS_SUPERADOS;
-					request.setAttribute("error",
-							message + minutos + " minutos para intentar ingresar de nueva cuenta.");
-					request.getRequestDispatcher(ClaveParametro.PAGELOGIN).forward(request, response);
+				} else if(revisarIP(request)) {					
+					accesoRestringido(request, response, "");
 				}
 			} catch (CredencialesInvalidasException ex) {
-				ex.printStackTrace();
-				intentos++;
-				String message = ClaveParametro.ERROR_LOGIN;
-				request.setAttribute("error", message);
-				request.getRequestDispatcher(ClaveParametro.PAGELOGIN).forward(request, response);
+				accesoRestringido(request, response, ex.getMessage());
 			} catch (LoginException ex) {
-				intentos++;
-				ex.printStackTrace();
-				String message = ClaveParametro.ERROR_LOGIN;
-				request.setAttribute("error", message);
-				request.getRequestDispatcher(ClaveParametro.PAGELOGIN).forward(request, response);
-				return;
+				accesoRestringido(request, response, ex.getMessage());
 			} catch (BusinessException ex) {
-				ex.printStackTrace();
-				String message = ClaveParametro.ERROR_SESION;
-				request.setAttribute("error", message);
-				request.getRequestDispatcher(ClaveParametro.PAGELOGIN).forward(request, response);
+				accesoRestringido(request, response, ex.getMessage());
 			}
-		} catch (NamingException | BusinessException e) {
-			e.printStackTrace();
+		} catch (NamingException e) {
 			String message = ClaveParametro.ERROR_SESION;
-			request.setAttribute("error", message);
-			request.getRequestDispatcher(ClaveParametro.PAGELOGIN).forward(request, response);
-			throw new LoginException(ClaveParametro.ERROR_SESION);
+			Gson gson = new Gson();
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(gson.toJson(ResponseMessage.respuesta("respuesta", message)));
 		}
 	}
 
+	
+	public void accesoRestringido(HttpServletRequest request,HttpServletResponse response,String mensaje) throws ServletException, IOException{
+		if(revisarIP(request)){
+			minutosBloqueoIP(request);
+			String message = ClaveParametro.INTENTOS_SUPERADOS;
+			request.setAttribute("error",
+					message + minutos + " minutos para intentar ingresar de nueva cuenta.");
+			request.getRequestDispatcher(ClaveParametro.PAGELOGIN).forward(request, response);
+		}else if(intentos>2 && !revisarIP(request)){
+			bloquearIp(request);
+			minutosBloqueoIP(request);
+			String message = ClaveParametro.INTENTOS_SUPERADOS;
+			request.setAttribute("error",message + minutos + " minutos para intentar ingresar de nueva cuenta.");
+			request.getRequestDispatcher(ClaveParametro.PAGELOGIN).forward(request, response);
+		}else{
+			intentos++;
+			String message =mensaje;
+			Gson gson = new Gson();
+			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(gson.toJson(ResponseMessage.respuesta("respuesta", message)));
+		}
+	}
+	
 	public Cookie crearCookie(String token, Integer duracion) {
 		Cookie cookie = new Cookie(ClaveParametro.COOKIE, token);
 		cookie.setPath(ClaveParametro.PATH);

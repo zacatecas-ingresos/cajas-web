@@ -18,6 +18,7 @@ public class ClaveParametro {
 	public static final String LOGIN = "/views/seguridad/login.jsp";
 	public static final String INDEX = "/views/index.jsp";
 	public static final String URL_SERVLET_LOGIN = "/loginServlet";
+	public static final String CERRAR_SESION = "cerrarSesion";
 	
 	/******* Web Servlet ***********/
 	public static final String COOKIE = "CAJAS";
@@ -28,7 +29,6 @@ public class ClaveParametro {
 	public static final String IP_SERVICE = "java:global/cajas-web-17.03.10-SNAPSHOT/IpService!cajas.seguridad.ip.IpService";
 	public static final String IP_EJB = "java:global/cajas-web/IpService!cajas.seguridad.ip.IpService";
 	public static final String PAGELOGIN = "/views/seguridad/login.jsp";
-	public static final String ERROR_LOGIN = "El usuario y/o contraseña no son los correctos.";
 	public static final String ERROR_SESION = "Ocurrio un problema al iniciar sesión.";
 	public static final String INTENTOS_SUPERADOS = "Ha superado el número de intentos para ingresar al sistema.Espere ";
 	

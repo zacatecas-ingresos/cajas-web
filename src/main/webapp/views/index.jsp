@@ -33,9 +33,6 @@
 		<script src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
 		
-		<!-- FiscoFlex -->
-		<link href="${pageContext.request.contextPath}/resources/fiscoflex/css/fiscoflex.css" rel="stylesheet" />
-		
 		<!-- jsTree -->
 		<link href="${pageContext.request.contextPath}/resources/jstree/themes/default/style.css" rel="stylesheet" />
 		<script src="${pageContext.request.contextPath}/resources/jstree/jstree.min.js" type="text/javascript"></script>	
@@ -69,7 +66,7 @@
 					</a>
 					<div class="navbar-custom-menu">
 						<ul class="nav navbar-nav">
-	
+							<jsp:include page="/views/menu/logout.jsp"></jsp:include>						
 						</ul>
 					</div>
 				</nav>

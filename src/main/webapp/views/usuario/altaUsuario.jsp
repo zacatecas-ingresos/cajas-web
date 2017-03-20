@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,11 +26,6 @@
 		rel="stylesheet" />
 	<link
 		href="${pageContext.request.contextPath}/resources/admin-lte/css/skins/_all-skins.min.css"
-		rel="stylesheet" />
-	
-	<!-- FiscoFlex -->
-	<link
-		href="${pageContext.request.contextPath}/resources/fiscoflex/css/fiscoflex.css"
 		rel="stylesheet" />
 	
 	<!-- Sweetalert -->
@@ -63,7 +56,7 @@
 				</a>
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
-
+						<jsp:include page="/views/menu/logout.jsp"></jsp:include>
 					</ul>
 				</div>
 			</nav>

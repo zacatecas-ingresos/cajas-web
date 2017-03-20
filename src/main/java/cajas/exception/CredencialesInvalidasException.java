@@ -1,5 +1,8 @@
 package cajas.exception;
 
+import javax.ejb.ApplicationException;
+
+@ApplicationException(rollback=true)
 public class CredencialesInvalidasException extends RuntimeException{
 
 	/**

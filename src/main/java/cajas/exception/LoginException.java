@@ -1,5 +1,8 @@
 package cajas.exception;
 
+import javax.ejb.ApplicationException;
+
+@ApplicationException(rollback=true)
 public class LoginException extends BusinessException {
 
 	private static final long serialVersionUID = 1L;

@@ -79,6 +79,12 @@ public class Filtro implements Filter {
 						httpResponse.sendRedirect(contextPath + ClaveParametro.INDEX);
 					}
 
+					
+					if(httpRequest.getParameter(ClaveParametro.CERRAR_SESION) != null){
+						eliminarCookieUsuario();
+						httpResponse.sendRedirect(contextPath + ClaveParametro.LOGIN);					
+					}
+					
 					filterChain.doFilter(newRequest, servletResponse);
 				} else {
 					eliminarCookie();
@@ -167,7 +173,7 @@ public class Filtro implements Filter {
 	 * contexto de la ruta.
 	 *
 	 * <p>
-	 * En caso de que el recurso solicitado no estÃ© dentro del contexto retorna
+	 * En caso de que el recurso solicitado no esté dentro del contexto retorna
 	 * un null.
 	 *
 	 * @param recursoURI

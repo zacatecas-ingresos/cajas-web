@@ -1,27 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Log in</title>
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
-
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Log in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- jQuery -->
 <script
 	src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
-
-<!-- jQuery UI -->
-<script
-	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-
-<!-- jQuery Form -->
-<script
-	src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js" /></script>
 
 <!-- Bootstrap -->
 <link
@@ -30,10 +18,6 @@
 <script
 	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
-<!-- Bootstrap WYSIHTML5 -->
-<script
-	src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-
 <!-- Font Awesome -->
 <link
 	href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css"
@@ -41,96 +25,129 @@
 
 <!-- AdminLTE -->
 <link
-	href="${pageContext.request.contextPath}/resources/admin-lte/css/Fonts.css"
-	rel="stylesheet" />
-<link
 	href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css"
 	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath}/resources/admin-lte/css/skins/_all-skins.min.css"
-	rel="stylesheet" />
-<script
-	src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
 
-<!-- FiscoFlex -->
-<link
-	href="${pageContext.request.contextPath}/resources/fiscoflex/css/fiscoflex.css"
-	rel="stylesheet" />
+ <!-- iCheck -->
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/iCheck/square/blue.css">
+ <script src="${pageContext.request.contextPath}/resources/iCheck/icheck.min.js"></script>
 
-<!-- Sweetalert -->
-<link
-	href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css"
-	rel="stylesheet" type="text/css">
-<script
-	src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js">
-	
-</script>
+ <!-- Sweetalert -->
+<link href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css"	rel="stylesheet" type="text/css">
 
-<!-- FormValidation -->
-<link
-	href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css"
-	rel="stylesheet" type="text/css">
-<script
-	src="${pageContext.request.contextPath}/resources/formvalidation/js/formValidation.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
 
 
 </head>
 <body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="#"><strong>Cajas</strong></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
 
-	<!-- Login -->
-	<div class="login-box">
-		<div class="login-box-body">
+    <form>
 
-			<form class="form-signin" method="post" id="login"
-				action="loginServlet">
-				
-				<div style="color:red" align="center">${error}</div>
-				<div class="form-group has-feedback">
-					<input id="nombreUsuario" name="nombreUsuario" class="form-control"
-						placeholder="Usuario" /> <span
-						class="glyphicon glyphicon-user form-control-feedback"></span>
-				</div>
-				<div class="form-group has-feedback">
-					<input type="password" id="password" name="password"
-						class="form-control" placeholder="Password" /> <span
-						class="glyphicon glyphicon-lock form-control-feedback"></span>
-				</div>
-				<div class="row">
-					<div class="col-xs-6">
-						<button type="submit" onclick="login()"
-							class="btn btn-primary btn-block btn-flat">Iniciar
-							Sesión</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
-	<!-- Fin Login -->
+      <div class="form-group has-feedback">
+        <input id="nombreUsuario" name="nombreUsuario" class="form-control"	placeholder="Usuario" /> 
+		<span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" id="password" class="form-control" placeholder="Contraseña">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <!-- Checkbox 
+       <div class="form-group has-feedback">
+       		<input type="checkbox" id="input" > Recordar Usuario
+       </div>
+       Fin checkbox -->
+      <div class="row">
+      	<div class="col-xs-12">
+          <button id="login" type="button" class="btn btn-primary btn-block btn-flat">Iniciar Sesión</button>
+        </div>
+      </div>
+    </form>
 
+<!--     <a href="#">¿Olvide mi contraseña?</a><br> -->
+<!--     <a href="#" class="text-center">Registrarse</a> -->
 
-	<script>
-		function login() {
-			nombreUsuario = document.getElementsByName('nombreUsuario')[0].value;
-			password = document.getElementsByName('password')[0].value;
-			var credenciales = {
-				nombreUsuario : nombreUsuario,
-				password : password
-			};
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
 
-			var loginWerbServlet = "/loginServlet";
-			jQuery.ajax({
-				type : 'POST',
-				url : loginWerbServlet,
-				data : credenciales
-			});
-		}
-	</script>
+<script>
+$(document).ready(function(){
 
+	/*
+    $('#input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue'
+    });
+    */
+
+  $('#login').click(function(){
+  	    nombreUsuario = $('#nombreUsuario').val();
+  	    password = $('#password').val();
+		
+		var credenciales = {
+			nombreUsuario : nombreUsuario,
+			password : password
+		};
+		
+		var loginWerbServlet = "${pageContext.request.contextPath}/loginServlet";
+		var index = "${pageContext.request.contextPath}/views/index.jsp";
+		jQuery.ajax({
+			type : 'POST',
+			url : loginWerbServlet,
+			data : credenciales,
+			success: function(data,textStatus, xhr){
+				console.log("TEXT"+ textStatus + " " + xhr.status);
+				if(xhr.status == 200){
+					window.location = index;
+				}				
+			}
+		});
+	});
+
+  //Errores
+   $.ajaxSetup({
+       error: function (x, status, error) {	  
+
+           if (x.status == 400) {
+           	var result = x.responseJSON;
+    	       	swal({
+				title:"Error " + result.code, 
+					text:result.message, 
+					type:"error",
+					closeOnCancel: false
+				});	            		               
+            } else if(x.status == 500) {
+            	swal({
+					title:"Error 500", 
+					text:"Disculpe las molestias no podemos procesar su solicitud.", 
+					type:"error",
+					closeOnCancel: false
+				});
+            }else if(x.status == 403){
+            	var result = x.responseJSON;
+                console.log(result.respuesta);
+				swal(
+					{
+						 title : "Aviso",
+						 text: result.respuesta,
+						 type: "info",
+						 closeOnCancel : false
+					},
+					function() {
+						window.location = "${pageContext.request.contextPath}/views/seguridad/login.jsp";
+				});
+			}
+        }
+    });
+
+});
+</script>
 </body>
 </html>

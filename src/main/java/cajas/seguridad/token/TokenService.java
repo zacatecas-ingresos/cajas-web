@@ -41,7 +41,7 @@ public class TokenService {
 		}
 
 		if (login.getPassword().equals(null) || login.getPassword().length() == 0) {
-			throw new LoginException("Ingrese su contraseï¿½a.");
+			throw new LoginException("Ingrese su contraseña.");
 		}
 
 		boolean credencialesValidas = true;
@@ -58,7 +58,7 @@ public class TokenService {
 		credencialesValidas = usuarioEntity.getPassword().equals(hashPassword);
 
 		if (!credencialesValidas) {
-			throw new CredencialesInvalidasException("La contraseï¿½a que ha ingresado es incorrecta.");
+			throw new CredencialesInvalidasException("La contraseña que ha ingresado es incorrecta.");
 		}
 
 		if (usuarioEntity.getActivo() != 1) {
@@ -105,7 +105,7 @@ public class TokenService {
 			tokenQuery.actualizarToken(tokenEntity);
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();
-			throw new BusinessException("Ocurrio un problema al cerrar al terminar la sesion del sistema.");
+			throw new BusinessException("Ocurrio un problema al cerrar al terminar la sesión del sistema.");
 		}
 	}
 

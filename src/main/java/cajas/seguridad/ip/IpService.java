@@ -38,11 +38,11 @@ public class IpService {
 	}
 
 	/**
-	 * Permite saber si una IP est� bloqueda.
+	 * Permite saber si una IP esta bloqueda.
 	 * 
 	 * @param ip
-	 *            la IP que ser� validada.
-	 * @return true si la IP est� bloqueada en caso contrario false
+	 *            la IP que sera validada.
+	 * @return true si la IP esta bloqueada en caso contrario false
 	 * 
 	 */
 	public boolean ip(String ip) {
@@ -90,10 +90,42 @@ public class IpService {
 			if (horaActual == horaExpira) {
 				minutos = minutosTiempoExpira - minutosTiempoActual;
 			} else if (horaActual < horaExpira) {
-				minutosTiempoExpira = minutosTiempoExpira + 60;
-				minutos = minutosTiempoExpira - minutosTiempoActual;
+				
+				int resultadoHoras = horaExpira-horaActual;
+				
+				if(resultadoHoras == 1){
+					
+					int minutosRestaHoras = 60-minutosTiempoActual;
+					
+					minutosRestaHoras = minutosRestaHoras+minutosTiempoExpira;
+					
+					minutos = minutosRestaHoras;
+					
+				}else{
+					
+					resultadoHoras = resultadoHoras-1;
+					
+					int minutosRestaHoras = resultadoHoras*60;
+					
+					minutosRestaHoras = minutosRestaHoras+minutosTiempoExpira;
+					int restaMinutosActual = 60-minutosTiempoActual;
+									
+					minutosRestaHoras = minutosRestaHoras+restaMinutosActual;
+					
+					minutos = minutosRestaHoras;
+				}
+		
+			}else if(horaExpira < horaActual){
+				
+				int resultadoHoras = 24-horaActual;	
+				int minutosRestaHoras = resultadoHoras*60;
+				minutosRestaHoras = minutosRestaHoras+minutosTiempoExpira;
+				int restaMinutosActual = 60-minutosTiempoActual;	
+				minutosRestaHoras = minutosRestaHoras+restaMinutosActual;
+				
+				minutos = minutosRestaHoras;
+				
 			}
-
 			return minutos;
 		} catch (NoResultException ex) {
 			ex.printStackTrace();

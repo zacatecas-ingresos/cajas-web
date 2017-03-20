@@ -293,7 +293,7 @@ $(document).ready(function() {
 									message : "El usuario ya existe",
 									data : function(validator,$field,value){
 										return{
-												name:validator.getFieldElements('inputUser').val()
+											inputUser:validator.getFieldElements('inputUser').val()
 										};
 									}
 								}
@@ -314,7 +314,7 @@ $(document).ready(function() {
 								message : "Ya existe un usuario registrado con este email.",
 								data : function(validator,$field,value){
 									return{
-											name:validator.getFieldElements('inputEmail').val()
+										inputEmail:validator.getFieldElements('inputEmail').val()
 									};
 								}
 							}

@@ -105,9 +105,8 @@
 									</div>
 
 									<div class="form-group">
-										<label for="selectLinea" class="control-label">Linea</label> <select
-											class="form-control" id="selectLinea" name="selectLinea" required>
-										</select>
+										<label for="inputLinea" class="control-label">Linea</label> <input
+											class="form-control" id="inputLinea" name="inputLinea" required>
 									</div>
 
 								</div>
@@ -273,7 +272,7 @@
 												invalid : 'glyphicon glyphicon-remove',
 												validating : 'glyphicon glyphicon-refresh'
 											},
-
+											//live: 'enabled',
 											//Lista de campos a validar y las reglas que aplican para cada uno de ellos
 											fields : {
 												'inputVin' : { //validación del campo

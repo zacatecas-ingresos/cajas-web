@@ -67,50 +67,46 @@
 								<div class="col-md-12">
 
 									<div class="form-group">
-										<label for="fvin" class="control-label">Serie (VIN)</label> <input
-											id="fvin" name="fvin" type="text" class="form-control"
+										<label for="inputVin" class="control-label">Serie (VIN)</label> <input
+											id="inputVin" name="inputVin" type="text" class="form-control"
 											maxlength="17" placeholder="Serie (VIN)" required>
 									</div>
 
 									<div class="form-group">
-										<label for="fnomotor" class="control-label">Numero Motor</label> <input
-											id="fnomotor" name="fvin" type="text" class="form-control"
+										<label for="inputNumeroMotor" class="control-label">Numero Motor</label> <input
+											id="inputNumeroMotor" name="inputNumeroMotor" type="text" class="form-control"
 											maxlength="17" placeholder="Numero Motor" required>
 									</div>
 
 
 									<div class="form-group">
-										<label for="fmarca" class="control-label">Marca</label> <select
-											class="form-control" id="fmarca" required>
-											<option value="Honda">Honda</option>
-											<option value="Toyota">Toyota</option>
+										<label for="selectMarca" class="control-label">Marca</label> <select
+											class="form-control" id="selectMarca" name="selectMarca" required>
+										
 										</select>
 									</div>
 
 									<div class="form-group">
-										<label for="fvin" class="control-label">Modelo</label> <input
-											id="fmodelo" name="fmodelo" type="text" class="form-control"
-											maxlength="4" placeholder="Modelo" required>
+										<label for="inputModelo" class="control-label">Modelo</label> <input
+											id="fmodelo" name="inputModelo" type="text" class="form-control"
+											maxlength="4" placeholder="Modelo" name="inputModelo" required>
 									</div>
 
 									<div class="form-group">
-										<label for="fclase" class="control-label">Clase</label> <select
-											class="form-control" id="fclase" required>
-											<option value="1-AUTOMOVIL">1-AUTOMOVIL</option>
+										<label for="selectClase" class="control-label">Clase</label> <select
+											class="form-control" id="selectClase" name="selectClase" required>
 										</select>
 									</div>
 
 									<div class="form-group">
-										<label for="ftipo" class="control-label">Tipo</label> <select
-											class="form-control" id="ftipo" required>
-											<option value="1-AUTOMOVIL">1-AUTOMOVIL</option>
+										<label for="selectTipo" class="control-label">Tipo</label> <select
+											class="form-control" id="selectTipo" name="selectTipo" required>					
 										</select>
 									</div>
 
 									<div class="form-group">
-										<label for="flinea" class="control-label">Linea</label> <select
-											class="form-control" id="flinea" required>
-											<option value="Sienna">Sienna</option>
+										<label for="selectLinea" class="control-label">Linea</label> <select
+											class="form-control" id="selectLinea" name="selectLinea" required>
 										</select>
 									</div>
 
@@ -201,17 +197,14 @@
 					function() {
 
 						//Cancelar y dirige a la vista principal de los vehiculos registrados
-						$('#cancel-btn')
-								.click(
+						$('#cancel-btn').click(
 										function() {
 											var urlUsuario = "${pageContext.request.contextPath}/views/usuario/usuario.jsp";
 											window.location = urlUsuario;
 										});
 
 						//Registra un vehiculo
-						$('#save-btn')
-								.click(
-										function() {
+						$('#save-btn').click(function() {
 
 											//Validaciones
 											var formValidation = $('#form-vehiculos').data('formValidation');
@@ -263,10 +256,7 @@
 																	jqXHR,
 																	textStatus,
 																	errorThrown) {
-																console
-																		.log(textStatus
-																				+ " "
-																				+ errorThrown);
+																console.log(textStatus+ " "+ errorThrown);
 															}
 														});
 											}
@@ -274,7 +264,7 @@
 										});
 
 						//Validaciones
-						$('#form-usuarios')
+						$('#form-vehiculos')
 								.formValidation(
 										{
 											framework : 'bootstrap', //Indicamos el framework para validar, Bootstrap, Pure,Semantic,etc
@@ -286,89 +276,91 @@
 
 											//Lista de campos a validar y las reglas que aplican para cada uno de ellos
 											fields : {
-												'inputUser' : { //validación del campo
+												'inputVin' : { //validación del campo
 													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
 													validators : { //validaciones
 
 														notEmpty : {
-															message : 'El nombre de usuario es requerido.'
+															message : 'El VIN es requerido.'
 														},
 														stringLength : {
-															min : 8,
-															max : 100,
-															message : 'El nombre de usuario requiere por lo menos ocho caracteres.'
+															min : 17,
+															max : 17,
+															message : 'El VIN por lo menos 17 caracteres.'
 														},
-														remote : {
-															url : '${pageContext.request.contextPath}/cajas/usuario/existeNombreUsuario?'
-																	+ $(
-																			'#inputUser')
-																			.val(),
-															message : "El usuario ya existe",
-															data : function(
-																	validator,
-																	$field,
-																	value) {
+														/*remote : {
+															url : '${pageContext.request.contextPath}/cajas/usuario/existeNombreUsuario?'+ $('#inputUser').val(),
+															message : "El VIN ya existe",
+															data : function(validator,$field,value) {
 																return {
-																	inputUser : validator
-																			.getFieldElements(
-																					'inputUser')
-																			.val()
+																	inputUser : validator.getFieldElements('inputVin').val()
 																};
 															}
-														}
+														}*/
 													}
 												},
-												'inputEmail' : {
-													trigger : 'blur',
-													validators : {
-														notEmpty : {
-															message : 'El email es requerido.'
-														},
-														regexp : {
-															regexp : /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-															message : 'La estructura del email es incorrecta.'
-														},
-														remote : {
-															url : '${pageContext.request.contextPath}/cajas/usuario/existeEmail?'
-																	+ $(
-																			'#inputEmail')
-																			.val(),
-															message : "Ya existe un usuario registrado con este email.",
-															data : function(
-																	validator,
-																	$field,
-																	value) {
-																return {
-																	inputEmail : validator
-																			.getFieldElements(
-																					'inputEmail')
-																			.val()
-																};
-															}
-														}
+												'inputNumeroMotor' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
 
+														notEmpty : {
+															message : 'El Numero de Motor es requerido.'
+														},
 													}
 												},
-												'inputPassword' : {
-													trigger : 'blur',
-													validators : {
-														notEmpty : {
-															message : 'La conraseña es requerida.'
-														},
-														stringLength : {
-															min : 8,
-															max : 100,
-															message : 'Su contraseña requiere por lo menos ocho caracteres.'
-														}
+												'selectMarca' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
 
+														notEmpty : {
+															message : 'La Marca es requerida.'
+														},
 													}
-												}
+												},
+												'inputModelo' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
+
+														notEmpty : {
+															message : 'El Modelo es requerido.'
+														},
+														 numeric: {
+									                            message: 'El Modelo debe ser numerico',
+									                        }
+													}
+												},
+												'selectClase' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
+
+														notEmpty : {
+															message : 'La Clase es requerida.'
+														},
+													}
+												},
+												'selectTipo' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
+
+														notEmpty : {
+															message : 'El Tipo es requerido.'
+														},
+													}
+												},
+												'selectLinea' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
+
+														notEmpty : {
+															message : 'La Linea es requerida.'
+														},
+													}
+												},
 											}
 										});
 
 						//Errores
-						$
-								.ajaxSetup({
+						$.ajaxSetup({
 									error : function(x, status, error) {
 										if (x.status == 400) {
 											var result = x.responseJSON;

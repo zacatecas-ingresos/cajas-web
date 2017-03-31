@@ -31,7 +31,7 @@ public class NumeroLetrasTest {
 
 		JavaArchive jar = ShrinkWrap.create(JavaArchive.class);
 		jar.addAsManifestResource("META-INF/beans.xml", "beans.xml");
-		jar.addAsManifestResource("META-INF/test-persistence.xml", "test-persistence.xml");
+		jar.addAsManifestResource("META-INF/persistence.xml", "persistence.xml");
 		jar.addClass(NumeroLetras.class);
 		war.addAsLibrary(jar);
 

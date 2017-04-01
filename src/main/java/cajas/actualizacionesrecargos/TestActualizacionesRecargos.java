@@ -15,9 +15,8 @@ import org.junit.runner.RunWith;
 public class TestActualizacionesRecargos {
 
 	BigDecimal impuestoGravable = new BigDecimal("16000");
-	BigDecimal actualizacion = new BigDecimal("16070.4000");
-	BigDecimal importeActualizacion = new BigDecimal("70.4000");
-	BigDecimal recargo = new BigDecimal("363.19");
+	BigDecimal actualizacion = new BigDecimal("16069");
+	BigDecimal recargo = new BigDecimal("363.16");
 
 	@Inject
 	ActualizacionesRecargosService actualizacionesRecargosService;
@@ -27,41 +26,30 @@ public class TestActualizacionesRecargos {
 		return ActualizacionesRecargosArchiveWar.crearWar();
 	}
 
-	/****** Calculando actualizaciones ******/
+	/****** Calculando actualizaciones y recargos ******/
 	@Test
 	public void calcularActualizacion() {
 
-		Integer aFiscal = 2017;
-		Integer mesFiscal = 1;
+		ContribucionFiscal contibucionFiscal = new ContribucionFiscal();
+		ActualizacionRecargo actualizacionRecargo = new ActualizacionRecargo();
+		contibucionFiscal.setaFiscalAdeudo(2017);
+		contibucionFiscal.setMesFiscalAdeudo(1);
 
-		BigDecimal resultadoActualizacion = actualizacionesRecargosService.calculoActualizacion(aFiscal, mesFiscal,
-				impuestoGravable);
-
-		Assert.assertEquals(resultadoActualizacion, actualizacion);
-
-	}
-
-	/******** Calculando el importe de la actualizacón ********/
-	@Test
-	public void calcularImporteActualizacion() {
-
-		BigDecimal resultadoImporteActualizacion = actualizacionesRecargosService.importeActualizacion(actualizacion,
-				impuestoGravable);
-
-		Assert.assertEquals(resultadoImporteActualizacion, importeActualizacion);
-	}
-
-	/*********** Calculando recargos ***********/
-	@Test
-	public void calcualrRecargos() {
-
-		Integer aFiscal = 2017;
-		Integer mesFiscal = 1;
-
-		BigDecimal resultadoRecargo = actualizacionesRecargosService.calculoRecargo(aFiscal, mesFiscal, false,actualizacion);
+		contibucionFiscal.setCantidadAdeuda(new BigDecimal(16000));
 		
-		Assert.assertEquals(resultadoRecargo, recargo);
+		contibucionFiscal.setaFiscalPago(2017);
+		contibucionFiscal.setMesFiscalPago(3);
+		
+		contibucionFiscal.setPagoVencido(false);
 
+		actualizacionRecargo  = actualizacionesRecargosService.calculoActualizacion(contibucionFiscal);
+				
+		Assert.assertEquals(actualizacionRecargo.getImporteActualizacion(), actualizacion);
+		
+		Assert.assertEquals(actualizacionRecargo.getImporteRecargo(), recargo);
+
+		
 	}
+
 
 }

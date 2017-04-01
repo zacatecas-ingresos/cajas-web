@@ -28,6 +28,8 @@ public class ActualizacionesRecargosArchiveWar implements Serializable {
 				.addClass(INPCEntity.class)
 				.addClass(INPCQuery.class)
 				.addClass(BusinessException.class)
+				.addClass(ContribucionFiscal.class)
+				.addClass(ActualizacionRecargo.class)
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
 				.addAsManifestResource("META-INF/persistence.xml", "persistence.xml");
 

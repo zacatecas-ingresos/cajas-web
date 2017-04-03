@@ -41,6 +41,7 @@ public class TestActualizacionesRecargos {
 		contibucionFiscal.setMesFiscalPago(3);
 		
 		contibucionFiscal.setPagoVencido(false);
+		contibucionFiscal.setTipoRecargo("MORA");
 
 		actualizacionRecargo  = actualizacionesRecargosService.calculoActualizacion(contibucionFiscal);
 				

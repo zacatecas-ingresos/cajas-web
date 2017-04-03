@@ -10,6 +10,7 @@ public class ContribucionFiscal {
 	private Integer mesFiscalPago;
 	private BigDecimal cantidadAdeuda;
 	private Boolean pagoVencido;
+	private String tipoRecargo;
 
 	/*********** Getters and Setters ***********/
 
@@ -59,6 +60,14 @@ public class ContribucionFiscal {
 
 	public void setPagoVencido(Boolean pagoVencido) {
 		this.pagoVencido = pagoVencido;
+	}
+	
+	public String getTipoRecargo() {
+		return tipoRecargo;
+	}
+	
+	public void setTipoRecargo(String tipoRecargo) {
+		this.tipoRecargo = tipoRecargo;
 	}
 
 }

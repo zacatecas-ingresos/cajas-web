@@ -78,7 +78,7 @@ public class ActualizacionesRecargosService {
 		 * 
 		 */
 		importeRecargo = calculoRecargo(contribucionFiscal.getaFiscalAdeudo(),contribucionFiscal.getMesFiscalAdeudo(),contribucionFiscal.getaFiscalPago(),contribucionFiscal.getMesFiscalPago(),
-		contribucionFiscal.getPagoVencido(), actualizacion);
+		contribucionFiscal.getPagoVencido(), actualizacion,contribucionFiscal.getTipoRecargo());
 		
 		/*** Set Valores calculados
 		 * 
@@ -133,12 +133,12 @@ public class ActualizacionesRecargosService {
 
 	/********* Calculo del recargo ***********/
 	public BigDecimal calculoRecargo(Integer aFiscalInicio, Integer mesFiscalInicio,Integer aFiscalFinal, Integer mesFiscalFinal, Boolean vencioPago,
-			BigDecimal importeActualizacion) {
+			BigDecimal importeActualizacion,String tipoRecargo) {
 		
 		BigDecimal recargo = BigDecimal.ZERO;
 		try {
 			
-			recargo = obtenerTasaRecargo(aFiscalInicio, mesFiscalInicio,aFiscalFinal, mesFiscalFinal, vencioPago);
+			recargo = obtenerTasaRecargo(aFiscalInicio, mesFiscalInicio,aFiscalFinal, mesFiscalFinal, vencioPago,tipoRecargo);
 			recargo.setScale(2,RoundingMode.HALF_EVEN);
 			
 		} catch (NoResultException ex) {
@@ -155,12 +155,16 @@ public class ActualizacionesRecargosService {
 	}
 
 	/********** Obtener INPC *************/
-	public BigDecimal obtenerTasaRecargo(Integer aFiscalInicio, Integer mesFiscalInicio,Integer aFiscalFinal, Integer mesFiscalFinal, Boolean vencioPago) {
+	public BigDecimal obtenerTasaRecargo(Integer aFiscalInicio, Integer mesFiscalInicio,Integer aFiscalFinal, Integer mesFiscalFinal, Boolean vencioPago,String tipoRecargo) {
 		
 		List<INPCEntity> inpcEntity = inpcQuery.listaINPC(aFiscalInicio, mesFiscalInicio, aFiscalFinal, mesFiscalFinal,vencioPago);
 		BigDecimal tasaRecargo = BigDecimal.ZERO;
 		for (INPCEntity inpc : inpcEntity) {
-			tasaRecargo = tasaRecargo.add(inpc.getRecargo());
+			if(tipoRecargo.equals("MORA")){
+				tasaRecargo = tasaRecargo.add(inpc.getRecargoMora());
+			}else if(tipoRecargo.equals("PRORROGA")){
+				tasaRecargo = tasaRecargo.add(inpc.getRecargoProrroga());	
+			}
 		}
 		return tasaRecargo;
 	}

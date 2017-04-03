@@ -31,36 +31,31 @@ public class ActualizacionesRecargosService {
 		BigDecimal importeRecargo = BigDecimal.ZERO;
 		Boolean aplicaRecargo = Boolean.FALSE;
 
-		try {
-
 			/*******
 			 * Obtengo el INPC del mes anterior en el que se debio efectuar el
 			 * pago
 			 * 
 			 */
 			inpcAnterior = obtenerINPC(contribucionFiscal.getaFiscalAdeudo(), contribucionFiscal.getMesFiscalAdeudo());
-
+			
 			/*******
 			 * Obtengo el INPC del mes anterior en el que se va a realizar el
 			 * pago
 			 * 
 			 */
-			inpcActual = obtenerINPC(contribucionFiscal.getaFiscalPago(), contribucionFiscal.getMesFiscalPago()-1);
-
+			contribucionFiscal.setMesFiscalPago(contribucionFiscal.getMesFiscalPago() - 1);
+			inpcActual = obtenerINPC(contribucionFiscal.getaFiscalPago(), contribucionFiscal.getMesFiscalPago());
+			
 			/***
 			 * Si el INPC del mes en el que se va a efectuar el pago no devuelve
 			 * ningun resultado obtengo el INPC del mes anterior al solicitado
 			 * inicialmente
 			 */
-			if (inpcActual.compareTo(BigDecimal.ZERO) == 0) {
+			if (inpcActual == null) {
 				contribucionFiscal.setMesFiscalPago(contribucionFiscal.getMesFiscalPago() - 1);
 				inpcActual = obtenerINPC(contribucionFiscal.getaFiscalPago(), contribucionFiscal.getMesFiscalPago());
 			}
-
-		} catch (NoResultException ex) {
-			ex.printStackTrace();
-			throw new BusinessException("Ocurrio un problema no se encontrarón resultados.");
-		}
+		
 
 		/*** Bien ahora que ya tenemos los dos INPC, procedemos a realizar
 		 * el calculo del factor de actualización		
@@ -124,8 +119,13 @@ public class ActualizacionesRecargosService {
 
 	/********** Obtener INPC *************/
 	public BigDecimal obtenerINPC(Integer aFiscal, Integer mesFiscal) {
-		INPCEntity inpcEntity = inpcQuery.inpcEntity(aFiscal, mesFiscal);
-		return inpcEntity.getInpc();
+		try{
+			INPCEntity inpcEntity = inpcQuery.inpcEntity(aFiscal, mesFiscal);
+			return inpcEntity.getInpc();
+		}catch(NoResultException ex){
+			ex.printStackTrace();
+			return null;
+		}
 	}
 
 	

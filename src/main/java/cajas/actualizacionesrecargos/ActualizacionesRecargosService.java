@@ -118,7 +118,7 @@ public class ActualizacionesRecargosService {
 	public BigDecimal factorActualizacion(BigDecimal inpcAnterior, BigDecimal inpcActual) {
 		BigDecimal factorActualizacion = BigDecimal.ZERO;
 		
-		factorActualizacion = inpcActual.divide(inpcAnterior,RoundingMode.DOWN);
+		factorActualizacion = inpcActual.divide(inpcAnterior,4,RoundingMode.DOWN);
 		return factorActualizacion;
 	}	
 

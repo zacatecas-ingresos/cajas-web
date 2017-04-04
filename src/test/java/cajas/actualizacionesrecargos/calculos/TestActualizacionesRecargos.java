@@ -1,4 +1,4 @@
-package cajas.actualizacionesrecargos;
+package cajas.actualizacionesrecargos.calculos;
 
 import java.math.BigDecimal;
 
@@ -10,6 +10,10 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import cajas.actualizacionesrecargos.calculo.ActualizacionRecargo;
+import cajas.actualizacionesrecargos.calculo.ActualizacionesRecargosService;
+import cajas.actualizacionesrecargos.calculo.ContribucionFiscal;
 
 @RunWith(Arquillian.class)
 public class TestActualizacionesRecargos {

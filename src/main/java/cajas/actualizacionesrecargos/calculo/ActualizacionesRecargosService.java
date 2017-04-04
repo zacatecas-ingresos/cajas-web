@@ -1,4 +1,4 @@
-package cajas.actualizacionesrecargos;
+package cajas.actualizacionesrecargos.calculo;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

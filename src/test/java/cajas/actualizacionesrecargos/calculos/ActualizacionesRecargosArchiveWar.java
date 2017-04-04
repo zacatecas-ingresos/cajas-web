@@ -1,4 +1,4 @@
-package cajas.actualizacionesrecargos;
+package cajas.actualizacionesrecargos.calculos;
 
 import java.io.Serializable;
 
@@ -8,6 +8,9 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
+import cajas.actualizacionesrecargos.calculo.ActualizacionRecargo;
+import cajas.actualizacionesrecargos.calculo.ActualizacionesRecargosService;
+import cajas.actualizacionesrecargos.calculo.ContribucionFiscal;
 import cajas.exception.BusinessException;
 import cajas.persistence.entity.INPCEntity;
 import cajas.persistence.query.INPCQuery;

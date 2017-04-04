@@ -1,6 +1,7 @@
 package cajas.impuestos.calculo;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -27,7 +28,7 @@ public class CalculoImpuestoService {
 			tasa = tasaPorImpuesto(tipoImpuesto);
 
 			impuesto = baseGravable.multiply(tasa);
-			impuesto = impuesto.divide(new BigDecimal(100));
+			impuesto = impuesto.divide(new BigDecimal(100).setScale(2,RoundingMode.HALF_EVEN));
 
 			return impuesto;
 		} catch (NoResultException ex) {

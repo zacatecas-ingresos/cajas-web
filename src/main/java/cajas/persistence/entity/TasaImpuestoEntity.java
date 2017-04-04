@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tasa_impuesto", schema = "cajas")
+@Table(name = "tasa_impuesto", schema = "catalogos")
 public class TasaImpuestoEntity implements Serializable {
 
 	/**

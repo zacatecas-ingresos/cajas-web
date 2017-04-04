@@ -29,6 +29,14 @@
 
 <body>
 	<ul class="sidebar-menu">
+		<li><a> <i class="fa fa-list" aria-hidden="true"></i><span>Catalogos</span>
+		</a>
+			<ul class="treeview-menu">
+				<li><a
+					href="${pageContext.request.contextPath}/views/catalogos/marca/marca.jsp"><span>Marcas</span></a></li>
+			</ul></li>
+	</ul>
+	<ul class="sidebar-menu">
 		<li><a> <i class="fa fa-users" aria-hidden="true"></i> <span>Usuarios</span>
 		</a>
 			<ul class="treeview-menu">

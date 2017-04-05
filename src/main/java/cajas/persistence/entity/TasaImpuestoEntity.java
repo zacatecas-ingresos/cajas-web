@@ -2,6 +2,7 @@ package cajas.persistence.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,6 +27,12 @@ public class TasaImpuestoEntity implements Serializable {
 
 	@Column(name = "impuesto")
 	private String impuesto;
+
+	@Column(name = "fecha_inicio")
+	private Date fechaInicio;
+
+	@Column(name = "fecha_fin")
+	private Date fechaFin;
 
 	@Column(name = "tasa")
 	private BigDecimal tasa;
@@ -54,6 +61,22 @@ public class TasaImpuestoEntity implements Serializable {
 
 	public void setTasa(BigDecimal tasa) {
 		this.tasa = tasa;
+	}
+
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
 	}
 
 }

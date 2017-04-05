@@ -2,6 +2,7 @@ package cajas.impuestos.calculos;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.text.ParseException;
 
 import javax.inject.Inject;
 
@@ -28,10 +29,9 @@ public class CalculoImpuestoTest {
 
 	private static final Logger LOGGER = Logger.getLogger(CalculoImpuestoTest.class.getName());
 
-	
 	@Inject
 	CalculoImpuestoService calculoImpuestoService;
-	
+
 	@Deployment
 	public static WebArchive crearWar() {
 		WebArchive war = ShrinkWrap.create(WebArchive.class);
@@ -56,15 +56,17 @@ public class CalculoImpuestoTest {
 	}
 
 	@Test
-	public void convertidor() {
-		
+	public void convertidor() throws ParseException {
+
 		LOGGER.info("Iniciando Test Calculo Impuestos Estatales");
-		
-		BigDecimal impuesto = new BigDecimal("50.00");
-		String tipoImpuesto = "NOMINA";
+		Integer aFiscal = 2017;
+		String periodo = "ENERO-MARZO";
+		BigDecimal impuesto = new BigDecimal("150.00");
+		String tipoImpuesto = "SERVICIO HOSPEDAJE";
 		BigDecimal baseGravable = new BigDecimal(5000);
-		
-		BigDecimal impuestoCalculado = calculoImpuestoService.impuestoEstatal(baseGravable, tipoImpuesto);
+
+		BigDecimal impuestoCalculado = calculoImpuestoService.impuestoEstatal(baseGravable, tipoImpuesto, aFiscal,
+				periodo);
 
 		Assert.assertEquals(impuesto, impuestoCalculado);
 	}

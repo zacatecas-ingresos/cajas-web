@@ -66,6 +66,7 @@ public class MarcaVehiculoEJB {
 		}
 		return marcaVehiculoList;
 	}
+	
 
 	public void eliminarMarcaVehiculo(Integer idMarcaVehiculo) {
 		try {

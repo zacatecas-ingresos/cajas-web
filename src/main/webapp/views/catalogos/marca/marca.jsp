@@ -108,8 +108,8 @@
 												Opciones <span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu">
-												<li><a class="button" id="registro">Registrar Marca</a></li>
-												<li><a class="button" id="editar" >Editar Marca</a></li>
+												<li><a class="button" id="crear">Crear Marca</a></li>
+												<li><a class="button" id="editar" >Modificar Marca</a></li>
 												<li><a class="button" id="eliminar">Eliminar Marca</a></li>
 											</ul>
 										</div>
@@ -119,13 +119,13 @@
 									<br /><br />
 									
 									<div class="row">
-									<div class="col-md-4 " style=" text-align: center;"></div>
-									<div class="col-md-4 well" style=" text-align: center ;">
+									<div class="col-xs-3" style=" text-align: center;"></div>
+									<div class="col-xs-6 well" style=" text-align: center ;">
 										<label for="search" class="control-label"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda:</label>
 										<input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Ingrese Criterio de busqueda" id="search"
 														name="search" placeholder="Marca... Abreviatura...">
 									</div>
-									<div class="col-md-4 " style=" text-align: center;"></div>
+									<div class="col-xs-3" style=" text-align: center;"></div>
 									</div>					
 									<br/><br/>
 						
@@ -134,6 +134,7 @@
 										<table id="tablaMarcas" class="tablaMarcas table table-bordered table-hover"   >
 											<thead>
 												<tr class="bg-primary" >
+													<th>ID</th>
 													<th>ABREVIATURA</th>
 													<th>NOMBRE</th>
 													<th>ESTATUS</th>
@@ -231,19 +232,18 @@ $(document).ready(function(){
 		$('tbody').find('td').remove();
 		for (var i = 0; i < data.length; i++) {
 			tr = $('<tr/>');
-			$(tr).append("<td class="+"descripcion" +" >" + data[i].descripcion + "</td>");
+			$(tr).append("<td class="+"id"+" >" + data[i].idMarcaVehiculo + "</td>");
+			$(tr).append("<td class="+"abreviatura" +" >" + data[i].abreviatura + "</td>");
 			$(tr).append("<td class="+"nombre" +" >" + data[i].nombre + "</td>");
-			$(tr).append("<td class="+"estatus" +" >" + "<img src="+estatusMarca(data[i].activo)+" style="+"width:30px; height:auto;" + "></img></td>");
+			$(tr).append("<td class="+"estatus" +" >" + "<img src="+estatusMarca(data[i].estatus)+" style="+"width:30px; height:auto;" + "></img></td>");
 			$('#tablaMarcas > tbody').append(tr);
 		}
 	};
 		
-	//Obtiene todos los usuarios registrados
 	
-	/*
 		$.ajax({
 			type : "GET",
-			url : "${pageContext.request.contextPath}/cajas/usuario",
+			url : "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo/obtenerListaCompleta",
 			dataType : 'json',
 			success : function(data) {
 				tabla(data);
@@ -251,7 +251,7 @@ $(document).ready(function(){
 			error : function(jqXHR,textStatus,errorThrown) {
 				console.log(textStatus+ " "+ errorThrown);
 			}
-		});*/
+		});
 
 
 	//estatus de los usuarios
@@ -274,8 +274,8 @@ $(document).ready(function(){
 		var table = $('#tablaMarcas').find('tbody').find('tr');
 
 		var urlGet;
-		var urlMarca = "${pageContext.request.contextPath}/cajas/usuario";
-		var urlUsuario = "${pageContext.request.contextPath}/cajas/usuario/buscarUsuarios"+"?parametro="+input;
+		var urlMarca = "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo/buscarPorCriterio/";
+		var urlMarca = "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo/buscarPorCriterio/"+"?parametro="+input;
 
 		if(input === null){
 			urlGet = urlMarca;
@@ -309,42 +309,43 @@ $(document).ready(function(){
 
 	//Obtiene un valor del id de la fila seleccionada
 	$('tbody').on("click", "td", function() {
-		idUsuario = $(this).closest('tr').find('.id').text();
+		idMarca = $(this).closest('tr').find('.id').text();
+		console.log(idMarca);
 	});
 
-	/*
+	
 	//Editar Marca
 	$('#editar').click(function(){
-		if(idUsuario == null){
+		if(idMarca == null){
 			swal(
 				{
-					title : "No ha seleccionado a un usuario.",
+					title : "No ha seleccionado ninguna Marca.",
 					type : "error",
 					closeOnCancel : false
 				}
 			);
 		}else{
-			//Dirige a la sección para edita un usuario
-			var urlEditarUsuario = "${pageContext.request.contextPath}/views/usuario/editarUsuario.jsp"+"?id="+idUsuario;
-			window.location=urlEditarUsuario;					
+			//Dirige a la sección para edita la marca selecionada
+			var urlEditarMarca = "${pageContext.request.contextPath}/views/catalogos/marcavehiculo/modificarMarca.jsp"+"?id="+idMarca;
+			window.location=urlEditarMarca;					
 		}	
 	});
 
 	
-	//Elimina un usuario
+	//Elimina Marca
 	$('#eliminar').click(function(){
-		if(idUsuario == null){
+		if(idMarca == null){
 			swal(
 					{
-				  	title : "No ha seleccionado a un usuario.",
+				  	title : "No ha seleccionado ninguna Marca.",
 				 	 type : "error",
 			 	  	closeOnCancel : false
 					}
 				);
 		}else{
 			swal({
-				  title: "Esta seguro de eliminar al usuario seleccionado",
-				  text: "Una vez eliminado el usuario se perdera toda la informacion correspondiente a el",
+				  title: "Esta seguro de Eliminar la Marca seleccionada",
+				  text: "Una vez eliminada la Marca perdera toda la informacion correspondiente de ella",
 				  type: "warning",
 				  showCancelButton: true,
 				  confirmButtonColor: "#DD6B55",
@@ -354,20 +355,22 @@ $(document).ready(function(){
 				function(isConfirm){
 
 				if(isConfirm){
-					var urlDelete = "${pageContext.request.contextPath}/cajas/usuario?idUsuario="+idUsuario;
-					var urlUsuario = "${pageContext.request.contextPath}/views/usuario/usuario.jsp";
+					var urlDelete = "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo/eliminarMarcaVehiculos?idMarcaVehiculo="+idMarca;
+					var urlMarca = "${pageContext.request.contextPath}/views/catalogos/marca/marca.jsp";
+					
+					
 					$.ajax({
 							type: "DELETE",
 							url : urlDelete,
 							success: function(){
 								swal(
 									{
-									  title : "Usuario eliminado correctamente.",
+									  title : "Marca eliminada correctamente.",
 									  type : "success",
 									  closeOnCancel : false
 									},
 									function() {
-										window.location = urlUsuario;
+										window.location = urlMarca;
 								});
 							},
 							error : function(jqXHR,textStatus,errorThrown) {
@@ -379,6 +382,7 @@ $(document).ready(function(){
 		}
 	});
 
+	/*
 	//Desactiva a un usuario
 	$('#desactivar').click(function(){
 		if(idUsuario == null){
@@ -476,14 +480,14 @@ $(document).ready(function(){
 		}
 	});
 	
-
+	*/
 	//Dirige a la sección para registrar un usuario
-	$('#registro').click(function() {
-		var urlAltaUsuario = "${pageContext.request.contextPath}/views/usuario/altaUsuario.jsp";
-		window.location = urlAltaUsuario;
+	$('#crear').click(function() {
+		var urlCrearMarca = "${pageContext.request.contextPath}/views/catalogos/marca/crearMarca.jsp";
+		window.location = urlCrearMarca;
 	});
 	
-	*/
+	
 	
 	//Errores
     $.ajaxSetup({

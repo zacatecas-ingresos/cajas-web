@@ -12,7 +12,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "marcas_vehiculos", schema = "catalogos")
 public class MarcaVehiculoEntity implements Serializable {
-	private static final long serialVersionUID = 2011368762599381721L;
+
+	private static final long serialVersionUID = 6737516490015922078L;
 
 	@Id
 	@Column(name = "id_marca_vehiculo")

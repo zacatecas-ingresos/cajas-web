@@ -46,13 +46,47 @@ public class MarcaVehiculoResource {
 	 * @return marcaVehiculoList
 	 **/
 	@GET
-	@Path("/existeNombreMarcaVehiculo")
+	@Path("/buscarPorCriterio")
 	@Produces({"application/json"})
-	public Response exiteNombreMarcaVehiculo(@QueryParam("inputUser")String criterio){
+	public Response buscarMarcaVehiculoPorCriterio(@QueryParam("parametro")String criterio){
 		try{
 			List<MarcaVehiculo> marcaVehiculoList = marcaVehiculoEjb.obtenerMarcasVehiculoFiltro(criterio);
 			return Response.ok(marcaVehiculoList).build();
 		}catch(BusinessException ex){
+			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+		}
+	}
+
+	/**
+	 * Obtener toda la lista de marcas de vehiculos
+	 *  
+	 * @return marcaVehiculoList
+	 **/
+	@GET
+	@Path("/obtenerListaCompleta")
+	@Produces({"application/json"})
+	public Response obtenerListaCompletaMarcaVehiculo(){
+		try{
+			List<MarcaVehiculo> marcaVehiculoList = marcaVehiculoEjb.obtenerMarcasVehiculoFiltro("");
+			return Response.ok(marcaVehiculoList).build();
+		}catch(BusinessException ex){
+			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+		}
+	}
+
+	/**
+	 * Obtiene un MarcaVehiculo por id
+	 * 
+	 * @param idMarcaVehiculo
+	 * @return marcaVehiculo
+	 */
+	@GET
+	@Produces({ "application/json" })
+	public Response obtenerMarcaVehiculoPorId(@QueryParam("idMarcaVehiculo") Integer idMarcaVehiculo) {
+		try {
+			MarcaVehiculo marcaVehiculo = marcaVehiculoEjb.obtenerMarcaVehiculoPorId(idMarcaVehiculo);
+			return Response.ok(marcaVehiculo).build();
+		} catch (BusinessException ex) {
 			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
 		}
 	}
@@ -72,24 +106,7 @@ public class MarcaVehiculoResource {
 			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
 		}
 	}
-	
-	/**
-	 * Obtiene un MarcaVehiculo por id
-	 * 
-	 * @param idMarcaVehiculo
-	 * @return marcaVehiculo
-	 */
-	@GET
-	@Path("/MarcaVehiculoPorId")
-	@Produces({ "application/json" })
-	public Response obtenerMarcaVehiculoPorId(@QueryParam("idMarcaVehiculo") Integer idMarcaVehiculo) {
-		try {
-			MarcaVehiculo marcaVehiculo = marcaVehiculoEjb.obtenerMarcaVehiculoPorId(idMarcaVehiculo);
-			return Response.ok(marcaVehiculo).build();
-		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
-		}
-	}
+
 	/**
 	 * Busca Marcas de Vehiculo por un criterio en las propiedadesde:
 	 *  nombre
@@ -117,6 +134,7 @@ public class MarcaVehiculoResource {
 	 * @param idMarcaVehiculo
 	 */
 	@DELETE
+	@Path("/eliminarMarcaVehiculos")
 	@Produces({ "application/json" })
 	public Response eliminarMarcaVehiculo(@QueryParam("idMarcaVehiculo") Integer idMarcaVehiculo) {
 		try {

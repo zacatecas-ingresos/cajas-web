@@ -134,7 +134,7 @@
 										<table id="tablaMarcas" class="tablaMarcas table table-bordered table-hover"   >
 											<thead>
 												<tr class="bg-primary" >
-													<th>ID</th>
+													<th style="display:none;">ID</th>
 													<th>ABREVIATURA</th>
 													<th>NOMBRE</th>
 													<th>ESTATUS</th>
@@ -232,7 +232,7 @@ $(document).ready(function(){
 		$('tbody').find('td').remove();
 		for (var i = 0; i < data.length; i++) {
 			tr = $('<tr/>');
-			$(tr).append("<td class="+"id"+" >" + data[i].idMarcaVehiculo + "</td>");
+			$(tr).append("<td style=\"display:none;\" class="+"id"+" >" + data[i].idMarcaVehiculo + "</td>");
 			$(tr).append("<td class="+"abreviatura" +" >" + data[i].abreviatura + "</td>");
 			$(tr).append("<td class="+"nombre" +" >" + data[i].nombre + "</td>");
 			$(tr).append("<td class="+"estatus" +" >" + "<img src="+estatusMarca(data[i].estatus)+" style="+"width:30px; height:auto;" + "></img></td>");

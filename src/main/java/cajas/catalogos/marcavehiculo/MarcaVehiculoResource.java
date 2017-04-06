@@ -28,8 +28,10 @@ public class MarcaVehiculoResource {
 	 */
 	@POST
 	@Consumes({ "application/json" })
-	public Response altaMarcaVehiculo(MarcaVehiculo marcaVehiculo) {
+	public Response altaMarcaVehiculo(MarcaVehiculoAlta marcaVehiculoAlta) {
+		System.out.println("altaMarcaVehiculo..");
 		try {
+			MarcaVehiculo marcaVehiculo = new MarcaVehiculo();
 			marcaVehiculoEjb.crearMarcaVehiculo(marcaVehiculo);
 			return Response.ok(Status.OK,"application/json").tag("Marca de Vehiculo registrada correctamente.").build();
 		} catch (BusinessException ex) {

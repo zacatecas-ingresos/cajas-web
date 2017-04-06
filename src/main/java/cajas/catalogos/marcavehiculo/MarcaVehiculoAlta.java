@@ -1,21 +1,10 @@
 package cajas.catalogos.marcavehiculo;
 
-import cajas.persistence.entity.MarcaVehiculoEntity;
-
-public class MarcaVehiculo {
+public class MarcaVehiculoAlta {
 	private Integer idMarcaVehiculo;
 	private String nombre;
 	private String abreviatura;
 	private Boolean estatus;
-
-	public MarcaVehiculo() {}
-
-	public MarcaVehiculo(MarcaVehiculoEntity marcaVehiculoEntity) {
-		this.setAbreviatura(marcaVehiculoEntity.getAbreviatura());
-		this.setEstatus(marcaVehiculoEntity.getEstatus());
-		this.setIdMarcaVehiculo(marcaVehiculoEntity.getIdMarcaVehiculo());
-		this.setNombre(marcaVehiculoEntity.getNombre());
-	}
 
 	public Integer getIdMarcaVehiculo() {
 		return idMarcaVehiculo;

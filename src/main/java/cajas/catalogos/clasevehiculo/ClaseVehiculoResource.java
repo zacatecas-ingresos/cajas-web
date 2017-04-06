@@ -28,7 +28,7 @@ public class ClaseVehiculoResource {
 	 */
 	@POST
 	@Consumes({ "application/json" })
-	public Response altaClaseVehiculo(ClaseVehiculo claseVehiculo) {
+	public Response altaClaseVehiculo(ClaseVehiculo1 claseVehiculo) {
 		try {
 			claseVehiculoEjb.crearClaseVehiculo(claseVehiculo);
 			return Response.ok(Status.OK,"application/json").tag("Clase de Vehiculo registrada correctamente.").build();
@@ -50,7 +50,7 @@ public class ClaseVehiculoResource {
 	@Produces({"application/json"})
 	public Response buscarClaseVehiculoPorCriterio(@QueryParam("parametro")String criterio){
 		try{
-			List<ClaseVehiculo> claseVehiculoList = claseVehiculoEjb.obtenerClasesVehiculoFiltro(criterio);
+			List<ClaseVehiculo1> claseVehiculoList = claseVehiculoEjb.obtenerClasesVehiculoFiltro(criterio);
 			return Response.ok(claseVehiculoList).build();
 		}catch(BusinessException ex){
 			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
@@ -67,7 +67,7 @@ public class ClaseVehiculoResource {
 	@Produces({"application/json"})
 	public Response obtenerListaCompletaClaseVehiculo(){
 		try{
-			List<ClaseVehiculo> claseVehiculoList = claseVehiculoEjb.obtenerClasesVehiculoFiltro("");
+			List<ClaseVehiculo1> claseVehiculoList = claseVehiculoEjb.obtenerClasesVehiculoFiltro("");
 			return Response.ok(claseVehiculoList).build();
 		}catch(BusinessException ex){
 			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
@@ -84,7 +84,7 @@ public class ClaseVehiculoResource {
 	@Produces({ "application/json" })
 	public Response obtenerClaseVehiculoPorId(@QueryParam("idClaseVehiculo") Integer idClaseVehiculo) {
 		try {
-			ClaseVehiculo claseVehiculo = claseVehiculoEjb.obtenerClaseVehiculoPorId(idClaseVehiculo);
+			ClaseVehiculo1 claseVehiculo = claseVehiculoEjb.obtenerClaseVehiculoPorId(idClaseVehiculo);
 			return Response.ok(claseVehiculo).build();
 		} catch (BusinessException ex) {
 			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
@@ -98,7 +98,7 @@ public class ClaseVehiculoResource {
 	 */
 	@PUT
 	@Consumes({ "application/json" })
-	public Response actualizarClaseVehiculo(ClaseVehiculo claseVehiculo) {
+	public Response actualizarClaseVehiculo(ClaseVehiculo1 claseVehiculo) {
 		try {
 			claseVehiculoEjb.actualizarClaseVehiculo(claseVehiculo);
 			return Response.ok(Status.OK,"application/json").build();
@@ -120,7 +120,7 @@ public class ClaseVehiculoResource {
 	@Produces({"application/json"})
 	public Response obtenerClaseVehiculosFiltro(@QueryParam("parametro") String parametro){
 		try{
-			List<ClaseVehiculo> claseVehiculo = claseVehiculoEjb.obtenerClasesVehiculoFiltro(parametro);
+			List<ClaseVehiculo1> claseVehiculo = claseVehiculoEjb.obtenerClasesVehiculoFiltro(parametro);
 			return Response.ok(claseVehiculo).build();
 		}catch(BusinessException ex){
 			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();

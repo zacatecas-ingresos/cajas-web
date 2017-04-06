@@ -2,16 +2,16 @@ package cajas.catalogos.clasevehiculo;
 
 import cajas.persistence.entity.ClaseVehiculoEntity;
 
-public class ClaseVehiculo1 {
+public class ClaseVehiculo {
 	private Integer idClaseVehiculo;
 	private String nombre;
 	private String abreviatura;
 	private Boolean estatus;
 
-	public ClaseVehiculo1() {
+	public ClaseVehiculo() {
 	}
 
-	public ClaseVehiculo1(ClaseVehiculoEntity claseVehiculoEntity) {
+	public ClaseVehiculo(ClaseVehiculoEntity claseVehiculoEntity) {
 		this.setAbreviatura(claseVehiculoEntity.getAbreviacion());
 		this.setEstatus(claseVehiculoEntity.getEstatus());
 		this.setIdClaseVehiculo(claseVehiculoEntity.getIdClaseVehiculo());

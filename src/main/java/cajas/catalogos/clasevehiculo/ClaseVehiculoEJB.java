@@ -18,7 +18,7 @@ public class ClaseVehiculoEJB {
 	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
 
-	public void crearClaseVehiculo(ClaseVehiculo1 claseVehiculo) {
+	public void crearClaseVehiculo(ClaseVehiculo claseVehiculo) {
 		try {
 			ClaseVehiculoEntity claseVehiculoEntity = new ClaseVehiculoEntity();
 			claseVehiculoEntity.setNombre(claseVehiculo.getNombre());
@@ -31,17 +31,17 @@ public class ClaseVehiculoEJB {
 		}
 	}
 
-	public ClaseVehiculo1 obtenerClaseVehiculoPorId(Integer idClaseVehiculo) {
+	public ClaseVehiculo obtenerClaseVehiculoPorId(Integer idClaseVehiculo) {
 		try {
 			ClaseVehiculoEntity claseVehiculoEntity = entityManager.find(ClaseVehiculoEntity.class, idClaseVehiculo);
-			ClaseVehiculo1 claseVehiculo = new ClaseVehiculo1(claseVehiculoEntity);
+			ClaseVehiculo claseVehiculo = new ClaseVehiculo(claseVehiculoEntity);
 			return claseVehiculo;
 		} catch (NoResultException ex) {
 			throw new BusinessException("La Marca de Vehiculo no existe.");
 		}
 	}
 
-	public void actualizarClaseVehiculo(ClaseVehiculo1 claseVehiculo) {
+	public void actualizarClaseVehiculo(ClaseVehiculo claseVehiculo) {
 		try {
 			ClaseVehiculoEntity claseVehiculoEntity = entityManager.find(ClaseVehiculoEntity.class, claseVehiculo.getIdClaseVehiculo());
 			claseVehiculoEntity.setNombre(claseVehiculo.getNombre());
@@ -62,14 +62,14 @@ public class ClaseVehiculoEJB {
 		}
 	}
 
-	public List<ClaseVehiculo1> obtenerClasesVehiculoFiltro(String parametro) {
-		List<ClaseVehiculo1> claseVehiculoList = new ArrayList<>();
+	public List<ClaseVehiculo> obtenerClasesVehiculoFiltro(String parametro) {
+		List<ClaseVehiculo> claseVehiculoList = new ArrayList<>();
 		try {
 			ClaseVehiculoPorNombreQuery claseVehiculoPorNombreQuery = new ClaseVehiculoPorNombreQuery(entityManager);
 			List<ClaseVehiculoEntity> claseVehiculoEntityList = null;
 			claseVehiculoEntityList = claseVehiculoPorNombreQuery.consultar(parametro);
 			for(ClaseVehiculoEntity claseVehiculoEntity : claseVehiculoEntityList) {
-				claseVehiculoList.add(new ClaseVehiculo1(claseVehiculoEntity));
+				claseVehiculoList.add(new ClaseVehiculo(claseVehiculoEntity));
 			}
 		} catch (NoResultException ex) {
 		}

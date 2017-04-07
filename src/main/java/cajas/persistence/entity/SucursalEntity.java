@@ -31,7 +31,7 @@ public class SucursalEntity implements Serializable {
 	private ContribuyenteEntity idContribuyente;
 	
 	@ManyToOne(fetch= FetchType.LAZY)
-	@Column(name = "id_obligacion")
+	@JoinColumn(name = "id_obligacion")
 	private ObligacionesEntity idObligacion;
 
 	public Integer getIdSucursal() {

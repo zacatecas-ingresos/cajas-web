@@ -68,7 +68,7 @@
 
 									<div class="form-group">
 										<label for="selectOficina" class="control-label">Oficina
-											Verificaicon</label> <select class="form-control" id="selectOficina"
+											Verificacion</label> <select class="form-control" id="selectOficina"
 											name="selectOficina" disabled required>
 											<option value="1" selected>ZACATECAS</option>
 										</select>
@@ -333,6 +333,8 @@
 								.click(
 										function() {
 
+											var fechaHoy = new Date().toISOString().slice(0, 10);					
+											
 											//Validaciones
 											var formValidation = $(
 													'#form-vehiculos').data(
@@ -349,7 +351,7 @@
 												var oficinaVerificacion = $('#selectOficina');
 												var ejercicio = $('#inputEjercicio');
 												var tipoVerificacio = $('#selectTipoVerificacion');
-												var estatusVerificacion = $('#selectEstatusVerificacion');
+												var estatusVerificacion = $('#selectEstatusVerificacion');												
 												var vinVehiculo = $('#inputVin');
 												var numeroMotorVehiculo = $('#inputNumeroMotor');
 												var marcaVehiculo = $('#selectMarca');
@@ -392,6 +394,7 @@
 												datos.ejercicio = ejercicio.val();
 												datos.tipoVerificacio = tipoVerificacio.val();
 												datos.estatusVerificacion = estatusVerificacion.val();
+												datos.fechaVerificacion = fechaHoy;
 												datos.vinVehiculo = vinVehiculo.val();
 												datos.numeroMotorVehiculo = numeroMotorVehiculo.val();
 												datos.marcaVehiculo = marcaVehiculo.val();
@@ -417,10 +420,10 @@
 
 												console.log(formData);
 
-												var urlPost = "${pageContext.request.contextPath}/cajas/usuario";
-												var urlUsuario = "${pageContext.request.contextPath}/views/usuario/usuario.jsp";
+												var urlPost = "${pageContext.request.contextPath}/cajas/vehicular/verificacion";
+												var urlCrear = "${pageContext.request.contextPath}/views/verificacion/altaVerificacion.jsp";
 
-												/* $
+												 $
 														.ajax({
 															type : 'POST',
 															url : urlPost,
@@ -433,12 +436,12 @@
 																	jQxhr) {
 																swal(
 																		{
-																			title : "Usuario registrado correctamente.",
+																			title : "Verificación Vehicular registrada correctamente.",
 																			type : "success",
 																			closeOnCancel : false
 																		},
 																		function() {
-																			window.location = urlUsuario;
+																			window.location = urlCrear;
 																		});
 															},
 															error : function(
@@ -450,7 +453,7 @@
 																				+ " "
 																				+ errorThrown);
 															}
-														});*/
+														});
 											}
 
 										});

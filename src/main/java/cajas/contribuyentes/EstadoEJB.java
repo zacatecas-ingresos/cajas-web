@@ -2,6 +2,7 @@ package cajas.contribuyentes;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,8 +16,13 @@ public class EstadoEJB {
 
     @PersistenceContext(unitName = "sitDS")
     private EntityManager entityManager;
-    private EstadoQuery estadoQuery = new EstadoQuery(entityManager);
-    private EstadoFactory estadoFactory = new EstadoFactory();
+    private EstadoQuery estadoQuery;
+    private final EstadoFactory estadoFactory = new EstadoFactory();
+
+    @PostConstruct
+    private void init() {
+        estadoQuery = new EstadoQuery(entityManager);
+    }
     
     public Integer crearEstado(Estado estado) {
 
@@ -54,16 +60,10 @@ public class EstadoEJB {
         estadoQuery.eliminarEstado(idEstado);
     }    
     
-    
-    //buscar estado por nombre 
-    
-       public List<Estado> buscarEstado(String estado) {
-        List<EstadoEntity>estadoEntities  = estadoQuery.buscarEstado(estado);
-    List<Estado> estadodtos =    estadoFactory.entidadesADtos(estadoEntities);
-    return estadodtos;
-    
-    
-    
+    public List<Estado> buscarEstado(String estado) {
+        List<EstadoEntity>estadoEntities = estadoQuery.buscarEstado(estado);
+        List<Estado> estadodtos = estadoFactory.entidadesADtos(estadoEntities);
+        return estadodtos;
     }
     
 }

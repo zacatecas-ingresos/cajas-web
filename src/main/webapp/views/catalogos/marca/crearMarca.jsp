@@ -239,7 +239,7 @@ $(document).ready(function() {
 			
 				console.log(formData);
 			
-				var urlPost = "${pageContext.request.contextPath}/catalogos/marcavehiculo";
+				var urlPost = "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo";
 				var urlMarcas = "${pageContext.request.contextPath}/views/catalogos/marca/crearMarca.jsp";
 				                                  
 

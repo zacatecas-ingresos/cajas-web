@@ -1,10 +1,10 @@
 package cajas.vehicular.verificacion.alta;
 
-import cajas.persistence.entity.VerificacionVehicularEntity;
-
 import java.util.Date;
 
-public class VerificacionVehiculo {
+
+
+public class CrearVerificacionVehiculo {
 	private Integer idVerificacionVehiculo;
 	private Integer ejercicio;
 	private Integer noSeguimientoVerificion;
@@ -33,46 +33,7 @@ public class VerificacionVehiculo {
 	private Integer anio4ComprobantePago;
 	private Integer anio5ComprobantePago;
 	private Integer anioActualComprobantePago;
-	
-	
-	public VerificacionVehiculo()
-	{
 		
-	}
-	
-	public VerificacionVehiculo(VerificacionVehicularEntity verificacionVehicularEntity) {
-		
-		this.setIdVerificacionVehiculo(verificacionVehicularEntity.getIdVerificacionVehiculo());
-		this.setEjercicio(verificacionVehicularEntity.getEjercicio());
-		this.setNoSeguimientoVerificion(verificacionVehicularEntity.getNoSeguimientoVerificacion());
-		this.setFechaVerificacion(verificacionVehicularEntity.getFechaVerificacion());
-		this.setTipoVerificacion(verificacionVehicularEntity.getTipoVerificacion());
-		this.setVinVehiculo(verificacionVehicularEntity.getVinVehiculo());
-		this.setIdMarcaVehiculo(verificacionVehicularEntity.getIdMarcaVehiculo());
-		this.setModeloVehiculo(verificacionVehicularEntity.getModeloVehiculo());
-		this.setIdClaseVehiculo(verificacionVehicularEntity.getIdClaseVehiculo());
-		this.setIdTipoVehiculo(verificacionVehicularEntity.getIdTipoVehiculo());
-		this.setLineaVehiculo(verificacionVehicularEntity.getLineaVehiculo());
-		this.setEstatusVerificacion(verificacionVehicularEntity.getEstatusVerificacion());
-		this.setFacturaVehiculoDocumentacion(verificacionVehicularEntity.getFacturaVehiculoDocumentacion());
-		this.setIdentificacionOficialDocumentacion(verificacionVehicularEntity.getIdentificacionOficialDocumentacion());
-		this.setComprobanteDomicilioDocumentacion(verificacionVehicularEntity.getComprobanteDomicilioDocumentacion());
-		this.setRfcPersonaMoralDocumentacion(verificacionVehicularEntity.getComprobanteDomicilioDocumentacion());
-		this.setIdentificacionRepresentanteLegalDocumentacion(verificacionVehicularEntity.getIdentificacionRepresentanteLegalDocumentacion());
-		this.setNombrePersonaVerificacion(verificacionVehicularEntity.getNombrePersonaVerificacion());
-		this.setApellidoPaternoPersonaVerificacion(verificacionVehicularEntity.getApellidoPaternoPersonaVerificacion());
-		this.setApellidoMaternoPersonaVerificacion(verificacionVehicularEntity.getApellidoMaternoPersonaVerificacion());
-		this.setNumeroMotorVehiculo(verificacionVehicularEntity.getNumeroMotorVehiculo());
-		this.setIdOficinaVerificacion(verificacionVehicularEntity.getIdOficinaVerificacion());
-		this.setAnio1ComprobantePago(verificacionVehicularEntity.getAnio1ComprobantePago());
-		this.setAnio2ComprobantePago(verificacionVehicularEntity.getAnio2ComprobantePago());
-		this.setAnio3ComprobantePago(verificacionVehicularEntity.getAnio3ComprobantePago());
-		this.setAnio4ComprobantePago(verificacionVehicularEntity.getAnio4ComprobantePago());
-		this.setAnio5ComprobantePago(verificacionVehicularEntity.getAnio5ComprobantePago());
-		this.setAnioActualComprobantePago(verificacionVehicularEntity.getAnioActualComprobantePago());
-	
-	}
-	
 	public Integer getIdVerificacionVehiculo() {
 		return idVerificacionVehiculo;
 	}

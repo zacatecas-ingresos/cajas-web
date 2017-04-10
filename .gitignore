@@ -1,4 +1,15 @@
 /target/
 /.settings
+/bin
 .classpath
 .project
+.tern-project
+beans.NavData
+faces-config.NavData
+nbactions.xml
+nbproject
+nb-configuration.xml
+thumbs.db
+logfile.log.*
+*.log
+*.log.*

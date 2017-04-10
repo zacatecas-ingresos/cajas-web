@@ -11,17 +11,9 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
-import cajas.catalogos.clasevehiculo.ClaseVehiculo;
 import cajas.exception.BusinessException;
-import cajas.persistence.entity.ClaseVehiculoEntity;
-import cajas.persistence.entity.TokenEntity;
-import cajas.persistence.entity.UsuarioEntity;
 import cajas.persistence.entity.VerificacionVehicularEntity;
-import cajas.persistence.query.TokenQuery;
-import cajas.persistence.query.UsuarioPorCorreoQuery;
-import cajas.persistence.query.UsuarioPorNombreQuery;
-import cajas.persistence.query.UsuarioQuery;
-import cajas.vehicular.verificacion.alta.VerificacionVehiculo;
+import cajas.vehicular.verificacion.alta.CrearVerificacionVehiculo;
 import cajas.util.Crypto;
 
 @Stateless
@@ -30,7 +22,7 @@ public class VerificacionVehiculoEJB {
 	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
 
-	public void crearVerificacionVehiculo (VerificacionVehiculo verificacionVehiculo) {
+	public void crearVerificacionVehiculoMetodo(VerificacionVehiculo verificacionVehiculo) {
 		try {
 			
 			VerificacionVehicularEntity verificacionVehiculoEntity = new VerificacionVehicularEntity();

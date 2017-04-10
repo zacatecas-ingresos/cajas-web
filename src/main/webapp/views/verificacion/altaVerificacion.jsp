@@ -348,26 +348,26 @@
 											if (formValidation.isValid()) {
 
 												var datos = {};
-												var oficinaVerificacion = $('#selectOficina');
+												var idOficinaVerificacion = $('#selectOficina');
 												var ejercicio = $('#inputEjercicio');
-												var tipoVerificacio = $('#selectTipoVerificacion');
+												var tipoVerificacion = $('#selectTipoVerificacion');
 												var estatusVerificacion = $('#selectEstatusVerificacion');												
 												var vinVehiculo = $('#inputVin');
 												var numeroMotorVehiculo = $('#inputNumeroMotor');
-												var marcaVehiculo = $('#selectMarca');
+												var idMarcaVehiculo = $('#selectMarca');
 												var modeloVehiculo = $('#inputModelo');
-												var claseVehiculo = $('#selectClase');
-												var tipoVehiculo = $('#selectTipo');
+												var idClaseVehiculo = $('#selectClase');
+												var idTipoVehiculo = $('#selectTipo');
 												var lineaVehiculo = $('#inputLinea');
-												var nombrePersona = $('#inputNombrePersona');
-												var apellidoPaternoPersona = $('#inputApellidoPaterno');
-												var apellidoMaternoPersona = $('#inputApellidoMaterno');
+												var nombrePersonaVerificacion = $('#inputNombrePersona');
+												var apellidoPaternoPersonaVerificacion = $('#inputApellidoPaterno');
+												var apellidoMaternoPersonaVerificacion = $('#inputApellidoMaterno');
 												var email = $('#inputEmail');																							
 												var facturaVehiculoDocumentacion=0;
 												var identificacionOficialDocumentacion=0;
-												var comprobanteDomicilioDocumentacionInput=0;
-												var rfcPersonaMoralDocumentacionInput=0;
-												var identificacionRepresentanteLegalDocumentacionInput=0;
+												var comprobanteDomicilioDocumentacion=0;
+												var rfcPersonaMoralDocumentacion=0;
+												var identificacionRepresentanteLegalDocumentacion=0;
 												var anioActualComprobantePago=0;
 
 												if($("#facturaVehiculoDocumentacionInput").is(':checked')){
@@ -377,40 +377,40 @@
 													identificacionOficialDocumentacion=1
 												}
 												if($("#comprobanteDomicilioDocumentacionInput").is(':checked')){
-													comprobanteDomicilioDocumentacionInput=1
+													comprobanteDomicilioDocumentacion=1
 												}
 												if($("#rfcPersonaMoralDocumentacionInput").is(':checked')){
-													rfcPersonaMoralDocumentacionInput=1
+													rfcPersonaMoralDocumentacion=1
 												}
 												if($("#identificacionRepresentanteLegalDocumentacionInput").is(':checked')){
-													identificacionRepresentanteLegalDocumentacionInput=1
+													identificacionRepresentanteLegalDocumentacion=1
 												}
 												
 												/*if($("#anioActualComprobantePago").is(':checked')){
 													anioActualComprobantePago=1
 												}					*/						
 												
-												datos.oficinaVerificacion = oficinaVerificacion.val();
+												datos.idOficinaVerificacion = idOficinaVerificacion.val();
 												datos.ejercicio = ejercicio.val();
-												datos.tipoVerificacio = tipoVerificacio.val();
+												datos.tipoVerificacion = tipoVerificacion.val();
 												datos.estatusVerificacion = estatusVerificacion.val();
 												datos.fechaVerificacion = fechaHoy;
 												datos.vinVehiculo = vinVehiculo.val();
 												datos.numeroMotorVehiculo = numeroMotorVehiculo.val();
-												datos.marcaVehiculo = marcaVehiculo.val();
+												datos.idMarcaVehiculo = idMarcaVehiculo.val();
 												datos.modeloVehiculo = modeloVehiculo.val();
-												datos.claseVehiculo = claseVehiculo.val();
-												datos.tipoVehiculo = tipoVehiculo.val();
+												datos.idClaseVehiculo = idClaseVehiculo.val();
+												datos.idTipoVehiculo = idTipoVehiculo.val();
 												datos.lineaVehiculo = lineaVehiculo.val();
-												datos.nombrePersona = nombrePersona.val();
-												datos.apellidoPaternoPersona = apellidoPaternoPersona.val();
-												datos.apellidoMaternoPersona = apellidoMaternoPersona.val();
+												datos.nombrePersonaVerificacion = nombrePersonaVerificacion.val();
+												datos.apellidoPaternoPersonaVerificacion = apellidoPaternoPersonaVerificacion.val();
+												datos.apellidoMaternoPersonaVerificacion = apellidoMaternoPersonaVerificacion.val();
 												datos.email = email.val();
 												datos.facturaVehiculoDocumentacion = facturaVehiculoDocumentacion;
 												datos.identificacionOficialDocumentacion = identificacionOficialDocumentacion;
-												datos.comprobanteDomicilioDocumentacionInput = comprobanteDomicilioDocumentacionInput;
-												datos.rfcPersonaMoralDocumentacionInput = rfcPersonaMoralDocumentacionInput;
-												datos.identificacionRepresentanteLegalDocumentacionInput = identificacionRepresentanteLegalDocumentacionInput;
+												datos.comprobanteDomicilioDocumentacion = comprobanteDomicilioDocumentacion;
+												datos.rfcPersonaMoralDocumentacion = rfcPersonaMoralDocumentacion;
+												datos.identificacionRepresentanteLegalDocumentacion = identificacionRepresentanteLegalDocumentacion;
 												//datos.anioActualComprobantePago = anioActualComprobantePago.val();
 												
 												

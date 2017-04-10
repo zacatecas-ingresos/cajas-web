@@ -2,10 +2,9 @@ package cajas.vehicular.verificacion.alta;
 
 import java.util.Date;
 
-import cajas.persistence.entity.VerificacionVehicularEntity;
 
 
-public class crearVerificacionVehiculo {
+public class CrearVerificacionVehiculo {
 	private Integer idVerificacionVehiculo;
 	private Integer ejercicio;
 	private Integer noSeguimientoVerificion;

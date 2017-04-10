@@ -24,10 +24,9 @@ public class VerificacionVehiculoResource {
 	 */
 	@POST
 	@Consumes({ "application/json" })
-	public Response crearVerificacionVehiculo(crearVerificacionVehiculo verificacionVehiculo) {
+	public Response crearVerificacionVehiculo(CrearVerificacionVehiculo verificacionVehiculo) {
 		try {
-			VerificacionVehiculo vVehiculo = new VerificacionVehiculo();
-			verificacionVehiculoEjb.crearVerificacionVehiculo(vVehiculo);
+			verificacionVehiculoEjb.crearVerificacionVehiculo(verificacionVehiculo);
 			return Response.ok(Status.OK,"application/json").tag("Verificacion de Vehiculo registrada correctamente.").build();
 		} catch (BusinessException ex) {
 			return Response.ok(Status.NOT_IMPLEMENTED,"application/json").tag(ex.getMessage()).build();

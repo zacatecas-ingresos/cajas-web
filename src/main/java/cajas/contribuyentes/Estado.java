@@ -29,4 +29,13 @@ public class Estado {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Estado{" 
+                + "idEstado=" + idEstado
+                + ", abreviacionEstado=" + abreviacionEstado
+                + ", estado=" + estado + '}';
+    }
+
 }

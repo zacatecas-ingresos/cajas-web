@@ -10,7 +10,7 @@ import cajas.persistence.entity.EstadoEntity;
 
 public class EstadoQuery {
     
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
     
     // Consulta JPA
     private final static String BUSCAR_ESTADO = 

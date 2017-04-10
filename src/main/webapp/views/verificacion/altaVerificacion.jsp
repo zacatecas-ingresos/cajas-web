@@ -67,47 +67,162 @@
 								<div class="col-md-12">
 
 									<div class="form-group">
-										<label for="inputVin" class="control-label">Serie (VIN)</label> <input
-											id="inputVin" name="inputVin" type="text" class="form-control"
-											maxlength="17" placeholder="Serie (VIN)" required>
+										<label for="selectOficina" class="control-label">Oficina
+											Verificaicon</label> <select class="form-control" id="selectOficina"
+											name="selectOficina" disabled required>
+											<option value="1" selected>ZACATECAS</option>
+										</select>
 									</div>
 
 									<div class="form-group">
-										<label for="inputNumeroMotor" class="control-label">Numero Motor</label> <input
-											id="inputNumeroMotor" name="inputNumeroMotor" type="text" class="form-control"
-											maxlength="17" placeholder="Numero Motor" required>
+										<label for="inputEjercicio" class="control-label">Ejercicio</label>
+										<input id="inputEjercicio" name="inputEjercicio" type="text"
+											class="form-control" maxlength="4" placeholder="Ejercicio"
+											value="2017" name="inputEjercicio" disabled required>
+									</div>
+
+									<div class="form-group">
+										<label for="selectTipoVerificacion" class="control-label">Tipo
+											Verificación</label> <select class="form-control"
+											id="selectTipoVerificacion" name="selectTipoVerificacion"
+											disabled required>
+											<option value="0" selected>MEXICANOS</option>
+											<option value="1">EXTRANJEROS</option>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label for="selectTipoVerificacion" class="control-label">Estatus
+											Verificacion</label> <select class="form-control"
+											id="selectTipoVerificacion" name="selectTipoVerificacion"
+											disabled required>
+											<option value="1" selected>CAPTURADA</option>
+											<option value="2">AUTORIZADA</option>
+											<option value="3">TERMINADA</option>
+											<option value="4">RECHAZADA MINISTERIO</option>
+											<option value="5">RECHAZADA VERIFICACIO</option>
+											<option value="6">PAGADO</option>
+											<option value="7">PAGA DESPUES</option>
+											<option value="8">CONDONADO</option>
+											<option value="9">CANCELADO</option>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label for="inputVin" class="control-label">Serie
+											(VIN)</label> <input id="inputVin" name="inputVin" type="text"
+											class="form-control" maxlength="17" placeholder="Serie (VIN)"
+											required>
+									</div>
+
+									<div class="form-group">
+										<label for="inputNumeroMotor" class="control-label">Numero
+											Motor</label> <input id="inputNumeroMotor" name="inputNumeroMotor"
+											type="text" class="form-control" maxlength="17"
+											placeholder="Numero Motor" required>
 									</div>
 
 
 									<div class="form-group">
 										<label for="selectMarca" class="control-label">Marca</label> <select
-											class="form-control" id="selectMarca" name="selectMarca" required>
-										
+											class="form-control" id="selectMarca" name="selectMarca"
+											required>
+											<option value="1">TOYOTA</option>
 										</select>
 									</div>
 
 									<div class="form-group">
-										<label for="inputModelo" class="control-label">Modelo</label> <input
-											id="fmodelo" name="inputModelo" type="text" class="form-control"
-											maxlength="4" placeholder="Modelo" name="inputModelo" required>
+										<label for="inputModelo" class="control-label">Modelo</label>
+										<input id="inputModelo" name="inputModelo" type="text"
+											class="form-control" maxlength="4" placeholder="Modelo"
+											name="inputModelo" required>
 									</div>
 
 									<div class="form-group">
 										<label for="selectClase" class="control-label">Clase</label> <select
-											class="form-control" id="selectClase" name="selectClase" required>
+											class="form-control" id="selectClase" name="selectClase"
+											required>
+											<option value="1">AUTOMOVIL</option>
 										</select>
 									</div>
 
 									<div class="form-group">
 										<label for="selectTipo" class="control-label">Tipo</label> <select
-											class="form-control" id="selectTipo" name="selectTipo" required>					
+											class="form-control" id="selectTipo" name="selectTipo"
+											required>
+											<option value="1">VAGONETA</option>
 										</select>
 									</div>
 
 									<div class="form-group">
 										<label for="inputLinea" class="control-label">Linea</label> <input
-											class="form-control" id="inputLinea" name="inputLinea" required>
+											class="form-control" id="inputLinea" name="inputLinea"
+											required>
 									</div>
+
+									<fieldset>
+										<legend>Documentación Recibida</legend>
+
+
+										<div class="row">
+											<div class="col-md-4">
+												<label class="checkbox-inline"><input
+													id="facturaVehiculoDocumentacionInput" type="checkbox"
+													value="1">Factura (Titulo y Pedimiento)</label>
+											</div>
+											<div class="col-md-4">
+												<label class="checkbox-inline"><input
+													id="identificacionOficialDocumentacion" type="checkbox"
+													value="1">Identificacion Oficial</label>
+											</div>
+											<div class="col-md-4">
+												<label class="checkbox-inline"><input
+													id="comprobanteDomicilioDocumentacionInput" type="checkbox"
+													value="1">Comprobante de Domicilio</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4">
+												<label class="checkbox-inline"><input
+													id="rfcPersonaMoralDocumentacionInput" type="checkbox"
+													value="1">RFC (Persona Moral)</label>
+											</div>
+											<div class="col-md-4">
+												<label class="checkbox-inline"><input
+													id="identificacionRepresentanteLegalDocumentacionInput"
+													type="checkbox" value="1">Identificacion Oficial
+													Rep. Legal</label>
+											</div>
+										</div>
+									</fieldset>
+									<br>
+									<fieldset>
+									<legend>Comprobantes de Pago</legend>
+									<div id="comprobantes" class="form-group"></div>
+									</fieldset>
+									<br>
+									<fieldset>
+										<legend>Persona Tramite</legend>
+										
+											<div class="form-group">
+												<label for="inputNombrePersona" class="control-label">Persona</label>
+												<input class="form-control" id="inputNombrePersona"
+													name="inputNombrePersona" placeholder="Nombre" required>
+											</div>
+											<div class="form-group">
+												<label for="inputApellidoPaterno" class="control-label">Apellido
+													Paterno</label> <input class="form-control"
+													id="inputApellidoPaterno" name="inputApellidoPaterno"
+													placeholder="Apellido Paterno" required>
+											</div>
+											<div class="form-group">
+												<label for="inputApellidoMaterno" class="control-label">Apellido
+													Materno</label> <input class="form-control"
+													id="inputApellidoMaterno" name="inputApellidoMaterno"
+													placeholder="Apellido Materno">
+											</div>
+									
+									</fieldset>											
 
 								</div>
 
@@ -194,44 +309,119 @@
 	$(document)
 			.ready(
 					function() {
+						
+					/*				
+						$("#comprobantes").append($('<input>', { id :  "anioActualComprobantePago", type:"checkbox"}));
+						$("#comprobantes").append($('<label>', { class: 'checkbox-inline', for: 'anioActualComprobantePago', text: '2017' }));
+	
+						$("#comprobantes").append($('<input>', { id :  "anioActualComprobantePago2", type:"checkbox"}));
+						$("#comprobantes").append($('<label>', { class: 'checkbox-inline', for: 'anioActualComprobantePago2', text: '2016' }));
+						
+						*/
+					
 
 						//Cancelar y dirige a la vista principal de los vehiculos registrados
-						$('#cancel-btn').click(
+						$('#cancel-btn')
+								.click(
 										function() {
 											var urlUsuario = "${pageContext.request.contextPath}/views/usuario/usuario.jsp";
 											window.location = urlUsuario;
 										});
 
 						//Registra un vehiculo
-						$('#save-btn').click(function() {
+						$('#save-btn')
+								.click(
+										function() {
 
 											//Validaciones
-											var formValidation = $('#form-vehiculos').data('formValidation');
+											var formValidation = $(
+													'#form-vehiculos').data(
+													'formValidation');
 
 											formValidation.validate();
 
-											console.log(formValidation.isValid());
+											console.log(formValidation
+													.isValid());
 
 											if (formValidation.isValid()) {
 
 												var datos = {};
-												var nombre = $('#inputUser');
-												var email = $('#inputEmail');
-												var password = $('#inputPassword');
+												var oficinaVerificacion = $('#selectOficina');
+												var ejercicio = $('#inputEjercicio');
+												var tipoVerificacio = $('#selectTipoVerificacion');
+												var estatusVerificacion = $('#selectEstatusVerificacion');
+												var vinVehiculo = $('#inputVin');
+												var numeroMotorVehiculo = $('#inputNumeroMotor');
+												var marcaVehiculo = $('#selectMarca');
+												var modeloVehiculo = $('#inputModelo');
+												var claseVehiculo = $('#selectClase');
+												var tipoVehiculo = $('#selectTipo');
+												var lineaVehiculo = $('#inputLinea');
+												var nombrePersona = $('#inputNombrePersona');
+												var apellidoPaternoPersona = $('#inputApellidoPaterno');
+												var apellidoMaternoPersona = $('#inputApellidoMaterno');
+												var email = $('#inputEmail');																							
+												var facturaVehiculoDocumentacion=0;
+												var identificacionOficialDocumentacion=0;
+												var comprobanteDomicilioDocumentacionInput=0;
+												var rfcPersonaMoralDocumentacionInput=0;
+												var identificacionRepresentanteLegalDocumentacionInput=0;
+												var anioActualComprobantePago=0;
 
-												datos.nombre = nombre.val();
+												if($("#facturaVehiculoDocumentacionInput").is(':checked')){
+													facturaVehiculoDocumentacion=1
+												}
+												if($("#identificacionOficialDocumentacion").is(':checked')){
+													identificacionOficialDocumentacion=1
+												}
+												if($("#comprobanteDomicilioDocumentacionInput").is(':checked')){
+													comprobanteDomicilioDocumentacionInput=1
+												}
+												if($("#rfcPersonaMoralDocumentacionInput").is(':checked')){
+													rfcPersonaMoralDocumentacionInput=1
+												}
+												if($("#identificacionRepresentanteLegalDocumentacionInput").is(':checked')){
+													identificacionRepresentanteLegalDocumentacionInput=1
+												}
+												
+												/*if($("#anioActualComprobantePago").is(':checked')){
+													anioActualComprobantePago=1
+												}					*/						
+												
+												datos.oficinaVerificacion = oficinaVerificacion.val();
+												datos.ejercicio = ejercicio.val();
+												datos.tipoVerificacio = tipoVerificacio.val();
+												datos.estatusVerificacion = estatusVerificacion.val();
+												datos.vinVehiculo = vinVehiculo.val();
+												datos.numeroMotorVehiculo = numeroMotorVehiculo.val();
+												datos.marcaVehiculo = marcaVehiculo.val();
+												datos.modeloVehiculo = modeloVehiculo.val();
+												datos.claseVehiculo = claseVehiculo.val();
+												datos.tipoVehiculo = tipoVehiculo.val();
+												datos.lineaVehiculo = lineaVehiculo.val();
+												datos.nombrePersona = nombrePersona.val();
+												datos.apellidoPaternoPersona = apellidoPaternoPersona.val();
+												datos.apellidoMaternoPersona = apellidoMaternoPersona.val();
 												datos.email = email.val();
-												datos.password = password.val();
-												datos.activo = 1;
-
-												var formData = JSON.stringify(datos);
+												datos.facturaVehiculoDocumentacion = facturaVehiculoDocumentacion;
+												datos.identificacionOficialDocumentacion = identificacionOficialDocumentacion;
+												datos.comprobanteDomicilioDocumentacionInput = comprobanteDomicilioDocumentacionInput;
+												datos.rfcPersonaMoralDocumentacionInput = rfcPersonaMoralDocumentacionInput;
+												datos.identificacionRepresentanteLegalDocumentacionInput = identificacionRepresentanteLegalDocumentacionInput;
+												//datos.anioActualComprobantePago = anioActualComprobantePago.val();
+												
+												
+												
+												var formData = JSON
+														.stringify(datos);
 
 												console.log(formData);
 
 												var urlPost = "${pageContext.request.contextPath}/cajas/usuario";
 												var urlUsuario = "${pageContext.request.contextPath}/views/usuario/usuario.jsp";
 
-												 $.ajax({
+												/* $
+														.ajax({
 															type : 'POST',
 															url : urlPost,
 															data : formData,
@@ -255,9 +445,12 @@
 																	jqXHR,
 																	textStatus,
 																	errorThrown) {
-																console.log(textStatus+ " "+ errorThrown);
+																console
+																		.log(textStatus
+																				+ " "
+																				+ errorThrown);
 															}
-														});
+														});*/
 											}
 
 										});
@@ -287,15 +480,33 @@
 															max : 17,
 															message : 'El VIN por lo menos 17 caracteres.'
 														},
-														/*remote : {
-															url : '${pageContext.request.contextPath}/cajas/usuario/existeNombreUsuario?'+ $('#inputUser').val(),
-															message : "El VIN ya existe",
-															data : function(validator,$field,value) {
-																return {
-																	inputUser : validator.getFieldElements('inputVin').val()
-																};
-															}
-														}*/
+													/*remote : {
+														url : '${pageContext.request.contextPath}/cajas/usuario/existeNombreUsuario?'+ $('#inputUser').val(),
+														message : "El VIN ya existe",
+														data : function(validator,$field,value) {
+															return {
+																inputUser : validator.getFieldElements('inputVin').val()
+															};
+														}
+													}*/
+													}
+												},
+												'inputNombrePersona' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
+
+														notEmpty : {
+															message : 'El Nombre es requerido.'
+														},
+													}
+												},
+												'inputApellidoPaterno' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
+
+														notEmpty : {
+															message : 'El Apellido Paterno es requerido.'
+														},
 													}
 												},
 												'inputNumeroMotor' : { //validación del campo
@@ -323,9 +534,48 @@
 														notEmpty : {
 															message : 'El Modelo es requerido.'
 														},
-														 numeric: {
-									                            message: 'El Modelo debe ser numerico',
-									                        }
+														numeric : {
+															message : 'El Modelo debe ser numerico',
+														}
+													}
+												},
+												'selectOficina' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
+
+														notEmpty : {
+															message : 'La Oficina es requerida.'
+														},
+													}
+												},
+												'selectTipoVerificacion' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
+
+														notEmpty : {
+															message : 'El Tipo de Verificacion es requerido.'
+														},
+													}
+												},
+												'selectEstatusVerificacion' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
+
+														notEmpty : {
+															message : 'El Estatus de Verificacion es requerido.'
+														},
+													}
+												},
+												'inputEjercicio' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
+
+														notEmpty : {
+															message : 'El Ejercicio es requerido.'
+														},
+														numeric : {
+															message : 'El Ejercicio debe ser numerico',
+														}
 													}
 												},
 												'selectClase' : { //validación del campo
@@ -359,7 +609,8 @@
 										});
 
 						//Errores
-						$.ajaxSetup({
+						$
+								.ajaxSetup({
 									error : function(x, status, error) {
 										if (x.status == 400) {
 											var result = x.responseJSON;

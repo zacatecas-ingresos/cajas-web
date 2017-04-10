@@ -80,6 +80,27 @@ public class VerificacionVehicularEntity implements Serializable{
 	
 	@Column( name = "numero_motor_vehiculo" )
 	private String numeroMotorVehiculo;
+	
+	@Column( name = "id_oficina_verificacion" )
+	private Integer idOficinaVerificacion;
+	
+	@Column( name = "anio1_comprobante_pago" )
+	private Integer anio1ComprobantePago;
+
+	@Column( name = "anio2_comprobante_pago" )
+	private Integer anio2ComprobantePago;
+
+	@Column( name = "anio3_comprobante_pago" )
+	private Integer anio3ComprobantePago;
+	
+	@Column( name = "anio4_comprobante_pago" )
+	private Integer anio4ComprobantePago;	
+	
+	@Column( name = "anio5_comprobante_pago" )
+	private Integer anio5ComprobantePago;
+	
+	@Column( name = "anio_actual_comprobante_pago" )
+	private Integer anioActualComprobantePago;
 
 	public Integer getIdVerificacionVehiculo() {
 		return idVerificacionVehiculo;
@@ -248,6 +269,62 @@ public class VerificacionVehicularEntity implements Serializable{
 	public void setNumeroMotorVehiculo(String numeroMotorVehiculo) {
 		this.numeroMotorVehiculo = numeroMotorVehiculo;
 	}
+	public Integer getIdOficinaVerificacion() {
+		return idOficinaVerificacion;
+	}
+
+	public void setIdOficinaVerificacion(Integer idOficinaVerificacion) {
+		this.idOficinaVerificacion = idOficinaVerificacion;
+	}
+	
+	public Integer getAnio1ComprobantePago() {
+		return anio1ComprobantePago;
+	}
+
+	public void setAnio1ComprobantePago(Integer anio1ComprobantePago) {
+		this.anio1ComprobantePago = anio1ComprobantePago;
+	}
+
+	public Integer getAnio2ComprobantePago() {
+		return anio2ComprobantePago;
+	}
+
+	public void setAnio2ComprobantePago(Integer anio2ComprobantePago) {
+		this.anio2ComprobantePago = anio2ComprobantePago;
+	}
+
+	public Integer getAnio3ComprobantePago() {
+		return anio3ComprobantePago;
+	}
+
+	public void setAnio3ComprobantePago(Integer anio3ComprobantePago) {
+		this.anio3ComprobantePago = anio3ComprobantePago;
+	}
+
+	public Integer getAnio4ComprobantePago() {
+		return anio4ComprobantePago;
+	}
+
+	public void setAnio4ComprobantePago(Integer anio4ComprobantePago) {
+		this.anio4ComprobantePago = anio4ComprobantePago;
+	}
+
+	public Integer getAnio5ComprobantePago() {
+		return anio5ComprobantePago;
+	}
+
+	public void setAnio5ComprobantePago(Integer anio5ComprobantePago) {
+		this.anio5ComprobantePago = anio5ComprobantePago;
+	}
+
+	public Integer getAnioActualComprobantePago() {
+		return anioActualComprobantePago;
+	}
+
+	public void setAnioActualComprobantePago(Integer anioActualComprobantePago) {
+		this.anioActualComprobantePago = anioActualComprobantePago;
+	}
+
 	
 	
 

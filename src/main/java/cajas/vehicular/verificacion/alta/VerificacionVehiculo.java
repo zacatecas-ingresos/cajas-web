@@ -4,7 +4,7 @@ import cajas.persistence.entity.VerificacionVehicularEntity;
 
 import java.util.Date;
 
-public class VerficacionVehiculo {
+public class VerificacionVehiculo {
 	private Integer idVerificacionVehiculo;
 	private Integer ejercicio;
 	private Integer noSeguimientoVerificion;
@@ -36,7 +36,7 @@ public class VerficacionVehiculo {
 	
 	
 	
-	public VerficacionVehiculo(VerificacionVehicularEntity verificacionVehicularEntity) {
+	public VerificacionVehiculo(VerificacionVehicularEntity verificacionVehicularEntity) {
 		
 		this.setIdVerificacionVehiculo(verificacionVehicularEntity.getIdVerificacionVehiculo());
 		this.setEjercicio(verificacionVehicularEntity.getEjercicio());

@@ -20,7 +20,9 @@ import org.junit.runner.RunWith;
 
 import cajas.exception.BusinessException;
 import cajas.impuestos.calculo.CalculoImpuestoService;
+import cajas.persistence.entity.PeriodosEntity;
 import cajas.persistence.entity.TasaImpuestoEntity;
+import cajas.persistence.query.PeriodosQuery;
 import cajas.persistence.query.TasaImpuestoQuery;
 import junit.framework.Assert;
 
@@ -44,6 +46,8 @@ public class CalculoImpuestoTest {
 		jar.addClass(TasaImpuestoQuery.class);
 		jar.addClass(TasaImpuestoEntity.class);
 		jar.addClass(BusinessException.class);
+		jar.addClass(PeriodosEntity.class);
+		jar.addClass(PeriodosQuery.class);
 		jar.addClass(CalculoImpuestoService.class);
 		war.addAsLibrary(jar);
 
@@ -60,13 +64,13 @@ public class CalculoImpuestoTest {
 
 		LOGGER.info("Iniciando Test Calculo Impuestos Estatales");
 		Integer aFiscal = 2017;
-		String periodo = "ENERO-MARZO";
+		String periodo = "ENERO";
+		Integer tipoPeriodo = 2;
 		BigDecimal impuesto = new BigDecimal("150.00");
 		String tipoImpuesto = "SERVICIO HOSPEDAJE";
 		BigDecimal baseGravable = new BigDecimal(5000);
 
-		BigDecimal impuestoCalculado = calculoImpuestoService.impuestoEstatal(baseGravable, tipoImpuesto, aFiscal,
-				periodo);
+		BigDecimal impuestoCalculado = calculoImpuestoService.impuestoEstatal(baseGravable, tipoImpuesto, aFiscal,periodo,tipoPeriodo);
 
 		Assert.assertEquals(impuesto, impuestoCalculado);
 	}

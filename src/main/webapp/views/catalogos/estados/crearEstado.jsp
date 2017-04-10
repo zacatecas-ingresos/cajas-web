@@ -56,46 +56,41 @@
 			<!-- Main content Estados -->
 			<section class="content">
 				<!-- Main row -->
-				<div class="col-md-12" id="div2">
-
-					<div class="box box-primary">
-
-						<div class="box-body">
-
-							<form id="form-estados">
-
-								<div class="col-md-12">
-
-									<div class="form-group">
-										<label for="inputid" class="control-label">Clave del Estado</label> <input
-											id="inputid" name="inputid" type="text" class="form-control"
-											maxlength="02" placeholder="Clave del Estado(Clave del Estado)" required>
-									</div>
-									<div class="form-group">
-										<label for="inputabrev" class="control-label">Abreviacion del Estado</label> <input
-											id="inputabrev" name="inputabrev" type="text" class="form-control"
-											maxlength="5" placeholder="Abreviacion(Abreviacion)" required>
-									</div>
-									<div class="form-group">
-										<label for="inputnom"  class="control-label">Nombre del Estado</label> 
-										<input	id="inputnom" name="inputnom" type="text" class="form-control"
-											maxlength="15" placeholder="Nombre(Nombre)" required>
-									</div>	
-									
-								<div class="box-footer clearfix">
-								<button id="cancel-btn" type="button"
-									class="btn btn-default btn-lg pull-left">
-									<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-									Cancelar
-								</button>
-								<button type="button" id="save-btn"
-										class="btn btn-success btn-lg pull-right">
-									<i class="fa fa-credit-card"></i> Guardar
-								</button>
-						</div>
-
-					</div>
-
+				<div id="div2" class="col-md-12">
+				    <div class="box box-primary">
+                        <div class="box-body">
+                            <form id="form-estados">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputid" class="control-label">Clave del Estado</label> <input
+                                            id="inputid" name="inputid" type="text" class="form-control"
+                                            maxlength="02" placeholder="Clave del Estado(Clave del Estado)" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputabrev" class="control-label">Abreviacion del Estado</label> <input
+                                            id="inputabrev" name="inputabrev" type="text" class="form-control"
+                                            maxlength="5" placeholder="Abreviacion(Abreviacion)" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputnom"  class="control-label">Nombre del Estado</label> 
+                                        <input  id="inputnom" name="inputnom" type="text" class="form-control"
+                                            maxlength="15" placeholder="Nombre(Nombre)" required>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="box-footer clearfix">
+                                <button id="cancel-btn" type="button"
+                                    class="btn btn-default btn-lg pull-left">
+                                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                                    Cancelar
+                                </button>
+                                <button type="button" id="save-btn"
+                                        class="btn btn-success btn-lg pull-right">
+                                    <i class="fa fa-credit-card"></i> Guardar
+                                </button>
+                        </div>
+				    </div>
 				</div>
 			</section>
 			<!-- Fin contenido Alta Registro -->

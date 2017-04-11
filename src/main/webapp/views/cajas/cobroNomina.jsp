@@ -101,20 +101,27 @@
 								<div class="box-body">
 									<div class="col-md-6">
 										<form class="form-inline">
+										
 											<div class="form-group">
-												<label for="selectCriterio">Criterio Busqueda:</label> <select
+											
+												<label for="selectCriterio">Criterio Búsqueda:</label> <select
 													class="form-control" id="selectCriterio">
 													<option value="" selected="selected">Seleccione
 														una opción</option>
 												</select>
+												
 											</div>
+											
 											<div class="form-group">
 												<input type="text" class="form-control" id="inputCriterio"
 													placeholder="Ingrese criterio busqueda">
 											</div>
+											
 											<button type="button"
 												class="btn btn-sm btn-success glyphicon glyphicon-search"
-												id="btnBuscar"></button>
+												id="btnBuscar">
+											</button>
+												
 										</form>
 									</div>
 									<br /> <br />
@@ -302,6 +309,12 @@
 
 						</div>
 						<!-- /.box-body -->
+							<div class="box-footer clearfix">
+								<button type="button" id="calcular-btn"
+										class="btn btn-success btn-lg pull-right">
+									<i class="fa fa-credit-card"></i> Calcular
+								</button>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -524,5 +537,58 @@
 							+ '</option>');
 		});
 		};
+
+		//calculos
+	$('#calcular-btn').click(function() {
+
+			var datos = {};
+			var periodo = $('#selectPeriodo');
+			var ejercicioFiscal = $('#selectAnyoFiscal');
+			var totalErogaciones = $('#inputPassword');
+			var idObligacion= $('#inputImporteNomina');
+			var tipoDeclaracion= $('#selectDeclaracion');
+			var numeroEmpleados = $('#inputPeriodo');
+
+			datos.datos = {};
+			datos.periodo = periodo.val();
+			datos.ejercicioFiscal = ejercicioFiscal.val();
+			datos.totalErogaciones = totalErogaciones.val();
+			datos.numeroEmpleados= numeroEmpleados.val();
+			datos.idContribuyente= 1;
+			datos.idObligacion= idObligacion.val();
+			datos.idSucursal= 1;
+			datos.tipoDeclaracion = tipoDeclaracion.val();
+
+			var formData = JSON.stringify(datos);
+			
+			
+			console.log(formData);
+
+			var urlGet = "${pageContext.request.contextPath}/cajas/presupuestoEstatal";
+
+		$.ajax({
+				type : 'GET',
+				url : urlGet,
+				data : formData,
+				dataType : "json",
+				contentType : 'application/json',
+				success : function(data,textStatus,jQxhr) {
+				swal(
+					{
+						title : "Calculo realizado correctamente.",
+						type : "success",
+						closeOnCancel : false
+					},
+						function() {
+						window.location = urlUsuario;
+						});
+				},
+				error : function(jqXHR,textStatus,errorThrown) {
+					console.log(textStatus+ " "+ errorThrown);
+					}
+				});
+
+	});
+
 </script>
 </html>

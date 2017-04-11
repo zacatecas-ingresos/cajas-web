@@ -2,7 +2,7 @@ package cajas.impuestos.declaracion.estatal;
 
 import java.math.BigDecimal;
 
-import javax.inject.Inject;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,14 +16,15 @@ import cajas.persistence.entity.ContribuyenteEntity;
 import cajas.util.FechaUtil;
 import cajas.util.ValidacionUtil;
 
+@Stateless
 public class CalculoEstatalService {
+	
 	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
 
-	@Inject
+	
 	private ActualizacionesRecargosService actualizacionesRecargosService;
 
-	@Inject
 	private CalculoImpuestoService calculoImpuestoService;
 
 	protected ImpuestoEstatal calcularImpuesto(DeclaracionEstatal declaracion) {
@@ -47,11 +48,10 @@ public class CalculoEstatalService {
 		}
 
 		// Verificar los tipos de datos
-		BigDecimal impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(), "",
-				declaracion.getEjercicioFiscal(), "", null);
+		BigDecimal impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(), "",declaracion.getEjercicioFiscal(), "", null);
 
-		BigDecimal uaz = calculoImpuestoService.impuestoEstatal(impuesto, "", declaracion.getEjercicioFiscal(), "",
-				null);
+		BigDecimal uaz = calculoImpuestoService.impuestoEstatal(impuesto, "", declaracion.getEjercicioFiscal(), "",null);
+		
 		ContribucionFiscal contribucionFiscal = new ContribucionFiscal();
 		contribucionFiscal.setaFiscalAdeudo(declaracion.getEjercicioFiscal());
 

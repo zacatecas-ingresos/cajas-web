@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
@@ -12,7 +11,6 @@ import cajas.exception.BusinessException;
 import cajas.persistence.entity.INPCEntity;
 import cajas.persistence.query.INPCQuery;
 
-@Stateless
 public class ActualizacionesRecargosService {
 
 	@Inject

@@ -5,7 +5,6 @@ import java.math.RoundingMode;
 import java.text.ParseException;
 import java.util.Date;
 
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
@@ -15,7 +14,6 @@ import cajas.persistence.entity.TasaImpuestoEntity;
 import cajas.persistence.query.PeriodosQuery;
 import cajas.persistence.query.TasaImpuestoQuery;
 
-@Stateless
 public class CalculoImpuestoService {
 
 	@Inject

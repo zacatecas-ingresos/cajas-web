@@ -18,11 +18,10 @@ import cajas.util.ValidacionUtil;
 
 @Stateless
 public class CalculoEstatalService {
-	
+
 	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
 
-	
 	private ActualizacionesRecargosService actualizacionesRecargosService;
 
 	private CalculoImpuestoService calculoImpuestoService;
@@ -48,10 +47,12 @@ public class CalculoEstatalService {
 		}
 
 		// Verificar los tipos de datos
-		BigDecimal impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(), "",declaracion.getEjercicioFiscal(), "", null);
+		BigDecimal impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(),
+				declaracion.getEjercicioFiscal(), "", null, TipoTasaEnum.TASA_NOMINA);
 
-		BigDecimal uaz = calculoImpuestoService.impuestoEstatal(impuesto, "", declaracion.getEjercicioFiscal(), "",null);
-		
+		BigDecimal uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(), "", null,
+				TipoTasaEnum.TASA_UAZ);
+
 		ContribucionFiscal contribucionFiscal = new ContribucionFiscal();
 		contribucionFiscal.setaFiscalAdeudo(declaracion.getEjercicioFiscal());
 
@@ -86,7 +87,7 @@ public class CalculoEstatalService {
 	}
 
 	private void validarDeclaracion(DeclaracionEstatal declaracion) {
-		
+
 		if (!ValidacionUtil.esNumeroPositivo(declaracion.getPeriodo())) {
 			System.out.println("El" + declaracion.getPeriodo() + "es requerido");
 
@@ -118,7 +119,6 @@ public class CalculoEstatalService {
 				}
 			}
 		}
-
 
 	}
 

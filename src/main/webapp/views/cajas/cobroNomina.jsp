@@ -549,7 +549,6 @@
 			var tipoDeclaracion= $('#selectDeclaracion');
 			var numeroEmpleados = $('#inputPeriodo');
 
-			datos.datos = {};
 			datos.periodo = periodo.val();
 			datos.ejercicioFiscal = ejercicioFiscal.val();
 			datos.totalErogaciones = totalErogaciones.val();
@@ -557,18 +556,18 @@
 			datos.idContribuyente= 1;
 			datos.idObligacion= idObligacion.val();
 			datos.idSucursal= 1;
-			datos.tipoDeclaracion = tipoDeclaracion.val();
+			datos.idTipoDeclaracion = tipoDeclaracion.val();
 
 			var formData = JSON.stringify(datos);
 			
 			
 			console.log(formData);
 
-			var urlGet = "${pageContext.request.contextPath}/cajas/presupuestoEstatal";
+			var urlPut = "${pageContext.request.contextPath}/cajas/presupuestoEstatal";
 
 		$.ajax({
-				type : 'GET',
-				url : urlGet,
+				type : 'PUT',
+				url : urlPut,
 				data : formData,
 				dataType : "json",
 				contentType : 'application/json',

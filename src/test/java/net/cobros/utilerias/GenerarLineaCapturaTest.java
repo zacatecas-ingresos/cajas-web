@@ -1,6 +1,8 @@
 package net.cobros.utilerias;
 
 import java.io.File;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -61,12 +63,32 @@ public class GenerarLineaCapturaTest {
 		String importe = "9814";
 		Integer digito = 2;
 		String lcc = LineaDeCapturaCerradaUtileria.obtenerLineaCapturaCerrada(referencia, fechaVencimiento, importe, digito);
-		System.out.println(lcc);
-		
 		
 		String lccEsperada = "0132560100000000006992374206";
 		
 		Assert.assertEquals(lccEsperada, lcc);
 	}
+	
+	
+	@Test
+	public void generarLCCOxxo() {
+		LOGGER.info("Iniciando test");
+		String folio = "1001";
+		
+		Date fechaVencimiento = new Date();
+		
+		BigDecimal total = new BigDecimal(9814.51).setScale(2, RoundingMode.HALF_UP);
+		System.out.println("total: " +total);
+		
+		String importe = total.toString();
+		
+		String lcc = LineaDeCapturaCerradaUtileria.obtenerLineaCapturaOxxo(folio, fechaVencimiento, importe);
+		
+		
+		String lccEsperada = "0300000010012017041109814514";
+		
+		Assert.assertEquals(lccEsperada, lcc);
+	}
+	
 	
 }

@@ -5,6 +5,7 @@ import cajas.persistence.entity.VerificacionVehicularEntity;
 import java.util.Date;
 
 public class VerificacionVehiculo {
+	
 	private Integer idVerificacionVehiculo;
 	private Integer ejercicio;
 	private Integer noSeguimientoVerificion;
@@ -17,11 +18,11 @@ public class VerificacionVehiculo {
 	private Integer idTipoVehiculo;
 	private String lineaVehiculo;
 	private Integer estatusVerificacion;
-	private Boolean facturaVehiculoDocumentacion;
-	private Boolean identificacionOficialDocumentacion;
-	private Boolean comprobanteDomicilioDocumentacion;
-	private Boolean rfcPersonaMoralDocumentacion;
-	private Boolean identificacionRepresentanteLegalDocumentacion;
+	private Integer facturaVehiculoDocumentacion;
+	private Integer identificacionOficialDocumentacion;
+	private Integer comprobanteDomicilioDocumentacion;
+	private Integer rfcPersonaMoralDocumentacion;
+	private Integer identificacionRepresentanteLegalDocumentacion;
 	private String nombrePersonaVerificacion;
 	private String apellidoPaternoPersonaVerificacion;
 	private String apellidoMaternoPersonaVerificacion;
@@ -34,7 +35,7 @@ public class VerificacionVehiculo {
 	private Integer anio5ComprobantePago;
 	private Integer anioActualComprobantePago;
 	
-	
+	/*
 	public VerificacionVehiculo()
 	{
 		
@@ -71,7 +72,7 @@ public class VerificacionVehiculo {
 		this.setAnio5ComprobantePago(verificacionVehicularEntity.getAnio5ComprobantePago());
 		this.setAnioActualComprobantePago(verificacionVehicularEntity.getAnioActualComprobantePago());
 	
-	}
+	} */
 	
 	public Integer getIdVerificacionVehiculo() {
 		return idVerificacionVehiculo;
@@ -145,34 +146,34 @@ public class VerificacionVehiculo {
 	public void setEstatusVerificacion(Integer estatusVerificacion) {
 		this.estatusVerificacion = estatusVerificacion;
 	}
-	public Boolean getFacturaVehiculoDocumentacion() {
+	public Integer getFacturaVehiculoDocumentacion() {
 		return facturaVehiculoDocumentacion;
 	}
-	public void setFacturaVehiculoDocumentacion(Boolean facturaVehiculoDocumentacion) {
+	public void setFacturaVehiculoDocumentacion(Integer facturaVehiculoDocumentacion) {
 		this.facturaVehiculoDocumentacion = facturaVehiculoDocumentacion;
 	}
-	public Boolean getIdentificacionOficialDocumentacion() {
+	public Integer getIdentificacionOficialDocumentacion() {
 		return identificacionOficialDocumentacion;
 	}
-	public void setIdentificacionOficialDocumentacion(Boolean identificacionOficialDocumentacion) {
+	public void setIdentificacionOficialDocumentacion(Integer identificacionOficialDocumentacion) {
 		this.identificacionOficialDocumentacion = identificacionOficialDocumentacion;
 	}
-	public Boolean getComprobanteDomicilioDocumentacion() {
+	public Integer getComprobanteDomicilioDocumentacion() {
 		return comprobanteDomicilioDocumentacion;
 	}
-	public void setComprobanteDomicilioDocumentacion(Boolean comprobanteDomicilioDocumentacion) {
+	public void setComprobanteDomicilioDocumentacion(Integer comprobanteDomicilioDocumentacion) {
 		this.comprobanteDomicilioDocumentacion = comprobanteDomicilioDocumentacion;
 	}
-	public Boolean getRfcPersonaMoralDocumentacion() {
+	public Integer getRfcPersonaMoralDocumentacion() {
 		return rfcPersonaMoralDocumentacion;
 	}
-	public void setRfcPersonaMoralDocumentacion(Boolean rfcPersonaMoralDocumentacion) {
+	public void setRfcPersonaMoralDocumentacion(Integer rfcPersonaMoralDocumentacion) {
 		this.rfcPersonaMoralDocumentacion = rfcPersonaMoralDocumentacion;
 	}
-	public Boolean getIdentificacionRepresentanteLegalDocumentacion() {
+	public Integer getIdentificacionRepresentanteLegalDocumentacion() {
 		return identificacionRepresentanteLegalDocumentacion;
 	}
-	public void setIdentificacionRepresentanteLegalDocumentacion(Boolean identificacionRepresentanteLegalDocumentacion) {
+	public void setIdentificacionRepresentanteLegalDocumentacion(Integer identificacionRepresentanteLegalDocumentacion) {
 		this.identificacionRepresentanteLegalDocumentacion = identificacionRepresentanteLegalDocumentacion;
 	}
 	public String getNombrePersonaVerificacion() {

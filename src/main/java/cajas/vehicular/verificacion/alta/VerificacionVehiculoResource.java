@@ -36,7 +36,7 @@ public class VerificacionVehiculoResource {
 	}
 	
 	
-	/*****Compureba si ya existe una verificacion con ese VIN *********/
+	/*****Comprueba si ya existe una verificacion con ese VIN *********/
 	@GET
 	@Path("/existeVin")
 	@Produces({"application/json"})
@@ -46,6 +46,27 @@ public class VerificacionVehiculoResource {
 		try{
 			VerificacionVehiculo vVehiculo = verificacionVehiculoEjb.obtenerVin(nombre);
 			if(vVehiculo.getVinVehiculo() != null){
+				resultado.put("valid", "false");//ya existe el vin
+				return Response.ok(resultado).build();	
+			}
+			resultado.put("valid", "true");//No existe el vin
+			return Response.ok(resultado).build();
+		}catch(BusinessException ex){
+			resultado.put("valid", "true");
+			return Response.ok(resultado).build();
+		}
+	}
+	
+	/*****Comprueba si ya existe una verificacion con ese Numero de Motor *********/
+	@GET
+	@Path("/existeNumeroMotor")
+	@Produces({"application/json"})
+	public Response exiteNumeroMotor(@QueryParam("inputNumeroMotor")String numeroMotor){
+		
+		Map<String,String> resultado = new HashMap<>();
+		try{
+			VerificacionVehiculo vVehiculo = verificacionVehiculoEjb.obtenerNumeroMotor(numeroMotor);
+			if(vVehiculo.getNumeroMotorVehiculo() != null){
 				resultado.put("valid", "false");//ya existe el vin
 				return Response.ok(resultado).build();	
 			}

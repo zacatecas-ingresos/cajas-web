@@ -540,6 +540,15 @@
 														notEmpty : {
 															message : 'El Numero de Motor es requerido.'
 														},
+														remote : {
+															url : '${pageContext.request.contextPath}/cajas/vehicular/verificacion/existeNumeroMotor?'+ $('#inputNumeroMotor').val(),
+															message : "¡El Numero de Motor que ingreso ya existe!",
+																data : function(validator,$field,value) {
+																	return {
+																		inputNumeroMotor : validator.getFieldElements('inputNumeroMotor').val()
+																	};
+																}
+															}
 													}
 												},
 												'selectMarca' : { //validación del campo

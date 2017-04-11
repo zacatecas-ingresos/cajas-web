@@ -71,5 +71,17 @@ public class VerificacionVehiculoEJB {
 		}
 	}
 
+	
+	/********Obtener Numero Motor *********/
+	public VerificacionVehiculo obtenerNumeroMotor(String NumeroMotor) {
+		try {
+			VerificacionVehicularEntity vVehiculoEntity = vVehicularQuery.consultarNumeroMotor(NumeroMotor);
+			VerificacionVehiculo vVehiculo = new VerificacionVehiculo();
+			vVehiculo = vVehiculo.verificacionVehiculoEntity(vVehiculoEntity);
+			return vVehiculo;
+		} catch (NoResultException ex) {
+			throw new BusinessException("El Numero de Motor no existe.");
+		}
+	}
 
 }

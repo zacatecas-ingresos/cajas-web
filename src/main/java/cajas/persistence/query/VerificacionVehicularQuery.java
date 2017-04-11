@@ -26,5 +26,14 @@ public class VerificacionVehicularQuery {
 		return vVehiculo;
 	}
 	
+	public VerificacionVehicularEntity consultarNumeroMotor(String numeroMotor) {
+		
+		VerificacionVehicularEntity vVehiculo =	entityManager.createQuery("FROM VerificacionVehicularEntity u WHERE u.numeroMotorVehiculo=:numeroMotor", VerificacionVehicularEntity.class)
+				.setParameter("numeroMotor", numeroMotor)				
+				.getSingleResult();
+		
+		return vVehiculo;
+	}
+	
 
 }

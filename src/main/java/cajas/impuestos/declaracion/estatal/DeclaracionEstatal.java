@@ -15,13 +15,13 @@ public class DeclaracionEstatal {
 	private Integer idContribuyente;
 	private int idObligacion;
 	private int idSucursal;
-	private int idTipoDeclaracion;
+	private String idTipoDeclaracion;
 
-	public int getIdTipoDeclaracion() {
+	public String getIdTipoDeclaracion() {
 		return idTipoDeclaracion;
 	}
 
-	public void setIdTipoDeclaracion(int idTipoDeclaracion) {
+	public void setIdTipoDeclaracion(String idTipoDeclaracion) {
 		this.idTipoDeclaracion = idTipoDeclaracion;
 	}
 

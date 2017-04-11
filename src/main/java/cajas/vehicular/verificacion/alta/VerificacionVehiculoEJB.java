@@ -13,11 +13,16 @@ import javax.persistence.PersistenceException;
 
 import cajas.exception.BusinessException;
 import cajas.persistence.entity.VerificacionVehicularEntity;
+import cajas.persistence.query.UsuarioQuery;
+import cajas.persistence.query.VerificacionVehicularQuery;
 import cajas.vehicular.verificacion.alta.CrearVerificacionVehiculo;
 import cajas.util.Crypto;
 
 @Stateless
 public class VerificacionVehiculoEJB {
+	
+	@Inject
+	VerificacionVehicularQuery vVehicularQuery;
 	
 	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
@@ -41,13 +46,13 @@ public class VerificacionVehiculoEJB {
 			verificacionVehiculoEntity.setNombrePersonaVerificacion(verificacionVehiculo.getNombrePersonaVerificacion());
 			verificacionVehiculoEntity.setApellidoPaternoPersonaVerificacion(verificacionVehiculo.getApellidoPaternoPersonaVerificacion());
 			verificacionVehiculoEntity.setApellidoMaternoPersonaVerificacion(verificacionVehiculo.getApellidoMaternoPersonaVerificacion());
-			verificacionVehiculoEntity.setFacturaVehiculoDocumentacion(verificacionVehiculo.getFacturaVehiculoDocumentacion());
-			verificacionVehiculoEntity.setIdentificacionOficialDocumentacion(verificacionVehiculo.getIdentificacionOficialDocumentacion());
-			verificacionVehiculoEntity.setIdentificacionRepresentanteLegalDocumentacion(verificacionVehiculo.getIdentificacionRepresentanteLegalDocumentacion());
-			verificacionVehiculoEntity.setComprobanteDomicilioDocumentacion(verificacionVehiculo.getComprobanteDomicilioDocumentacion());
-			verificacionVehiculoEntity.setRfcPersonaMoralDocumentacion(verificacionVehiculo.getRfcPersonaMoralDocumentacion());
-			verificacionVehiculoEntity.setAnioActualComprobantePago(verificacionVehiculo.getAnioActualComprobantePago());		
-			entityManager.persist(verificacionVehiculoEntity);
+			verificacionVehiculoEntity.setFacturaVehiculoDocumentacion((Integer)verificacionVehiculo.getFacturaVehiculoDocumentacion());
+			verificacionVehiculoEntity.setIdentificacionOficialDocumentacion((Integer)verificacionVehiculo.getIdentificacionOficialDocumentacion());
+			verificacionVehiculoEntity.setIdentificacionRepresentanteLegalDocumentacion((Integer)verificacionVehiculo.getIdentificacionRepresentanteLegalDocumentacion());
+			verificacionVehiculoEntity.setComprobanteDomicilioDocumentacion((Integer)verificacionVehiculo.getComprobanteDomicilioDocumentacion());
+			verificacionVehiculoEntity.setRfcPersonaMoralDocumentacion((Integer)verificacionVehiculo.getRfcPersonaMoralDocumentacion());
+			verificacionVehiculoEntity.setAnioActualComprobantePago((Integer)verificacionVehiculo.getAnioActualComprobantePago());	
+			vVehicularQuery.registrarVerificacion(verificacionVehiculoEntity);
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();
 			throw new BusinessException("Ocurrio un problema al registrar al registrar la Verificación del Vehiculo.");

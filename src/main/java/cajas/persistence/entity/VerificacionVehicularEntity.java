@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "marcas_vehiculos", schema = "catalogos")
+@Table( name = "verificaciones_vehiculo", schema = "vehicular")
 public class VerificacionVehicularEntity implements Serializable{
 
 	private static final long serialVersionUID = 4520026756457631203L;
@@ -55,19 +55,19 @@ public class VerificacionVehicularEntity implements Serializable{
 	private Integer estatusVerificacion;
 	
 	@Column( name = "factura_vehiculo_documentacion" )
-	private Boolean facturaVehiculoDocumentacion;
+	private Integer facturaVehiculoDocumentacion;
 	
 	@Column( name = "identificacion_oficial_documentacion" )
-	private Boolean identificacionOficialDocumentacion;
+	private Integer identificacionOficialDocumentacion;
 	
 	@Column( name = "comprobante_domicilio_documentacion" )
-	private Boolean comprobanteDomicilioDocumentacion;
+	private Integer comprobanteDomicilioDocumentacion;
 	
 	@Column( name = "rfc_persona_moral_documentacion" )
-	private Boolean rfcPersonaMoralDocumentacion;
+	private Integer rfcPersonaMoralDocumentacion;
 	
 	@Column( name = "identificacion_representante_legal_documentacion" )
-	private Boolean identificacionRepresentanteLegalDocumentacion;
+	private Integer identificacionRepresentanteLegalDocumentacion;
 	
 	@Column( name = "nombre_persona_verificacion" )
 	private String nombrePersonaVerificacion;
@@ -198,43 +198,43 @@ public class VerificacionVehicularEntity implements Serializable{
 		this.estatusVerificacion = estatusVerificacion;
 	}
 
-	public Boolean getFacturaVehiculoDocumentacion() {
+	public Integer getFacturaVehiculoDocumentacion() {
 		return facturaVehiculoDocumentacion;
 	}
 
-	public void setFacturaVehiculoDocumentacion(Boolean facturaVehiculoDocumentacion) {
+	public void setFacturaVehiculoDocumentacion(Integer facturaVehiculoDocumentacion) {
 		this.facturaVehiculoDocumentacion = facturaVehiculoDocumentacion;
 	}
 
-	public Boolean getIdentificacionOficialDocumentacion() {
+	public Integer getIdentificacionOficialDocumentacion() {
 		return identificacionOficialDocumentacion;
 	}
 
-	public void setIdentificacionOficialDocumentacion(Boolean identificacionOficialDocumentacion) {
+	public void setIdentificacionOficialDocumentacion(Integer identificacionOficialDocumentacion) {
 		this.identificacionOficialDocumentacion = identificacionOficialDocumentacion;
 	}
 
-	public Boolean getComprobanteDomicilioDocumentacion() {
+	public Integer getComprobanteDomicilioDocumentacion() {
 		return comprobanteDomicilioDocumentacion;
 	}
 
-	public void setComprobanteDomicilioDocumentacion(Boolean comprobanteDomicilioDocumentacion) {
+	public void setComprobanteDomicilioDocumentacion(Integer comprobanteDomicilioDocumentacion) {
 		this.comprobanteDomicilioDocumentacion = comprobanteDomicilioDocumentacion;
 	}
 
-	public Boolean getRfcPersonaMoralDocumentacion() {
+	public Integer getRfcPersonaMoralDocumentacion() {
 		return rfcPersonaMoralDocumentacion;
 	}
 
-	public void setRfcPersonaMoralDocumentacion(Boolean rfcPersonaMoralDocumentacion) {
+	public void setRfcPersonaMoralDocumentacion(Integer rfcPersonaMoralDocumentacion) {
 		this.rfcPersonaMoralDocumentacion = rfcPersonaMoralDocumentacion;
 	}
 
-	public Boolean getIdentificacionRepresentanteLegalDocumentacion() {
+	public Integer getIdentificacionRepresentanteLegalDocumentacion() {
 		return identificacionRepresentanteLegalDocumentacion;
 	}
 
-	public void setIdentificacionRepresentanteLegalDocumentacion(Boolean identificacionRepresentanteLegalDocumentacion) {
+	public void setIdentificacionRepresentanteLegalDocumentacion(Integer identificacionRepresentanteLegalDocumentacion) {
 		this.identificacionRepresentanteLegalDocumentacion = identificacionRepresentanteLegalDocumentacion;
 	}
 

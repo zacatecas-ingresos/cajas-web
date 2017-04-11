@@ -16,17 +16,17 @@ import cajas.exception.BusinessException;
 @Path("/vehicular/verificacion")
 public class VerificacionVehiculoResource {
 	
+	@EJB
 	VerificacionVehiculoEJB verificacionVehiculoEjb;
 	
 	/**
 	 * Crea un nuevo registro de Verificacion Vehiculo	 
-	 * @param verificacionVehiculo
 	 */
 	@POST
 	@Consumes({ "application/json" })
-	public Response crearVerificacionVehiculo(CrearVerificacionVehiculo verificacionVehiculo) {
+	public Response crearVerificacionVehiculo(VerificacionVehiculo verificacionVehiculo) {
 		try {
-			verificacionVehiculoEjb.crearVerificacionVehiculo(verificacionVehiculo);
+			verificacionVehiculoEjb.crearVerificacionVehiculoMetodo(verificacionVehiculo);
 			return Response.ok(Status.OK,"application/json").tag("Verificacion de Vehiculo registrada correctamente.").build();
 		} catch (BusinessException ex) {
 			return Response.ok(Status.NOT_IMPLEMENTED,"application/json").tag(ex.getMessage()).build();

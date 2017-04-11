@@ -92,9 +92,9 @@
 									</div>
 
 									<div class="form-group">
-										<label for="selectTipoVerificacion" class="control-label">Estatus
+										<label for="selectEstatusVerificacion" class="control-label">Estatus
 											Verificacion</label> <select class="form-control"
-											id="selectTipoVerificacion" name="selectTipoVerificacion"
+											id="selectEstatusVerificacion" name="selectEstatusVerificacion"
 											disabled required>
 											<option value="1" selected>CAPTURADA</option>
 											<option value="2">AUTORIZADA</option>

@@ -19,7 +19,7 @@ public class VerificacionVehicularQuery {
 	
 	public VerificacionVehicularEntity consultar(String vin) {
 		
-		VerificacionVehicularEntity vVehiculo =	entityManager.createQuery("FROM VerificacionVehicularEntity u WHERE u.vin=:vin", VerificacionVehicularEntity.class)
+		VerificacionVehicularEntity vVehiculo =	entityManager.createQuery("FROM VerificacionVehicularEntity u WHERE u.vinVehiculo=:vin", VerificacionVehicularEntity.class)
 				.setParameter("vin", vin)				
 				.getSingleResult();
 		

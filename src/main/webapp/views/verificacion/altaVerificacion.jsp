@@ -504,7 +504,7 @@
 															max : 17,
 															message : 'El VIN por lo menos 17 caracteres.'
 														},
-														/*remote : {
+														remote : {
 														url : '${pageContext.request.contextPath}/cajas/vehicular/verificacion/existeVin?'+ $('#inputVin').val(),
 														message : "¡El VIN que ingreso ya existe!",
 															data : function(validator,$field,value) {
@@ -512,7 +512,7 @@
 																	inputVin : validator.getFieldElements('inputVin').val()
 																};
 															}
-														}*/
+														}
 													}
 												},
 												'inputNombrePersona' : { //validación del campo

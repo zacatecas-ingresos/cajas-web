@@ -16,5 +16,15 @@ public class VerificacionVehicularQuery {
 	public void registrarVerificacion(VerificacionVehicularEntity vVehicular) {
 		entityManager.persist(vVehicular);
 	}
+	
+	public VerificacionVehicularEntity consultar(String vin) {
+		
+		VerificacionVehicularEntity vVehiculo =	entityManager.createQuery("FROM VerificacionVehicularEntity u WHERE u.vinVehiculo=:vin", VerificacionVehicularEntity.class)
+				.setParameter("vin", vin)				
+				.getSingleResult();
+		
+		return vVehiculo;
+	}
+	
 
 }

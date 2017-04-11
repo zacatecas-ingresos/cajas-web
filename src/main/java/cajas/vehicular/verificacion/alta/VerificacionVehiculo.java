@@ -39,40 +39,43 @@ public class VerificacionVehiculo {
 	public VerificacionVehiculo()
 	{
 		
-	}
-	
-	public VerificacionVehiculo(VerificacionVehicularEntity verificacionVehicularEntity) {
-		
-		this.setIdVerificacionVehiculo(verificacionVehicularEntity.getIdVerificacionVehiculo());
-		this.setEjercicio(verificacionVehicularEntity.getEjercicio());
-		this.setNoSeguimientoVerificion(verificacionVehicularEntity.getNoSeguimientoVerificacion());
-		this.setFechaVerificacion(verificacionVehicularEntity.getFechaVerificacion());
-		this.setTipoVerificacion(verificacionVehicularEntity.getTipoVerificacion());
-		this.setVinVehiculo(verificacionVehicularEntity.getVinVehiculo());
-		this.setIdMarcaVehiculo(verificacionVehicularEntity.getIdMarcaVehiculo());
-		this.setModeloVehiculo(verificacionVehicularEntity.getModeloVehiculo());
-		this.setIdClaseVehiculo(verificacionVehicularEntity.getIdClaseVehiculo());
-		this.setIdTipoVehiculo(verificacionVehicularEntity.getIdTipoVehiculo());
-		this.setLineaVehiculo(verificacionVehicularEntity.getLineaVehiculo());
-		this.setEstatusVerificacion(verificacionVehicularEntity.getEstatusVerificacion());
-		this.setFacturaVehiculoDocumentacion(verificacionVehicularEntity.getFacturaVehiculoDocumentacion());
-		this.setIdentificacionOficialDocumentacion(verificacionVehicularEntity.getIdentificacionOficialDocumentacion());
-		this.setComprobanteDomicilioDocumentacion(verificacionVehicularEntity.getComprobanteDomicilioDocumentacion());
-		this.setRfcPersonaMoralDocumentacion(verificacionVehicularEntity.getComprobanteDomicilioDocumentacion());
-		this.setIdentificacionRepresentanteLegalDocumentacion(verificacionVehicularEntity.getIdentificacionRepresentanteLegalDocumentacion());
-		this.setNombrePersonaVerificacion(verificacionVehicularEntity.getNombrePersonaVerificacion());
-		this.setApellidoPaternoPersonaVerificacion(verificacionVehicularEntity.getApellidoPaternoPersonaVerificacion());
-		this.setApellidoMaternoPersonaVerificacion(verificacionVehicularEntity.getApellidoMaternoPersonaVerificacion());
-		this.setNumeroMotorVehiculo(verificacionVehicularEntity.getNumeroMotorVehiculo());
-		this.setIdOficinaVerificacion(verificacionVehicularEntity.getIdOficinaVerificacion());
-		this.setAnio1ComprobantePago(verificacionVehicularEntity.getAnio1ComprobantePago());
-		this.setAnio2ComprobantePago(verificacionVehicularEntity.getAnio2ComprobantePago());
-		this.setAnio3ComprobantePago(verificacionVehicularEntity.getAnio3ComprobantePago());
-		this.setAnio4ComprobantePago(verificacionVehicularEntity.getAnio4ComprobantePago());
-		this.setAnio5ComprobantePago(verificacionVehicularEntity.getAnio5ComprobantePago());
-		this.setAnioActualComprobantePago(verificacionVehicularEntity.getAnioActualComprobantePago());
-	
 	} */
+	
+	public VerificacionVehiculo verificacionVehiculoEntity(VerificacionVehicularEntity verificacionVehicularEntity) {
+		
+		VerificacionVehiculo vVehiculo = new VerificacionVehiculo();
+		
+		vVehiculo.setIdVerificacionVehiculo(verificacionVehicularEntity.getIdVerificacionVehiculo());
+		vVehiculo.setEjercicio(verificacionVehicularEntity.getEjercicio());
+		vVehiculo.setNoSeguimientoVerificion(verificacionVehicularEntity.getNoSeguimientoVerificacion());
+		vVehiculo.setFechaVerificacion(verificacionVehicularEntity.getFechaVerificacion());
+		vVehiculo.setTipoVerificacion(verificacionVehicularEntity.getTipoVerificacion());
+		vVehiculo.setVinVehiculo(verificacionVehicularEntity.getVinVehiculo());
+		vVehiculo.setIdMarcaVehiculo(verificacionVehicularEntity.getIdMarcaVehiculo());
+		vVehiculo.setModeloVehiculo(verificacionVehicularEntity.getModeloVehiculo());
+		vVehiculo.setIdClaseVehiculo(verificacionVehicularEntity.getIdClaseVehiculo());
+		vVehiculo.setIdTipoVehiculo(verificacionVehicularEntity.getIdTipoVehiculo());
+		vVehiculo.setLineaVehiculo(verificacionVehicularEntity.getLineaVehiculo());
+		vVehiculo.setEstatusVerificacion(verificacionVehicularEntity.getEstatusVerificacion());
+		vVehiculo.setFacturaVehiculoDocumentacion(verificacionVehicularEntity.getFacturaVehiculoDocumentacion());
+		vVehiculo.setIdentificacionOficialDocumentacion(verificacionVehicularEntity.getIdentificacionOficialDocumentacion());
+		vVehiculo.setComprobanteDomicilioDocumentacion(verificacionVehicularEntity.getComprobanteDomicilioDocumentacion());
+		vVehiculo.setRfcPersonaMoralDocumentacion(verificacionVehicularEntity.getComprobanteDomicilioDocumentacion());
+		vVehiculo.setIdentificacionRepresentanteLegalDocumentacion(verificacionVehicularEntity.getIdentificacionRepresentanteLegalDocumentacion());
+		vVehiculo.setNombrePersonaVerificacion(verificacionVehicularEntity.getNombrePersonaVerificacion());
+		vVehiculo.setApellidoPaternoPersonaVerificacion(verificacionVehicularEntity.getApellidoPaternoPersonaVerificacion());
+		vVehiculo.setApellidoMaternoPersonaVerificacion(verificacionVehicularEntity.getApellidoMaternoPersonaVerificacion());
+		vVehiculo.setNumeroMotorVehiculo(verificacionVehicularEntity.getNumeroMotorVehiculo());
+		vVehiculo.setIdOficinaVerificacion(verificacionVehicularEntity.getIdOficinaVerificacion());
+		vVehiculo.setAnio1ComprobantePago(verificacionVehicularEntity.getAnio1ComprobantePago());
+		vVehiculo.setAnio2ComprobantePago(verificacionVehicularEntity.getAnio2ComprobantePago());
+		vVehiculo.setAnio3ComprobantePago(verificacionVehicularEntity.getAnio3ComprobantePago());
+		vVehiculo.setAnio4ComprobantePago(verificacionVehicularEntity.getAnio4ComprobantePago());
+		vVehiculo.setAnio5ComprobantePago(verificacionVehicularEntity.getAnio5ComprobantePago());
+		vVehiculo.setAnioActualComprobantePago(verificacionVehicularEntity.getAnioActualComprobantePago());
+	
+		return vVehiculo;
+	} 
 	
 	public Integer getIdVerificacionVehiculo() {
 		return idVerificacionVehiculo;

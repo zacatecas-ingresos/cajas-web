@@ -14,6 +14,7 @@ import cajas.impuestos.calculo.CalculoImpuestoService;
 import cajas.persistence.entity.CalculoTemporalEstatalEntity;
 import cajas.persistence.entity.ContribuyenteEntity;
 import cajas.util.FechaUtil;
+import cajas.util.ValidacionUtil;
 
 public class CalculoEstatalService {
 	@PersistenceContext(name = "sitDS")
@@ -85,6 +86,39 @@ public class CalculoEstatalService {
 	}
 
 	private void validarDeclaracion(DeclaracionEstatal declaracion) {
+		
+		if (!ValidacionUtil.esNumeroPositivo(declaracion.getPeriodo())) {
+			System.out.println("El" + declaracion.getPeriodo() + "es requerido");
+
+			if (!ValidacionUtil.esNumeroPositivo(declaracion.getEjercicioFiscal())) {
+				System.out.println("El" + declaracion.getEjercicioFiscal() + "es requerido");
+
+				if (!ValidacionUtil.esNumeroPositivo(declaracion.getTotalErogaciones())) {
+					System.out.println("El" + declaracion.getTotalErogaciones() + "es requerido");
+
+					if (!ValidacionUtil.esNumeroPositivo(declaracion.getNumeroEmpleados())) {
+						System.out.println("El" + declaracion.getNumeroEmpleados() + "es requerido");
+
+						if (!ValidacionUtil.esNumeroPositivo(declaracion.getIdContribuyente())) {
+							System.out.println("El" + declaracion.getIdContribuyente() + "es requerido");
+
+							if (!ValidacionUtil.esNumeroPositivo(declaracion.getIdObligacion())) {
+								System.out.println("El" + declaracion.getIdObligacion() + "es requerido");
+
+								if (!ValidacionUtil.esNumeroPositivo(declaracion.getIdSucursal())) {
+									System.out.println("El" + declaracion.getIdSucursal() + "es requerido");
+
+									if (!ValidacionUtil.esCadenaVacia(declaracion.getIdTipoDeclaracion())) {
+										System.out.println("El" + declaracion.getIdTipoDeclaracion() + "es requerido");
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
 
 	}
 

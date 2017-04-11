@@ -13,8 +13,8 @@ import javax.persistence.PersistenceException;
 
 import cajas.exception.BusinessException;
 import cajas.persistence.entity.VerificacionVehicularEntity;
-import cajas.persistence.query.UsuarioQuery;
 import cajas.persistence.query.VerificacionVehicularQuery;
+import cajas.seguridad.usuario.Usuario;
 import cajas.vehicular.verificacion.alta.CrearVerificacionVehiculo;
 import cajas.util.Crypto;
 
@@ -22,7 +22,7 @@ import cajas.util.Crypto;
 public class VerificacionVehiculoEJB {
 	
 	@Inject
-	VerificacionVehicularQuery vVehicularQuery;
+	VerificacionVehicularQuery vVehicularQuery; 
 	
 	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
@@ -56,6 +56,18 @@ public class VerificacionVehiculoEJB {
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();
 			throw new BusinessException("Ocurrio un problema al registrar al registrar la Verificación del Vehiculo.");
+		}
+	}
+	
+	/********Obtener VIN *********/
+	public VerificacionVehiculo obtenerVin(String vin) {
+		try {
+			VerificacionVehicularEntity vVehiculoEntity = vVehicularQuery.consultar(vin);
+			VerificacionVehiculo vVehiculo = new VerificacionVehiculo();
+			vVehiculo = vVehiculo.verificacionVehiculoEntity(vVehiculoEntity);
+			return vVehiculo;
+		} catch (NoResultException ex) {
+			throw new BusinessException("El Vin no existe.");
 		}
 	}
 

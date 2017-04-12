@@ -36,6 +36,9 @@ public class TasaImpuestoEntity implements Serializable {
 
 	@Column(name = "tasa")
 	private BigDecimal tasa;
+	
+	@Column(name = "tipo_tasa")
+	private Integer tipoTasa;
 
 	/************** Getters and Setters **************/
 
@@ -77,6 +80,14 @@ public class TasaImpuestoEntity implements Serializable {
 
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
+	}
+	
+	public Integer getTipoTasa() {
+		return tipoTasa;
+	}
+	
+	public void setTipoTasa(Integer tipoTasa) {
+		this.tipoTasa = tipoTasa;
 	}
 
 }

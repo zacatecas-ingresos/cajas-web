@@ -14,9 +14,9 @@ public class TasaImpuestoQuery {
 
 	public TasaImpuestoEntity obtenerTasaPorImpuesto(int tipoTasa, Date fechaInicio, Date fechaFin) {
 		TasaImpuestoEntity tasaImpuesto = entityManager
-				.createQuery("FROM TasaImpuestoEntity a WHERE a.impuesto=:impuesto AND "
-						+ "(fechaInicio<=:fechaInicio AND fechaFin >=:fechaFin)", TasaImpuestoEntity.class)
-				.setParameter("impuesto", tipoTasa).setParameter("fechaInicio", fechaInicio)
+				.createQuery("FROM TasaImpuestoEntity a WHERE a.tipoTasa=:tipoTasa AND "
+						+ "(fechaInicio=:fechaInicio AND fechaFin =:fechaFin)", TasaImpuestoEntity.class)
+				.setParameter("tipoTasa", tipoTasa).setParameter("fechaInicio", fechaInicio)
 				.setParameter("fechaFin", fechaFin).getSingleResult();
 		return tasaImpuesto;
 	}

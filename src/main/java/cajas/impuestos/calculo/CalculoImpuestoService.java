@@ -30,17 +30,17 @@ public class CalculoImpuestoService {
 	public BigDecimal impuestoEstatal(BigDecimal baseGravable, Integer aFiscal, String periodo, Integer tipoPeriodo,
 			int tipoTasa) {
 		try {
-
+	
 			BigDecimal impuesto = BigDecimal.ZERO;
 			BigDecimal tasa = BigDecimal.ZERO;
 
 			PeriodosEntity periodoEntity = periodosQuery.obtenerPeriodo(aFiscal, periodo, tipoPeriodo);
 
 			tasa = tasaPorImpuesto(tipoTasa, periodoEntity.getFechaInicio(), periodoEntity.getFechaFin());
-
+					
 			impuesto = baseGravable.multiply(tasa);
 			impuesto = impuesto.divide(new BigDecimal(100).setScale(0, RoundingMode.HALF_UP));
-
+			
 			return impuesto;
 		} catch (NoResultException ex) {
 			ex.printStackTrace();

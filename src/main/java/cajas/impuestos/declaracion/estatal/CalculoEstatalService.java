@@ -5,28 +5,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.inject.Inject;
 
 import cajas.actualizacionesrecargos.calculo.ActualizacionRecargo;
 import cajas.actualizacionesrecargos.calculo.ActualizacionesRecargosService;
 import cajas.actualizacionesrecargos.calculo.ContribucionFiscal;
 import cajas.exception.BusinessException;
 import cajas.impuestos.calculo.CalculoImpuestoService;
+import cajas.impuestos.calculo.Periodos;
 import cajas.persistence.entity.CalculoTemporalEstatalEntity;
 import cajas.persistence.entity.ContribuyenteEntity;
+import cajas.persistence.query.CalculoTemporalEstatalQuery;
 import cajas.util.FechaUtil;
 import cajas.util.ValidacionUtil;
 
 @Stateless
 public class CalculoEstatalService {
 
-	@PersistenceContext(name = "sitDS")
-	private EntityManager entityManager;
+	@Inject
+	CalculoTemporalEstatalQuery calculoEstatalQuery;
 
-	private ActualizacionesRecargosService actualizacionesRecargosService;
+	@Inject
+	ActualizacionesRecargosService actualizacionesRecargosService;
 
-	private CalculoImpuestoService calculoImpuestoService;
+	@Inject
+	CalculoImpuestoService calculoImpuestoService;
 
 	protected List<Contribuyente> consultarContribuyentePorCriterio(String criterio) {
 		List<Contribuyente> contribuyentes = new ArrayList<>();
@@ -38,8 +41,8 @@ public class CalculoEstatalService {
 		return sucursales;
 	}
 
-	protected ImpuestoEstatal calcularImpuesto(DeclaracionEstatal declaracion) {
-		Integer idUsuarioLogeado = null;// Obtener al usuario logeado
+	public ImpuestoEstatal calcularImpuesto(DeclaracionEstatal declaracion) {
+		Integer idUsuarioLogeado = 1;// Obtener al usuario logeado
 
 		// Validar datos requeridos
 		validarDeclaracion(declaracion);
@@ -50,26 +53,30 @@ public class CalculoEstatalService {
 		// Validar periodo declarado
 		int ejercicioFiscalDeclaracion = declaracion.getEjercicioFiscal();
 		int mesDeclaracion = 0; // obtener el mes del periodo
-		int mesActual = FechaUtil.mesActual();
+		int mesActual = declaracion.getPeriodo();//FechaUtil.mesActual();
 
 		if (ejercicioFiscalDeclaracion == FechaUtil.ejercicioActual()) {
 			if (mesActual < mesDeclaracion || mesActual == mesDeclaracion) {
 				throw new BusinessException("El periodo que intenta declarar es improcedente");
 			}
 		}
+		
+		String mes = Periodos.periodos(declaracion.getPeriodo());
 
 		// Verificar los tipos de datos
 		BigDecimal impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(),
-				declaracion.getEjercicioFiscal(), "", null, TipoTasaEnum.TASA_NOMINA);
-
-		BigDecimal uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(), "", null,
-				TipoTasaEnum.TASA_UAZ);
-
+				declaracion.getEjercicioFiscal(), mes, 1, TipoTasaEnum.TASA_NOMINA);
+		
+		BigDecimal uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(),mes, 1,TipoTasaEnum.TASA_UAZ);
+		
 		ContribucionFiscal contribucionFiscal = new ContribucionFiscal();
 		contribucionFiscal.setaFiscalAdeudo(declaracion.getEjercicioFiscal());
-
-		ActualizacionRecargo actualizacionRecargo = actualizacionesRecargosService
-				.calculoActualizacion(contribucionFiscal);
+		contribucionFiscal.setMesFiscalAdeudo(declaracion.getPeriodo());
+		contribucionFiscal.setPagoVencido(false);
+		contribucionFiscal.setCantidadAdeuda(declaracion.getTotalErogaciones());
+		contribucionFiscal.setTipoRecargo("MORA");
+		
+		ActualizacionRecargo actualizacionRecargo = actualizacionesRecargosService.calculoActualizacion(contribucionFiscal);
 		BigDecimal actualizaciones = actualizacionRecargo.getImporteActualizacion();
 		BigDecimal recargos = actualizacionRecargo.getImporteRecargo();
 
@@ -91,10 +98,14 @@ public class CalculoEstatalService {
 		calculoTemporal.setTipoDeclaracion(declaracion.getIdTipoDeclaracion());
 		calculoTemporal.setTotal(total);
 		calculoTemporal.setUaz(uaz);
-		entityManager.persist(calculoTemporal);
-
+		
+		calculoTemporal = calculoEstatalQuery.registrarCalculoEstatal(calculoTemporal);
 		ImpuestoEstatal impuestoEstatal = new ImpuestoEstatal();
 		impuestoEstatal.setIdCalculoTemporal(calculoTemporal.getIdCalculoTemporal());
+		impuestoEstatal.setImpuesto(impuesto);
+		impuestoEstatal.setUaz(uaz);
+		impuestoEstatal.setActualizaciones(actualizaciones);
+		impuestoEstatal.setRecargos(recargos);
 		return impuestoEstatal;
 	}
 

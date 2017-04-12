@@ -67,10 +67,9 @@ public class CalculoImpuestoTest {
 		String periodo = "ENERO";
 		Integer tipoPeriodo = 2;
 		BigDecimal impuesto = new BigDecimal("150.00");
-		String tipoImpuesto = "SERVICIO HOSPEDAJE";
 		BigDecimal baseGravable = new BigDecimal(5000);
 
-		BigDecimal impuestoCalculado = calculoImpuestoService.impuestoEstatal(baseGravable, tipoImpuesto, aFiscal,periodo,tipoPeriodo);
+		BigDecimal impuestoCalculado = calculoImpuestoService.impuestoEstatal(baseGravable,aFiscal,periodo,tipoPeriodo,1);
 
 		Assert.assertEquals(impuesto, impuestoCalculado);
 	}

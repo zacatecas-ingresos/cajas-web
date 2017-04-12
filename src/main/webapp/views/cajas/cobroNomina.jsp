@@ -615,8 +615,8 @@
 			var datos = {};
 			var periodo = $('#selectPeriodo');
 			var ejercicioFiscal = $('#selectAnyoFiscal');
-			var totalErogaciones = $('#inputPassword');
-			var idObligacion= $('#inputImporteNomina');
+			var totalErogaciones = $('#inputImporteNomina');
+			var idObligacion;
 			var tipoDeclaracion= $('#selectDeclaracion');
 			var numeroEmpleados = $('#inputPeriodo');
 
@@ -625,7 +625,7 @@
 			datos.totalErogaciones = totalErogaciones.val();
 			datos.numeroEmpleados= numeroEmpleados.val();
 			datos.idContribuyente= 1;
-			datos.idObligacion= idObligacion.val();
+			datos.idObligacion= 1;
 			datos.idSucursal= 1;
 			datos.idTipoDeclaracion = tipoDeclaracion.val();
 
@@ -635,6 +635,7 @@
 			console.log(formData);
 
 			var urlPut = "${pageContext.request.contextPath}/cajas/presupuestoEstatal";
+			var presupuestoEstatal = "${pageContext.request.contextPath}/views/cajas/cobroNomina.jsp";
 
 		$.ajax({
 				type : 'PUT',
@@ -643,15 +644,14 @@
 				dataType : "json",
 				contentType : 'application/json',
 				success : function(data,textStatus,jQxhr) {
+					var datos = data;
 				swal(
 					{
 						title : "Calculo realizado correctamente.",
 						type : "success",
-						closeOnCancel : false
-					},
-						function() {
-						window.location = urlUsuario;
-						});
+					}
+					);
+					colocarValores(datos);
 				},
 				error : function(jqXHR,textStatus,errorThrown) {
 					console.log(textStatus+ " "+ errorThrown);
@@ -659,6 +659,20 @@
 				});
 
 	});
+
+	//colocar valores despues de realizar el calculo
+	function colocarValores(data){
+		$.each( data, function( key, val ) {
+			console.log("VALORES::::" + val + " CLAVE:::"  +key);
+			if(key=="uaz"){
+				$('#inputUaz').val(val);
+			}else if(key == "actualizaciones"){
+				$('#inputActualizacion').val(val);
+			}else if(key == "recargos"){
+				$('#inputRecargo').val(val);
+			}
+  		});
+	}	
 
 </script>
 </html>

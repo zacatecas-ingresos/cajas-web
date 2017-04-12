@@ -136,7 +136,7 @@
 												<tr class="bg-primary">
 													<th>RFC</th>
 													<th>NOMBRE O RAZON SOCIAL</th>
-													<th>DOMICILIO</th>
+													<th>DIRECCION FISCAL</th>
 													<th>FECHA INICIO</th>
 													<th>ESTATUS</th>
 												</tr>
@@ -145,13 +145,16 @@
 											</tbody>
 										</table>
 									</div>
+									
+									<br /> <br />
+									<button type="button" class="btn btn-primary glyphicon glyphicon-eye-open" id="seleccionarContribuyente">Primary</button>
 								</div>
 
 							</div>
 						</div>
 					</div>
 
-					<div class="box box-success">
+					<div id="panelContribuyente" class="box box-success">
 						<div class="box-header">
 
 							<div class="col-md-8">
@@ -381,6 +384,8 @@
 			.ready(
 					function() {
 
+						var rfcContribuyente;
+						$('#panelContribuyente').hide();
 						obtenerCriterioBusqueda();
 						obtenerDeclaracion();
 						obtenerAnyo();
@@ -427,7 +432,8 @@
 										$('#inputCriterio').css("border-color", "#d2d6de");
 									}
 
-
+									$('#panelContribuyente').hide();
+									
 									var data = [{rfc:'RFC', nombre:'nombre contribuyente', domicilio:'Conocodo', fechaInicio:new Date(), activo:true},
 										{rfc:'RFC', nombre:'nombre contribuyente', domicilio:'Conocodo', fechaInicio:new Date(), activo:true},
 										{rfc:'RFC', nombre:'nombre contribuyente', domicilio:'Conocodo', fechaInicio:new Date(), activo:true},
@@ -444,11 +450,26 @@
 											$(tr).append("<td class="+"domicilio" +" >" + data[i].domicilio + "</td>");
 											$(tr).append("<td class="+"fechaInicio" +" >" + parseDate(data[i].fechaInicio) + "</td>");
 											$(tr).append("<td class="+"activo" +" >" + "<img src="+estatusUsuario(data[i].activo)+" style="+"width:30px; height:auto;" + "></img></td>");
+											$(tr).append("<td>"+"<button class="+"btn btn-default"+ "type="+"submit"+">Button"+"</button>"+"</td>");
 											$('#tablaContribuyente > tbody').append(tr);
 										}
 									
 																		
 								});
+
+						$('#seleccionarContribuyente').click(function(){
+							if(rfcContribuyente == null){
+								swal(
+									{
+										title : "No ha seleccionado a un contribuyente.",
+										type : "error",
+										closeOnCancel : false
+									}
+								);
+							}else{
+								$('#panelContribuyente').show();				
+							}	
+						});
 
 						function parseDate(jsonDate) {
 							var dateObject = new Date(jsonDate);
@@ -479,6 +500,10 @@
 						//cambiar puntero
 						$('tbody').hover(function() {
 							 $(this).css('cursor','pointer');
+						});
+
+						$('tbody').on("click", "td", function() {
+							rfcContribuyente = $(this).closest('tr').find('.rfc').text();
 						});
 
 						

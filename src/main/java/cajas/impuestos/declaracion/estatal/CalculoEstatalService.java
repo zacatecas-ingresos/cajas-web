@@ -1,6 +1,8 @@
 package cajas.impuestos.declaracion.estatal;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,6 +27,16 @@ public class CalculoEstatalService {
 	private ActualizacionesRecargosService actualizacionesRecargosService;
 
 	private CalculoImpuestoService calculoImpuestoService;
+
+	protected List<Contribuyente> consultarContribuyentePorCriterio(String criterio) {
+		List<Contribuyente> contribuyentes = new ArrayList<>();
+		return contribuyentes;
+	}
+
+	protected List<Sucursal> consultarSucursalesPorIdContribuyente(Integer idContribuyente) {
+		List<Sucursal> sucursales = new ArrayList<>();
+		return sucursales;
+	}
 
 	protected ImpuestoEstatal calcularImpuesto(DeclaracionEstatal declaracion) {
 		Integer idUsuarioLogeado = null;// Obtener al usuario logeado

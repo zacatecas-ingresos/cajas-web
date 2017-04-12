@@ -147,7 +147,7 @@
 									</div>
 									
 									<br /> <br />
-									<button type="button" class="btn btn-primary glyphicon glyphicon-eye-open" id="seleccionarContribuyente">Primary</button>
+									<button type="button" class="btn btn-primary glyphicon glyphicon-eye-open" id="seleccionarContribuyente">&nbsp;Ver contribuyente</button>
 								</div>
 
 							</div>
@@ -211,10 +211,11 @@
 								<div class="form-group">
 									<label for="selectDeclaracion">Tipo Declaracion:</label> <select
 													class="form-control" id="selectDeclaracion">
-													<option value="" selected="selected">Seleccione
+													<option value="0" selected="selected">Seleccione
 														una opción</option>
 												</select>
 								</div>
+								<div id="panelComplementaria">
 								<div class="form-group">
 									<label for="inputRecibo">N° Recibo anterior:</label> <input
 										class="form-control" id="inputRecibo"
@@ -230,7 +231,7 @@
 										class="form-control" id="inputComplementaria"
 										placeholder="Importe anterior" type="text">
 								</div>
-
+								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">
@@ -385,7 +386,24 @@
 					function() {
 
 						var rfcContribuyente;
+
+						var data = [{rfc:'ROAA6411012FA', nombre:'ABEL RODRIGUEZ AGUILAR', domicilio:'CARR.A SAN RAMON KM. 0+800', fechaInicio:new Date(), activo:true,
+								sucursales:[{numero:1, calle:'CARR.A SAN RAMON', numInt:2, numExt:4, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:2, declara:true},
+									{numero:2, calle:'SAN RAMON', numInt:2, numExt:4, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:2, declara:true}]},
+							{rfc:'TOSC850108M67', nombre:'CARLOS FRANCISCO TORRES SORIANO', domicilio:'PRIVADA LOS PINOS Nº 204', fechaInicio:new Date(), activo:true,
+								sucursales:[{numero:1, calle:'PRIVADA LOS PINOS', numInt:204, numExt:13, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:2, declara:true}]},
+							{rfc:'SAAC560304V15', nombre:'CRISTOBAL IVAN SALINAS ARANDA', domicilio:'PRIV. SIERRA HERMOSA Nº 19', fechaInicio:new Date(), activo:true,
+								sucursales:[{numero:1, calle:'PRIV. SIERRA HERMOSA', numInt:19, numExt:10, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:1, declara:true}]},
+							{rfc:'DRZ9501053P1', nombre:'DISTRIBUIDORA RODRIGUEZ DE ZAC', domicilio:'HIDALGO Nº 5', fechaInicio:new Date(), activo:true,
+								sucursales:[{numero:1, calle:'HIDALGO', numInt:5, numExt:1, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:3, declara:true},
+									{numero:1, calle:'HIDALGO', numInt:5, numExt:1, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:1, declara:true}]},
+							{rfc:'GCC-020227-UW5', nombre:'GRUPO CONSTRUCTOR CARTAGENA', domicilio:'AV. VIÑEDOS RIVER No. 805 AGS.', fechaInicio:new Date(), activo:true,
+								sucursales:[{numero:1, calle:'AV. VIÑEDOS RIVER', numInt:805, numExt:8, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:5, declara:true}]}];
+										
 						$('#panelContribuyente').hide();
+
+						$('#panelComplementaria').hide();
+						
 						obtenerCriterioBusqueda();
 						obtenerDeclaracion();
 						obtenerAnyo();
@@ -434,26 +452,16 @@
 
 									$('#panelContribuyente').hide();
 									
-									var data = [{rfc:'RFC', nombre:'nombre contribuyente', domicilio:'Conocodo', fechaInicio:new Date(), activo:true},
-										{rfc:'RFC', nombre:'nombre contribuyente', domicilio:'Conocodo', fechaInicio:new Date(), activo:true},
-										{rfc:'RFC', nombre:'nombre contribuyente', domicilio:'Conocodo', fechaInicio:new Date(), activo:true},
-										{rfc:'RFC', nombre:'nombre contribuyente', domicilio:'Conocodo', fechaInicio:new Date(), activo:true},
-										{rfc:'RFC', nombre:'nombre contribuyente', domicilio:'Conocodo', fechaInicio:new Date(), activo:true}];
-									console.log(data.length);
-									
-								
 										$('tbody').find('td').remove();
 										for (var i = 0; i < data.length; i++) {
 											tr = $('<tr/>');
-											$(tr).append("<td class="+"rfc" +" >" + data[i].id + "</td>");
+											$(tr).append("<td class="+"rfc" +" >" + data[i].rfc + "</td>");
 											$(tr).append("<td class="+"nombre" +" >" + data[i].nombre + "</td>");
 											$(tr).append("<td class="+"domicilio" +" >" + data[i].domicilio + "</td>");
 											$(tr).append("<td class="+"fechaInicio" +" >" + parseDate(data[i].fechaInicio) + "</td>");
 											$(tr).append("<td class="+"activo" +" >" + "<img src="+estatusUsuario(data[i].activo)+" style="+"width:30px; height:auto;" + "></img></td>");
-											$(tr).append("<td>"+"<button class="+"btn btn-default"+ "type="+"submit"+">Button"+"</button>"+"</td>");
 											$('#tablaContribuyente > tbody').append(tr);
-										}
-									
+										}								
 																		
 								});
 
@@ -467,6 +475,35 @@
 									}
 								);
 							}else{
+
+								$.grep(data, function(value, index) {
+									if(rfcContribuyente==value.rfc){
+										$('#inputNombre').val(value.nombre);
+										$('#inputRfc').val(value.rfc);
+										$('#inputDomicilio').val(value.domicilio);
+
+										
+										//$('tbody').find('td').remove();
+										for (var i = 0; i < value.sucursales.length; i++) {
+											tr = $('<tr/>');
+											$(tr).append("<td class="+"N°" +" >" + value.sucursales[i].numero + "</td>");
+											$(tr).append("<td class="+"calle" +" >" + value.sucursales[i].calle + "</td>");
+											$(tr).append("<td class="+"numInt" +" >" + value.sucursales[i].numInt + "</td>");
+											$(tr).append("<td class="+"numExt" +" >" + value.sucursales[i].numExt + "</td>");
+											$(tr).append("<td class="+"colonia" +" >" + value.sucursales[i].colonia + "</td>");
+											$(tr).append("<td class="+"municipio" +" >" + value.sucursales[i].municipio + "</td>");
+											$(tr).append("<td class="+"empleados" +" >" + value.sucursales[i].empleados + "</td>");
+											//$(tr).append("<td class="+"declara" +" >"+"<input type="+"checkbox"+"checked="+sucursales[i].declara+">"+ "</td>");
+											$('#tablaSucursales > tbody').append(tr);
+										}
+										
+
+									}
+									
+								});
+
+								
+								
 								$('#panelContribuyente').show();				
 							}	
 						});
@@ -505,7 +542,6 @@
 						$('tbody').on("click", "td", function() {
 							rfcContribuyente = $(this).closest('tr').find('.rfc').text();
 						});
-
 						
 					});
 
@@ -562,6 +598,16 @@
 							+ '</option>');
 		});
 		};
+
+		$('#selectDeclaracion').on("click", function() {
+			if($('#selectDeclaracion').val()==2){
+				$('#panelComplementaria').show();	
+			}else if($('#selectDeclaracion').val()==1){
+				$('#panelComplementaria').hide();
+			}else{
+				$('#panelComplementaria').hide();
+			}
+		});
 
 		//calculos
 	$('#calcular-btn').click(function() {

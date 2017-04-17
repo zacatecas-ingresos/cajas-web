@@ -4,32 +4,28 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import cajas.actualizacionesrecargos.calculo.ActualizacionRecargo;
 import cajas.actualizacionesrecargos.calculo.ActualizacionesRecargosService;
 import cajas.actualizacionesrecargos.calculo.ContribucionFiscal;
 import cajas.exception.BusinessException;
-import cajas.impuestos.calculo.CalculoImpuestoService;
-import cajas.impuestos.calculo.Periodos;
 import cajas.persistence.entity.CalculoTemporalEstatalEntity;
 import cajas.persistence.entity.ContribuyenteEntity;
 import cajas.persistence.query.CalculoTemporalEstatalQuery;
 import cajas.util.FechaUtil;
 import cajas.util.ValidacionUtil;
 
-@Stateless
 public class CalculoEstatalService {
 
 	@Inject
-	CalculoTemporalEstatalQuery calculoEstatalQuery;
+	private CalculoTemporalEstatalQuery calculoEstatalQuery;
 
 	@Inject
-	ActualizacionesRecargosService actualizacionesRecargosService;
+	private ActualizacionesRecargosService actualizacionesRecargosService;
 
 	@Inject
-	CalculoImpuestoService calculoImpuestoService;
+	private ImporteImpuestoService calculoImpuestoService;
 
 	protected List<Contribuyente> consultarContribuyentePorCriterio(String criterio) {
 		List<Contribuyente> contribuyentes = new ArrayList<>();
@@ -41,7 +37,7 @@ public class CalculoEstatalService {
 		return sucursales;
 	}
 
-	public ImpuestoEstatal calcularImpuesto(DeclaracionEstatal declaracion) {
+	protected ImpuestoEstatal calcularImpuesto(DeclaracionEstatal declaracion) {
 		Integer idUsuarioLogeado = 1;// Obtener al usuario logeado
 
 		// Validar datos requeridos
@@ -53,30 +49,32 @@ public class CalculoEstatalService {
 		// Validar periodo declarado
 		int ejercicioFiscalDeclaracion = declaracion.getEjercicioFiscal();
 		int mesDeclaracion = 0; // obtener el mes del periodo
-		int mesActual = declaracion.getPeriodo();//FechaUtil.mesActual();
+		int mesActual = declaracion.getPeriodo();// FechaUtil.mesActual();
 
 		if (ejercicioFiscalDeclaracion == FechaUtil.ejercicioActual()) {
 			if (mesActual < mesDeclaracion || mesActual == mesDeclaracion) {
 				throw new BusinessException("El periodo que intenta declarar es improcedente");
 			}
 		}
-		
+
 		String mes = Periodos.periodos(declaracion.getPeriodo());
 
 		// Verificar los tipos de datos
 		BigDecimal impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(),
-				declaracion.getEjercicioFiscal(), mes, 1, TipoTasaEnum.TASA_NOMINA);
-		
-		BigDecimal uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(),mes, 1,TipoTasaEnum.TASA_UAZ);
-		
+				declaracion.getEjercicioFiscal(), mes, 1, TipoTasa.TASA_NOMINA);
+
+		BigDecimal uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(), mes, 1,
+				TipoTasa.TASA_UAZ);
+
 		ContribucionFiscal contribucionFiscal = new ContribucionFiscal();
 		contribucionFiscal.setaFiscalAdeudo(declaracion.getEjercicioFiscal());
 		contribucionFiscal.setMesFiscalAdeudo(declaracion.getPeriodo());
 		contribucionFiscal.setPagoVencido(false);
 		contribucionFiscal.setCantidadAdeuda(declaracion.getTotalErogaciones());
 		contribucionFiscal.setTipoRecargo("MORA");
-		
-		ActualizacionRecargo actualizacionRecargo = actualizacionesRecargosService.calculoActualizacion(contribucionFiscal);
+
+		ActualizacionRecargo actualizacionRecargo = actualizacionesRecargosService
+				.calculoActualizacion(contribucionFiscal);
 		BigDecimal actualizaciones = actualizacionRecargo.getImporteActualizacion();
 		BigDecimal recargos = actualizacionRecargo.getImporteRecargo();
 
@@ -98,7 +96,7 @@ public class CalculoEstatalService {
 		calculoTemporal.setTipoDeclaracion(declaracion.getIdTipoDeclaracion());
 		calculoTemporal.setTotal(total);
 		calculoTemporal.setUaz(uaz);
-		
+
 		calculoTemporal = calculoEstatalQuery.registrarCalculoEstatal(calculoTemporal);
 		ImpuestoEstatal impuestoEstatal = new ImpuestoEstatal();
 		impuestoEstatal.setIdCalculoTemporal(calculoTemporal.getIdCalculoTemporal());

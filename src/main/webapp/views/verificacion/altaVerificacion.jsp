@@ -241,7 +241,7 @@
 												<label for="inputApellidoPaterno" class="control-label">Apellido
 													Paterno</label> <input class="form-control"
 													id="inputApellidoPaterno" name="inputApellidoPaterno"
-													placeholder="Apellido Paterno" required>
+													placeholder="Apellido Paterno" requiered>
 											</div>
 											<div class="form-group">
 												<label for="inputApellidoMaterno" class="control-label">Apellido
@@ -523,6 +523,9 @@
 															max : 17,
 															message : 'El VIN por lo menos 17 caracteres.'
 														},
+														vin: {
+										                        message: 'El VIN no esta formado correctamente.'
+										                },
 														remote : {
 														url : '${pageContext.request.contextPath}/cajas/vehicular/verificacion/existeVin?'+ $('#inputVin').val(),
 														message : "¡El VIN que ingreso ya existe!",
@@ -532,7 +535,7 @@
 																};
 															}
 														}
-													}
+													},													
 												},
 												'inputNombrePersona' : { //validación del campo
 													trigger : 'blur', //Se especifica cuando se acciona la validación del campo

@@ -32,7 +32,7 @@ public class CalculoImpuestoTest {
 	private static final Logger LOGGER = Logger.getLogger(CalculoImpuestoTest.class.getName());
 
 	@Inject
-	ImporteImpuestoService calculoImpuestoService;
+	private ImporteImpuestoService calculoImpuestoService;
 
 	@Deployment
 	public static WebArchive crearWar() {

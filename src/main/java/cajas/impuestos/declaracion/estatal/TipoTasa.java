@@ -1,8 +1,8 @@
 package cajas.impuestos.declaracion.estatal;
 
-public class TipoTasaEnum {
+public class TipoTasa {
 
-	private TipoTasaEnum() {
+	private TipoTasa() {
 
 	}
 

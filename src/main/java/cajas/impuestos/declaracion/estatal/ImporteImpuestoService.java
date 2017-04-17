@@ -1,4 +1,4 @@
-package cajas.impuestos.calculo;
+package cajas.impuestos.declaracion.estatal;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -14,7 +14,7 @@ import cajas.persistence.entity.TasaImpuestoEntity;
 import cajas.persistence.query.PeriodosQuery;
 import cajas.persistence.query.TasaImpuestoQuery;
 
-public class CalculoImpuestoService {
+public class ImporteImpuestoService {
 
 	@Inject
 	TasaImpuestoQuery tasaImpuestoQuery;

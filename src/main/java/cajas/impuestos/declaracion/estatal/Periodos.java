@@ -1,4 +1,4 @@
-package cajas.impuestos.calculo;
+package cajas.impuestos.declaracion.estatal;
 
 public class Periodos {
 

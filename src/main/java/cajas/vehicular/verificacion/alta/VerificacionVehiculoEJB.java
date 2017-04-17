@@ -52,6 +52,11 @@ public class VerificacionVehiculoEJB {
 			verificacionVehiculoEntity.setComprobanteDomicilioDocumentacion((Integer)verificacionVehiculo.getComprobanteDomicilioDocumentacion());
 			verificacionVehiculoEntity.setRfcPersonaMoralDocumentacion((Integer)verificacionVehiculo.getRfcPersonaMoralDocumentacion());
 			verificacionVehiculoEntity.setAnioActualComprobantePago((Integer)verificacionVehiculo.getAnioActualComprobantePago());	
+			verificacionVehiculoEntity.setAnio1ComprobantePago((Integer)verificacionVehiculo.getAnio1ComprobantePago());
+			verificacionVehiculoEntity.setAnio2ComprobantePago((Integer)verificacionVehiculo.getAnio2ComprobantePago());
+			verificacionVehiculoEntity.setAnio3ComprobantePago((Integer)verificacionVehiculo.getAnio3ComprobantePago());
+			verificacionVehiculoEntity.setAnio4ComprobantePago((Integer)verificacionVehiculo.getAnio4ComprobantePago());
+			verificacionVehiculoEntity.setAnio5ComprobantePago((Integer)verificacionVehiculo.getAnio5ComprobantePago());
 			vVehicularQuery.registrarVerificacion(verificacionVehiculoEntity);
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();

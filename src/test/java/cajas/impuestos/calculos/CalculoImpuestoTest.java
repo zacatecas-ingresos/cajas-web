@@ -19,7 +19,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import cajas.exception.BusinessException;
-import cajas.impuestos.calculo.CalculoImpuestoService;
+import cajas.impuestos.declaracion.estatal.ImporteImpuestoService;
 import cajas.persistence.entity.PeriodosEntity;
 import cajas.persistence.entity.TasaImpuestoEntity;
 import cajas.persistence.query.PeriodosQuery;
@@ -32,7 +32,7 @@ public class CalculoImpuestoTest {
 	private static final Logger LOGGER = Logger.getLogger(CalculoImpuestoTest.class.getName());
 
 	@Inject
-	CalculoImpuestoService calculoImpuestoService;
+	ImporteImpuestoService calculoImpuestoService;
 
 	@Deployment
 	public static WebArchive crearWar() {
@@ -48,7 +48,7 @@ public class CalculoImpuestoTest {
 		jar.addClass(BusinessException.class);
 		jar.addClass(PeriodosEntity.class);
 		jar.addClass(PeriodosQuery.class);
-		jar.addClass(CalculoImpuestoService.class);
+		jar.addClass(ImporteImpuestoService.class);
 		war.addAsLibrary(jar);
 
 		File[] files = Maven.resolver().loadPomFromFile("pom.xml").importRuntimeDependencies().resolve()

@@ -56,7 +56,8 @@ public class VerificacionVehiculoEJB {
 			verificacionVehiculoEntity.setAnio2ComprobantePago((Integer)verificacionVehiculo.getAnio2ComprobantePago());
 			verificacionVehiculoEntity.setAnio3ComprobantePago((Integer)verificacionVehiculo.getAnio3ComprobantePago());
 			verificacionVehiculoEntity.setAnio4ComprobantePago((Integer)verificacionVehiculo.getAnio4ComprobantePago());
-			verificacionVehiculoEntity.setAnio5ComprobantePago((Integer)verificacionVehiculo.getAnio5ComprobantePago());
+			verificacionVehiculoEntity.setAnio5ComprobantePago((Integer)verificacionVehiculo.getAnio5ComprobantePago());			
+			verificacionVehiculoEntity.setNoSeguimientoVerificacion(vVehicularQuery.generarNumeroSeguimiento(verificacionVehiculo.getIdOficinaVerificacion(),verificacionVehiculo.getEjercicio()));
 			vVehicularQuery.registrarVerificacion(verificacionVehiculoEntity);
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();

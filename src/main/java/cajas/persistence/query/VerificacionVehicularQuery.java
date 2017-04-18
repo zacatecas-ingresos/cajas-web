@@ -1,11 +1,9 @@
 package cajas.persistence.query;
-
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import cajas.persistence.entity.UsuarioEntity;
 import cajas.persistence.entity.VerificacionVehicularEntity;
 
 public class VerificacionVehicularQuery {
@@ -33,6 +31,28 @@ public class VerificacionVehicularQuery {
 				.getSingleResult();
 		
 		return vVehiculo;
+	}
+	
+	
+	/**
+	Funcion que genera el siguiente numero de seguimiento para las verificaciones
+	@param idOficina
+	@param ejercicio
+	@return numero de seguimiento formado
+	*/
+	public Integer generarNumeroSeguimiento(Integer idOficina, Integer ejercicio) {
+		
+				
+		Integer num  =	entityManager.createQuery("select max(u.noSeguimientoVerificacion) FROM VerificacionVehicularEntity u WHERE u.idOficinaVerificacion=:idOficina AND u.ejercicio=:ejercicio", Integer.class)
+				.setParameter("idOficina", idOficina).setParameter("ejercicio", ejercicio).getSingleResult();		
+		
+		if(num != null){
+			num= num + 1; 
+		}else{
+			num = 1;
+		}		
+		
+		return num;
 	}
 	
 

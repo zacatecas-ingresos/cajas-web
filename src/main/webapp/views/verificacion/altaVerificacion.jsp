@@ -353,7 +353,8 @@
 								.click(
 										function() {
 
-											var fechaHoy = new Date().toISOString().slice(0, 10);					
+											var fechaHoy = new Date().toISOString().slice(0, 10);	
+											var anio = new Date().toISOString().slice(0, 4);
 											
 											//Validaciones
 											var formValidation = $(

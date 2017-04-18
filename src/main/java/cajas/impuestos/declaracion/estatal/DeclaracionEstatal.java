@@ -17,7 +17,6 @@ public class DeclaracionEstatal {
 	private int idObligacion;
 	private int idSucursal;
 	private String idTipoDeclaracion;
-	private String mes;
 
 	public String getIdTipoDeclaracion() {
 		return idTipoDeclaracion;
@@ -81,14 +80,6 @@ public class DeclaracionEstatal {
 
 	public void setIdSucursal(int idSucursal) {
 		this.idSucursal = idSucursal;
-	}
-
-	public String getMes() {
-		return mes;
-	}
-
-	public void setMes(String mes) {
-		this.mes = mes;
 	}
 
 }

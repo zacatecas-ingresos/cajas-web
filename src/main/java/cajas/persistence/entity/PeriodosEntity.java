@@ -36,10 +36,21 @@ public class PeriodosEntity implements Serializable {
 	@Column(name = "tipo_periodo")
 	private Integer tipoPeriodo;
 
+	@Column(name = "id_mes")
+	private int idMes;
+
 	/************* Getters and Setters *************/
 
 	public Integer getIdPeriodo() {
 		return idPeriodo;
+	}
+
+	public int getIdMes() {
+		return idMes;
+	}
+
+	public void setIdMes(int idMes) {
+		this.idMes = idMes;
 	}
 
 	public void setIdPeriodo(Integer idPeriodo) {

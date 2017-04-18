@@ -16,7 +16,7 @@ public class ObtenerObligacionQuery {
 	
 	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
-	
+	 
 	
 	public ObligacionesEntity obtenerObligacion(Integer idObligacion){
 		return entityManager.find(ObligacionesEntity.class, idObligacion);

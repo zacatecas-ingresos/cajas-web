@@ -27,7 +27,7 @@ public class DiasNoLaboralesQuery {
 			numeroDias = 1;
 		} else if (fecha.getDayOfWeek() == 6) {
 			numeroDias = 2;
-		}
+		} 
 
 		boolean esDiaInhabil = false;
 		

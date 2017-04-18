@@ -18,7 +18,7 @@ public class ObligacionesEntity implements Serializable {
 
 	@Id
 	@Column(name = "id_obligacion")
-	private Integer idObligacion;
+	private Integer idObligacion; 
 
 	@Column(name = "obligacion")
 	private String obligacion;

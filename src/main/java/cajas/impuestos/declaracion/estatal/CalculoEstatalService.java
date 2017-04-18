@@ -76,11 +76,28 @@ public class CalculoEstatalService {
 				declaracion.getPeriodo(), TipoTasa.TASA_UAZ);
 
 		ContribucionFiscal contribucionFiscal = new ContribucionFiscal();
-		contribucionFiscal.setaFiscalAdeudo(declaracion.getEjercicioFiscal());
-		contribucionFiscal.setMesFiscalAdeudo(declaracion.getPeriodo());
-		contribucionFiscal.setPagoVencido(false);
+		
+		Periodo periodoActualizacion = new Periodo();
+		
+		periodoActualizacion.setEjercicioInicial(declaracion.getEjercicioFiscal());
+		periodoActualizacion.setMesInicial(declaracion.getPeriodo());
+				
+		periodoActualizacion.setEjercicioFinal(FechaUtil.ejercicioActual());
+		periodoActualizacion.setMesFinal(mesActual);
+		
+		contribucionFiscal.setPeriodoActualizacion(periodoActualizacion);
+
+		Periodo periodoRecargo = new Periodo();
+
+		periodoRecargo.setEjercicioInicial(declaracion.getEjercicioFiscal());
+		periodoRecargo.setMesInicial(declaracion.getPeriodo());
+		
+		periodoRecargo.setEjercicioFinal(FechaUtil.ejercicioActual());
+		periodoRecargo.setMesFinal(mesActual);
+		
+		contribucionFiscal.setPeriodoRecargo(periodoRecargo);
+		
 		contribucionFiscal.setCantidadAdeuda(declaracion.getTotalErogaciones());
-		contribucionFiscal.setTipoRecargo("MORA");
 
 		ActualizacionRecargo actualizacionRecargo = new ActualizacionRecargo();
 		try {
@@ -91,9 +108,9 @@ public class CalculoEstatalService {
 
 		BigDecimal actualizaciones = actualizacionRecargo.getImporteActualizacion();
 		BigDecimal recargos = actualizacionRecargo.getImporteRecargo();
-
+		
 		BigDecimal total = impuesto.add(uaz).add(actualizaciones).add(recargos);
-
+	
 		CalculoTemporalEstatalEntity calculoTemporal = new CalculoTemporalEstatalEntity();
 		calculoTemporal.setActualizaciones(actualizaciones);
 		calculoTemporal.setBaseGravable(declaracion.getTotalErogaciones());
@@ -126,6 +143,10 @@ public class CalculoEstatalService {
 
 		if (!ValidacionUtil.esNumeroPositivo(declaracion.getEjercicioFiscal())) {
 			throw new BusinessException("El ejercicio fiscal es requerido.");
+		}
+		
+		if (!ValidacionUtil.esNumeroPositivo(declaracion.getPeriodo())) {
+			throw new BusinessException("El periodo es requerido.");
 		}
 
 		if (!ValidacionUtil.esNumeroPositivo(declaracion.getTotalErogaciones())) {

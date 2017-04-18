@@ -37,7 +37,7 @@ public class PeriodosEntity implements Serializable {
 	private Integer tipoPeriodo;
 
 	@Column(name = "id_mes")
-	private int idMes;
+	private Integer idMes;
 
 	/************* Getters and Setters *************/
 

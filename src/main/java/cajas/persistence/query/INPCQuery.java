@@ -28,23 +28,10 @@ public class INPCQuery {
 	 * el año final y mes final
 	 */
 	public List<INPCEntity> listaINPC(Integer aFiscalInicio, Integer mesFiscalInicio, Integer aFiscalFinal,
-			Integer mesFiscalFinal, Boolean vencioPago) {
+			Integer mesFiscalFinal) {
 
 		List<INPCEntity> listaINPC = new ArrayList<>();
-
-		if (vencioPago) {
-			Integer mesActual;
-			mesActual = mesFiscalFinal++;
-			listaINPC = entityManager
-					.createQuery("FROM INPCEntity a WHERE a.aFiscal IN(:aFiscalInicio,:aFiscalFinal) AND a.mesFiscal IN (:mesFiscalInicio,:mesFiscalFinal,:mesActual)",
-							INPCEntity.class)
-					.setParameter("aFiscalInicio", aFiscalInicio)
-					.setParameter("aFiscalFinal", aFiscalFinal)
-					.setParameter("mesFiscalInicio", mesFiscalInicio)
-					.setParameter("mesFiscalFinal", mesFiscalFinal)
-					.setParameter("mesActual", mesActual)
-					.getResultList();
-		} else {
+		
 			listaINPC = entityManager
 					.createQuery("FROM INPCEntity a WHERE a.aFiscal IN(:aFiscalInicio,:aFiscalFinal) AND a.mesFiscal IN (:mesFiscalInicio,:mesFiscalFinal)",
 							INPCEntity.class)
@@ -53,7 +40,6 @@ public class INPCQuery {
 					.setParameter("mesFiscalInicio", mesFiscalInicio)
 					.setParameter("mesFiscalFinal", mesFiscalFinal)
 					.getResultList();
-		}
 
 		return listaINPC;
 	}

@@ -690,7 +690,8 @@
 		//colocar valores select box
 	function selectPeriodos(data){
 		$.each( data, function( key, val ) {
-			$('#selectPeriodo').append('<option value=' + val.mes  + '>' + val.mes + '</option>');
+			console.log("ID PERIODO::::" + val.idMes  +  "MES::::" + val.mes);
+			$('#selectPeriodo').append('<option value=' + val.idMes  + '>' + val.mes + '</option>');
   		});
 	}
 
@@ -724,7 +725,10 @@
 			var idObligacion;
 			var tipoDeclaracion= $('#selectDeclaracion');
 			var numeroEmpleados = $('#inputEmpleados');
-			datos.mes = mes.val();
+
+			console.log("MES::::" + mes.val());
+
+			datos.periodo = mes.val();
 			datos.ejercicioFiscal = parseInt(ejercicioFiscal.val());
 			datos.totalErogaciones = totalErogaciones.val();
 			datos.numeroEmpleados= numeroEmpleados.val();

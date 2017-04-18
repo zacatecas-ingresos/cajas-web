@@ -27,6 +27,8 @@ public class CalculoEstatalService {
 	@Inject
 	private ImporteImpuestoService calculoImpuestoService;
 
+	
+	
 	protected List<Contribuyente> consultarContribuyentePorCriterio(String criterio) {
 		List<Contribuyente> contribuyentes = new ArrayList<>();
 		return contribuyentes;

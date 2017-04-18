@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 public class ContribucionFiscal {
 
+	private Periodo periodoActualizacion;
+	private Periodo periodoRecargo;
 	private Integer aFiscalAdeudo;
 	private Integer mesFiscalAdeudo;
 	private Integer aFiscalPago;
@@ -16,6 +18,22 @@ public class ContribucionFiscal {
 
 	public BigDecimal getCantidadAdeuda() {
 		return cantidadAdeuda;
+	}
+
+	public Periodo getPeriodoActualizacion() {
+		return periodoActualizacion;
+	}
+
+	public void setPeriodoActualizacion(Periodo periodoActualizacion) {
+		this.periodoActualizacion = periodoActualizacion;
+	}
+
+	public Periodo getPeriodoRecargo() {
+		return periodoRecargo;
+	}
+
+	public void setPeriodoRecargo(Periodo periodoRecargo) {
+		this.periodoRecargo = periodoRecargo;
 	}
 
 	public Integer getaFiscalAdeudo() {
@@ -61,11 +79,11 @@ public class ContribucionFiscal {
 	public void setPagoVencido(Boolean pagoVencido) {
 		this.pagoVencido = pagoVencido;
 	}
-	
+
 	public String getTipoRecargo() {
 		return tipoRecargo;
 	}
-	
+
 	public void setTipoRecargo(String tipoRecargo) {
 		this.tipoRecargo = tipoRecargo;
 	}

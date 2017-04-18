@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import cajas.actualizacionesrecargos.calculo.ActualizacionRecargo;
 import cajas.actualizacionesrecargos.calculo.ActualizacionesRecargosService;
 import cajas.actualizacionesrecargos.calculo.ContribucionFiscal;
+import cajas.actualizacionesrecargos.calculo.Periodo;
 import cajas.exception.BusinessException;
 import cajas.persistence.entity.CalculoTemporalEstatalEntity;
 import cajas.persistence.entity.PeriodosEntity;
@@ -27,8 +28,6 @@ public class CalculoEstatalService {
 	@Inject
 	private ImporteImpuestoService calculoImpuestoService;
 
-	
-	
 	protected List<Contribuyente> consultarContribuyentePorCriterio(String criterio) {
 		List<Contribuyente> contribuyentes = new ArrayList<>();
 		return contribuyentes;
@@ -167,4 +166,13 @@ public class CalculoEstatalService {
 
 	}
 
+	private Periodo generarPeriodoRecargoEstatal() {
+		return null;
+	}
+
+	private Periodo generarPeriodoActualizacionEstatal() {
+		return null;
+	}
+	
+	
 }

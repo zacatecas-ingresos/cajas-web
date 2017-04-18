@@ -96,13 +96,13 @@
 									<div class="form-group">
 										<label for="inputabrev" class="control-label">Abreviacion
 											del Estado</label> <input id="inputabrev" name="inputabrev"
-											type="text" class="form-control" maxlength="5"
+											type="text" class="form-control" maxlength="10"
 											placeholder="Abreviacion(Abreviacion)" required>
 									</div>
 									<div class="form-group">
 										<label for="inputnom" class="control-label">Nombre del
 											Estado</label> <input id="inputnom" name="inputnom" type="text"
-											class="form-control" maxlength="15"
+											class="form-control" maxlength="30"
 											placeholder="Nombre(Nombre)" required>
 									</div>
 								</div>

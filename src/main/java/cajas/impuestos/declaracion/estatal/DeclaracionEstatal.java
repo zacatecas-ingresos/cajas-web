@@ -8,6 +8,7 @@ import java.math.BigDecimal;
  * @since 07/04/2017
  */
 public class DeclaracionEstatal {
+
 	private int periodo;
 	private int ejercicioFiscal;
 	private BigDecimal totalErogaciones;
@@ -16,6 +17,7 @@ public class DeclaracionEstatal {
 	private int idObligacion;
 	private int idSucursal;
 	private String idTipoDeclaracion;
+	private String mes;
 
 	public String getIdTipoDeclaracion() {
 		return idTipoDeclaracion;
@@ -79,6 +81,14 @@ public class DeclaracionEstatal {
 
 	public void setIdSucursal(int idSucursal) {
 		this.idSucursal = idSucursal;
+	}
+
+	public String getMes() {
+		return mes;
+	}
+
+	public void setMes(String mes) {
+		this.mes = mes;
 	}
 
 }

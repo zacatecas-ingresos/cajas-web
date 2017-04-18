@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 
 import cajas.actualizacionesrecargos.calculo.ActualizacionRecargo;
 import cajas.actualizacionesrecargos.calculo.ActualizacionesRecargosService;
@@ -38,6 +39,7 @@ public class CalculoEstatalService {
 	}
 
 	protected ImpuestoEstatal calcularImpuesto(DeclaracionEstatal declaracion) {
+		
 		Integer idUsuarioLogeado = 1;// Obtener al usuario logeado
 
 		// Validar datos requeridos
@@ -49,7 +51,8 @@ public class CalculoEstatalService {
 		// Validar periodo declarado
 		int ejercicioFiscalDeclaracion = declaracion.getEjercicioFiscal();
 		int mesDeclaracion = 0; // obtener el mes del periodo
-		int mesActual = declaracion.getPeriodo();// FechaUtil.mesActual();
+		declaracion.setPeriodo(Periodos.periodos(declaracion.getMes()));
+		int mesActual = Periodos.periodos(declaracion.getMes());// FechaUtil.mesActual();
 
 		if (ejercicioFiscalDeclaracion == FechaUtil.ejercicioActual()) {
 			if (mesActual < mesDeclaracion || mesActual == mesDeclaracion) {
@@ -57,14 +60,19 @@ public class CalculoEstatalService {
 			}
 		}
 
-		String mes = Periodos.periodos(declaracion.getPeriodo());
-
 		// Verificar los tipos de datos
-		BigDecimal impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(),
-				declaracion.getEjercicioFiscal(), mes, 1, TipoTasa.TASA_NOMINA);
-
-		BigDecimal uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(), mes, 1,
-				TipoTasa.TASA_UAZ);
+		BigDecimal impuesto = BigDecimal.ZERO;
+		BigDecimal uaz = BigDecimal.ZERO;
+		try{
+			impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(),
+					declaracion.getEjercicioFiscal(), declaracion.getMes(), 1, TipoTasa.TASA_NOMINA);
+			
+			uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(), declaracion.getMes(), 1,
+					TipoTasa.TASA_UAZ);
+			
+		}catch(BusinessException ex){
+			throw new BusinessException(ex.getMessage());
+		}
 
 		ContribucionFiscal contribucionFiscal = new ContribucionFiscal();
 		contribucionFiscal.setaFiscalAdeudo(declaracion.getEjercicioFiscal());
@@ -72,9 +80,14 @@ public class CalculoEstatalService {
 		contribucionFiscal.setPagoVencido(false);
 		contribucionFiscal.setCantidadAdeuda(declaracion.getTotalErogaciones());
 		contribucionFiscal.setTipoRecargo("MORA");
-
-		ActualizacionRecargo actualizacionRecargo = actualizacionesRecargosService
-				.calculoActualizacion(contribucionFiscal);
+		
+		ActualizacionRecargo actualizacionRecargo = new ActualizacionRecargo();
+		try{
+			actualizacionRecargo = actualizacionesRecargosService.calculoActualizacion(contribucionFiscal);
+		}catch(BusinessException ex){
+			throw new BusinessException(ex.getMessage());
+		}
+		
 		BigDecimal actualizaciones = actualizacionRecargo.getImporteActualizacion();
 		BigDecimal recargos = actualizacionRecargo.getImporteRecargo();
 
@@ -97,7 +110,13 @@ public class CalculoEstatalService {
 		calculoTemporal.setTotal(total);
 		calculoTemporal.setUaz(uaz);
 
-		calculoTemporal = calculoEstatalQuery.registrarCalculoEstatal(calculoTemporal);
+		
+		try{
+			calculoTemporal = calculoEstatalQuery.registrarCalculoEstatal(calculoTemporal);
+		}catch(PersistenceException ex){
+			ex.printStackTrace();
+			throw new BusinessException("Ocurrio un problema al realizar el calculo.");
+		}
 		ImpuestoEstatal impuestoEstatal = new ImpuestoEstatal();
 		impuestoEstatal.setIdCalculoTemporal(calculoTemporal.getIdCalculoTemporal());
 		impuestoEstatal.setImpuesto(impuesto);
@@ -108,37 +127,37 @@ public class CalculoEstatalService {
 	}
 
 	private void validarDeclaracion(DeclaracionEstatal declaracion) {
-
-		if (!ValidacionUtil.esNumeroPositivo(declaracion.getPeriodo())) {
-			System.out.println("El" + declaracion.getPeriodo() + "es requerido");
-
-			if (!ValidacionUtil.esNumeroPositivo(declaracion.getEjercicioFiscal())) {
-				System.out.println("El" + declaracion.getEjercicioFiscal() + "es requerido");
-
-				if (!ValidacionUtil.esNumeroPositivo(declaracion.getTotalErogaciones())) {
-					System.out.println("El" + declaracion.getTotalErogaciones() + "es requerido");
-
-					if (!ValidacionUtil.esNumeroPositivo(declaracion.getNumeroEmpleados())) {
-						System.out.println("El" + declaracion.getNumeroEmpleados() + "es requerido");
-
-						if (!ValidacionUtil.esNumeroPositivo(declaracion.getIdContribuyente())) {
-							System.out.println("El" + declaracion.getIdContribuyente() + "es requerido");
-
-							if (!ValidacionUtil.esNumeroPositivo(declaracion.getIdObligacion())) {
-								System.out.println("El" + declaracion.getIdObligacion() + "es requerido");
-
-								if (!ValidacionUtil.esNumeroPositivo(declaracion.getIdSucursal())) {
-									System.out.println("El" + declaracion.getIdSucursal() + "es requerido");
-
-									if (!ValidacionUtil.esCadenaVacia(declaracion.getIdTipoDeclaracion())) {
-										System.out.println("El" + declaracion.getIdTipoDeclaracion() + "es requerido");
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+	
+		if (!ValidacionUtil.esCadenaVacia(declaracion.getMes())) {
+			throw new BusinessException("El periodo es requerido.");
+		}
+		
+		if (!ValidacionUtil.esNumeroPositivo(declaracion.getEjercicioFiscal())) {
+			throw new BusinessException("El ejercicio fiscal es requerido.");
+		}
+		
+		if (!ValidacionUtil.esNumeroPositivo(declaracion.getTotalErogaciones())) {
+			throw new BusinessException("El importe es requerido.");
+		}
+		
+		if (!ValidacionUtil.esNumeroPositivo(declaracion.getNumeroEmpleados())) {
+			throw new BusinessException("El número de empleados es requerido.");
+		}
+		
+		if (!ValidacionUtil.esNumeroPositivo(declaracion.getIdContribuyente())) {
+			throw new BusinessException("El número de empleados es requerido.");
+		}
+		
+		if (!ValidacionUtil.esNumeroPositivo(declaracion.getIdObligacion())) {
+			throw new BusinessException("El tipo de obligación es requerido.");
+		}
+		
+		if (!ValidacionUtil.esNumeroPositivo(declaracion.getIdSucursal())) {
+			throw new BusinessException("La sucursal es requerida.");
+		}
+		
+		if (!ValidacionUtil.esCadenaVacia(declaracion.getIdTipoDeclaracion())) {
+			throw new BusinessException("El tipo de declaración es requerido.");
 		}
 
 	}

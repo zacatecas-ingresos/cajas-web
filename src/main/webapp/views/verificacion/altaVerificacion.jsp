@@ -8,35 +8,36 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
 <title>Alta Vehiculo</title>
-	<!-- Bootstrap -->
-	<link
-		href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
-		rel="stylesheet" type="text/css" />
-	
-	<!-- Font Awesome -->
-	<link
-		href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css"
-		rel="stylesheet" />
-	
-	<!-- AdminLTE -->
-	<link
-		href="${pageContext.request.contextPath}/resources/admin-lte/css/Fonts.css"
-		rel="stylesheet" />
-	<link
-		href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css"
-		rel="stylesheet" />
-	<link
-		href="${pageContext.request.contextPath}/resources/admin-lte/css/skins/_all-skins.min.css"
-		rel="stylesheet" />
-	
-	<!-- Sweetalert -->
-	<link
-		href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css"
-		rel="stylesheet" type="text/css">
-	
-	<!-- FormValidation -->
-	<link
-		href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css" rel="stylesheet" type="text/css">
+<!-- Bootstrap -->
+<link
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- Font Awesome -->
+<link
+	href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" />
+
+<!-- AdminLTE -->
+<link
+	href="${pageContext.request.contextPath}/resources/admin-lte/css/Fonts.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/resources/admin-lte/css/skins/_all-skins.min.css"
+	rel="stylesheet" />
+
+<!-- Sweetalert -->
+<link
+	href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css"
+	rel="stylesheet" type="text/css">
+
+<!-- FormValidation -->
+<link
+	href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css"
+	rel="stylesheet" type="text/css">
 
 </head>
 
@@ -94,100 +95,120 @@
 
 								<div class="col-md-12">
 
-									<div class="form-group">
-										<label for="selectOficina" class="control-label">Oficina
-											Verificacion</label> <select class="form-control" id="selectOficina"
-											name="selectOficina" disabled required>
-											<option value="1" selected>ZACATECAS</option>
-										</select>
+									<div class="row">
+										<div class="col-md-3">
+											<div class="form-group">
+												<label for="selectOficina" class="control-label">Oficina
+													Verificacion</label> <select class="form-control"
+													id="selectOficina" name="selectOficina" disabled required>
+													<option value="1" selected>ZACATECAS</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label for="inputEjercicio" class="control-label">Ejercicio</label>
+												<input id="inputEjercicio" name="inputEjercicio" type="text"
+													class="form-control" maxlength="4" placeholder="Ejercicio"
+													value="2017" name="inputEjercicio" disabled required>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label for="selectTipoVerificacion" class="control-label">Tipo
+													Verificación</label> <select class="form-control"
+													id="selectTipoVerificacion" name="selectTipoVerificacion"
+													disabled required>
+													<option value="0" selected>MEXICANOS</option>
+													<option value="1">EXTRANJEROS</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label for="selectEstatusVerificacion" class="control-label">Estatus
+													Verificacion</label> <select class="form-control"
+													id="selectEstatusVerificacion"
+													name="selectEstatusVerificacion" disabled required>
+													<option value="1" selected>CAPTURADA</option>
+													<option value="2">AUTORIZADA</option>
+													<option value="3">TERMINADA</option>
+													<option value="4">RECHAZADA MINISTERIO</option>
+													<option value="5">RECHAZADA VERIFICACIO</option>
+													<option value="6">PAGADO</option>
+													<option value="7">PAGA DESPUES</option>
+													<option value="8">CONDONADO</option>
+													<option value="9">CANCELADO</option>
+												</select>
+											</div>
+										</div>
 									</div>
+									<fieldset >
+										<legend>Vehiculo</legend>
+										<div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="inputVin" class="control-label">Serie
+														(VIN)</label> <input id="inputVin" name="inputVin" type="text"
+														class="form-control" maxlength="17"
+														placeholder="Serie (VIN)" required>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="inputNumeroMotor" class="control-label">Numero
+														Motor</label> <input id="inputNumeroMotor" name="inputNumeroMotor"
+														type="text" class="form-control" maxlength="17"
+														placeholder="Numero Motor" required>
+												</div>
+											</div>
 
-									<div class="form-group">
-										<label for="inputEjercicio" class="control-label">Ejercicio</label>
-										<input id="inputEjercicio" name="inputEjercicio" type="text"
-											class="form-control" maxlength="4" placeholder="Ejercicio"
-											value="2017" name="inputEjercicio" disabled required>
-									</div>
-
-									<div class="form-group">
-										<label for="selectTipoVerificacion" class="control-label">Tipo
-											Verificación</label> <select class="form-control"
-											id="selectTipoVerificacion" name="selectTipoVerificacion"
-											disabled required>
-											<option value="0" selected>MEXICANOS</option>
-											<option value="1">EXTRANJEROS</option>
-										</select>
-									</div>
-
-									<div class="form-group">
-										<label for="selectEstatusVerificacion" class="control-label">Estatus
-											Verificacion</label> <select class="form-control"
-											id="selectEstatusVerificacion" name="selectEstatusVerificacion"
-											disabled required>
-											<option value="1" selected>CAPTURADA</option>
-											<option value="2">AUTORIZADA</option>
-											<option value="3">TERMINADA</option>
-											<option value="4">RECHAZADA MINISTERIO</option>
-											<option value="5">RECHAZADA VERIFICACIO</option>
-											<option value="6">PAGADO</option>
-											<option value="7">PAGA DESPUES</option>
-											<option value="8">CONDONADO</option>
-											<option value="9">CANCELADO</option>
-										</select>
-									</div>
-
-									<div class="form-group">
-										<label for="inputVin" class="control-label">Serie
-											(VIN)</label> <input id="inputVin" name="inputVin" type="text"
-											class="form-control" maxlength="17" placeholder="Serie (VIN)"
-											required>
-									</div>
-
-									<div class="form-group">
-										<label for="inputNumeroMotor" class="control-label">Numero
-											Motor</label> <input id="inputNumeroMotor" name="inputNumeroMotor"
-											type="text" class="form-control" maxlength="17"
-											placeholder="Numero Motor" required>
-									</div>
-
-
-									<div class="form-group">
-										<label for="selectMarca" class="control-label">Marca</label> <select
-											class="form-control" id="selectMarca" name="selectMarca"
-											required>
-											<option value="1">TOYOTA</option>
-										</select>
-									</div>
-
-									<div class="form-group">
-										<label for="inputModelo" class="control-label">Modelo</label>
-										<input id="inputModelo" name="inputModelo" type="text"
-											class="form-control" maxlength="4" placeholder="Modelo"
-											name="inputModelo" required>
-									</div>
-
-									<div class="form-group">
-										<label for="selectClase" class="control-label">Clase</label> <select
-											class="form-control" id="selectClase" name="selectClase"
-											required>
-											<option value="1">AUTOMOVIL</option>
-										</select>
-									</div>
-
-									<div class="form-group">
-										<label for="selectTipo" class="control-label">Tipo</label> <select
-											class="form-control" id="selectTipo" name="selectTipo"
-											required>
-											<option value="1">VAGONETA</option>
-										</select>
-									</div>
-
-									<div class="form-group">
-										<label for="inputLinea" class="control-label">Linea</label> <input
-											class="form-control" id="inputLinea" name="inputLinea"
-											required>
-									</div>
-
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="selectMarca" class="control-label">Marca</label>
+													<select class="form-control" id="selectMarca"
+														name="selectMarca" required>
+														<option value="1">TOYOTA</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-2">
+												<div class="form-group">
+													<label for="inputModelo" class="control-label">Modelo</label>
+													<input id="inputModelo" name="inputModelo" type="text"
+														class="form-control" maxlength="4" placeholder="Modelo"
+														name="inputModelo" required>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label for="selectClase" class="control-label">Clase</label>
+													<select class="form-control" id="selectClase"
+														name="selectClase" required>
+														<option value="1">AUTOMOVIL</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label for="selectTipo" class="control-label">Tipo</label>
+													<select class="form-control" id="selectTipo"
+														name="selectTipo" required>
+														<option value="1">VAGONETA</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="inputLinea" class="control-label">Linea</label>
+													<input class="form-control" id="inputLinea"
+														name="inputLinea" required>
+												</div>
+											</div>
+										</div>
+									</fieldset>
 									<fieldset>
 										<legend>Documentación Recibida</legend>
 
@@ -225,32 +246,39 @@
 									</fieldset>
 									<br>
 									<fieldset>
-									<legend>Comprobantes de Pago</legend>
-									<div id="comprobantes" class="form-group"></div>
+										<legend>Comprobantes de Pago</legend>
+										<div id="comprobantes" class="form-group"></div>
 									</fieldset>
 									<br>
 									<fieldset>
 										<legend>Persona Tramite</legend>
-										
-											<div class="form-group">
-												<label for="inputNombrePersona" class="control-label">Persona</label>
-												<input class="form-control" id="inputNombrePersona"
-													name="inputNombrePersona" placeholder="Nombre" required>
+										<div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="inputNombrePersona" class="control-label">Persona</label>
+													<input class="form-control" id="inputNombrePersona"
+														name="inputNombrePersona" placeholder="Nombre">
+												</div>
 											</div>
-											<div class="form-group">
-												<label for="inputApellidoPaterno" class="control-label">Apellido
-													Paterno</label> <input class="form-control"
-													id="inputApellidoPaterno" name="inputApellidoPaterno"
-													placeholder="Apellido Paterno" requiered>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="inputApellidoPaterno" class="control-label">Apellido
+														Paterno</label> <input class="form-control"
+														id="inputApellidoPaterno" name="inputApellidoPaterno"
+														placeholder="Apellido Paterno">
+												</div>
 											</div>
-											<div class="form-group">
-												<label for="inputApellidoMaterno" class="control-label">Apellido
-													Materno</label> <input class="form-control"
-													id="inputApellidoMaterno" name="inputApellidoMaterno"
-													placeholder="Apellido Materno">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="inputApellidoMaterno" class="control-label">Apellido
+														Materno</label> <input class="form-control"
+														id="inputApellidoMaterno" name="inputApellidoMaterno"
+														placeholder="Apellido Materno">
+												</div>
 											</div>
-									
-									</fieldset>											
+										</div>
+
+									</fieldset>
 
 								</div>
 
@@ -290,44 +318,44 @@
 </body>
 
 
-	<!-- Scripts -->
-	
-	<!-- jQuery -->
-	<script
-		src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
-	
-	<!-- jQuery UI -->
-	<script
-		src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-	
-	<!-- jQuery Form -->
-	<script
-		src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js" /></script>
-	
-	<script
-		src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
-	
-	<!-- Bootstrap WYSIHTML5 -->
-	<script
-		src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-		
-	<script
-		src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
-		
-	<script
-		src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
-		
-	<script
-		src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
-		
-	<script
-		src="${pageContext.request.contextPath}/resources/formvalidation/js/formValidation.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
-	
-	<!-- Fin scripts -->
+<!-- Scripts -->
+
+<!-- jQuery -->
+<script
+	src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
+
+<!-- jQuery UI -->
+<script
+	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
+
+<!-- jQuery Form -->
+<script
+	src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js" /></script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap WYSIHTML5 -->
+<script
+	src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/formvalidation/js/formValidation.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
+
+<!-- Fin scripts -->
 
 
 
@@ -335,10 +363,9 @@
 	$(document)
 			.ready(
 					function() {
-						
+
 						//Genera los checkbox de años
 						combos();
-									
 
 						//Cancelar y dirige a la vista principal de los vehiculos registrados
 						$('#cancel-btn')
@@ -353,9 +380,11 @@
 								.click(
 										function() {
 
-											var fechaHoy = new Date().toISOString().slice(0, 10);	
-											var anio = new Date().toISOString().slice(0, 4);
-											
+											var fechaHoy = new Date()
+													.toISOString().slice(0, 10);
+											var anio = new Date().toISOString()
+													.slice(0, 4);
+
 											//Validaciones
 											var formValidation = $(
 													'#form-vehiculos').data(
@@ -372,7 +401,7 @@
 												var idOficinaVerificacion = $('#selectOficina');
 												var ejercicio = $('#inputEjercicio');
 												var tipoVerificacion = $('#selectTipoVerificacion');
-												var estatusVerificacion = $('#selectEstatusVerificacion');												
+												var estatusVerificacion = $('#selectEstatusVerificacion');
 												var vinVehiculo = $('#inputVin');
 												var numeroMotorVehiculo = $('#inputNumeroMotor');
 												var idMarcaVehiculo = $('#selectMarca');
@@ -383,69 +412,112 @@
 												var nombrePersonaVerificacion = $('#inputNombrePersona');
 												var apellidoPaternoPersonaVerificacion = $('#inputApellidoPaterno');
 												var apellidoMaternoPersonaVerificacion = $('#inputApellidoMaterno');
-												var email = $('#inputEmail');																							
-												var facturaVehiculoDocumentacion=0;
-												var identificacionOficialDocumentacion=0;
-												var comprobanteDomicilioDocumentacion=0;
-												var rfcPersonaMoralDocumentacion=0;
-												var identificacionRepresentanteLegalDocumentacion=0;
-												var anioActualComprobantePago=0;
-												var anio1ComprobantePago=0;
-												var anio2ComprobantePago=0;
-												var anio3ComprobantePago=0;
-												var anio4ComprobantePago=0;
-												var anio5ComprobantePago=0;
+												var email = $('#inputEmail');
+												var facturaVehiculoDocumentacion = 0;
+												var identificacionOficialDocumentacion = 0;
+												var comprobanteDomicilioDocumentacion = 0;
+												var rfcPersonaMoralDocumentacion = 0;
+												var identificacionRepresentanteLegalDocumentacion = 0;
+												var anioActualComprobantePago = 0;
+												var anio1ComprobantePago = 0;
+												var anio2ComprobantePago = 0;
+												var anio3ComprobantePago = 0;
+												var anio4ComprobantePago = 0;
+												var anio5ComprobantePago = 0;
 
-												if($("#facturaVehiculoDocumentacionInput").is(':checked')){
-													facturaVehiculoDocumentacion=1
+												if ($(
+														"#facturaVehiculoDocumentacionInput")
+														.is(':checked')) {
+													facturaVehiculoDocumentacion = 1
 												}
-												if($("#identificacionOficialDocumentacion").is(':checked')){
-													identificacionOficialDocumentacion=1
+												if ($(
+														"#identificacionOficialDocumentacion")
+														.is(':checked')) {
+													identificacionOficialDocumentacion = 1
 												}
-												if($("#comprobanteDomicilioDocumentacionInput").is(':checked')){
-													comprobanteDomicilioDocumentacion=1
+												if ($(
+														"#comprobanteDomicilioDocumentacionInput")
+														.is(':checked')) {
+													comprobanteDomicilioDocumentacion = 1
 												}
-												if($("#rfcPersonaMoralDocumentacionInput").is(':checked')){
-													rfcPersonaMoralDocumentacion=1
+												if ($(
+														"#rfcPersonaMoralDocumentacionInput")
+														.is(':checked')) {
+													rfcPersonaMoralDocumentacion = 1
 												}
-												if($("#identificacionRepresentanteLegalDocumentacionInput").is(':checked')){
-													identificacionRepresentanteLegalDocumentacion=1
+												if ($(
+														"#identificacionRepresentanteLegalDocumentacionInput")
+														.is(':checked')) {
+													identificacionRepresentanteLegalDocumentacion = 1
 												}
-												
-												if($("#anioActualComprobantePago").is(':checked')){
-													anioActualComprobantePago=$("#anioActualComprobantePago").val();
-												}	
-												if($("#anio1ComprobantePago").is(':checked')){
-													anio1ComprobantePago=$("#anio1ComprobantePago").val();
+
+												if ($(
+														"#anioActualComprobantePago")
+														.is(':checked')) {
+													anioActualComprobantePago = $(
+															"#anioActualComprobantePago")
+															.val();
 												}
-												if($("#anio2ComprobantePago").is(':checked')){
-													anio2ComprobantePago=$("#anio2ComprobantePago").val();
+												if ($("#anio1ComprobantePago")
+														.is(':checked')) {
+													anio1ComprobantePago = $(
+															"#anio1ComprobantePago")
+															.val();
 												}
-												if($("#anio3ComprobantePago").is(':checked')){
-													anio3ComprobantePago=$("#anio3ComprobantePago").val();
+												if ($("#anio2ComprobantePago")
+														.is(':checked')) {
+													anio2ComprobantePago = $(
+															"#anio2ComprobantePago")
+															.val();
 												}
-												if($("#anio4ComprobantePago").is(':checked')){
-													anio4ComprobantePago=$("#anio4ComprobantePago").val();
+												if ($("#anio3ComprobantePago")
+														.is(':checked')) {
+													anio3ComprobantePago = $(
+															"#anio3ComprobantePago")
+															.val();
 												}
-												if($("#anio5ComprobantePago").is(':checked')){
-													anio5ComprobantePago=$("#anio5ComprobantePago").val();
+												if ($("#anio4ComprobantePago")
+														.is(':checked')) {
+													anio4ComprobantePago = $(
+															"#anio4ComprobantePago")
+															.val();
 												}
-												
-												datos.idOficinaVerificacion = idOficinaVerificacion.val();
-												datos.ejercicio = ejercicio.val();
-												datos.tipoVerificacion = tipoVerificacion.val();
-												datos.estatusVerificacion = estatusVerificacion.val();
+												if ($("#anio5ComprobantePago")
+														.is(':checked')) {
+													anio5ComprobantePago = $(
+															"#anio5ComprobantePago")
+															.val();
+												}
+
+												datos.idOficinaVerificacion = idOficinaVerificacion
+														.val();
+												datos.ejercicio = ejercicio
+														.val();
+												datos.tipoVerificacion = tipoVerificacion
+														.val();
+												datos.estatusVerificacion = estatusVerificacion
+														.val();
 												datos.fechaVerificacion = fechaHoy;
-												datos.vinVehiculo = vinVehiculo.val();
-												datos.numeroMotorVehiculo = numeroMotorVehiculo.val();
-												datos.idMarcaVehiculo = idMarcaVehiculo.val();
-												datos.modeloVehiculo = modeloVehiculo.val();
-												datos.idClaseVehiculo = idClaseVehiculo.val();
-												datos.idTipoVehiculo = idTipoVehiculo.val();
-												datos.lineaVehiculo = lineaVehiculo.val();
-												datos.nombrePersonaVerificacion = nombrePersonaVerificacion.val();
-												datos.apellidoPaternoPersonaVerificacion = apellidoPaternoPersonaVerificacion.val();
-												datos.apellidoMaternoPersonaVerificacion = apellidoMaternoPersonaVerificacion.val();
+												datos.vinVehiculo = vinVehiculo
+														.val();
+												datos.numeroMotorVehiculo = numeroMotorVehiculo
+														.val();
+												datos.idMarcaVehiculo = idMarcaVehiculo
+														.val();
+												datos.modeloVehiculo = modeloVehiculo
+														.val();
+												datos.idClaseVehiculo = idClaseVehiculo
+														.val();
+												datos.idTipoVehiculo = idTipoVehiculo
+														.val();
+												datos.lineaVehiculo = lineaVehiculo
+														.val();
+												datos.nombrePersonaVerificacion = nombrePersonaVerificacion
+														.val();
+												datos.apellidoPaternoPersonaVerificacion = apellidoPaternoPersonaVerificacion
+														.val();
+												datos.apellidoMaternoPersonaVerificacion = apellidoMaternoPersonaVerificacion
+														.val();
 												datos.email = email.val();
 												datos.facturaVehiculoDocumentacion = facturaVehiculoDocumentacion;
 												datos.identificacionOficialDocumentacion = identificacionOficialDocumentacion;
@@ -458,24 +530,27 @@
 												datos.anio3ComprobantePago = anio3ComprobantePago;
 												datos.anio4ComprobantePago = anio4ComprobantePago;
 												datos.anio5ComprobantePago = anio5ComprobantePago;
-																							
-												
-												var formData = JSON.stringify(datos);
+
+												var formData = JSON
+														.stringify(datos);
 
 												console.log(formData);
 
 												var urlPost = "${pageContext.request.contextPath}/cajas/vehicular/verificacion";
 												var urlCrear = "${pageContext.request.contextPath}/views/verificacion/altaVerificacion.jsp";
 
-												 $
+												$
 														.ajax({
 															type : 'POST',
 															url : urlPost,
 															data : formData,
 															dataType : "json",
 															contentType : 'application/json',
-															success : function(data,textStatus,jQxhr) {
-																		swal(
+															success : function(
+																	data,
+																	textStatus,
+																	jQxhr) {
+																swal(
 																		{
 																			title : "Verificación Vehicular registrada correctamente.",
 																			type : "success",
@@ -524,20 +599,30 @@
 															max : 17,
 															message : 'El VIN por lo menos 17 caracteres.'
 														},
-														vin: {
-										                        message: 'El VIN no esta formado correctamente.'
-										                },
+														vin : {
+															message : 'El VIN no esta formado correctamente.'
+														},
 														remote : {
-														url : '${pageContext.request.contextPath}/cajas/vehicular/verificacion/existeVin?'+ $('#inputVin').val(),
-														message : "¡El VIN que ingreso ya existe!",
-															data : function(validator,$field,value) {
+															url : '${pageContext.request.contextPath}/cajas/vehicular/verificacion/existeVin?'
+																	+ $(
+																			'#inputVin')
+																			.val(),
+															message : "¡El VIN que ingreso ya existe!",
+															data : function(
+																	validator,
+																	$field,
+																	value) {
 																return {
-																	inputVin : validator.getFieldElements('inputVin').val()
+																	inputVin : validator
+																			.getFieldElements(
+																					'inputVin')
+																			.val()
 																};
 															}
 														}
-													},													
+													},
 												},
+												/*
 												'inputNombrePersona' : { //validación del campo
 													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
 													validators : { //validaciones
@@ -556,6 +641,7 @@
 														},
 													}
 												},
+												*/
 												'inputNumeroMotor' : { //validación del campo
 													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
 													validators : { //validaciones
@@ -564,14 +650,23 @@
 															message : 'El Numero de Motor es requerido.'
 														},
 														remote : {
-															url : '${pageContext.request.contextPath}/cajas/vehicular/verificacion/existeNumeroMotor?'+ $('#inputNumeroMotor').val(),
+															url : '${pageContext.request.contextPath}/cajas/vehicular/verificacion/existeNumeroMotor?'
+																	+ $(
+																			'#inputNumeroMotor')
+																			.val(),
 															message : "¡El Numero de Motor que ingreso ya existe!",
-																data : function(validator,$field,value) {
-																	return {
-																		inputNumeroMotor : validator.getFieldElements('inputNumeroMotor').val()
-																	};
-																}
+															data : function(
+																	validator,
+																	$field,
+																	value) {
+																return {
+																	inputNumeroMotor : validator
+																			.getFieldElements(
+																					'inputNumeroMotor')
+																			.val()
+																};
 															}
+														}
 													}
 												},
 												'selectMarca' : { //validación del campo
@@ -688,23 +783,29 @@
 								});
 
 					});
-	
-    function combos(){
+
+	function combos() {
 		var d = new Date();
-		var year = d.getFullYear(); 
-		
-	    var anioActual = $('<label class="checkbox-inline"><input id="anioActualComprobantePago" type="checkbox" value="'+year+'">'+year+'</label>');
-	    anioActual.appendTo('#comprobantes');
-	    var anioActualMenosUno = $('<label class="checkbox-inline"><input id="anio1ComprobantePago" type="checkbox" value="'+(year-1)+'">'+(year-1)+'</label>');
-	    anioActualMenosUno.appendTo('#comprobantes');
-	    var anioActualMenosDos = $('<label class="checkbox-inline"><input id="anio2ComprobantePago" type="checkbox" value="'+(year-2)+'">'+(year-2)+'</label>');
-	    anioActualMenosDos.appendTo('#comprobantes');
-	    var anioActualMenosTres = $('<label class="checkbox-inline"><input id="anio3ComprobantePago" type="checkbox" value="'+(year-3)+'">'+(year-3)+'</label>');
-	    anioActualMenosTres.appendTo('#comprobantes');
-	    var anioActualMenosCuatro = $('<label class="checkbox-inline"><input id="anio4ComprobantePago" type="checkbox" value="'+(year-4)+'">'+(year-4)+'</label>');
-	    anioActualMenosCuatro.appendTo('#comprobantes');
-	    var anioActualMenosCinco = $('<label class="checkbox-inline"><input id="anio5ComprobantePago" type="checkbox" value="'+(year-5)+'">'+(year-5)+'</label>');
-	    anioActualMenosCinco.appendTo('#comprobantes');
-    };
+		var year = d.getFullYear();
+
+		var anioActual = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anioActualComprobantePago" type="checkbox" value="'+year+'">'
+				+ year + '</label></div>');
+		anioActual.appendTo('#comprobantes');
+		var anioActualMenosUno = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio1ComprobantePago" type="checkbox" value="'
+				+ (year - 1) + '">' + (year - 1) + '</label></div>');
+		anioActualMenosUno.appendTo('#comprobantes');
+		var anioActualMenosDos = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio2ComprobantePago" type="checkbox" value="'
+				+ (year - 2) + '">' + (year - 2) + '</label></div>');
+		anioActualMenosDos.appendTo('#comprobantes');
+		var anioActualMenosTres = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio3ComprobantePago" type="checkbox" value="'
+				+ (year - 3) + '">' + (year - 3) + '</label></div>');
+		anioActualMenosTres.appendTo('#comprobantes');
+		var anioActualMenosCuatro = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio4ComprobantePago" type="checkbox" value="'
+				+ (year - 4) + '">' + (year - 4) + '</label></div>');
+		anioActualMenosCuatro.appendTo('#comprobantes');
+		var anioActualMenosCinco = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio5ComprobantePago" type="checkbox" value="'
+				+ (year - 5) + '">' + (year - 5) + '</label></div>');
+		anioActualMenosCinco.appendTo('#comprobantes');
+	};
 </script>
 </html>

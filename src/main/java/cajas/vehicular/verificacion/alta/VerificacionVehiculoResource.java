@@ -28,13 +28,15 @@ public class VerificacionVehiculoResource {
 	@Consumes({ "application/json" })
 	public Response crearVerificacionVehiculo(VerificacionVehiculo verificacionVehiculo) {
 		try {
-			verificacionVehiculoEjb.crearVerificacionVehiculoMetodo(verificacionVehiculo);
-			return Response.ok(Status.OK,"application/json").tag("Verificacion de Vehiculo registrada correctamente.").build();
+			verificacionVehiculoEjb.crearVerificacionVehiculoMetodo(verificacionVehiculo);			
+			Map<String,String> resultado = new HashMap<>();
+			resultado.put("Status", "OK");
+			resultado.put("valor", verificacionVehiculoEjb.numeroSeguimientoPorVin(verificacionVehiculo.getVinVehiculo()));
+			return Response.ok(resultado,"application/json").build();
 		} catch (BusinessException ex) {
 			return Response.ok(Status.NOT_IMPLEMENTED,"application/json").tag(ex.getMessage()).build();
 		}
-	}
-	
+	}	
 	
 	/*****Comprueba si ya existe una verificacion con ese VIN *********/
 	@GET

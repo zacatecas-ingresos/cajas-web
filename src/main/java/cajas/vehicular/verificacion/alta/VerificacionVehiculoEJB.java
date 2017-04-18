@@ -89,5 +89,16 @@ public class VerificacionVehiculoEJB {
 			throw new BusinessException("El Numero de Motor no existe.");
 		}
 	}
+	
+	public String numeroSeguimientoPorVin(String vin){
+		
+		try {
+			String res = vVehicularQuery.obtenerNumeroSeguimiento(vin);
+			return res;
+		} catch (NoResultException ex) {
+			return "N/A";
+		}
+		
+	}
 
 }

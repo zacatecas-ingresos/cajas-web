@@ -31,8 +31,7 @@ public class VerificacionVehicularQuery {
 				.getSingleResult();
 		
 		return vVehiculo;
-	}
-	
+	}	
 	
 	/**
 	Funcion que genera el siguiente numero de seguimiento para las verificaciones
@@ -53,6 +52,20 @@ public class VerificacionVehicularQuery {
 		}		
 		
 		return num;
+	}
+	
+	/**
+	Funcion que obtiene Vin para mostrar en SweetAler
+	@param vin
+	@return No Seguimiento
+	*/
+	public String obtenerNumeroSeguimiento(String vin) {
+		
+				
+		Integer noSeguimientoQuery = entityManager.createQuery("select u.noSeguimientoVerificacion FROM VerificacionVehicularEntity u WHERE u.vinVehiculo=:vin", Integer.class)
+				.setParameter("vin", vin).getSingleResult();		
+		
+		return noSeguimientoQuery.toString();
 	}
 	
 

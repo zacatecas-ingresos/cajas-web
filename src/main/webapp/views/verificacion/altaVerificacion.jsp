@@ -552,7 +552,8 @@
 																	jQxhr) {
 																swal(
 																		{
-																			title : "Verificación Vehicular registrada correctamente.",
+																			text : "Verificación Vehicular registrada correctamente",
+																			title: "No Seguimiento: "+data.valor,
 																			type : "success",
 																			closeOnCancel : false
 																		},

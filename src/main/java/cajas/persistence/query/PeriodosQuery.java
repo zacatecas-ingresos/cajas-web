@@ -19,6 +19,12 @@ public class PeriodosQuery {
 		return periodos;
 	}
 
+	public List<PeriodosEntity> periodos(Integer aFiscal) {
+		List<PeriodosEntity> periodos = entityManager.createQuery("FROM PeriodosEntity a WHERE a.aFiscal=:aFiscal", PeriodosEntity.class)
+				.setParameter("aFiscal",aFiscal).getResultList();
+		return periodos;
+	}
+
 	public PeriodosEntity obtenerPeriodo(Integer aFiscal, String mes, Integer tipoPeriodo) {
 		PeriodosEntity periodo = entityManager
 				.createQuery(

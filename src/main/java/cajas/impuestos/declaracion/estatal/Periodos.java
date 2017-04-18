@@ -2,47 +2,47 @@ package cajas.impuestos.declaracion.estatal;
 
 public class Periodos {
 
-	public static String periodos(Integer numeroPeriodo) {
-		String periodo = "";
-		switch (numeroPeriodo) {
-		case 1:
-			periodo = "ENERO";
+	public static Integer periodos(String mes) {
+		Integer periodo;
+		switch (mes) {
+		case "ENERO":
+			periodo = 1;
 			break;
-		case 2:
-			periodo = "FEBRERO";
+		case "FEBRERO":
+			periodo = 2;
 			break;
-		case 3:
-			periodo = "MARZO";
+		case "MARZO":
+			periodo = 3;
 			break;
-		case 4:
-			periodo = "ABRIL";
+		case "ABRIL":
+			periodo = 4;
 			break;
-		case 5:
-			periodo = "MAYO";
+		case "MAYO":
+			periodo = 5;
 			break;
-		case 6:
-			periodo = "JUNIO";
+		case "JUNIO":
+			periodo = 6;
 			break;
-		case 7:
-			periodo = "ENERO";
+		case "JULIO":
+			periodo = 7;
 			break;
-		case 8:
-			periodo = "JULIO";
+		case "AGOSTO":
+			periodo = 8;
 			break;
-		case 9:
-			periodo = "AGOSTO";
+		case "SEPTIEMBRE":
+			periodo = 9;
 			break;
-		case 10:
-			periodo = "OCTUBRE";
+		case "OCTUBRE":
+			periodo = 10;
 			break;
-		case 11:
-			periodo = "NOVIEMBRE";
+		case "NOVIEMBRE":
+			periodo = 11;
 			break;
-		case 12:
-			periodo = "DICIEMBRE";
+		case "DICIEMBRE":
+			periodo = 12;
 			break;
 		default:
-			periodo = "";
+			periodo = 0;
 			break;
 		}
 		return periodo;

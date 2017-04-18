@@ -22,7 +22,7 @@ public class DiasNoLaboralesEntity implements Serializable {
 	private Integer idDia;
 
 	@Column(name = "dia_no_laboral")
-	private Date DiaNoLaboral;
+	private Date diaNoLaboral;
 	
 	@Column(name = "motivo")
 	private String motivo;
@@ -36,11 +36,11 @@ public class DiasNoLaboralesEntity implements Serializable {
 	}
 
 	public Date getDiaNoLaboral() {
-		return DiaNoLaboral;
+		return diaNoLaboral;
 	}
 
 	public void setDiaNoLaboral(Date diaNoLaboral) {
-		DiaNoLaboral = diaNoLaboral;
+		this.diaNoLaboral = diaNoLaboral;
 	}
 
 	public String getMotivo() {

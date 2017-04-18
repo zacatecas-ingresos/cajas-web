@@ -18,10 +18,13 @@ public class ObligacionesEntity implements Serializable {
 
 	@Id
 	@Column(name = "id_obligacion")
-	private Integer idObligacion;
+	private Integer idObligacion; 
 
 	@Column(name = "obligacion")
 	private String obligacion;
+	
+	@Column(name = "diastiempoprorroga")
+	private Integer diasProrroga;
 
 	public Integer getIdObligacion() {
 		return idObligacion;
@@ -37,6 +40,14 @@ public class ObligacionesEntity implements Serializable {
 
 	public void setObligacion(String obligacion) {
 		this.obligacion = obligacion;
+	}
+
+	public Integer getDiasProrroga() {
+		return diasProrroga;
+	}
+
+	public void setDiasProrroga(Integer diasProrroga) {
+		this.diasProrroga = diasProrroga;
 	}
 	
 	

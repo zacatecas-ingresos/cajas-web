@@ -69,10 +69,10 @@ public class CalculoEstatalService {
 		BigDecimal uaz = BigDecimal.ZERO;
 
 		impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(),
-				declaracion.getEjercicioFiscal(), periodo, TipoTasa.TASA_NOMINA);
+				declaracion.getEjercicioFiscal(), declaracion.getPeriodo(), TipoTasa.TASA_NOMINA);
 
-		uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(), periodo,
-				TipoTasa.TASA_UAZ);
+		uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(),
+				declaracion.getPeriodo(), TipoTasa.TASA_UAZ);
 
 		ContribucionFiscal contribucionFiscal = new ContribucionFiscal();
 		contribucionFiscal.setaFiscalAdeudo(declaracion.getEjercicioFiscal());

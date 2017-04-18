@@ -6,7 +6,9 @@ import java.text.ParseException;
 import java.util.Date;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 
 import org.joda.time.DateTime;
 
@@ -17,6 +19,9 @@ import cajas.persistence.query.PeriodosQuery;
 import cajas.persistence.query.TasaImpuestoQuery;
 
 public class ImporteImpuestoService {
+
+	@PersistenceContext(name = "sitDS")
+	private EntityManager entityManager;
 
 	@Inject
 	TasaImpuestoQuery tasaImpuestoQuery;
@@ -29,8 +34,9 @@ public class ImporteImpuestoService {
 	 * 
 	 * @throws ParseException
 	 */
-	public BigDecimal impuestoEstatal(BigDecimal baseGravable, Integer aFiscal, PeriodosEntity periodo, int tipoTasa) {
+	public BigDecimal impuestoEstatal(BigDecimal baseGravable, Integer aFiscal, int idPeriodo, int tipoTasa) {
 		try {
+			PeriodosEntity periodo = entityManager.find(PeriodosEntity.class, idPeriodo);
 
 			BigDecimal impuesto = BigDecimal.ZERO;
 			BigDecimal tasa = BigDecimal.ZERO;

@@ -13,8 +13,8 @@ import javax.persistence.PersistenceException;
 
 import cajas.exception.BusinessException;
 import cajas.persistence.entity.VerificacionVehicularEntity;
-import cajas.persistence.query.UsuarioQuery;
 import cajas.persistence.query.VerificacionVehicularQuery;
+import cajas.seguridad.usuario.Usuario;
 import cajas.vehicular.verificacion.alta.CrearVerificacionVehiculo;
 import cajas.util.Crypto;
 
@@ -22,7 +22,7 @@ import cajas.util.Crypto;
 public class VerificacionVehiculoEJB {
 	
 	@Inject
-	VerificacionVehicularQuery vVehicularQuery;
+	VerificacionVehicularQuery vVehicularQuery; 
 	
 	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
@@ -52,12 +52,42 @@ public class VerificacionVehiculoEJB {
 			verificacionVehiculoEntity.setComprobanteDomicilioDocumentacion((Integer)verificacionVehiculo.getComprobanteDomicilioDocumentacion());
 			verificacionVehiculoEntity.setRfcPersonaMoralDocumentacion((Integer)verificacionVehiculo.getRfcPersonaMoralDocumentacion());
 			verificacionVehiculoEntity.setAnioActualComprobantePago((Integer)verificacionVehiculo.getAnioActualComprobantePago());	
+			verificacionVehiculoEntity.setAnio1ComprobantePago((Integer)verificacionVehiculo.getAnio1ComprobantePago());
+			verificacionVehiculoEntity.setAnio2ComprobantePago((Integer)verificacionVehiculo.getAnio2ComprobantePago());
+			verificacionVehiculoEntity.setAnio3ComprobantePago((Integer)verificacionVehiculo.getAnio3ComprobantePago());
+			verificacionVehiculoEntity.setAnio4ComprobantePago((Integer)verificacionVehiculo.getAnio4ComprobantePago());
+			verificacionVehiculoEntity.setAnio5ComprobantePago((Integer)verificacionVehiculo.getAnio5ComprobantePago());			
+			verificacionVehiculoEntity.setNoSeguimientoVerificacion(vVehicularQuery.generarNumeroSeguimiento(verificacionVehiculo.getIdOficinaVerificacion(),verificacionVehiculo.getEjercicio()));
 			vVehicularQuery.registrarVerificacion(verificacionVehiculoEntity);
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();
 			throw new BusinessException("Ocurrio un problema al registrar al registrar la Verificación del Vehiculo.");
 		}
 	}
+	
+	/********Obtener VIN *********/
+	public VerificacionVehiculo obtenerVin(String vin) {
+		try {
+			VerificacionVehicularEntity vVehiculoEntity = vVehicularQuery.consultar(vin);
+			VerificacionVehiculo vVehiculo = new VerificacionVehiculo();
+			vVehiculo = vVehiculo.verificacionVehiculoEntity(vVehiculoEntity);
+			return vVehiculo;
+		} catch (NoResultException ex) {
+			throw new BusinessException("El Vin no existe.");
+		}
+	}
 
+	
+	/********Obtener Numero Motor *********/
+	public VerificacionVehiculo obtenerNumeroMotor(String NumeroMotor) {
+		try {
+			VerificacionVehicularEntity vVehiculoEntity = vVehicularQuery.consultarNumeroMotor(NumeroMotor);
+			VerificacionVehiculo vVehiculo = new VerificacionVehiculo();
+			vVehiculo = vVehiculo.verificacionVehiculoEntity(vVehiculoEntity);
+			return vVehiculo;
+		} catch (NoResultException ex) {
+			throw new BusinessException("El Numero de Motor no existe.");
+		}
+	}
 
 }

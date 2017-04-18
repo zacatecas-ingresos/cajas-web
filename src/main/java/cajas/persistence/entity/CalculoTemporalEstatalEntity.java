@@ -5,15 +5,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "calculo_temporal")
+@Table(name = "calculo_temporal_estatal", schema = "presupuestos")
 public class CalculoTemporalEstatalEntity {
 
 	@Id
 	@Column(name = "id_calculo_temporal")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idCalculoTemporal;
 
 	@Column(name = "id_contribuyente")
@@ -40,7 +43,7 @@ public class CalculoTemporalEstatalEntity {
 	@Column(name = "numero_empleados")
 	private Integer numeroEmpleados;
 
-	@Column(name = "impuestos")
+	@Column(name = "impuesto")
 	private BigDecimal impuesto;
 
 	@Column(name = "actualizaciones")
@@ -63,6 +66,8 @@ public class CalculoTemporalEstatalEntity {
 
 	@Column(name = "hora_calculo")
 	private Date horaCalculo;
+
+	/**************** Getters and Setters ****************/
 
 	public Integer getIdContribuyente() {
 		return idContribuyente;

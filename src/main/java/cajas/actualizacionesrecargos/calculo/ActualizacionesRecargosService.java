@@ -4,15 +4,14 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
 import cajas.exception.BusinessException;
 import cajas.persistence.entity.INPCEntity;
 import cajas.persistence.query.INPCQuery;
+import cajas.util.FechaUtil;
 
-@Stateless
 public class ActualizacionesRecargosService {
 
 	@Inject
@@ -41,8 +40,8 @@ public class ActualizacionesRecargosService {
 		 * Obtengo el INPC del mes anterior en el que se va a realizar el pago
 		 * 
 		 */
-		contribucionFiscal.setMesFiscalPago(contribucionFiscal.getMesFiscalPago() - 1);
-		inpcActual = obtenerINPC(contribucionFiscal.getaFiscalPago(), contribucionFiscal.getMesFiscalPago());
+		contribucionFiscal.setMesFiscalPago(FechaUtil.mesActual() - 1);
+		inpcActual = obtenerINPC(FechaUtil.ejercicioActual(), contribucionFiscal.getMesFiscalPago());
 
 		/***
 		 * Si el INPC del mes en el que se va a efectuar el pago no devuelve
@@ -105,13 +104,6 @@ public class ActualizacionesRecargosService {
 		actualizacionRecargo.setAplicaRecargo(aplicaRecargo);
 
 		return actualizacionRecargo;
-	}
-
-	/************* Calcula el importe de una actualización *************/
-	private BigDecimal importeActualizacion(BigDecimal actualizacion, BigDecimal impuestoGravable) {
-		BigDecimal importeActualizacion = BigDecimal.ZERO;
-		importeActualizacion = actualizacion.subtract(impuestoGravable);
-		return importeActualizacion;
 	}
 
 	/********** Calculo factor de la actualización **********/

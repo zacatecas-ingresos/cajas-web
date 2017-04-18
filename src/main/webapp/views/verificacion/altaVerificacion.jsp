@@ -8,7 +8,35 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
 <title>Alta Vehiculo</title>
-
+	<!-- Bootstrap -->
+	<link
+		href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
+		rel="stylesheet" type="text/css" />
+	
+	<!-- Font Awesome -->
+	<link
+		href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css"
+		rel="stylesheet" />
+	
+	<!-- AdminLTE -->
+	<link
+		href="${pageContext.request.contextPath}/resources/admin-lte/css/Fonts.css"
+		rel="stylesheet" />
+	<link
+		href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css"
+		rel="stylesheet" />
+	<link
+		href="${pageContext.request.contextPath}/resources/admin-lte/css/skins/_all-skins.min.css"
+		rel="stylesheet" />
+	
+	<!-- Sweetalert -->
+	<link
+		href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css"
+		rel="stylesheet" type="text/css">
+	
+	<!-- FormValidation -->
+	<link
+		href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -213,7 +241,7 @@
 												<label for="inputApellidoPaterno" class="control-label">Apellido
 													Paterno</label> <input class="form-control"
 													id="inputApellidoPaterno" name="inputApellidoPaterno"
-													placeholder="Apellido Paterno" required>
+													placeholder="Apellido Paterno" requiered>
 											</div>
 											<div class="form-group">
 												<label for="inputApellidoMaterno" class="control-label">Apellido
@@ -262,46 +290,44 @@
 </body>
 
 
-
-
-<!-- Scripts -->
-
-<!-- jQuery -->
-<script
-	src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
-
-<!-- jQuery UI -->
-<script
-	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-
-<!-- jQuery Form -->
-<script
-	src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js" /></script>
-
-<script
-	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- Bootstrap WYSIHTML5 -->
-<script
-	src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-
-<script
-	src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
-
-<script
-	src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
-
-<script
-	src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
-
-<script
-	src="${pageContext.request.contextPath}/resources/formvalidation/js/formValidation.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
-
-<!-- Fin scripts -->
+	<!-- Scripts -->
+	
+	<!-- jQuery -->
+	<script
+		src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
+	
+	<!-- jQuery UI -->
+	<script
+		src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
+	
+	<!-- jQuery Form -->
+	<script
+		src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js" /></script>
+	
+	<script
+		src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+	
+	<!-- Bootstrap WYSIHTML5 -->
+	<script
+		src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+		
+	<script
+		src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
+		
+	<script
+		src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
+		
+	<script
+		src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
+		
+	<script
+		src="${pageContext.request.contextPath}/resources/formvalidation/js/formValidation.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
+	
+	<!-- Fin scripts -->
 
 
 
@@ -310,15 +336,9 @@
 			.ready(
 					function() {
 						
-					/*				
-						$("#comprobantes").append($('<input>', { id :  "anioActualComprobantePago", type:"checkbox"}));
-						$("#comprobantes").append($('<label>', { class: 'checkbox-inline', for: 'anioActualComprobantePago', text: '2017' }));
-	
-						$("#comprobantes").append($('<input>', { id :  "anioActualComprobantePago2", type:"checkbox"}));
-						$("#comprobantes").append($('<label>', { class: 'checkbox-inline', for: 'anioActualComprobantePago2', text: '2016' }));
-						
-						*/
-					
+						//Genera los checkbox de años
+						combos();
+									
 
 						//Cancelar y dirige a la vista principal de los vehiculos registrados
 						$('#cancel-btn')
@@ -333,7 +353,8 @@
 								.click(
 										function() {
 
-											var fechaHoy = new Date().toISOString().slice(0, 10);					
+											var fechaHoy = new Date().toISOString().slice(0, 10);	
+											var anio = new Date().toISOString().slice(0, 4);
 											
 											//Validaciones
 											var formValidation = $(
@@ -369,6 +390,11 @@
 												var rfcPersonaMoralDocumentacion=0;
 												var identificacionRepresentanteLegalDocumentacion=0;
 												var anioActualComprobantePago=0;
+												var anio1ComprobantePago=0;
+												var anio2ComprobantePago=0;
+												var anio3ComprobantePago=0;
+												var anio4ComprobantePago=0;
+												var anio5ComprobantePago=0;
 
 												if($("#facturaVehiculoDocumentacionInput").is(':checked')){
 													facturaVehiculoDocumentacion=1
@@ -386,9 +412,24 @@
 													identificacionRepresentanteLegalDocumentacion=1
 												}
 												
-												/*if($("#anioActualComprobantePago").is(':checked')){
-													anioActualComprobantePago=1
-												}					*/						
+												if($("#anioActualComprobantePago").is(':checked')){
+													anioActualComprobantePago=$("#anioActualComprobantePago").val();
+												}	
+												if($("#anio1ComprobantePago").is(':checked')){
+													anio1ComprobantePago=$("#anio1ComprobantePago").val();
+												}
+												if($("#anio2ComprobantePago").is(':checked')){
+													anio2ComprobantePago=$("#anio2ComprobantePago").val();
+												}
+												if($("#anio3ComprobantePago").is(':checked')){
+													anio3ComprobantePago=$("#anio3ComprobantePago").val();
+												}
+												if($("#anio4ComprobantePago").is(':checked')){
+													anio4ComprobantePago=$("#anio4ComprobantePago").val();
+												}
+												if($("#anio5ComprobantePago").is(':checked')){
+													anio5ComprobantePago=$("#anio5ComprobantePago").val();
+												}
 												
 												datos.idOficinaVerificacion = idOficinaVerificacion.val();
 												datos.ejercicio = ejercicio.val();
@@ -411,12 +452,15 @@
 												datos.comprobanteDomicilioDocumentacion = comprobanteDomicilioDocumentacion;
 												datos.rfcPersonaMoralDocumentacion = rfcPersonaMoralDocumentacion;
 												datos.identificacionRepresentanteLegalDocumentacion = identificacionRepresentanteLegalDocumentacion;
-												//datos.anioActualComprobantePago = anioActualComprobantePago.val();
+												datos.anioActualComprobantePago = anioActualComprobantePago;
+												datos.anio1ComprobantePago = anio1ComprobantePago;
+												datos.anio2ComprobantePago = anio2ComprobantePago;
+												datos.anio3ComprobantePago = anio3ComprobantePago;
+												datos.anio4ComprobantePago = anio4ComprobantePago;
+												datos.anio5ComprobantePago = anio5ComprobantePago;
+																							
 												
-												
-												
-												var formData = JSON
-														.stringify(datos);
+												var formData = JSON.stringify(datos);
 
 												console.log(formData);
 
@@ -430,11 +474,8 @@
 															data : formData,
 															dataType : "json",
 															contentType : 'application/json',
-															success : function(
-																	data,
-																	textStatus,
-																	jQxhr) {
-																swal(
+															success : function(data,textStatus,jQxhr) {
+																		swal(
 																		{
 																			title : "Verificación Vehicular registrada correctamente.",
 																			type : "success",
@@ -483,16 +524,19 @@
 															max : 17,
 															message : 'El VIN por lo menos 17 caracteres.'
 														},
-													/*remote : {
-														url : '${pageContext.request.contextPath}/cajas/usuario/existeNombreUsuario?'+ $('#inputUser').val(),
-														message : "El VIN ya existe",
-														data : function(validator,$field,value) {
-															return {
-																inputUser : validator.getFieldElements('inputVin').val()
-															};
+														vin: {
+										                        message: 'El VIN no esta formado correctamente.'
+										                },
+														remote : {
+														url : '${pageContext.request.contextPath}/cajas/vehicular/verificacion/existeVin?'+ $('#inputVin').val(),
+														message : "¡El VIN que ingreso ya existe!",
+															data : function(validator,$field,value) {
+																return {
+																	inputVin : validator.getFieldElements('inputVin').val()
+																};
+															}
 														}
-													}*/
-													}
+													},													
 												},
 												'inputNombrePersona' : { //validación del campo
 													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
@@ -519,6 +563,15 @@
 														notEmpty : {
 															message : 'El Numero de Motor es requerido.'
 														},
+														remote : {
+															url : '${pageContext.request.contextPath}/cajas/vehicular/verificacion/existeNumeroMotor?'+ $('#inputNumeroMotor').val(),
+															message : "¡El Numero de Motor que ingreso ya existe!",
+																data : function(validator,$field,value) {
+																	return {
+																		inputNumeroMotor : validator.getFieldElements('inputNumeroMotor').val()
+																	};
+																}
+															}
 													}
 												},
 												'selectMarca' : { //validación del campo
@@ -635,5 +688,23 @@
 								});
 
 					});
+	
+    function combos(){
+		var d = new Date();
+		var year = d.getFullYear(); 
+		
+	    var anioActual = $('<label class="checkbox-inline"><input id="anioActualComprobantePago" type="checkbox" value="'+year+'">'+year+'</label>');
+	    anioActual.appendTo('#comprobantes');
+	    var anioActualMenosUno = $('<label class="checkbox-inline"><input id="anio1ComprobantePago" type="checkbox" value="'+(year-1)+'">'+(year-1)+'</label>');
+	    anioActualMenosUno.appendTo('#comprobantes');
+	    var anioActualMenosDos = $('<label class="checkbox-inline"><input id="anio2ComprobantePago" type="checkbox" value="'+(year-2)+'">'+(year-2)+'</label>');
+	    anioActualMenosDos.appendTo('#comprobantes');
+	    var anioActualMenosTres = $('<label class="checkbox-inline"><input id="anio3ComprobantePago" type="checkbox" value="'+(year-3)+'">'+(year-3)+'</label>');
+	    anioActualMenosTres.appendTo('#comprobantes');
+	    var anioActualMenosCuatro = $('<label class="checkbox-inline"><input id="anio4ComprobantePago" type="checkbox" value="'+(year-4)+'">'+(year-4)+'</label>');
+	    anioActualMenosCuatro.appendTo('#comprobantes');
+	    var anioActualMenosCinco = $('<label class="checkbox-inline"><input id="anio5ComprobantePago" type="checkbox" value="'+(year-5)+'">'+(year-5)+'</label>');
+	    anioActualMenosCinco.appendTo('#comprobantes');
+    };
 </script>
 </html>

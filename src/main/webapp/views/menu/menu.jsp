@@ -44,6 +44,14 @@
 					href="${pageContext.request.contextPath}/views/usuario/usuario.jsp"><span>Administrar</span></a></li>
 			</ul></li>
 	</ul>
+		<ul class="sidebar-menu">
+		<li><a> <i class="fa fa-file-o" aria-hidden="true"></i> <span>Cajas</span>
+		</a>
+			<ul class="treeview-menu">
+				<li><a
+					href="${pageContext.request.contextPath}/views/cajas/cobroNomina.jsp"><span>Presupuesto Estatal</span></a></li>
+			</ul></li>
+	</ul>
 
 </body>
 </html>

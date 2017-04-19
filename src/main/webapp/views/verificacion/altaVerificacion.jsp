@@ -39,6 +39,8 @@
 	href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css"
 	rel="stylesheet" type="text/css">
 
+<!-- jquery-ui.css -->
+	<link href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -164,13 +166,11 @@
 											</div>
 
 											<div class="col-md-4">
-												<div class="form-group">
-													<label for="selectMarca" class="control-label">Marca</label>
-													<select class="form-control" id="selectMarca"
-														name="selectMarca" required>
-														<option value="1">TOYOTA</option>
-													</select>
-												</div>
+										         <div class="form-group">
+										           <label for="criterioMarca" class="control-label">Marca</label>
+										           <input id="criterioMarca" class="form-control">
+										           <input id="idMarcaVehiculo" type="hidden" >
+										         </div>
 											</div>
 										</div>
 										<div class="row">
@@ -404,7 +404,7 @@
 												var estatusVerificacion = $('#selectEstatusVerificacion');
 												var vinVehiculo = $('#inputVin');
 												var numeroMotorVehiculo = $('#inputNumeroMotor');
-												var idMarcaVehiculo = $('#selectMarca');
+												var idMarcaVehiculo = $('#idMarcaVehiculo');
 												var modeloVehiculo = $('#inputModelo');
 												var idClaseVehiculo = $('#selectClase');
 												var idTipoVehiculo = $('#selectTipo');
@@ -413,43 +413,19 @@
 												var apellidoPaternoPersonaVerificacion = $('#inputApellidoPaterno');
 												var apellidoMaternoPersonaVerificacion = $('#inputApellidoMaterno');
 												var email = $('#inputEmail');
-												var facturaVehiculoDocumentacion = 0;
-												var identificacionOficialDocumentacion = 0;
-												var comprobanteDomicilioDocumentacion = 0;
-												var rfcPersonaMoralDocumentacion = 0;
-												var identificacionRepresentanteLegalDocumentacion = 0;
+
+									            var facturaVehiculoDocumentacion = $("#facturaVehiculoDocumentacionInput").is(':checked');
+									            var identificacionOficialDocumentacion = $("#identificacionOficialDocumentacion").is(':checked');
+									            var comprobanteDomicilioDocumentacion= $("#comprobanteDomicilioDocumentacionInput").is(':checked');
+									            var rfcPersonaMoralDocumentacion= $("#rfcPersonaMoralDocumentacionInput").is(':checked');
+									            var identificacionRepresentanteLegalDocumentacion = $("#identificacionRepresentanteLegalDocumentacionInput").is(':checked');
+
 												var anioActualComprobantePago = 0;
 												var anio1ComprobantePago = 0;
 												var anio2ComprobantePago = 0;
 												var anio3ComprobantePago = 0;
 												var anio4ComprobantePago = 0;
 												var anio5ComprobantePago = 0;
-
-												if ($(
-														"#facturaVehiculoDocumentacionInput")
-														.is(':checked')) {
-													facturaVehiculoDocumentacion = 1
-												}
-												if ($(
-														"#identificacionOficialDocumentacion")
-														.is(':checked')) {
-													identificacionOficialDocumentacion = 1
-												}
-												if ($(
-														"#comprobanteDomicilioDocumentacionInput")
-														.is(':checked')) {
-													comprobanteDomicilioDocumentacion = 1
-												}
-												if ($(
-														"#rfcPersonaMoralDocumentacionInput")
-														.is(':checked')) {
-													rfcPersonaMoralDocumentacion = 1
-												}
-												if ($(
-														"#identificacionRepresentanteLegalDocumentacionInput")
-														.is(':checked')) {
-													identificacionRepresentanteLegalDocumentacion = 1
-												}
 
 												if ($(
 														"#anioActualComprobantePago")
@@ -808,5 +784,45 @@
 				+ (year - 5) + '">' + (year - 5) + '</label></div>');
 		anioActualMenosCinco.appendTo('#comprobantes');
 	};
+
+
+
+
+
+$( function() {
+    $( "#criterioMarca" ).autocomplete({
+        source: function( request, response ) {
+        var criterio = $('#criterioMarca').val();
+        var urlGet = "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo/buscarPorCriterio/"+"?criterio="+criterio;
+           $.ajax( {
+            type: "GET",
+            dataType : 'json',
+            url: urlGet,
+            data: {
+               term: request.term
+            },
+        success: function( data ) {
+	        console.log("data:: " + data);
+	        response( $.map( data, function ( item ) {
+                    return {
+                     id:    item.idMarcaVehiculo,
+                        label: item.nombre,
+                        value: item.nombre
+                    };
+               }));
+           },
+            error : function(jqXHR,textStatus,errorThrown) {
+              console.log(textStatus+ " "+ errorThrown);
+            }
+          } );
+       },
+       minLength: 2,
+       select: function( event, ui ) {
+    	   $("#idMarcaVehiculo").val(ui.item.id); 
+           console.log( "Selected: " + ui.item.value + ", " + ui.item.label + ", " + ui.item.id );
+       }
+    });
+});
+
 </script>
 </html>

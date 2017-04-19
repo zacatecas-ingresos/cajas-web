@@ -1,7 +1,6 @@
 package cajas.vehicular.verificacion.alta;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -12,12 +11,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 import cajas.exception.BusinessException;
-import cajas.persistence.entity.UsuarioEntity;
+import cajas.persistence.entity.MarcaVehiculoEntity;
 import cajas.persistence.entity.VerificacionVehicularEntity;
 import cajas.persistence.query.VerificacionVehicularQuery;
-import cajas.seguridad.usuario.Usuario;
-import cajas.vehicular.verificacion.alta.CrearVerificacionVehiculo;
-import cajas.util.Crypto;
 
 @Stateless
 public class VerificacionVehiculoEJB {
@@ -39,7 +35,12 @@ public class VerificacionVehiculoEJB {
 			verificacionVehiculoEntity.setFechaVerificacion(verificacionVehiculo.getFechaVerificacion());
 			verificacionVehiculoEntity.setVinVehiculo(verificacionVehiculo.getVinVehiculo());
 			verificacionVehiculoEntity.setNumeroMotorVehiculo(verificacionVehiculo.getNumeroMotorVehiculo());
-			verificacionVehiculoEntity.setIdMarcaVehiculo(verificacionVehiculo.getIdMarcaVehiculo());
+			System.out.println("verificacionVehiculo.getIdMarcaVehiculo():: " + verificacionVehiculo.getIdMarcaVehiculo());
+			if (verificacionVehiculo.getIdMarcaVehiculo() != null && verificacionVehiculo.getIdMarcaVehiculo() > 0) {
+				MarcaVehiculoEntity marcaVehiculo = entityManager.find(MarcaVehiculoEntity.class,verificacionVehiculo.getIdMarcaVehiculo());
+				System.out.println("marcaVehiculo:: " + marcaVehiculo);
+				verificacionVehiculoEntity.setMarcaVehiculo(marcaVehiculo);
+			}
 			verificacionVehiculoEntity.setModeloVehiculo(verificacionVehiculo.getModeloVehiculo());
 			verificacionVehiculoEntity.setIdClaseVehiculo(verificacionVehiculo.getIdClaseVehiculo());
 			verificacionVehiculoEntity.setIdTipoVehiculo(verificacionVehiculo.getIdTipoVehiculo());
@@ -47,11 +48,11 @@ public class VerificacionVehiculoEJB {
 			verificacionVehiculoEntity.setNombrePersonaVerificacion(verificacionVehiculo.getNombrePersonaVerificacion());
 			verificacionVehiculoEntity.setApellidoPaternoPersonaVerificacion(verificacionVehiculo.getApellidoPaternoPersonaVerificacion());
 			verificacionVehiculoEntity.setApellidoMaternoPersonaVerificacion(verificacionVehiculo.getApellidoMaternoPersonaVerificacion());
-			verificacionVehiculoEntity.setFacturaVehiculoDocumentacion((Integer)verificacionVehiculo.getFacturaVehiculoDocumentacion());
-			verificacionVehiculoEntity.setIdentificacionOficialDocumentacion((Integer)verificacionVehiculo.getIdentificacionOficialDocumentacion());
-			verificacionVehiculoEntity.setIdentificacionRepresentanteLegalDocumentacion((Integer)verificacionVehiculo.getIdentificacionRepresentanteLegalDocumentacion());
-			verificacionVehiculoEntity.setComprobanteDomicilioDocumentacion((Integer)verificacionVehiculo.getComprobanteDomicilioDocumentacion());
-			verificacionVehiculoEntity.setRfcPersonaMoralDocumentacion((Integer)verificacionVehiculo.getRfcPersonaMoralDocumentacion());
+			verificacionVehiculoEntity.setFacturaVehiculoDocumentacion(verificacionVehiculo.getFacturaVehiculoDocumentacion());
+			verificacionVehiculoEntity.setIdentificacionOficialDocumentacion(verificacionVehiculo.getIdentificacionOficialDocumentacion());
+			verificacionVehiculoEntity.setIdentificacionRepresentanteLegalDocumentacion(verificacionVehiculo.getIdentificacionRepresentanteLegalDocumentacion());
+			verificacionVehiculoEntity.setComprobanteDomicilioDocumentacion(verificacionVehiculo.getComprobanteDomicilioDocumentacion());
+			verificacionVehiculoEntity.setRfcPersonaMoralDocumentacion(verificacionVehiculo.getRfcPersonaMoralDocumentacion());
 			verificacionVehiculoEntity.setAnioActualComprobantePago((Integer)verificacionVehiculo.getAnioActualComprobantePago());	
 			verificacionVehiculoEntity.setAnio1ComprobantePago((Integer)verificacionVehiculo.getAnio1ComprobantePago());
 			verificacionVehiculoEntity.setAnio2ComprobantePago((Integer)verificacionVehiculo.getAnio2ComprobantePago());

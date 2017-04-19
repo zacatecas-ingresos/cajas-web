@@ -784,12 +784,21 @@
 	//colocar valores despues de realizar el calculo
 	function colocarValores(data){	
 		$.each( data, function( key, val ) {
+			console.log("KEY:::" + key);
 			if(key=="uaz"){
 				$('#inputUaz').val(val);
-			}else if(key == "actualizaciones"){
+			}
+			if(key == "actualizaciones"){
 				$('#inputActualizacion').val(val);
-			}else if(key == "recargos"){
+			}
+			if(key == "recargos"){
 				$('#inputRecargo').val(val);
+			}
+			if(key=="impuesto"){
+				$('#inputNomina').val(val);
+			}
+			if(key=="total"){
+				$('#inputTotal').val(val);
 			}
   		});
 	}	

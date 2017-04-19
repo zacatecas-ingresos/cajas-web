@@ -48,7 +48,7 @@ public class ImporteImpuestoService {
 			fechaFin.withYear(aFiscal);
 
 			tasa = tasaPorImpuesto(tipoTasa, fechaInicio.toDate(), fechaFin.toDate());
-
+			
 			impuesto = baseGravable.multiply(tasa);
 			impuesto = impuesto.divide(new BigDecimal(100).setScale(0, RoundingMode.HALF_UP));
 

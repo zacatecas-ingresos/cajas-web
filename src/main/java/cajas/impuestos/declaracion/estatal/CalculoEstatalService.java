@@ -79,18 +79,17 @@ public class CalculoEstatalService {
 
 		impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(),
 				declaracion.getEjercicioFiscal(), declaracion.getPeriodo(), TipoTasa.TASA_NOMINA);
-
+		
 		uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(),
 				declaracion.getPeriodo(), TipoTasa.TASA_UAZ);
-
+		
 		// Validar si la obligación ha vencido para saber si se aplica
 		// actualización y recargo
 		if (vencimientoObligacion.haVencidoObligacion(declaracion.getIdObligacion(), periodo.getIdMes(),
 				declaracion.getEjercicioFiscal())) {
 
 			ContribucionFiscal contribucionFiscal = new ContribucionFiscal();
-			Periodo periodoActualizacion = generarPeriodoActualizacionEstatal(declaracion.getEjercicioFiscal(),
-					periodo.getIdMes());
+			Periodo periodoActualizacion = generarPeriodoActualizacionEstatal(declaracion.getEjercicioFiscal(),periodo.getIdMes());
 			Periodo periodoRecargo = generarPeriodoRecargoEstatal(declaracion.getEjercicioFiscal(), periodo.getIdMes());
 			contribucionFiscal.setPeriodoActualizacion(periodoActualizacion);
 			contribucionFiscal.setPeriodoRecargo(periodoRecargo);
@@ -102,9 +101,11 @@ public class CalculoEstatalService {
 			actualizacion = actualizacionRecargo.getImporteActualizacion();
 			recargo = actualizacionRecargo.getImporteRecargo();
 		}
-
+		
+		
 		BigDecimal total = impuesto.add(uaz).add(actualizacion).add(recargo);
-
+		
+		
 		CalculoTemporalEstatalEntity calculoTemporal = new CalculoTemporalEstatalEntity();
 		calculoTemporal.setActualizaciones(actualizacion);
 		calculoTemporal.setBaseGravable(declaracion.getTotalErogaciones());
@@ -130,6 +131,7 @@ public class CalculoEstatalService {
 		impuestoEstatal.setUaz(uaz);
 		impuestoEstatal.setActualizaciones(actualizacion);
 		impuestoEstatal.setRecargos(recargo);
+		impuestoEstatal.setTotal(total);
 		return impuestoEstatal;
 	}
 

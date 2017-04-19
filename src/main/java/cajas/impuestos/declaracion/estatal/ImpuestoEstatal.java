@@ -8,6 +8,7 @@ public class ImpuestoEstatal {
 	private BigDecimal uaz;
 	private BigDecimal actualizaciones;
 	private BigDecimal recargos;
+	private BigDecimal total;
 
 	public Integer getIdCalculoTemporal() {
 		return idCalculoTemporal;
@@ -49,4 +50,12 @@ public class ImpuestoEstatal {
 		this.recargos = recargos;
 	}
 
+	public BigDecimal getTotal() {
+		return total;
+	}
+	
+	public void setTotal(BigDecimal total) {
+		this.total = total;
+	}
+	
 }

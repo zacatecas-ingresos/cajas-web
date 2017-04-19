@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 import cajas.exception.BusinessException;
+import cajas.persistence.entity.UsuarioEntity;
 import cajas.persistence.entity.VerificacionVehicularEntity;
 import cajas.persistence.query.VerificacionVehicularQuery;
 import cajas.seguridad.usuario.Usuario;
@@ -90,6 +91,7 @@ public class VerificacionVehiculoEJB {
 		}
 	}
 	
+	/*********************** Regresa el numero de Seguimiento que se genero para mostrarlo en el alert *************************/
 	public String numeroSeguimientoPorVin(String vin){
 		
 		try {
@@ -99,6 +101,40 @@ public class VerificacionVehiculoEJB {
 			return "N/A";
 		}
 		
+	}
+	
+	/*******Obtiene la lista de Verificaciones registradas********/
+	public List<VerificacionVehiculo> obtenerVerificaciones() {
+		try {
+			List<VerificacionVehicularEntity> verificacionesEntity = vVehicularQuery.obtenerVerificaciones();
+			List<VerificacionVehiculo> verificaciones = new ArrayList<>();
+			
+			for (VerificacionVehicularEntity verificacionEntity : verificacionesEntity) {
+				VerificacionVehiculo verificacion = new VerificacionVehiculo();
+				verificacion = verificacion.verificacionVehiculoEntity(verificacionEntity);
+				verificaciones.add(verificacion);
+			}
+			return verificaciones;
+		} catch (NoResultException ex) {
+			throw new BusinessException("No hay Verificaciones Registradas.");
+		}
+	}
+	
+	/*******Obtiene la lista de aquellos usuarios que coincidan con el parametro recibido********/
+	public List<VerificacionVehiculo> obtenerVerificacionesFiltro(String parametroBusqueda) {
+		try {
+			List<VerificacionVehicularEntity> verificacionesEntity = vVehicularQuery.obtenerVerificaconesFiltro(parametroBusqueda);
+			List<VerificacionVehiculo> verificaciones = new ArrayList<>();
+			
+			for (VerificacionVehicularEntity verificacionEntity : verificacionesEntity) {
+				VerificacionVehiculo verificacion = new VerificacionVehiculo();
+				verificacion = verificacion.verificacionVehiculoEntity(verificacionEntity);
+				verificaciones.add(verificacion);
+			}
+			return verificaciones;
+		} catch (NoResultException ex) {
+			throw new BusinessException("No hay Verificaciones Registradas.");
+		}
 	}
 
 }

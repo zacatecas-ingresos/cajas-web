@@ -1,9 +1,11 @@
 package cajas.persistence.query;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import cajas.persistence.entity.UsuarioEntity;
 import cajas.persistence.entity.VerificacionVehicularEntity;
 
 public class VerificacionVehicularQuery {
@@ -67,6 +69,23 @@ public class VerificacionVehicularQuery {
 		
 		return noSeguimientoQuery.toString();
 	}
+	
+	/**
+	Funcion que obtiene todas las verificaciones
+	@return Arreglo de Verificaciones
+	*/	
+	public List<VerificacionVehicularEntity> obtenerVerificaciones() {
+		List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity", VerificacionVehicularEntity.class)
+				.getResultList();
+		return verificaciones;
+	}
+	
+	public List<VerificacionVehicularEntity> obtenerVerificaconesFiltro(String parametroBusqueda) {
+		List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity vV WHERE vV.vinVehiculo LIKE :parametroBusqueda", VerificacionVehicularEntity.class)
+				.setParameter("parametroBusqueda","%"+ parametroBusqueda+"%").getResultList();
+		return verificaciones;
+	}
+	
 	
 
 }

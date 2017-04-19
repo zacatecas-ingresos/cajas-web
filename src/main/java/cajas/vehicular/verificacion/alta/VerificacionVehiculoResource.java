@@ -1,6 +1,7 @@
 package cajas.vehicular.verificacion.alta;
 import java.io.Console;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
@@ -14,6 +15,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import cajas.exception.BusinessException;
+import cajas.seguridad.usuario.Usuario;
 
 @Path("/vehicular/verificacion")
 public class VerificacionVehiculoResource {
@@ -79,6 +81,36 @@ public class VerificacionVehiculoResource {
 			return Response.ok(resultado).build();
 		}
 	}
+	
+	/*****Obtiene los usuarios registrados*********/
+	@GET
+	@Path("/obtenerVerificaciones")
+	@Produces({ "application/json" })
+	public Response obtenerVerificaciones() {
+		try {
+			List<VerificacionVehiculo> verificaciones = verificacionVehiculoEjb.obtenerVerificaciones();
+			return Response.ok(verificaciones).build();
+		} catch (BusinessException ex) {
+			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+		}
+	}
+	
+	/************Obtiene una lista de usuarios de acuerdo al paramtero recibida y 
+	 * encontrando aquellos que coinciden
+	 */
+	@GET
+	@Path("/buscarPorCriterio")
+	@Produces({"application/json"})
+	public Response buscarPorCriterio(@QueryParam("parametro")String parametroBusqueda){
+		try{
+			List<VerificacionVehiculo> verificaciones = verificacionVehiculoEjb.obtenerVerificacionesFiltro(parametroBusqueda);
+			return Response.ok(verificaciones).build();
+		}catch(BusinessException ex){
+			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+		}
+	}
+	
+	
 	
 	
 }

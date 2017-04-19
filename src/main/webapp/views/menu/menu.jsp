@@ -61,6 +61,9 @@
 						<li><a><i class="fa fa-search" aria-hidden="true"></i> <span>Verificaciones</span></a>
 							<ul class="treeview-menu">
 								<li><a
+									href="${pageContext.request.contextPath}/views/verificacion/verificaciones.jsp"><span>Adminstrar
+											Verificaciones</span> </a></li>
+								<li><a
 									href="${pageContext.request.contextPath}/views/verificacion/altaVerificacion.jsp"><span>Crear
 											Verificación</span> </a></li>
 							</ul></li>

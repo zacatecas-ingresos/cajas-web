@@ -18,7 +18,7 @@ import cajas.exception.BusinessException;
 import cajas.persistence.entity.VerificadorEntity;
 
 @Path("/verificadores")
-public class VerificadorResources {
+public class VerificadorResource {
 	@EJB
 	VerificadorEJB verificadorEJB;
 

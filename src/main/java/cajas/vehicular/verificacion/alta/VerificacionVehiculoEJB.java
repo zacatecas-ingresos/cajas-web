@@ -122,9 +122,9 @@ public class VerificacionVehiculoEJB {
 	}
 	
 	/*******Obtiene la lista de aquellos usuarios que coincidan con el parametro recibido********/
-	public List<VerificacionVehiculo> obtenerVerificacionesFiltro(String parametroBusqueda) {
+	public List<VerificacionVehiculo> obtenerVerificacionesFiltro(String vin, Integer estatusVerificacion) {
 		try {
-			List<VerificacionVehicularEntity> verificacionesEntity = vVehicularQuery.obtenerVerificaconesFiltro(parametroBusqueda);
+			List<VerificacionVehicularEntity> verificacionesEntity = vVehicularQuery.obtenerVerificaconesFiltro(vin, estatusVerificacion);
 			List<VerificacionVehiculo> verificaciones = new ArrayList<>();
 			
 			for (VerificacionVehicularEntity verificacionEntity : verificacionesEntity) {

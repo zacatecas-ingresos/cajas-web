@@ -117,26 +117,25 @@
 								</div>
 								<!--Fin botón nuevo marcas -->
 
-								<br />
-								<br />
+								<br /> <br />
 
 								<div class="row">
-									<div class="col-xs-2" style="text-align: center;"></div>
+									<div class="col-xs-1" style="text-align: center;"></div>
 									<div class="col-xs-3 " style="text-align: center;">
-										<label for="search" class="control-label"><span
-											class="glyphicon glyphicon-search" aria-hidden="true"></span>
-											Busqueda:</label> <input type="text" class="form-control"
+										<label for="search" class="control-label">
+											VIN:</label> <input type="text" class="form-control"
 											data-toggle="tooltip" data-placement="top"
-											title="Ingrese Criterio de busqueda" id="search"
+											title="Ingrese VIN" id="search"
 											name="search" placeholder="VIN...">
 									</div>
-									<div class="col-xs-3">
+									<div class="col-xs-4">
 										<div class="form-group">
 											<label for="selectEstatusVerificacion" class="control-label">Estatus
-												Verificacion</label> <select class="form-control"
+												Verificacion:</label> <select class="form-control"
 												id="selectEstatusVerificacion"
 												name="selectEstatusVerificacion">
-												<option value="1" selected>CAPTURADA</option>
+												<option value="0" selected>TODOS</option>
+												<option value="1" >CAPTURADA</option>
 												<option value="2">AUTORIZADA</option>
 												<option value="3">TERMINADA</option>
 												<option value="4">RECHAZADA MINISTERIO</option>
@@ -148,10 +147,9 @@
 											</select>
 										</div>
 									</div>
-									<div class="col-xs-2" style="text-align: center;"></div>
+									<div class="col-xs-1" style="text-align: center;"></div>
 								</div>
-								<br />
-								<br />
+								<br /> <br />
 
 								<!-- Tabla Marcas -->
 								<div class="col-md-12">
@@ -160,9 +158,9 @@
 										<thead>
 											<tr class="bg-primary">
 												<th style="display: none;">ID</th>
-												<th>No. SEGUIMIENTO</th>
+												<th>No. Seguimiento</th>
 												<th>VIN</th>
-												<th>ESTATUS</th>
+												<th>Estatus</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -303,29 +301,31 @@ $(document).ready(function(){
 
 
 	//Filtro de búsqueda
-	
-	
+		
 		$( "#selectEstatusVerificacion" ).change(function() {
-	  		//alert( "Handler for .change() called." );
+			var estatusVerificacion = $('#selectEstatusVerificacion').val();
+			var search= $('#search').val();
+			busca(search,estatusVerificacion);
+		});
+		
+		$('#search').on('keyup',function(){		
+			var estatusVerificacion = $('#selectEstatusVerificacion').val();
+			var search= $('#search').val();		
+			busca(search,estatusVerificacion);		
 		});
 	
-	
-	
-	$('#search').on('keyup blur',function(){
-		
-		var input= $('#search').val();
-
+	function busca(search,estatusVerificacion){
 		var table = $('#tablaVerificacion').find('tbody').find('tr');
 
 		var urlGet;
 		var urlBusqueda = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/buscarPorCriterio/";
-		var urlBusqueda = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/buscarPorCriterio/"+"?parametro="+input;
-
-		if(input === null){
-			urlGet = urlBusqueda;
+		var urlBusqueda = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/buscarPorCriterio/"+"?vin="+search+"&estatusVerificacion="+estatusVerificacion;
+				
+		if(search === null){
+			var urlGet = urlBusqueda
 		}else{
-			urlGet = urlBusqueda;
-		}	
+			var urlGet = urlBusqueda
+		}
 		
 		$.ajax({
 				type: "GET",
@@ -338,8 +338,7 @@ $(document).ready(function(){
 					console.log(textStatus+ " "+ errorThrown);
 				}
 		});
-			
-	});
+	}
 	
 	//Mantiene seleccionada una fila cambiando de color	
 	$('tbody').on("click", "tr", function(event) {

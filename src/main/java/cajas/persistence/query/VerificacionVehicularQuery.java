@@ -80,10 +80,18 @@ public class VerificacionVehicularQuery {
 		return verificaciones;
 	}
 	
-	public List<VerificacionVehicularEntity> obtenerVerificaconesFiltro(String parametroBusqueda) {
-		List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity vV WHERE vV.vinVehiculo LIKE :parametroBusqueda", VerificacionVehicularEntity.class)
-				.setParameter("parametroBusqueda","%"+ parametroBusqueda+"%").getResultList();
-		return verificaciones;
+	public List<VerificacionVehicularEntity> obtenerVerificaconesFiltro(String vin, Integer estatusVerificacion) {
+		
+		if(estatusVerificacion == 0){
+			List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity vV WHERE LOWER(vV.vinVehiculo) LIKE :vin", VerificacionVehicularEntity.class)
+					.setParameter("vin","%"+ vin+"%").getResultList();
+			return verificaciones;
+		}else{		
+			List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity vV WHERE LOWER(vV.vinVehiculo) LIKE :vin AND vV.estatusVerificacion =:parametroEstatusVerificacion", VerificacionVehicularEntity.class)
+					.setParameter("vin", "%"+ vin+"%").setParameter("parametroEstatusVerificacion", estatusVerificacion).getResultList();
+			return verificaciones;
+		}
+
 	}
 	
 	

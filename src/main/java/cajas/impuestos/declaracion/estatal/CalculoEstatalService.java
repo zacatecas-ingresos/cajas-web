@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.joda.time.DateTime;
+
 import cajas.actualizacionesrecargos.calculo.ActualizacionRecargo;
 import cajas.actualizacionesrecargos.calculo.ActualizacionesRecargosService;
 import cajas.actualizacionesrecargos.calculo.ContribucionFiscal;
@@ -17,6 +19,7 @@ import cajas.persistence.entity.CalculoTemporalEstatalEntity;
 import cajas.persistence.entity.PeriodosEntity;
 import cajas.util.FechaUtil;
 import cajas.util.ValidacionUtil;
+import cajas.util.VencimientoObligacion;
 
 public class CalculoEstatalService {
 	@PersistenceContext(name = "sitDS")
@@ -27,6 +30,9 @@ public class CalculoEstatalService {
 
 	@Inject
 	private ImporteImpuestoService calculoImpuestoService;
+
+	@Inject
+	private VencimientoObligacion vencimientoObligacion;
 
 	protected List<Contribuyente> consultarContribuyentePorCriterio(String criterio) {
 		List<Contribuyente> contribuyentes = new ArrayList<>();
@@ -68,6 +74,8 @@ public class CalculoEstatalService {
 		// Verificar los tipos de datos
 		BigDecimal impuesto = BigDecimal.ZERO;
 		BigDecimal uaz = BigDecimal.ZERO;
+		BigDecimal actualizacion = BigDecimal.ZERO;
+		BigDecimal recargo = BigDecimal.ZERO;
 
 		impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(),
 				declaracion.getEjercicioFiscal(), declaracion.getPeriodo(), TipoTasa.TASA_NOMINA);
@@ -75,44 +83,30 @@ public class CalculoEstatalService {
 		uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(),
 				declaracion.getPeriodo(), TipoTasa.TASA_UAZ);
 
-		ContribucionFiscal contribucionFiscal = new ContribucionFiscal();
-		
-		Periodo periodoActualizacion = new Periodo();
-		
-		periodoActualizacion.setEjercicioInicial(declaracion.getEjercicioFiscal());
-		periodoActualizacion.setMesInicial(declaracion.getPeriodo());
-				
-		periodoActualizacion.setEjercicioFinal(FechaUtil.ejercicioActual());
-		periodoActualizacion.setMesFinal(mesActual);
-		
-		contribucionFiscal.setPeriodoActualizacion(periodoActualizacion);
+		// Validar si la obligación ha vencido para saber si se aplica
+		// actualización y recargo
+		if (vencimientoObligacion.haVencidoObligacion(declaracion.getIdObligacion(), periodo.getIdMes(),
+				declaracion.getEjercicioFiscal())) {
 
-		Periodo periodoRecargo = new Periodo();
+			ContribucionFiscal contribucionFiscal = new ContribucionFiscal();
+			Periodo periodoActualizacion = generarPeriodoActualizacionEstatal(declaracion.getEjercicioFiscal(),
+					periodo.getIdMes());
+			Periodo periodoRecargo = generarPeriodoRecargoEstatal(declaracion.getEjercicioFiscal(), periodo.getIdMes());
+			contribucionFiscal.setPeriodoActualizacion(periodoActualizacion);
+			contribucionFiscal.setPeriodoRecargo(periodoRecargo);
+			contribucionFiscal.setCantidadAdeuda(impuesto);
 
-		periodoRecargo.setEjercicioInicial(declaracion.getEjercicioFiscal());
-		periodoRecargo.setMesInicial(declaracion.getPeriodo());
-		
-		periodoRecargo.setEjercicioFinal(FechaUtil.ejercicioActual());
-		periodoRecargo.setMesFinal(mesActual);
-		
-		contribucionFiscal.setPeriodoRecargo(periodoRecargo);
-		
-		contribucionFiscal.setCantidadAdeuda(declaracion.getTotalErogaciones());
+			ActualizacionRecargo actualizacionRecargo = actualizacionesRecargosService
+					.calculoActualizacion(contribucionFiscal);
 
-		ActualizacionRecargo actualizacionRecargo = new ActualizacionRecargo();
-		try {
-			actualizacionRecargo = actualizacionesRecargosService.calculoActualizacion(contribucionFiscal);
-		} catch (BusinessException ex) {
-			throw new BusinessException(ex.getMessage());
+			actualizacion = actualizacionRecargo.getImporteActualizacion();
+			recargo = actualizacionRecargo.getImporteRecargo();
 		}
 
-		BigDecimal actualizaciones = actualizacionRecargo.getImporteActualizacion();
-		BigDecimal recargos = actualizacionRecargo.getImporteRecargo();
-		
-		BigDecimal total = impuesto.add(uaz).add(actualizaciones).add(recargos);
-	
+		BigDecimal total = impuesto.add(uaz).add(actualizacion).add(recargo);
+
 		CalculoTemporalEstatalEntity calculoTemporal = new CalculoTemporalEstatalEntity();
-		calculoTemporal.setActualizaciones(actualizaciones);
+		calculoTemporal.setActualizaciones(actualizacion);
 		calculoTemporal.setBaseGravable(declaracion.getTotalErogaciones());
 		calculoTemporal.setEjercicioFiscal(declaracion.getEjercicioFiscal());
 		calculoTemporal.setFechaCalculo(FechaUtil.fechaActual());
@@ -123,7 +117,7 @@ public class CalculoEstatalService {
 		calculoTemporal.setIdUsuario(idUsuarioLogeado);
 		calculoTemporal.setImpuesto(impuesto);
 		calculoTemporal.setNumeroEmpleados(declaracion.getNumeroEmpleados());
-		calculoTemporal.setRecargos(recargos);
+		calculoTemporal.setRecargos(recargo);
 		calculoTemporal.setTipoDeclaracion(declaracion.getIdTipoDeclaracion());
 		calculoTemporal.setTotal(total);
 		calculoTemporal.setUaz(uaz);
@@ -134,8 +128,8 @@ public class CalculoEstatalService {
 		impuestoEstatal.setIdCalculoTemporal(calculoTemporal.getIdCalculoTemporal());
 		impuestoEstatal.setImpuesto(impuesto);
 		impuestoEstatal.setUaz(uaz);
-		impuestoEstatal.setActualizaciones(actualizaciones);
-		impuestoEstatal.setRecargos(recargos);
+		impuestoEstatal.setActualizaciones(actualizacion);
+		impuestoEstatal.setRecargos(recargo);
 		return impuestoEstatal;
 	}
 
@@ -144,7 +138,7 @@ public class CalculoEstatalService {
 		if (!ValidacionUtil.esNumeroPositivo(declaracion.getEjercicioFiscal())) {
 			throw new BusinessException("El ejercicio fiscal es requerido.");
 		}
-		
+
 		if (!ValidacionUtil.esNumeroPositivo(declaracion.getPeriodo())) {
 			throw new BusinessException("El periodo es requerido.");
 		}
@@ -187,13 +181,32 @@ public class CalculoEstatalService {
 
 	}
 
-	private Periodo generarPeriodoRecargoEstatal() {
-		return null;
+	private Periodo generarPeriodoRecargoEstatal(int ejercicioFiscalDeclarado, int mesDeclarado) {
+		Periodo periodoRecargo = new Periodo();
+		DateTime fechaInicial = new DateTime(ejercicioFiscalDeclarado, mesDeclarado, 1, 0, 0, 0, 0);
+		fechaInicial = fechaInicial.plusMonths(1);
+		DateTime fechaFinal = FechaUtil.fechaActualSinTiempo();
+		if (fechaFinal.getDayOfMonth() < 21) {
+			fechaFinal = fechaFinal.minusMonths(1);
+		}
+		periodoRecargo.setEjercicioInicial(fechaInicial.getYear());
+		periodoRecargo.setMesInicial(fechaInicial.getMonthOfYear());
+		periodoRecargo.setEjercicioFinal(fechaFinal.getYear());
+		periodoRecargo.setMesFinal(fechaFinal.getMonthOfYear());
+		return periodoRecargo;
 	}
 
-	private Periodo generarPeriodoActualizacionEstatal() {
-		return null;
+	private Periodo generarPeriodoActualizacionEstatal(int ejercicioFiscalDeclarado, int mesDeclarado) {
+		DateTime fechaInicial = new DateTime(ejercicioFiscalDeclarado, mesDeclarado, 1, 0, 0, 0);
+		DateTime fechaFinal = FechaUtil.fechaActualSinTiempo();
+		fechaFinal = fechaFinal.minusMonths(1);
+
+		Periodo periodoActualizacion = new Periodo();
+		periodoActualizacion.setMesInicial(fechaInicial.getMonthOfYear());
+		periodoActualizacion.setEjercicioInicial(fechaInicial.getYear());
+		periodoActualizacion.setEjercicioFinal(fechaFinal.getYear());
+		periodoActualizacion.setMesFinal(fechaFinal.getMonthOfYear());
+		return periodoActualizacion;
 	}
-	
-	
+
 }

@@ -48,5 +48,31 @@ public class VencimientoObligacion {
 		
 		return vencido;
 	}
+	
+	//Se aplica el recargo el dia 20 del mes siguiente al periodo declarado.
+    public boolean aplicaRecargo(Integer anyoFiscalDeclarado, Integer periodoDeclarado){
+    	boolean aplica = false;
+    	DateTime fechaLimite = new DateTime(anyoFiscalDeclarado, periodoDeclarado, 20,0,0,0,0);
+    	         fechaLimite = fechaLimite.plusMonths(1);
+    	//System.out.println(fechaLimite.toString());
+    	         fechaLimite =  diasNoLaboralesQuery.siguienteDiaHabil(fechaLimite);
+    	//System.out.println("con dias" + fechaLimite.toString());
+    	if(FechaUtil.fechaActualSinTiempo().compareTo(fechaLimite) == 1){
+    		aplica = true;
+    	}    
+    	
+ 	    return aplica;
+    }
+    
+    //Se aplica la actualizacion al segundo mes del periodo declarado.
+    public boolean aplicaActualizacion(Integer anyoFiscalDeclarado, Integer periodoDeclarado){
+    	boolean aplica = false;
+    	DateTime fechaLimite = new DateTime(anyoFiscalDeclarado, periodoDeclarado, 1,0,0,0,0);
+    	         fechaLimite = fechaLimite.plusMonths(2);
+    	if(FechaUtil.fechaActualSinTiempo().compareTo(fechaLimite) == 1){
+    		aplica = true;
+    	}   
+    	return aplica;
+    }
 
 }

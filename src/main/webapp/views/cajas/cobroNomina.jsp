@@ -97,7 +97,7 @@
 				<div class="row"> 
 					
 					<div class="col-md-12">
-						<div class="box box-primary">
+						<div class="box box-primary" id="busqueda">
 							
 							<div class="box-header">
 								<h3 class="box-title">Datos Generales</h3>
@@ -132,7 +132,7 @@
 								<br /> <br />
 							</div>
 							
-							<div class="box-footer">
+							<div class="box-footer"  id="resultadoBusqueda" >
 								<div class="col-md-12">
 									<table id="tablaContribuyente"
 										class="tablaUsuarios table table-bordered table-hover">
@@ -150,7 +150,7 @@
 									</table>
 								</div>								
 								<br /> <br />
-								<button type="button" class="btn btn-primary glyphicon glyphicon-eye-open" id="seleccionarContribuyente">&nbsp;Ver contribuyente</button>
+								<button type="button" class="btn btn-primary glyphicon glyphicon-eye-open" id="seleccionarContribuyente">&nbsp;Ver Contribuyente</button>
 							</div>
 						</div>
 					</div>
@@ -350,7 +350,11 @@
 							  </form>
 							</div>
 							<!-- /.box-body -->
-							<div class="box-footer clearfix">
+							<div class="box-footer">
+									<button type="button" id="cancelar-btn"
+											class="btn btn-danger btn-lg pull-left">
+											<i class="fa fa-close"></i> Cancelar
+									</button>
 									<button type="button" id="calcular-btn"
 											class="btn btn-success btn-lg pull-right">
 										<i class="fa fa-credit-card"></i> Calcular
@@ -443,6 +447,7 @@
 		$('#panelContribuyente').hide();
 		$('#panelCalculos').hide();
 		$('#panelComplementaria').hide();
+		$('#resultadoBusqueda').hide();
 						
 		obtenerCriterioBusqueda();
 		obtenerDeclaracion();
@@ -495,7 +500,9 @@
 				$(tr).append("<td class="+"activo" +" >" + "<img src="+estatusUsuario(data[i].activo)+" style="+"width:30px; height:auto;" + "></img></td>");
 				$('#tablaContribuyente > tbody').append(tr);
 			}								
-																		
+					
+			$('#resultadoBusqueda').show();	
+
 		});
 		
 
@@ -536,8 +543,12 @@
 								
 								
 				$('#panelContribuyente').show();
-				$('#panelCalculos').show();				
-				}
+				$('#panelCalculos').show();	
+				$('#panelComplementaria').hide();
+				$('#resultadoBusqueda').hide();
+				$('#busqueda').hide();
+
+		}
 
 
 
@@ -727,8 +738,6 @@
 			var tipoDeclaracion= $('#selectDeclaracion');
 			var numeroEmpleados = $('#inputEmpleados');
 
-			console.log("MES::::" + mes.val());
-
 			datos.periodo = mes.val();
 			datos.ejercicioFiscal = parseInt(ejercicioFiscal.val());
 			datos.totalErogaciones = totalErogaciones.val();
@@ -763,6 +772,14 @@
 		}
 	});
 	
+
+	$('#cancelar-btn').click(function() {
+		$('#panelContribuyente').hide();
+		$('#panelCalculos').hide();
+		$('#panelComplementaria').hide();
+		$('#busqueda').show();
+		$('#resultadoBusqueda').show();
+	});
 
 	//colocar valores despues de realizar el calculo
 	function colocarValores(data){	

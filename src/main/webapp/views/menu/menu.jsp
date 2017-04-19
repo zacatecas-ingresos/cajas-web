@@ -45,7 +45,7 @@
 			</ul></li>
 	</ul>
 	<ul class="sidebar-menu">
-		<li><a> <i class="fa fa-file-o" aria-hidden="true"></i> <span>Cajas</span>
+		<li><a> <i class="fa fa-money" aria-hidden="true"></i> <span>Cajas</span>
 		</a>
 			<ul class="treeview-menu">
 				<li><a

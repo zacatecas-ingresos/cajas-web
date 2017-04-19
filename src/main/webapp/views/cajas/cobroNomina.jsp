@@ -102,34 +102,35 @@
 							<div class="box-header">
 								<h3 class="box-title">Datos Generales</h3>
 							</div>
-							
 							<div class="box-body">
-								<div class="col-md-6">
-									<form class="form-inline">
-										<div class="form-group">
-											<label for="selectCriterio">Criterio Búsqueda:</label> <select
-													class="form-control" id="selectCriterio">
+									<div class="row">
+										<div class="col-md-2">
+											<div class="form-group">
+												<label for="selectCriterio">Criterio Búsqueda:</label> 
+											</div>
+										</div>
+										<div class="col-md-4">
+											<select
+												class="form-control" id="selectCriterio">
 												<option value="" selected="selected">Seleccione
-													una opción</option>
-												</select>
-												
+												una opción</option>
+												</select>	
 										</div>
-											
-										<div class="form-group">
-											<input type="text" class="form-control" id="inputCriterio"
+										<div class="col-md-4">
+											<div class="form-group">
+												<input type="text" class="form-control" id="inputCriterio"
 												placeholder="Ingrese criterio busqueda">
+											</div>
 										</div>
-											
-										<button type="button"
+										<div class="col-md-2">
+											<button type="button"
 											class="btn btn-sm btn-success glyphicon glyphicon-search"
 											id="btnBuscar">
-										</button>
-												
-									</form>
-								</div>
+											</button>
+										</div>
+									</div>
 								<br /> <br />
 							</div>
-
 							
 							<div class="box-footer">
 								<div class="col-md-12">

@@ -40,7 +40,9 @@
 	rel="stylesheet" type="text/css">
 
 <!-- jquery-ui.css -->
-	<link href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<link
+	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css"
+	rel="stylesheet" type="text/css" />
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -86,219 +88,222 @@
 
 			<!-- Main content Alta Vehiculo -->
 			<section class="content">
-				<!-- Main row -->
-				<div class="col-md-12" id="div2">
+				<div class="row">
+					<!-- Main row -->
+					<div class="col-md-12" id="div2">
 
-					<div class="box box-primary">
+						<div class="box box-primary">
 
-						<div class="box-body">
+							<div class="box-body">
 
-							<form id="form-vehiculos">
+								<form id="form-vehiculos">
 
-								<div class="col-md-12">
+									<div class="col-md-12">
 
-									<div class="row">
-										<div class="col-md-3">
-											<div class="form-group">
-												<label for="selectOficina" class="control-label">Oficina
-													Verificacion</label> <select class="form-control"
-													id="selectOficina" name="selectOficina" disabled required>
-													<option value="1" selected>ZACATECAS</option>
-												</select>
+										<div class="row">
+											<div class="col-md-3">
+												<div class="form-group">
+													<label for="selectOficina" class="control-label">Oficina
+														Verificacion</label> <select class="form-control"
+														id="selectOficina" name="selectOficina" disabled required>
+														<option value="1" selected>ZACATECAS</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label for="inputEjercicio" class="control-label">Ejercicio</label>
+													<input id="inputEjercicio" name="inputEjercicio"
+														type="text" class="form-control" maxlength="4"
+														placeholder="Ejercicio" value="2017" name="inputEjercicio"
+														disabled required>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label for="selectTipoVerificacion" class="control-label">Tipo
+														Verificación</label> <select class="form-control"
+														id="selectTipoVerificacion" name="selectTipoVerificacion"
+														disabled required>
+														<option value="0" selected>MEXICANOS</option>
+														<option value="1">EXTRANJEROS</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label for="selectEstatusVerificacion"
+														class="control-label">Estatus Verificacion</label> <select
+														class="form-control" id="selectEstatusVerificacion"
+														name="selectEstatusVerificacion" disabled required>
+														<option value="1" selected>CAPTURADA</option>
+														<option value="2">AUTORIZADA</option>
+														<option value="3">TERMINADA</option>
+														<option value="4">RECHAZADA MINISTERIO</option>
+														<option value="5">RECHAZADA VERIFICACIO</option>
+														<option value="6">PAGADO</option>
+														<option value="7">PAGA DESPUES</option>
+														<option value="8">CONDONADO</option>
+														<option value="9">CANCELADO</option>
+													</select>
+												</div>
 											</div>
 										</div>
-										<div class="col-md-3">
-											<div class="form-group">
-												<label for="inputEjercicio" class="control-label">Ejercicio</label>
-												<input id="inputEjercicio" name="inputEjercicio" type="text"
-													class="form-control" maxlength="4" placeholder="Ejercicio"
-													value="2017" name="inputEjercicio" disabled required>
+										<fieldset>
+											<legend>Vehiculo</legend>
+											<div class="row">
+												<div class="col-md-4">
+													<div class="form-group">
+														<label for="inputVin" class="control-label">Serie
+															(VIN)</label> <input id="inputVin" name="inputVin" type="text"
+															class="form-control" maxlength="17"
+															placeholder="Serie (VIN)" required>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label for="inputNumeroMotor" class="control-label">Numero
+															Motor</label> <input id="inputNumeroMotor"
+															name="inputNumeroMotor" type="text" class="form-control"
+															maxlength="17" placeholder="Numero Motor" required>
+													</div>
+												</div>
+
+												<div class="col-md-4">
+													<div class="form-group">
+														<label for="criterioMarca" class="control-label">Marca</label>
+														<input id="criterioMarca" class="form-control"> <input
+															id="idMarcaVehiculo" type="hidden">
+													</div>
+												</div>
 											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="form-group">
-												<label for="selectTipoVerificacion" class="control-label">Tipo
-													Verificación</label> <select class="form-control"
-													id="selectTipoVerificacion" name="selectTipoVerificacion"
-													disabled required>
-													<option value="0" selected>MEXICANOS</option>
-													<option value="1">EXTRANJEROS</option>
-												</select>
+											<div class="row">
+												<div class="col-md-2">
+													<div class="form-group">
+														<label for="inputModelo" class="control-label">Modelo</label>
+														<input id="inputModelo" name="inputModelo" type="text"
+															class="form-control" maxlength="4" placeholder="Modelo"
+															name="inputModelo" required>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="form-group">
+														<label for="selectClase" class="control-label">Clase</label>
+														<select class="form-control" id="selectClase"
+															name="selectClase" required>
+															<option value="1">AUTOMOVIL</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="form-group">
+														<label for="selectTipo" class="control-label">Tipo</label>
+														<select class="form-control" id="selectTipo"
+															name="selectTipo" required>
+															<option value="1">VAGONETA</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label for="inputLinea" class="control-label">Linea</label>
+														<input class="form-control" id="inputLinea"
+															name="inputLinea" required>
+													</div>
+												</div>
 											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="form-group">
-												<label for="selectEstatusVerificacion" class="control-label">Estatus
-													Verificacion</label> <select class="form-control"
-													id="selectEstatusVerificacion"
-													name="selectEstatusVerificacion" disabled required>
-													<option value="1" selected>CAPTURADA</option>
-													<option value="2">AUTORIZADA</option>
-													<option value="3">TERMINADA</option>
-													<option value="4">RECHAZADA MINISTERIO</option>
-													<option value="5">RECHAZADA VERIFICACIO</option>
-													<option value="6">PAGADO</option>
-													<option value="7">PAGA DESPUES</option>
-													<option value="8">CONDONADO</option>
-													<option value="9">CANCELADO</option>
-												</select>
+										</fieldset>
+										<fieldset>
+											<legend>Documentación Recibida</legend>
+
+
+											<div class="row">
+												<div class="col-md-4">
+													<label class="checkbox-inline"><input
+														id="facturaVehiculoDocumentacionInput" type="checkbox"
+														value="1">Factura (Titulo y Pedimiento)</label>
+												</div>
+												<div class="col-md-4">
+													<label class="checkbox-inline"><input
+														id="identificacionOficialDocumentacion" type="checkbox"
+														value="1">Identificacion Oficial</label>
+												</div>
+												<div class="col-md-4">
+													<label class="checkbox-inline"><input
+														id="comprobanteDomicilioDocumentacionInput"
+														type="checkbox" value="1">Comprobante de Domicilio</label>
+												</div>
 											</div>
-										</div>
+											<div class="row">
+												<div class="col-md-4">
+													<label class="checkbox-inline"><input
+														id="rfcPersonaMoralDocumentacionInput" type="checkbox"
+														value="1">RFC (Persona Moral)</label>
+												</div>
+												<div class="col-md-4">
+													<label class="checkbox-inline"><input
+														id="identificacionRepresentanteLegalDocumentacionInput"
+														type="checkbox" value="1">Identificacion Oficial
+														Rep. Legal</label>
+												</div>
+											</div>
+										</fieldset>
+										<br>
+										<fieldset>
+											<legend>Comprobantes de Pago</legend>
+											<div id="comprobantes" class="form-group"></div>
+										</fieldset>
+										<br>
+										<fieldset>
+											<legend>Persona Tramite</legend>
+											<div class="row">
+												<div class="col-md-4">
+													<div class="form-group">
+														<label for="inputNombrePersona" class="control-label">Persona</label>
+														<input class="form-control" id="inputNombrePersona"
+															name="inputNombrePersona" placeholder="Nombre">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label for="inputApellidoPaterno" class="control-label">Apellido
+															Paterno</label> <input class="form-control"
+															id="inputApellidoPaterno" name="inputApellidoPaterno"
+															placeholder="Apellido Paterno">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label for="inputApellidoMaterno" class="control-label">Apellido
+															Materno</label> <input class="form-control"
+															id="inputApellidoMaterno" name="inputApellidoMaterno"
+															placeholder="Apellido Materno">
+													</div>
+												</div>
+											</div>
+
+										</fieldset>
+
 									</div>
-									<fieldset >
-										<legend>Vehiculo</legend>
-										<div class="row">
-											<div class="col-md-4">
-												<div class="form-group">
-													<label for="inputVin" class="control-label">Serie
-														(VIN)</label> <input id="inputVin" name="inputVin" type="text"
-														class="form-control" maxlength="17"
-														placeholder="Serie (VIN)" required>
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="form-group">
-													<label for="inputNumeroMotor" class="control-label">Numero
-														Motor</label> <input id="inputNumeroMotor" name="inputNumeroMotor"
-														type="text" class="form-control" maxlength="17"
-														placeholder="Numero Motor" required>
-												</div>
-											</div>
 
-											<div class="col-md-4">
-										         <div class="form-group">
-										           <label for="criterioMarca" class="control-label">Marca</label>
-										           <input id="criterioMarca" class="form-control">
-										           <input id="idMarcaVehiculo" type="hidden" >
-										         </div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-2">
-												<div class="form-group">
-													<label for="inputModelo" class="control-label">Modelo</label>
-													<input id="inputModelo" name="inputModelo" type="text"
-														class="form-control" maxlength="4" placeholder="Modelo"
-														name="inputModelo" required>
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label for="selectClase" class="control-label">Clase</label>
-													<select class="form-control" id="selectClase"
-														name="selectClase" required>
-														<option value="1">AUTOMOVIL</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label for="selectTipo" class="control-label">Tipo</label>
-													<select class="form-control" id="selectTipo"
-														name="selectTipo" required>
-														<option value="1">VAGONETA</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="form-group">
-													<label for="inputLinea" class="control-label">Linea</label>
-													<input class="form-control" id="inputLinea"
-														name="inputLinea" required>
-												</div>
-											</div>
-										</div>
-									</fieldset>
-									<fieldset>
-										<legend>Documentación Recibida</legend>
+								</form>
 
+							</div>
+							<div class="box-footer">
+								<button id="cancel-btn" type="button"
+									class="btn btn-default btn-lg pull-left">
+									<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+									Cancelar
+								</button>
+								<button type="button" id="save-btn"
+									class="btn btn-success btn-lg pull-right">
+									<i class="fa fa-credit-card"></i> Guardar
+								</button>
+							</div>
 
-										<div class="row">
-											<div class="col-md-4">
-												<label class="checkbox-inline"><input
-													id="facturaVehiculoDocumentacionInput" type="checkbox"
-													value="1">Factura (Titulo y Pedimiento)</label>
-											</div>
-											<div class="col-md-4">
-												<label class="checkbox-inline"><input
-													id="identificacionOficialDocumentacion" type="checkbox"
-													value="1">Identificacion Oficial</label>
-											</div>
-											<div class="col-md-4">
-												<label class="checkbox-inline"><input
-													id="comprobanteDomicilioDocumentacionInput" type="checkbox"
-													value="1">Comprobante de Domicilio</label>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-4">
-												<label class="checkbox-inline"><input
-													id="rfcPersonaMoralDocumentacionInput" type="checkbox"
-													value="1">RFC (Persona Moral)</label>
-											</div>
-											<div class="col-md-4">
-												<label class="checkbox-inline"><input
-													id="identificacionRepresentanteLegalDocumentacionInput"
-													type="checkbox" value="1">Identificacion Oficial
-													Rep. Legal</label>
-											</div>
-										</div>
-									</fieldset>
-									<br>
-									<fieldset>
-										<legend>Comprobantes de Pago</legend>
-										<div id="comprobantes" class="form-group"></div>
-									</fieldset>
-									<br>
-									<fieldset>
-										<legend>Persona Tramite</legend>
-										<div class="row">
-											<div class="col-md-4">
-												<div class="form-group">
-													<label for="inputNombrePersona" class="control-label">Persona</label>
-													<input class="form-control" id="inputNombrePersona"
-														name="inputNombrePersona" placeholder="Nombre">
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="form-group">
-													<label for="inputApellidoPaterno" class="control-label">Apellido
-														Paterno</label> <input class="form-control"
-														id="inputApellidoPaterno" name="inputApellidoPaterno"
-														placeholder="Apellido Paterno">
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="form-group">
-													<label for="inputApellidoMaterno" class="control-label">Apellido
-														Materno</label> <input class="form-control"
-														id="inputApellidoMaterno" name="inputApellidoMaterno"
-														placeholder="Apellido Materno">
-												</div>
-											</div>
-										</div>
-
-									</fieldset>
-
-								</div>
-
-							</form>
-
-						</div>
-						<div class="box-footer clearfix">
-							<button id="cancel-btn" type="button"
-								class="btn btn-default btn-lg pull-left">
-								<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-								Cancelar
-							</button>
-							<button type="button" id="save-btn"
-								class="btn btn-success btn-lg pull-right">
-								<i class="fa fa-credit-card"></i> Guardar
-							</button>
 						</div>
 
 					</div>
-
 				</div>
 			</section>
 			<!-- Fin contenido Alta Vehiculo -->
@@ -414,11 +419,21 @@
 												var apellidoMaternoPersonaVerificacion = $('#inputApellidoMaterno');
 												var email = $('#inputEmail');
 
-									            var facturaVehiculoDocumentacion = $("#facturaVehiculoDocumentacionInput").is(':checked');
-									            var identificacionOficialDocumentacion = $("#identificacionOficialDocumentacion").is(':checked');
-									            var comprobanteDomicilioDocumentacion= $("#comprobanteDomicilioDocumentacionInput").is(':checked');
-									            var rfcPersonaMoralDocumentacion= $("#rfcPersonaMoralDocumentacionInput").is(':checked');
-									            var identificacionRepresentanteLegalDocumentacion = $("#identificacionRepresentanteLegalDocumentacionInput").is(':checked');
+												var facturaVehiculoDocumentacion = $(
+														"#facturaVehiculoDocumentacionInput")
+														.is(':checked');
+												var identificacionOficialDocumentacion = $(
+														"#identificacionOficialDocumentacion")
+														.is(':checked');
+												var comprobanteDomicilioDocumentacion = $(
+														"#comprobanteDomicilioDocumentacionInput")
+														.is(':checked');
+												var rfcPersonaMoralDocumentacion = $(
+														"#rfcPersonaMoralDocumentacionInput")
+														.is(':checked');
+												var identificacionRepresentanteLegalDocumentacion = $(
+														"#identificacionRepresentanteLegalDocumentacionInput")
+														.is(':checked');
 
 												var anioActualComprobantePago = 0;
 												var anio1ComprobantePago = 0;
@@ -529,7 +544,8 @@
 																swal(
 																		{
 																			text : "Verificación Vehicular registrada correctamente",
-																			title: "No Seguimiento: "+data.valor,
+																			title : "No Seguimiento: "
+																					+ data.valor,
 																			type : "success",
 																			closeOnCancel : false
 																		},
@@ -618,7 +634,7 @@
 														},
 													}
 												},
-												*/
+												 */
 												'inputNumeroMotor' : { //validación del campo
 													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
 													validators : { //validaciones
@@ -785,44 +801,45 @@
 		anioActualMenosCinco.appendTo('#comprobantes');
 	};
 
-
-
-
-
-$( function() {
-    $( "#criterioMarca" ).autocomplete({
-        source: function( request, response ) {
-        var criterio = $('#criterioMarca').val();
-        var urlGet = "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo/buscarPorCriterio/"+"?criterio="+criterio;
-           $.ajax( {
-            type: "GET",
-            dataType : 'json',
-            url: urlGet,
-            data: {
-               term: request.term
-            },
-        success: function( data ) {
-	        console.log("data:: " + data);
-	        response( $.map( data, function ( item ) {
-                    return {
-                     id:    item.idMarcaVehiculo,
-                        label: item.nombre,
-                        value: item.nombre
-                    };
-               }));
-           },
-            error : function(jqXHR,textStatus,errorThrown) {
-              console.log(textStatus+ " "+ errorThrown);
-            }
-          } );
-       },
-       minLength: 2,
-       select: function( event, ui ) {
-    	   $("#idMarcaVehiculo").val(ui.item.id); 
-           console.log( "Selected: " + ui.item.value + ", " + ui.item.label + ", " + ui.item.id );
-       }
-    });
-});
-
+	$(function() {
+		$("#criterioMarca")
+				.autocomplete(
+						{
+							source : function(request, response) {
+								var criterio = $('#criterioMarca').val();
+								var urlGet = "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo/buscarPorCriterio/"
+										+ "?criterio=" + criterio;
+								$.ajax({
+									type : "GET",
+									dataType : 'json',
+									url : urlGet,
+									data : {
+										term : request.term
+									},
+									success : function(data) {
+										console.log("data:: " + data);
+										response($.map(data, function(item) {
+											return {
+												id : item.idMarcaVehiculo,
+												label : item.nombre,
+												value : item.nombre
+											};
+										}));
+									},
+									error : function(jqXHR, textStatus,
+											errorThrown) {
+										console.log(textStatus + " "
+												+ errorThrown);
+									}
+								});
+							},
+							minLength : 2,
+							select : function(event, ui) {
+								$("#idMarcaVehiculo").val(ui.item.id);
+								console.log("Selected: " + ui.item.value + ", "
+										+ ui.item.label + ", " + ui.item.id);
+							}
+						});
+	});
 </script>
 </html>

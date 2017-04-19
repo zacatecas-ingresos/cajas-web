@@ -181,6 +181,8 @@ public class CalculoEstatalService {
 
 	}
 
+	
+	
 	private Periodo generarPeriodoRecargoEstatal(int ejercicioFiscalDeclarado, int mesDeclarado) {
 		Periodo periodoRecargo = new Periodo();
 		DateTime fechaInicial = new DateTime(ejercicioFiscalDeclarado, mesDeclarado, 1, 0, 0, 0, 0);

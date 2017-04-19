@@ -1,9 +1,11 @@
 package cajas.persistence.query;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import cajas.persistence.entity.UsuarioEntity;
 import cajas.persistence.entity.VerificacionVehicularEntity;
 
 public class VerificacionVehicularQuery {
@@ -31,8 +33,7 @@ public class VerificacionVehicularQuery {
 				.getSingleResult();
 		
 		return vVehiculo;
-	}
-	
+	}	
 	
 	/**
 	Funcion que genera el siguiente numero de seguimiento para las verificaciones
@@ -54,6 +55,37 @@ public class VerificacionVehicularQuery {
 		
 		return num;
 	}
+	
+	/**
+	Funcion que obtiene Vin para mostrar en SweetAler
+	@param vin
+	@return No Seguimiento
+	*/
+	public String obtenerNumeroSeguimiento(String vin) {
+		
+				
+		Integer noSeguimientoQuery = entityManager.createQuery("select u.noSeguimientoVerificacion FROM VerificacionVehicularEntity u WHERE u.vinVehiculo=:vin", Integer.class)
+				.setParameter("vin", vin).getSingleResult();		
+		
+		return noSeguimientoQuery.toString();
+	}
+	
+	/**
+	Funcion que obtiene todas las verificaciones
+	@return Arreglo de Verificaciones
+	*/	
+	public List<VerificacionVehicularEntity> obtenerVerificaciones() {
+		List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity", VerificacionVehicularEntity.class)
+				.getResultList();
+		return verificaciones;
+	}
+	
+	public List<VerificacionVehicularEntity> obtenerVerificaconesFiltro(String parametroBusqueda) {
+		List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity vV WHERE vV.vinVehiculo LIKE :parametroBusqueda", VerificacionVehicularEntity.class)
+				.setParameter("parametroBusqueda","%"+ parametroBusqueda+"%").getResultList();
+		return verificaciones;
+	}
+	
 	
 
 }

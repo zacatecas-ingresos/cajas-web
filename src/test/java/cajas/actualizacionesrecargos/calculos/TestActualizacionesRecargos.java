@@ -36,17 +36,14 @@ public class TestActualizacionesRecargos {
 
 		ContribucionFiscal contibucionFiscal = new ContribucionFiscal();
 		ActualizacionRecargo actualizacionRecargo = new ActualizacionRecargo();
-		contibucionFiscal.setaFiscalAdeudo(2017);
-		contibucionFiscal.setMesFiscalAdeudo(1);
+//		contibucionFiscal.setaFiscalAdeudo(2017);
+//		contibucionFiscal.setMesFiscalAdeudo(1);
 
 		contibucionFiscal.setCantidadAdeuda(new BigDecimal(16000));
 		
-		contibucionFiscal.setaFiscalPago(2017);
-		contibucionFiscal.setMesFiscalPago(3);
-		
-		contibucionFiscal.setPagoVencido(false);
-		contibucionFiscal.setTipoRecargo("MORA");
-
+//		contibucionFiscal.setaFiscalPago(2017);
+//		contibucionFiscal.setMesFiscalPago(3);
+//		
 		actualizacionRecargo  = actualizacionesRecargosService.calculoActualizacion(contibucionFiscal);
 				
 		Assert.assertEquals(actualizacionRecargo.getImporteActualizacion(), actualizacion);

@@ -6,7 +6,11 @@ import java.text.ParseException;
 import java.util.Date;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+
+import org.joda.time.DateTime;
 
 import cajas.exception.BusinessException;
 import cajas.persistence.entity.PeriodosEntity;
@@ -15,6 +19,9 @@ import cajas.persistence.query.PeriodosQuery;
 import cajas.persistence.query.TasaImpuestoQuery;
 
 public class ImporteImpuestoService {
+
+	@PersistenceContext(name = "sitDS")
+	private EntityManager entityManager;
 
 	@Inject
 	TasaImpuestoQuery tasaImpuestoQuery;
@@ -27,20 +34,24 @@ public class ImporteImpuestoService {
 	 * 
 	 * @throws ParseException
 	 */
-	public BigDecimal impuestoEstatal(BigDecimal baseGravable, Integer aFiscal, String periodo, Integer tipoPeriodo,
-			int tipoTasa) {
+	public BigDecimal impuestoEstatal(BigDecimal baseGravable, Integer aFiscal, int idPeriodo, int tipoTasa) {
 		try {
-	
+			PeriodosEntity periodo = entityManager.find(PeriodosEntity.class, idPeriodo);
+
 			BigDecimal impuesto = BigDecimal.ZERO;
 			BigDecimal tasa = BigDecimal.ZERO;
 
-			PeriodosEntity periodoEntity = periodosQuery.obtenerPeriodo(aFiscal, periodo, tipoPeriodo);
+			// Consultar la tasa vigente del periodo declarado
+			DateTime fechaInicio = new DateTime(periodo.getFechaInicio());
+			fechaInicio.withYear(aFiscal);
+			DateTime fechaFin = new DateTime(periodo.getFechaFin());
+			fechaFin.withYear(aFiscal);
 
-			tasa = tasaPorImpuesto(tipoTasa, periodoEntity.getFechaInicio(), periodoEntity.getFechaFin());
-					
+			tasa = tasaPorImpuesto(tipoTasa, fechaInicio.toDate(), fechaFin.toDate());
+
 			impuesto = baseGravable.multiply(tasa);
 			impuesto = impuesto.divide(new BigDecimal(100).setScale(0, RoundingMode.HALF_UP));
-			
+
 			return impuesto;
 		} catch (NoResultException ex) {
 			ex.printStackTrace();

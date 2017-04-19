@@ -42,6 +42,14 @@
 
 </head>
 
+<style type="text/css">
+	#formCalculos .selectContainer .form-control-feedback {
+    /* Adjust feedback icon position */
+    right: -15px;
+}
+</style>
+
+
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 
@@ -221,112 +229,124 @@
 								<h3 class="box-title">Calculos</h3>
 							</div>
 						<div class="box-body">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Declaracion</label>
-								</div>
-								<div class="form-group">
-									<label for="selectDeclaracion">Tipo Declaracion:</label> <select
-													class="form-control" id="selectDeclaracion">
-													<option value="0" selected="selected">Seleccione
-														una opción</option>
-												</select>
-								</div>
-								<div id="panelComplementaria">
+							<form id="formCalculos">
+								<div class="col-md-4">
 									<div class="form-group">
-										<label for="inputRecibo">N° Recibo anterior:</label> <input
-											class="form-control" id="inputRecibo"
-											placeholder="Numero recibo anterior" type="text">
+										<label>Declaración</label>
 									</div>
 									<div class="form-group">
-										<label for="inputComplementaria">N° Complementaria:</label> <input
-											class="form-control" id="inputComplementaria"
-											placeholder="Numero complementaria" type="text">
+										<label for="selectDeclaracion">Tipo Declaración:</label> 
+								        <div class=" col-md-12 selectContainer">
+											<select
+											class="form-control " id="selectDeclaracion" name= "selectDeclaracion">
+											<option value="">Seleccione
+												una opción</option>
+											</select>
+										</div>
+									</div>
+									<div id="panelComplementaria">
+										<div class="form-group">
+											<label for="inputRecibo">N° Recibo anterior:</label> <input
+												class="form-control" id="inputRecibo"
+												placeholder="Numero recibo anterior" type="text">
+										</div>
+										<div class="form-group">
+											<label for="inputComplementaria">N° Complementaria:</label> <input
+												class="form-control" id="inputComplementaria"
+												placeholder="Numero complementaria" type="text">
+										</div>
+										<div class="form-group">
+											<label for="inputComplementaria">Importe Anterior:</label> <input
+												class="form-control" id="inputComplementaria"
+												placeholder="Importe anterior" type="text">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="inputComplementaria">Detalle de Pago</label>
 									</div>
 									<div class="form-group">
-										<label for="inputComplementaria">Importe Anterior:</label> <input
-											class="form-control" id="inputComplementaria"
-											placeholder="Importe anterior" type="text">
+										<label for="selectAnyoFiscal">Año Fiscal:</label>
+										 <div class="selectContainer">
+											<select
+											class="form-control " id="selectAnyoFiscal" name= "selectAnyoFiscal">
+											<option value="">Seleccione
+												una opción</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="selectPeriodo">Periodo:</label> 
+										<div class="selectContainer">
+											<select
+											class="form-control " id="selectPeriodo" name= "selectPeriodo">
+											<option value="">Seleccione
+												una opción</option>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="inputEmpleados">N° de Empleados:</label>
+										<input
+											class="form-control" id="inputEmpleados" name="inputEmpleados"
+											placeholder="Numero empleados" type="text">
+									</div>
+									<div class="form-group">
+										<label for="inputImporteNomina">Importe de Nomina:</label> <input
+											class="form-control" id="inputImporteNomina"
+											name="inputImporteNomina"
+											placeholder="Importe nomina" type="text">
 									</div>
 								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="inputComplementaria">Detalle de Pago</label>
-								</div>
-								<div class="form-group">
-									<label for="selectAnyoFiscal">Año Fiscal:</label> <select
-													class="form-control" id="selectAnyoFiscal">
-													<option value="" selected="selected">Seleccione
-														una opción</option>
-												</select>
-								</div>
-								<div class="form-group">
-									<label for="selectPeriodo">Periodo:</label> <select
-													class="form-control" id="selectPeriodo">
-													<option value="" selected="selected">Seleccione
-														una opción</option>
-												</select>
-								</div>
-								
-								<div class="form-group">
-									<label for="inputPeriodo">N° de Empleados:</label> <input
-										class="form-control" id="inputPeriodo"
-										placeholder="Numero empleados" type="text">
-								</div>
-								<div class="form-group">
-									<label for="inputImporteNomina">Importe de Nomina:</label> <input
-										class="form-control" id="inputImporteNomina"
-										placeholder="Importe nomina" type="text">
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="inputComplementaria">Importe a Pagar</label>
-								</div>
-								<div class="form-group">
-									<label for="inputNomina">Nomina:</label> <input
-										class="form-control" id="inputNomina" placeholder="Nomina"
-										type="text">
-								</div>
-								<div class="form-group">
-									<label for="inputUaz">UAZ:</label> <input class="form-control"
-										id="inputUaz" placeholder="Uaz" type="text">
-								</div>
-								<div class="form-group">
-									<label for="inputActualizacion">Actualizacion:</label> <input
-										class="form-control" id="inputActualizacion"
-										placeholder="Actualizacion" type="text">
-								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="inputComplementaria">Importe a Pagar</label>
+									</div>
+									<div class="form-group">
+										<label for="inputNomina">Nomina:</label> <input 
+											class="form-control" id="inputNomina" placeholder="Nomina"
+											type="text">
+									</div>
+									<div class="form-group">
+										<label for="inputUaz">UAZ:</label> <input class="form-control"
+											id="inputUaz" placeholder="Uaz" type="text">
+									</div>
+									<div class="form-group">
+										<label for="inputActualizacion">Actualizacion:</label> <input
+											class="form-control" id="inputActualizacion"
+											placeholder="Actualizacion" type="text">
+									</div>
 
-								<div class="form-group">
-									<label for="inputRecargo">Recargos:</label> <input
-										class="form-control" id="inputRecargo" placeholder="Recargos"
-										type="text">
-								</div>
-								<div class="form-group">
-									<label for="inputMulta">Multa:</label> <input
-										class="form-control" id="inputMulta" placeholder="Multa"
-										type="text">
-								</div>
-								<br />
-								<div class="form-group">
-										<label for="inputGasto">Gastos de Ejecucion:</label> <input
-											class="form-control" id="inputGasto" placeholder="Recargos"
+									<div class="form-group">
+										<label for="inputRecargo">Recargos:</label> <input
+											class="form-control" id="inputRecargo" placeholder="Recargos"
 											type="text">
-								</div>
-								<div class="form-group">
-										<label for="inputEstimulo">Estimulo:</label> <input
-											class="form-control" id="inputEstimulo" placeholder="Estimulo"
+									</div>
+									<div class="form-group">
+										<label for="inputMulta">Multa:</label> <input
+											class="form-control" id="inputMulta" placeholder="Multa"
 											type="text">
+									</div>
+									<br />
+									<div class="form-group">
+											<label for="inputGasto">Gastos de Ejecucion:</label> <input
+												class="form-control" id="inputGasto" placeholder="Recargos"
+												type="text">
+									</div>
+									<div class="form-group">
+											<label for="inputEstimulo">Estimulo:</label> <input
+												class="form-control" id="inputEstimulo" placeholder="Estimulo"
+												type="text">
+									</div>
+									<div class="form-group">
+											<label for="inputTotal">Total:</label> <input
+												class="form-control" id="inputTotal" placeholder="Total"
+												type="text">
+									</div>
 								</div>
-								<div class="form-group">
-										<label for="inputTotal">Total:</label> <input
-											class="form-control" id="inputTotal" placeholder="Total"
-											type="text">
-								</div>
-							</div>
-
+							  </form>
 							</div>
 							<!-- /.box-body -->
 							<div class="box-footer clearfix">
@@ -394,17 +414,18 @@
 <script
 	src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
 
+<!-- Include Bootstrap-select CSS, JS -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js"></script>
+
 <!-- Fin scripts -->
 
 
-
-
 <script>
-	$(document)
-			.ready(
-					function() {
-						var rfcContribuyente;
-						var data = [{rfc:'ROAA6411012FA', nombre:'ABEL RODRIGUEZ AGUILAR', domicilio:'CARR.A SAN RAMON KM. 0+800', fechaInicio:new Date(), activo:true,
+	$(document).ready(function() {
+						
+		var rfcContribuyente;
+		var data = [{rfc:'ROAA6411012FA', nombre:'ABEL RODRIGUEZ AGUILAR', domicilio:'CARR.A SAN RAMON KM. 0+800', fechaInicio:new Date(), activo:true,
 								sucursales:[{numero:1, calle:'CARR.A SAN RAMON', numInt:2, numExt:4, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:2, declara:true},
 									{numero:2, calle:'SAN RAMON', numInt:2, numExt:4, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:2, declara:true}]},
 							{rfc:'TOSC850108M67', nombre:'CARLOS FRANCISCO TORRES SORIANO', domicilio:'PRIVADA LOS PINOS Nº 204', fechaInicio:new Date(), activo:true,
@@ -416,140 +437,197 @@
 									{numero:1, calle:'HIDALGO', numInt:5, numExt:1, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:1, declara:true}]},
 							{rfc:'GCC-020227-UW5', nombre:'GRUPO CONSTRUCTOR CARTAGENA', domicilio:'AV. VIÑEDOS RIVER No. 805 AGS.', fechaInicio:new Date(), activo:true,
 								sucursales:[{numero:1, calle:'AV. VIÑEDOS RIVER', numInt:805, numExt:8, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:5, declara:true}]}];
+				
 										
-						$('#panelContribuyente').hide();
-						$('#panelCalculos').hide();
-						$('#panelComplementaria').hide();
+		$('#panelContribuyente').hide();
+		$('#panelCalculos').hide();
+		$('#panelComplementaria').hide();
 						
-						obtenerCriterioBusqueda();
-						obtenerDeclaracion();
-						obtenerAnyo();
-						$('#cancel-btn')
-								.click(
-										function() {
-											var urlUsuario = "${pageContext.request.contextPath}/views/usuario/usuario.jsp";
-											window.location = urlUsuario;
-										});
-						//Registra un usuario
-						$('#btnBuscar').click(
-								function() {
-									//Validaciones
-									if($('#selectCriterio').val().length < 1){
-										swal(
-												{
-											  	title : "Debe seleccionar el tipo de busuqeda a realizar.",
-											 	 type : "error",
-										 	  	closeOnCancel : false
-												}
-											);
-										$('#selectCriterio').css("border-color", "#ff0000");
-										
-										return;		
-									}else{
-										$('#selectCriterio').css("border-color", "#d2d6de");
-									}
-									if($('#inputCriterio').val().length < 1){
-										swal(
-												{
-											  	title : "Debe Ingresar criterio de busqueda.",
-											 	 type : "error",
-										 	  	closeOnCancel : false
-												}
-											);
-										$('#inputCriterio').css("border-color", "#ff0000");
-										
-										return;		
-									}else{
-										$('#inputCriterio').css("border-color", "#d2d6de");
-									}
-
-									$('#panelContribuyente').hide();
-									$('#panelCalculos').hide();
-									
-										$('tbody').find('td').remove();
-										for (var i = 0; i < data.length; i++) {
-											tr = $('<tr/>');
-											$(tr).append("<td class="+"rfc" +" >" + data[i].rfc + "</td>");
-											$(tr).append("<td class="+"nombre" +" >" + data[i].nombre + "</td>");
-											$(tr).append("<td class="+"domicilio" +" >" + data[i].domicilio + "</td>");
-											$(tr).append("<td class="+"fechaInicio" +" >" + parseDate(data[i].fechaInicio) + "</td>");
-											$(tr).append("<td class="+"activo" +" >" + "<img src="+estatusUsuario(data[i].activo)+" style="+"width:30px; height:auto;" + "></img></td>");
-											$('#tablaContribuyente > tbody').append(tr);
-										}								
-																		
-								});
-						$('#seleccionarContribuyente').click(function(){
-							if(rfcContribuyente == null){
-								swal(
-									{
-										title : "No ha seleccionado a un contribuyente.",
-										type : "error",
-										closeOnCancel : false
-									}
-								);
-							}else{
-								$.grep(data, function(value, index) {
-									if(rfcContribuyente==value.rfc){
-										$('#inputNombre').val(value.nombre);
-										$('#inputRfc').val(value.rfc);
-										$('#inputDomicilio').val(value.domicilio);
-										
-										//$('tbody').find('td').remove();
-										for (var i = 0; i < value.sucursales.length; i++) {
-											tr = $('<tr/>');
-											$(tr).append("<td class="+"N°" +" >" + value.sucursales[i].numero + "</td>");
-											$(tr).append("<td class="+"calle" +" >" + value.sucursales[i].calle + "</td>");
-											$(tr).append("<td class="+"numInt" +" >" + value.sucursales[i].numInt + "</td>");
-											$(tr).append("<td class="+"numExt" +" >" + value.sucursales[i].numExt + "</td>");
-											$(tr).append("<td class="+"colonia" +" >" + value.sucursales[i].colonia + "</td>");
-											$(tr).append("<td class="+"municipio" +" >" + value.sucursales[i].municipio + "</td>");
-											$(tr).append("<td class="+"empleados" +" >" + value.sucursales[i].empleados + "</td>");
-											//$(tr).append("<td class="+"declara" +" >"+"<input type="+"checkbox"+"checked="+sucursales[i].declara+">"+ "</td>");
-											$('#tablaSucursales > tbody').append(tr);
-										}
-										
-									}
-									
-								});
-								
-								
-								$('#panelContribuyente').show();
-								$('#panelCalculos').show();				
-							}	
-						});
-						function parseDate(jsonDate) {
-							var dateObject = new Date(jsonDate);
-							var day = dateObject.getDate();
-							var month = dateObject.getMonth() + 1;
-							var year = dateObject.getFullYear();
-							day = day < 10 ? "0" + day : day;
-							month = month < 10 ? "0" + month : month;
-							var date = day + "/" + month + "/" + year;
-							return date;
+		obtenerCriterioBusqueda();
+		obtenerDeclaracion();
+		obtenerAnyo();
+		
+		
+		//Busca un contribuyente
+		$('#btnBuscar').click(function() {
+							
+			//Validaciones
+			if($('#selectCriterio').val().length < 1){
+				swal(
+						{
+						  	title : "Debe seleccionar el tipo de busuqeda a realizar.",
+						 	type : "error",
+							closeOnCancel : false
 						}
-						function estatusUsuario(estatus){
-							var urlEstatus;
-							if(estatus == 1){
-								urlEstatus = "${pageContext.request.contextPath}/resources/admin-lte/img/active.png";
-							}else if(estatus == 0){
-								urlEstatus = "${pageContext.request.contextPath}/resources/admin-lte/img/inactive.png";
-							}
-							return urlEstatus;
-						}	
-						//Mantiene seleccionada una fila cambiando de color	
-						$('tbody').on("click", "tr", function(event) {
-					    	$(this).addClass('bg-info').siblings().removeClass('bg-info');
-						});
-						//cambiar puntero
-						$('tbody').hover(function() {
-							 $(this).css('cursor','pointer');
-						});
-						$('tbody').on("click", "td", function() {
-							rfcContribuyente = $(this).closest('tr').find('.rfc').text();
-						});
-						
-					});
+					);
+				
+				$('#selectCriterio').css("border-color", "#ff0000");				
+				return;		
+			}else{
+					$('#selectCriterio').css("border-color", "#d2d6de");
+				}
+				
+			if($('#inputCriterio').val().length < 1){
+				swal(
+						{
+						  	title : "Debe Ingresar criterio de busqueda.",
+						 	type : "error",
+							closeOnCancel : false
+						}
+					);
+				$('#inputCriterio').css("border-color", "#ff0000");
+				return;		
+			}else{
+					$('#inputCriterio').css("border-color", "#d2d6de");
+				}
 
+			$('#panelContribuyente').hide();
+			$('#panelCalculos').hide();
+									
+			$('tbody').find('td').remove();
+			for (var i = 0; i < data.length; i++) {
+				tr = $('<tr/>');
+				$(tr).append("<td class="+"rfc" +" >" + data[i].rfc + "</td>");
+				$(tr).append("<td class="+"nombre" +" >" + data[i].nombre + "</td>");
+				$(tr).append("<td class="+"domicilio" +" >" + data[i].domicilio + "</td>");
+				$(tr).append("<td class="+"fechaInicio" +" >" + parseDate(data[i].fechaInicio) + "</td>");
+				$(tr).append("<td class="+"activo" +" >" + "<img src="+estatusUsuario(data[i].activo)+" style="+"width:30px; height:auto;" + "></img></td>");
+				$('#tablaContribuyente > tbody').append(tr);
+			}								
+																		
+		});
+		
+
+		$('#seleccionarContribuyente').click(function(){
+			if(rfcContribuyente == null){
+				swal(
+						{
+							title : "No ha seleccionado a un contribuyente.",
+							type : "error",
+							closeOnCancel : false
+						}
+					);
+			}else{
+								
+					$.grep(data, function(value, index) {
+						if(rfcContribuyente==value.rfc){
+							$('#inputNombre').val(value.nombre);
+							$('#inputRfc').val(value.rfc);
+							$('#inputDomicilio').val(value.domicilio);
+										
+							//$('tbody').find('td').remove();
+							for (var i = 0; i < value.sucursales.length; i++) {
+								tr = $('<tr/>');
+								$(tr).append("<td class="+"N°" +" >" + value.sucursales[i].numero + "</td>");
+								$(tr).append("<td class="+"calle" +" >" + value.sucursales[i].calle + "</td>");
+								$(tr).append("<td class="+"numInt" +" >" + value.sucursales[i].numInt + "</td>");
+								$(tr).append("<td class="+"numExt" +" >" + value.sucursales[i].numExt + "</td>");
+								$(tr).append("<td class="+"colonia" +" >" + value.sucursales[i].colonia + "</td>");
+								$(tr).append("<td class="+"municipio" +" >" + value.sucursales[i].municipio + "</td>");
+								$(tr).append("<td class="+"empleados" +" >" + value.sucursales[i].empleados + "</td>");
+								//$(tr).append("<td class="+"declara" +" >"+"<input type="+"checkbox"+"checked="+sucursales[i].declara+">"+ "</td>");
+								$('#tablaSucursales > tbody').append(tr);
+							}
+										
+						}
+									
+					});
+								
+								
+				$('#panelContribuyente').show();
+				$('#panelCalculos').show();				
+				}
+
+
+
+		//Validaciones
+		$('#formCalculos')
+			.find('[name="selectDeclaracion"]')
+            .selectpicker()
+            .change(function(e) {
+                $('#formCalculos').formValidation('revalidateField', 'selectDeclaracion');
+            })
+            .end()
+        .formValidation(
+			{
+				framework : 'bootstrap', //Indicamos el framework para validar, Bootstrap, Pure,Semantic,etc
+				excluded: ':disabled',
+				icon : {//Feedback Icons
+				valid : 'glyphicon glyphicon-ok',
+				invalid : 'glyphicon glyphicon-remove',
+				validating : 'glyphicon glyphicon-refresh'
+			},
+			//Lista de campos a validar y las reglas que aplican para cada uno de ellos
+			fields : {
+				'inputImporteNomina' : { //validación del campo
+							validators : { //validaciones
+								notEmpty : {
+											message : 'Ingrese el importe de la nomina.'
+										}
+							}	
+					},
+				'inputEmpleados' : { //validación del campo
+							validators : { //validaciones
+								notEmpty : {
+											message : 'Ingrese el número de empleados.'
+										}
+							}	
+					},
+				'selectDeclaracion' : { //validación del campo
+							validators : { //validaciones
+								notEmpty : {
+											message : 'Seleccione la declaración.'
+										}
+							}	
+					}
+                }
+		});
+
+
+
+});
+
+		
+		function parseDate(jsonDate) {
+			var dateObject = new Date(jsonDate);
+			var day = dateObject.getDate();
+			var month = dateObject.getMonth() + 1;
+			var year = dateObject.getFullYear();
+			day = day < 10 ? "0" + day : day;
+			month = month < 10 ? "0" + month : month;
+			var date = day + "/" + month + "/" + year;
+			return date;
+		}
+		
+
+		function estatusUsuario(estatus){
+			var urlEstatus;
+			if(estatus == 1){
+				urlEstatus = "${pageContext.request.contextPath}/resources/admin-lte/img/active.png";
+			}else if(estatus == 0){
+				urlEstatus = "${pageContext.request.contextPath}/resources/admin-lte/img/inactive.png";
+			}
+			return urlEstatus;
+		}	
+
+
+		//Mantiene seleccionada una fila cambiando de color	
+		$('tbody').on("click", "tr", function(event) {
+		   	$(this).addClass('bg-info').siblings().removeClass('bg-info');
+		});
+		
+		//cambiar puntero
+		$('tbody').hover(function() {
+			 $(this).css('cursor','pointer');
+		});
+		
+		$('tbody').on("click", "td", function() {
+			rfcContribuyente = $(this).closest('tr').find('.rfc').text();
+		});
+						
+	});
+
+	
 	var obtenerCriterioBusqueda = function() {
 		var criterios = [ {id : 1, criterio : 'Nombre'}, {id : 2, criterio : 'Razon Social'}, 
 			{id : 3,criterio : 'RFC'}];
@@ -559,6 +637,7 @@
 							+ '</option>');
 		});
 	};
+	
 	var obtenerDeclaracion = function() {
 		var declaraciones = [{id:1, declaracion:'Normal'}, {id:2, declaracion:'Complementaria'}];
 		$.grep(declaraciones, function(value, index) {
@@ -569,7 +648,6 @@
 	};
 
 	var obtenerAnyo = function(){
-
 		var urlEjerciciosFiscales = "${pageContext.request.contextPath}/cajas/ejerciciosFiscales";
 		$.ajax({
 				type: "GET",
@@ -579,7 +657,6 @@
 					selectEjercicioFiscales(data);
 				}
 		});
-
 	};
 
 	//colocar valores select box
@@ -613,7 +690,8 @@
 		//colocar valores select box
 	function selectPeriodos(data){
 		$.each( data, function( key, val ) {
-			$('#selectPeriodo').append('<option value=' + val.mes  + '>' + val.mes + '</option>');
+			console.log("ID PERIODO::::" + val.idMes  +  "MES::::" + val.mes);
+			$('#selectPeriodo').append('<option value=' + val.idMes  + '>' + val.mes + '</option>');
   		});
 	}
 
@@ -631,14 +709,26 @@
 	//calculos
 	$('#calcular-btn').click(function() {
 
+		//Validaciones
+		var formValidation = $('#formCalculos').data('formValidation');
+		formValidation.validate();
+
+
+		console.log(formValidation.isValid());
+
+		if (formValidation.isValid()) {
+			
 			var datos = {};
 			var mes = $('#selectPeriodo');
 			var ejercicioFiscal = $('#selectAnyoFiscal');
 			var totalErogaciones = $('#inputImporteNomina');
 			var idObligacion;
 			var tipoDeclaracion= $('#selectDeclaracion');
-			var numeroEmpleados = $('#inputPeriodo');
-			datos.mes = mes.val();
+			var numeroEmpleados = $('#inputEmpleados');
+
+			console.log("MES::::" + mes.val());
+
+			datos.periodo = mes.val();
 			datos.ejercicioFiscal = parseInt(ejercicioFiscal.val());
 			datos.totalErogaciones = totalErogaciones.val();
 			datos.numeroEmpleados= numeroEmpleados.val();
@@ -669,6 +759,7 @@
 						colocarValores(datos);
 					}
 				});
+		}
 	});
 	
 
@@ -710,4 +801,5 @@
     });
 
 </script>
+
 </html>

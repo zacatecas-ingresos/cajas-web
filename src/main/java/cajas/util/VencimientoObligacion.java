@@ -31,7 +31,7 @@ public class VencimientoObligacion {
 		ObligacionesEntity obligacion = obtenerObligacionQuery.obtenerObligacion(idObligacion);
 
 		if (obligacion == null) {
-			throw new BusinessException("No existe obligacion en el regisgtro.");
+			throw new BusinessException("No existe obligacion en el registro.");
 		}
 		DateTime fechaVencimiento = new DateTime(ejercicioFiscal, mes, 20, 0, 0);
 		fechaVencimiento = fechaVencimiento.plusMonths(1).plusDays(obligacion.getDiasProrroga());

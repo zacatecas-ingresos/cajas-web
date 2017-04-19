@@ -703,7 +703,7 @@
 	function selectPeriodos(data){
 		$.each( data, function( key, val ) {
 			console.log("ID PERIODO::::" + val.idMes  +  "MES::::" + val.mes);
-			$('#selectPeriodo').append('<option value=' + val.idMes  + '>' + val.mes + '</option>');
+			$('#selectPeriodo').append('<option value=' + val.idPeriodo  + '>' + val.mes + '</option>');
   		});
 	}
 

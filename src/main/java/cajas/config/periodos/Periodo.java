@@ -12,6 +12,7 @@ public class Periodo {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private Integer tipoPeriodo;
+	private Integer idMes;
 
 	public Periodo periodoEntity(PeriodosEntity periodoEntity) {
 		Periodo periodo = new Periodo();
@@ -21,6 +22,7 @@ public class Periodo {
 		periodo.setFechaInicio(periodoEntity.getFechaInicio());
 		periodo.setFechaFin(periodoEntity.getFechaFin());
 		periodo.setTipoPeriodo(periodoEntity.getTipoPeriodo());
+		periodo.setIdMes(periodoEntity.getIdMes());
 		return periodo;
 	}
 
@@ -72,6 +74,14 @@ public class Periodo {
 
 	public void setTipoPeriodo(Integer tipoPeriodo) {
 		this.tipoPeriodo = tipoPeriodo;
+	}
+
+	public Integer getIdMes() {
+		return idMes;
+	}
+
+	public void setIdMes(Integer idMes) {
+		this.idMes = idMes;
 	}
 
 }

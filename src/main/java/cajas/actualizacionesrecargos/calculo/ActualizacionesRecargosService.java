@@ -35,21 +35,21 @@ public class ActualizacionesRecargosService {
 		 */
 		if(contribucionFiscal.getPeriodoActualizacion() != null){
 			
-			inpcAnterior = obtenerINPC(contribucionFiscal.getPeriodoActualizacion().getEjercicioFinal(), contribucionFiscal.getPeriodoActualizacion().getMesFinal());
-			
+			inpcAnterior = obtenerINPC(contribucionFiscal.getPeriodoActualizacion().getEjercicioInicial(),contribucionFiscal.getPeriodoActualizacion().getMesInicial());
+						
 			/*******
 			 * Obtengo el INPC del mes anterior en el que se va a realizar el pago
 			 * 
 			 */
-			inpcActual = obtenerINPC(contribucionFiscal.getPeriodoActualizacion().getEjercicioInicial(),contribucionFiscal.getPeriodoActualizacion().getMesInicial());
-
+			inpcActual = obtenerINPC(contribucionFiscal.getPeriodoActualizacion().getEjercicioFinal(), contribucionFiscal.getPeriodoActualizacion().getMesFinal());
+			
 			/***
 			 * Si el INPC del mes en el que se va a efectuar el pago no devuelve
 			 * ningun resultado obtengo el INPC del mes anterior al solicitado
 			 * inicialmente
 			 */
 			if (inpcActual == null) {
-				inpcActual = obtenerINPC(contribucionFiscal.getPeriodoActualizacion().getEjercicioInicial(),contribucionFiscal.getPeriodoActualizacion().getMesInicial() -1);
+				inpcActual = obtenerINPC(contribucionFiscal.getPeriodoActualizacion().getEjercicioFinal(),contribucionFiscal.getPeriodoActualizacion().getMesFinal() -1);
 			}			
 			
 			/***
@@ -83,8 +83,8 @@ public class ActualizacionesRecargosService {
 			 * Calculo del recargo
 			 * 
 			 */
-			importeRecargo = calculoRecargo(contribucionFiscal.getPeriodoRecargo().getEjercicioFinal(),contribucionFiscal.getPeriodoRecargo().getMesFinal(),
-			contribucionFiscal.getPeriodoRecargo().getEjercicioInicial(), contribucionFiscal.getPeriodoRecargo().getMesInicial(), actualizacion);
+			importeRecargo = calculoRecargo(contribucionFiscal.getPeriodoRecargo().getEjercicioInicial(), contribucionFiscal.getPeriodoRecargo().getMesInicial(),
+			contribucionFiscal.getPeriodoRecargo().getEjercicioFinal(),contribucionFiscal.getPeriodoRecargo().getMesFinal(),actualizacion);
 			
 			/***
 			 * Set Valores calculados
@@ -124,7 +124,6 @@ public class ActualizacionesRecargosService {
 			INPCEntity inpcEntity = inpcQuery.inpcEntity(aFiscal, mesFiscal);
 			return inpcEntity.getInpc();
 		} catch (NoResultException ex) {
-			ex.printStackTrace();
 			return null;
 		}
 	}

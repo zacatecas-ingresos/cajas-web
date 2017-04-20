@@ -204,9 +204,7 @@ public class CalculoEstatalService {
 		DateTime fechaInicial = new DateTime(ejercicioFiscalDeclarado, mesDeclarado, 1, 0, 0, 0);
 		DateTime fechaFinal = FechaUtil.fechaActualSinTiempo();
 		fechaFinal = fechaFinal.minusMonths(1);
-		if (fechaFinal.getDayOfMonth() < 21) {
-			fechaFinal = fechaFinal.minusMonths(1);
-		}
+		
 		Periodo periodoActualizacion = new Periodo();
 		periodoActualizacion.setMesInicial(fechaInicial.getMonthOfYear());
 		periodoActualizacion.setEjercicioInicial(fechaInicial.getYear());

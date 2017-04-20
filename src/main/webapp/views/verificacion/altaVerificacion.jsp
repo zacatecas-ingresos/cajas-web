@@ -384,9 +384,7 @@
 						$('#save-btn')
 								.click(
 										function() {
-
-											var fechaHoy = new Date()
-													.toISOString().slice(0, 10);
+							
 											var anio = new Date().toISOString()
 													.slice(0, 4);
 
@@ -488,7 +486,6 @@
 														.val();
 												datos.estatusVerificacion = estatusVerificacion
 														.val();
-												datos.fechaVerificacion = fechaHoy;
 												datos.vinVehiculo = vinVehiculo
 														.val();
 												datos.numeroMotorVehiculo = numeroMotorVehiculo
@@ -528,7 +525,7 @@
 												console.log(formData);
 
 												var urlPost = "${pageContext.request.contextPath}/cajas/vehicular/verificacion";
-												var urlCrear = "${pageContext.request.contextPath}/views/verificacion/altaVerificacion.jsp";
+												var admin = "${pageContext.request.contextPath}/views/verificacion/verificaciones.jsp";
 
 												$
 														.ajax({
@@ -550,7 +547,7 @@
 																			closeOnCancel : false
 																		},
 																		function() {
-																			window.location = urlCrear;
+																			window.location = admin;
 																		});
 															},
 															error : function(

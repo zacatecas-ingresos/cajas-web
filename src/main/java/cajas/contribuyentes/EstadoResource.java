@@ -56,7 +56,7 @@ public class EstadoResource {
     }
     
     @GET
-    // @Path("consulta")
+    @Path("consulta")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Estado> buscarEstado(@QueryParam("porNombreEstado") String estado) {
         return estadoEjb.buscarEstado(estado);

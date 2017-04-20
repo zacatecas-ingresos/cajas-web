@@ -173,18 +173,21 @@
 								<!-- Fin contenido -->
 							</div>
 						</div>
-						
+
 						<!-- DIV INFORMACION DE LA VERIFICACION SELECIONADA -->
 						<div id="divInfo" style="display: none" class="well">
-							<H3>Mas Información:</H3>
+							<button id="botonGastos" type="button"
+								class="btn btn-warning btn-md">
+								<i class="fa fa-money" aria-hidden="true"></i> VALIDAR GASTOS
+							</button>
+							&nbsp;&nbsp;
 							<button id="botonOcultar" type="button"
 								class="btn btn-info btn-md pull-right">
 								<i class="fa fa-eye-slash" aria-hidden="true"></i> OCULTAR
 							</button>
-							<div class="row" id="contenido">
-							
-
-							</div>
+							<br>
+							<H3>Mas Información:</H3>
+							<div class="row" id="contenido"></div>
 						</div>
 			</section>
 			<!-- Fin contenido Registrar marca -->

@@ -100,11 +100,11 @@ public class VerificacionVehicularQuery {
 	public List<VerificacionVehicularEntity> obtenerVerificaconesFiltro(String vin, Integer estatusVerificacion) {
 		
 		if(estatusVerificacion == 0){
-			List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity vV WHERE LOWER(vV.vinVehiculo) LIKE :vin", VerificacionVehicularEntity.class)
+			List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity vV WHERE LOWER(vV.vinVehiculo) LIKE :vin ORDER BY vV.idVerificacionVehiculo DESC", VerificacionVehicularEntity.class)
 					.setParameter("vin","%"+ vin+"%").getResultList();
 			return verificaciones;
 		}else{		
-			List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity vV WHERE LOWER(vV.vinVehiculo) LIKE :vin AND vV.estatusVerificacion =:parametroEstatusVerificacion", VerificacionVehicularEntity.class)
+			List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity vV WHERE LOWER(vV.vinVehiculo) LIKE :vin AND vV.estatusVerificacion =:parametroEstatusVerificacion ORDER BY vV.idVerificacionVehiculo DESC", VerificacionVehicularEntity.class)
 					.setParameter("vin", "%"+ vin+"%").setParameter("parametroEstatusVerificacion", estatusVerificacion).getResultList();
 			return verificaciones;
 		}

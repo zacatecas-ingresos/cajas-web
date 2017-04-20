@@ -186,8 +186,12 @@
 								<i class="fa fa-eye-slash" aria-hidden="true"></i> OCULTAR
 							</button>
 							<br>
-							<H3>Mas Información:</H3>
+							<br>							
+							<fieldset>
+							<legend>Mas Información</legend>
 							<div class="row" id="contenido"></div>
+							</fieldset>
+							
 						</div>
 			</section>
 			<!-- Fin contenido Registrar marca -->
@@ -373,8 +377,8 @@ $(document).ready(function(){
 	//Obtiene un valor del id de la fila seleccionada
 	$('tbody').on("click", "td", function() {
 		idVerificacion = $(this).closest('tr').find('.id').text();
-		$( "#divInfo" ).hide( "fast" )
-		$( "#divInfo" ).toggle( "explode" );
+		$( "#divInfo" ).hide( "slow" );
+		$( "#divInfo" ).show( "slow" );
 		
 		var urlBusqueda = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/obtenerVerificacioPorID/"+"?id="+idVerificacion;
 		

@@ -1,5 +1,6 @@
 package cajas.vehicular.verificacion.alta;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
+
+import org.joda.time.DateTime;
 
 import cajas.exception.BusinessException;
 import cajas.persistence.entity.MarcaVehiculoEntity;
@@ -25,6 +28,12 @@ public class VerificacionVehiculoEJB {
 	private EntityManager entityManager;
 
 	public void crearVerificacionVehiculoMetodo(VerificacionVehiculo verificacionVehiculo) {
+		
+		/*Integer idMarcaVehiculo = verificacionVehiculo.getIdMarcaVehiculo();
+		if(idMarcaVehiculo == null) {
+			throw new BusinessException("La Marca del Vehiculo es requerido");
+		}*/
+		
 		try {
 			
 			VerificacionVehicularEntity verificacionVehiculoEntity = new VerificacionVehicularEntity();
@@ -32,13 +41,11 @@ public class VerificacionVehiculoEJB {
 			verificacionVehiculoEntity.setEjercicio(verificacionVehiculo.getEjercicio());
 			verificacionVehiculoEntity.setTipoVerificacion(verificacionVehiculo.getTipoVerificacion());
 			verificacionVehiculoEntity.setEstatusVerificacion(verificacionVehiculo.getEstatusVerificacion());
-			verificacionVehiculoEntity.setFechaVerificacion(verificacionVehiculo.getFechaVerificacion());
+			verificacionVehiculoEntity.setFechaVerificacion(DateTime.now().toDate());
 			verificacionVehiculoEntity.setVinVehiculo(verificacionVehiculo.getVinVehiculo());
-			verificacionVehiculoEntity.setNumeroMotorVehiculo(verificacionVehiculo.getNumeroMotorVehiculo());
-			System.out.println("verificacionVehiculo.getIdMarcaVehiculo():: " + verificacionVehiculo.getIdMarcaVehiculo());
+			verificacionVehiculoEntity.setNumeroMotorVehiculo(verificacionVehiculo.getNumeroMotorVehiculo());	
 			if (verificacionVehiculo.getIdMarcaVehiculo() != null && verificacionVehiculo.getIdMarcaVehiculo() > 0) {
 				MarcaVehiculoEntity marcaVehiculo = entityManager.find(MarcaVehiculoEntity.class,verificacionVehiculo.getIdMarcaVehiculo());
-				System.out.println("marcaVehiculo:: " + marcaVehiculo);
 				verificacionVehiculoEntity.setMarcaVehiculo(marcaVehiculo);
 			}
 			verificacionVehiculoEntity.setModeloVehiculo(verificacionVehiculo.getModeloVehiculo());
@@ -112,6 +119,28 @@ public class VerificacionVehiculoEJB {
 			
 			for (VerificacionVehicularEntity verificacionEntity : verificacionesEntity) {
 				VerificacionVehiculo verificacion = new VerificacionVehiculo();
+				verificacion = verificacion.verificacionVehiculoEntity(verificacionEntity);
+				verificaciones.add(verificacion);
+			}
+			return verificaciones;
+		} catch (NoResultException ex) {
+			throw new BusinessException("No hay Verificaciones Registradas.");
+		}
+	}
+	
+	/*******Obtiene verificacion por ID********/
+	public List<VerificacionVehiculo> obtenerVerificacionPorId(Integer id) {
+		try {
+			List<VerificacionVehicularEntity> verificacionesEntity = vVehicularQuery.obtenerVerificacion(id);
+			List<VerificacionVehiculo> verificaciones = new ArrayList<>();
+			
+			for (VerificacionVehicularEntity verificacionEntity : verificacionesEntity) {
+				VerificacionVehiculo verificacion = new VerificacionVehiculo();
+				
+				String pattern = "dd-MM-yyyy";
+			    SimpleDateFormat format = new SimpleDateFormat(pattern);
+			   String fechaVerificacion = format.format(verificacionEntity.getFechaVerificacion());
+			   verificacion.setFechaVerificacion(fechaVerificacion);
 				verificacion = verificacion.verificacionVehiculoEntity(verificacionEntity);
 				verificaciones.add(verificacion);
 			}

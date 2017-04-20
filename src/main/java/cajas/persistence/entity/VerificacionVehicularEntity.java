@@ -38,9 +38,11 @@ public class VerificacionVehicularEntity implements Serializable {
 
 	@Column(name = "vin_vehiculo")
 	private String vinVehiculo;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_marca_vehiculo")
 	private MarcaVehiculoEntity marcaVehiculo;
+	
 	@Column(name = "modelo_vehiculo")
 	private Integer modeloVehiculo;
 

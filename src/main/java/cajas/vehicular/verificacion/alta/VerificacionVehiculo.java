@@ -2,6 +2,7 @@ package cajas.vehicular.verificacion.alta;
 
 import cajas.persistence.entity.VerificacionVehicularEntity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class VerificacionVehiculo {
@@ -9,7 +10,7 @@ public class VerificacionVehiculo {
 	private Integer idVerificacionVehiculo;
 	private Integer ejercicio;
 	private Integer noSeguimientoVerificion;
-	private Date fechaVerificacion;
+	private String fechaVerificacion;
 	private Integer tipoVerificacion;
 	private String vinVehiculo;
 	private Integer idMarcaVehiculo;
@@ -48,7 +49,14 @@ public class VerificacionVehiculo {
 		verificacionVehiculo.setIdVerificacionVehiculo(verificacionVehicularEntity.getIdVerificacionVehiculo());
 		verificacionVehiculo.setEjercicio(verificacionVehicularEntity.getEjercicio());
 		verificacionVehiculo.setNoSeguimientoVerificion(verificacionVehicularEntity.getNoSeguimientoVerificacion());
-		verificacionVehiculo.setFechaVerificacion(verificacionVehicularEntity.getFechaVerificacion());
+		
+		
+		
+		String pattern = "dd-MM-yyyy";
+	    SimpleDateFormat format = new SimpleDateFormat(pattern);
+	    String fechaVerificacion = format.format(verificacionVehicularEntity.getFechaVerificacion());
+	    verificacionVehiculo.setFechaVerificacion(fechaVerificacion);
+		
 		verificacionVehiculo.setTipoVerificacion(verificacionVehicularEntity.getTipoVerificacion());
 		verificacionVehiculo.setVinVehiculo(verificacionVehicularEntity.getVinVehiculo());
 		if (verificacionVehicularEntity.getMarcaVehiculo() != null) {
@@ -97,12 +105,15 @@ public class VerificacionVehiculo {
 	public void setNoSeguimientoVerificion(Integer noSeguimientoVerificion) {
 		this.noSeguimientoVerificion = noSeguimientoVerificion;
 	}
-	public Date getFechaVerificacion() {
+	
+	public String getFechaVerificacion() {
 		return fechaVerificacion;
 	}
-	public void setFechaVerificacion(Date fechaVerificacion) {
+
+	public void setFechaVerificacion(String fechaVerificacion) {
 		this.fechaVerificacion = fechaVerificacion;
 	}
+
 	public Integer getTipoVerificacion() {
 		return tipoVerificacion;
 	}

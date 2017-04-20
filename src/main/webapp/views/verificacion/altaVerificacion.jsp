@@ -376,8 +376,8 @@
 						$('#cancel-btn')
 								.click(
 										function() {
-											var urlUsuario = "${pageContext.request.contextPath}/views/usuario/usuario.jsp";
-											window.location = urlUsuario;
+											var urlBack = "${pageContext.request.contextPath}/views/verificacion/verificaciones.jsp";
+											window.location = urlBack;
 										});
 
 						//Registra un vehiculo

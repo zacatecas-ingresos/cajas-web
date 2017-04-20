@@ -50,7 +50,7 @@ public class ImporteImpuestoService {
 			tasa = tasaPorImpuesto(tipoTasa, fechaInicio.toDate(), fechaFin.toDate());
 			
 			impuesto = baseGravable.multiply(tasa);
-			impuesto = impuesto.divide(new BigDecimal(100).setScale(0, RoundingMode.HALF_UP));
+			impuesto = impuesto.divide(new BigDecimal(100)).setScale(0,RoundingMode.HALF_UP);
 
 			return impuesto;
 		} catch (NoResultException ex) {

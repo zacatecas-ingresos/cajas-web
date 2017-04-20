@@ -23,7 +23,7 @@ public class ActualizacionesRecargosService {
 
 	/************* Calcula el importe de la actualización **********/
 	public ActualizacionRecargo calculoActualizacion(ContribucionFiscal contribucionFiscal) {
-
+				
 		ActualizacionRecargo actualizacionRecargo = new ActualizacionRecargo();
 		BigDecimal actualizacion = BigDecimal.ZERO;
 		BigDecimal inpcAnterior = BigDecimal.ZERO;
@@ -153,8 +153,8 @@ public class ActualizacionesRecargosService {
 		BigDecimal montoRecargo = BigDecimal.ZERO;
 		
 		montoRecargo = importeActualizacion.multiply(recargo);
-
-		montoRecargo = montoRecargo.divide(new BigDecimal(100), 2, RoundingMode.HALF_EVEN);
+		
+		montoRecargo = montoRecargo.divide(new BigDecimal(100), 0, RoundingMode.HALF_EVEN);
 
 		return montoRecargo;
 	}

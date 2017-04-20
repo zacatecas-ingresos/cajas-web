@@ -7,6 +7,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import cajas.persistence.entity.EstadoEntity;
+import org.jboss.logging.Logger;
 
 public class EstadoQuery {
     
@@ -16,7 +17,11 @@ public class EstadoQuery {
     private final static String BUSCAR_ESTADO = 
             "select estado"
             + " from EstadoEntity as estado"
-            + " where estado.estado = :nombreEstado";
+            + " where estado.estado like :nombreEstado";
+    private final static String OBTENER_TODOS_LOS_ESTADOS =
+            "select estado"
+            + " from EstadoEntity as estado"
+            + " order by estado.idEstado";
     //Consula con SQL nativo
     private final static String ACTUALIZAR_CON_PROCEDIMIENTO_ALMACENADO =
             "CALL usp_procrecimiento_almacenado(?)";
@@ -35,6 +40,12 @@ public class EstadoQuery {
         EstadoEntity estadoEntity = entityManager.find(EstadoEntity.class, idEstado);
         return estadoEntity;
     }
+
+    public List<EstadoEntity> obtenerTodosEstados() {
+        TypedQuery<EstadoEntity> consulta = entityManager.createQuery(OBTENER_TODOS_LOS_ESTADOS, EstadoEntity.class);
+        List<EstadoEntity> estados = consulta.getResultList();
+        return estados;
+    }
     
     public void editarEstado (EstadoEntity estadoEntity) {
         entityManager.merge(estadoEntity);
@@ -47,8 +58,9 @@ public class EstadoQuery {
     
     public List<EstadoEntity> buscarEstado(String nombre) {
         TypedQuery<EstadoEntity> consulta =  entityManager.createQuery(BUSCAR_ESTADO, EstadoEntity.class);
-        consulta.setParameter("nombreEstado", nombre);
-        return consulta.getResultList();
+        consulta.setParameter("nombreEstado", '%' + nombre + '%');
+        List<EstadoEntity> estados = consulta.getResultList();
+        return estados;
     }
 
     public void ejecutarProcedimientoAlmacenadoEstado(String nombre) {
@@ -56,4 +68,5 @@ public class EstadoQuery {
         consulta.setParameter(1, nombre);
         consulta.executeUpdate();
     }
+
 }

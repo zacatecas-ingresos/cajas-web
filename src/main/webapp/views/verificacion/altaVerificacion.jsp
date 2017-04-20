@@ -72,7 +72,7 @@
 		<aside class="main-sidebar">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<jsp:include page="/views/menu/menu.jsp"></jsp:include>
+				<%@ include file="/views/menu/menu.jspf" %>
 			</section>
 			<!-- /.sidebar -->
 		</aside>

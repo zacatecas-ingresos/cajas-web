@@ -29,15 +29,7 @@ public class EstadoFactory {
     // DTO a entidad
     public Estado entidadADto(EstadoEntity entidad) {
         Estado dto = new Estado();
-        
-        // Set
-        // carro.color = "azul";
-        // carro.setColor("azul");
-        
-        // Get
-        // colorCarro = carro.color;
-        // colorCarro = carro.getColor();
-        
+
         dto.setIdEstado(entidad.getIdEstado());
         dto.setAbreviacionEstado(entidad.getAbreviacionEstado());
         dto.setEstado(entidad.getEstado());
@@ -48,7 +40,7 @@ public class EstadoFactory {
     public List<Estado> entidadesADtos(List<EstadoEntity> entidades) {
         List<Estado> dtos = new ArrayList<>();
         
-        for(EstadoEntity entidad : entidades) {
+        for (EstadoEntity entidad : entidades) {
             Estado dto = entidadADto(entidad);
             dtos.add(dto);
         }

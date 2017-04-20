@@ -9,9 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
-
-//import org.hibernate.type.NumericBooleanType;
 @Entity
 @Table(name = "marcas_vehiculos", schema = "catalogos")
 public class MarcaVehiculoEntity implements Serializable {
@@ -30,7 +27,6 @@ public class MarcaVehiculoEntity implements Serializable {
 	private String abreviatura;
 
 	@Column(name = "estatus")
-	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean estatus;
 
 	public Integer getIdMarcaVehiculo() {

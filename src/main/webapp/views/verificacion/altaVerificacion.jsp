@@ -535,15 +535,6 @@
 																		function() {
 																			window.location = admin;
 																		});
-															},
-															error : function(
-																	jqXHR,
-																	textStatus,
-																	errorThrown) {
-																console
-																		.log(textStatus
-																				+ " "
-																				+ errorThrown);
 															}
 														});
 											}

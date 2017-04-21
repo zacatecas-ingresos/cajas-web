@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=Windows-1252"
+	pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +66,7 @@
 		<aside class="main-sidebar">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<jsp:include page="/views/menu/menu.jsp"></jsp:include>
+				<%@ include file="/views/menu/menu.jspf" %>
 			</section>
 			<!-- /.sidebar -->
 		</aside>

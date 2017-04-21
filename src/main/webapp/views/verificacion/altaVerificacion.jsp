@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=Windows-1252"
+	pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,7 +72,7 @@
 		<aside class="main-sidebar">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<jsp:include page="/views/menu/menu.jsp"></jsp:include>
+				<%@ include file="/views/menu/menu.jspf" %>
 			</section>
 			<!-- /.sidebar -->
 		</aside>
@@ -101,7 +101,7 @@
 									<div class="col-md-12">
 
 										<div class="row">
-											<div class="col-md-3">
+											<div class="col-md-4">
 												<div class="form-group">
 													<label for="selectOficina" class="control-label">Oficina
 														Verificacion</label> <select class="form-control"
@@ -110,7 +110,7 @@
 													</select>
 												</div>
 											</div>
-											<div class="col-md-3">
+											<div class="col-md-4">
 												<div class="form-group">
 													<label for="inputEjercicio" class="control-label">Ejercicio</label>
 													<input id="inputEjercicio" name="inputEjercicio"
@@ -119,18 +119,7 @@
 														disabled required>
 												</div>
 											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label for="selectTipoVerificacion" class="control-label">Tipo
-														Verificación</label> <select class="form-control"
-														id="selectTipoVerificacion" name="selectTipoVerificacion"
-														disabled required>
-														<option value="0" selected>MEXICANOS</option>
-														<option value="1">EXTRANJEROS</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-md-3">
+											<div class="col-md-4">
 												<div class="form-group">
 													<label for="selectEstatusVerificacion"
 														class="control-label">Estatus Verificacion</label> <select
@@ -376,17 +365,15 @@
 						$('#cancel-btn')
 								.click(
 										function() {
-											var urlUsuario = "${pageContext.request.contextPath}/views/usuario/usuario.jsp";
-											window.location = urlUsuario;
+											var urlBack = "${pageContext.request.contextPath}/views/verificacion/verificaciones.jsp";
+											window.location = urlBack;
 										});
 
 						//Registra un vehiculo
 						$('#save-btn')
 								.click(
 										function() {
-
-											var fechaHoy = new Date()
-													.toISOString().slice(0, 10);
+							
 											var anio = new Date().toISOString()
 													.slice(0, 4);
 
@@ -405,7 +392,6 @@
 												var datos = {};
 												var idOficinaVerificacion = $('#selectOficina');
 												var ejercicio = $('#inputEjercicio');
-												var tipoVerificacion = $('#selectTipoVerificacion');
 												var estatusVerificacion = $('#selectEstatusVerificacion');
 												var vinVehiculo = $('#inputVin');
 												var numeroMotorVehiculo = $('#inputNumeroMotor');
@@ -484,11 +470,8 @@
 														.val();
 												datos.ejercicio = ejercicio
 														.val();
-												datos.tipoVerificacion = tipoVerificacion
-														.val();
 												datos.estatusVerificacion = estatusVerificacion
 														.val();
-												datos.fechaVerificacion = fechaHoy;
 												datos.vinVehiculo = vinVehiculo
 														.val();
 												datos.numeroMotorVehiculo = numeroMotorVehiculo
@@ -528,7 +511,7 @@
 												console.log(formData);
 
 												var urlPost = "${pageContext.request.contextPath}/cajas/vehicular/verificacion";
-												var urlCrear = "${pageContext.request.contextPath}/views/verificacion/altaVerificacion.jsp";
+												var admin = "${pageContext.request.contextPath}/views/verificacion/verificaciones.jsp";
 
 												$
 														.ajax({
@@ -550,17 +533,8 @@
 																			closeOnCancel : false
 																		},
 																		function() {
-																			window.location = urlCrear;
+																			window.location = admin;
 																		});
-															},
-															error : function(
-																	jqXHR,
-																	textStatus,
-																	errorThrown) {
-																console
-																		.log(textStatus
-																				+ " "
-																				+ errorThrown);
 															}
 														});
 											}
@@ -615,26 +589,6 @@
 														}
 													},
 												},
-												/*
-												'inputNombrePersona' : { //validación del campo
-													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-													validators : { //validaciones
-
-														notEmpty : {
-															message : 'El Nombre es requerido.'
-														},
-													}
-												},
-												'inputApellidoPaterno' : { //validación del campo
-													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-													validators : { //validaciones
-
-														notEmpty : {
-															message : 'El Apellido Paterno es requerido.'
-														},
-													}
-												},
-												 */
 												'inputNumeroMotor' : { //validación del campo
 													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
 													validators : { //validaciones
@@ -689,15 +643,6 @@
 
 														notEmpty : {
 															message : 'La Oficina es requerida.'
-														},
-													}
-												},
-												'selectTipoVerificacion' : { //validación del campo
-													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-													validators : { //validaciones
-
-														notEmpty : {
-															message : 'El Tipo de Verificacion es requerido.'
 														},
 													}
 												},
@@ -817,7 +762,7 @@
 										term : request.term
 									},
 									success : function(data) {
-										console.log("data:: " + data);
+										//console.log("data:: " + data);
 										response($.map(data, function(item) {
 											return {
 												id : item.idMarcaVehiculo,
@@ -836,8 +781,8 @@
 							minLength : 2,
 							select : function(event, ui) {
 								$("#idMarcaVehiculo").val(ui.item.id);
-								console.log("Selected: " + ui.item.value + ", "
-										+ ui.item.label + ", " + ui.item.id);
+								/*console.log("Selected: " + ui.item.value + ", "
+										+ ui.item.label + ", " + ui.item.id);*/
 							}
 						});
 	});

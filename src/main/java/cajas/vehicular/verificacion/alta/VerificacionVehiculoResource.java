@@ -95,6 +95,20 @@ public class VerificacionVehiculoResource {
 		}
 	}
 	
+	/*****Obtiene Verificacion por ID*********/
+	@GET
+	@Path("/obtenerVerificacioPorID")
+	@Produces({ "application/json" })
+	public Response obtenerVerificacioPorID(@QueryParam("id")Integer id) {
+		try {
+			List<VerificacionVehiculo> verificaciones = verificacionVehiculoEjb.obtenerVerificacionPorId(id);
+			return Response.ok(verificaciones).build();
+		} catch (BusinessException ex) {
+			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+		}
+	}
+	
+	
 	/************Obtiene una lista de usuarios de acuerdo al paramtero recibida y 
 	 * encontrando aquellos que coinciden
 	 */

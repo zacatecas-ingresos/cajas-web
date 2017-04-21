@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=Windows-1252"
+	pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +40,8 @@
 	href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css"
 	rel="stylesheet" type="text/css">
 
-</head>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap-select/css/bootstrap-select.min.css"
+      rel="stylesheet" type="text/css" />
 
 <style type="text/css">
 	#formCalculos .selectContainer .form-control-feedback {
@@ -48,7 +49,7 @@
     right: -15px;
 }
 </style>
-
+</head>
 
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -77,7 +78,7 @@
 		<aside class="main-sidebar">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<jsp:include page="/views/menu/menu.jsp"></jsp:include>
+				<%@ include file="/views/menu/menu.jspf" %>
 			</section>
 			<!-- /.sidebar -->
 		</aside>
@@ -106,14 +107,14 @@
 									<div class="row">
 										<div class="col-md-2">
 											<div class="form-group">
-												<label for="selectCriterio">Criterio B煤squeda:</label> 
+												<label for="selectCriterio">Criterio B鷖queda:</label> 
 											</div>
 										</div>
 										<div class="col-md-4">
 											<select
 												class="form-control" id="selectCriterio">
 												<option value="" selected="selected">Seleccione
-												una opci贸n</option>
+												una opci髇</option>
 												</select>	
 										</div>
 										<div class="col-md-4">
@@ -139,8 +140,8 @@
 										<thead>
 											<tr class="bg-primary">
 											<th>RFC</th>
-											<th>NOMBRE O RAZON SOCIAL</th>
-											<th>DIRECCION FISCAL</th>
+											<th>NOMBRE O RAZ覰 SOCIAL</th>
+											<th>DIRECCI覰 FISCAL</th>
 											<th>FECHA INICIO</th>
 											<th>ESTATUS</th>
 											</tr>
@@ -203,13 +204,13 @@
 									class="tablaUsuarios table table-bordered table-hover">
 									<thead>
 										<tr class="bg-primary">
-											<th>N掳</th>
+											<th>NO.</th>
 											<th>CALLE</th>
-											<th>N掳 EXT</th>
-											<th>N掳 INT</th>
+											<th>NO. EXT</th>
+											<th>NO. INT</th>
 											<th>COLONIA</th>
 											<th>MUNICIPIO</th>
-											<th>N掳 EMPLEADO</th>
+											<th>NO. EMPLEADO</th>
 											<th>DECLARA</th>
 										</tr>
 									</thead>
@@ -233,26 +234,26 @@
 							<form id="formCalculos">
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>Declaraci贸n</label>
+										<label>Declaraci髇</label>
 									</div>
 									<div class="form-group">
-										<label for="selectDeclaracion">Tipo Declaraci贸n:</label> 
+										<label for="selectDeclaracion">Tipo Declaraci髇:</label> 
 								        <div class=" col-md-12 selectContainer">
 											<select
 											class="form-control " id="selectDeclaracion" name= "selectDeclaracion">
 											<option value="">Seleccione
-												una opci贸n</option>
+												una opci髇</option>
 											</select>
 										</div>
 									</div>
 									<div id="panelComplementaria">
 										<div class="form-group">
-											<label for="inputRecibo">N掳 Recibo anterior:</label> <input
+											<label for="inputRecibo">No. Recibo anterior:</label> <input
 												class="form-control" id="inputRecibo"
 												placeholder="Numero recibo anterior" type="text">
 										</div>
 										<div class="form-group">
-											<label for="inputComplementaria">N掳 Complementaria:</label> <input
+											<label for="inputComplementaria">No. Complementaria:</label> <input
 												class="form-control" id="inputComplementaria"
 												placeholder="Numero complementaria" type="text">
 										</div>
@@ -268,12 +269,12 @@
 										<label for="inputComplementaria">Detalle de Pago</label>
 									</div>
 									<div class="form-group">
-										<label for="selectAnyoFiscal">A帽o Fiscal:</label>
+										<label for="selectAnyoFiscal">A駉 Fiscal:</label>
 										 <div class="selectContainer">
 											<select
 											class="form-control " id="selectAnyoFiscal" name= "selectAnyoFiscal">
 											<option value="">Seleccione
-												una opci贸n</option>
+												una opci髇</option>
 											</select>
 										</div>
 									</div>
@@ -283,22 +284,22 @@
 											<select
 											class="form-control " id="selectPeriodo" name= "selectPeriodo">
 											<option value="">Seleccione
-												una opci贸n</option>
+												una opci髇</option>
 											</select>
 										</div>
 									</div>
 									
 									<div class="form-group">
-										<label for="inputEmpleados">N掳 de Empleados:</label>
+										<label for="inputEmpleados">No. de Empleados:</label>
 										<input
 											class="form-control" id="inputEmpleados" name="inputEmpleados"
 											placeholder="Numero empleados" type="text">
 									</div>
 									<div class="form-group">
-										<label for="inputImporteNomina">Importe de Nomina:</label> <input
+										<label for="inputImporteNomina">Importe de N髆ina:</label> <input
 											class="form-control" id="inputImporteNomina"
 											name="inputImporteNomina"
-											placeholder="Importe nomina" type="text">
+											placeholder="Importe n髆ina" type="text">
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -306,16 +307,16 @@
 										<label for="inputComplementaria">Importe a Pagar</label>
 									</div>
 									<div class="form-group">
-										<label for="inputNomina">Nomina:</label> <input 
-											class="form-control" id="inputNomina" placeholder="Nomina"
+										<label for="inputNomina">N髆ina:</label> <input 
+											class="form-control" id="inputNomina" placeholder="N髆ina"
 											type="text">
 									</div>
 									<div class="form-group">
 										<label for="inputUaz">UAZ:</label> <input class="form-control"
-											id="inputUaz" placeholder="Uaz" type="text">
+											id="inputUaz" placeholder="UAZ" type="text">
 									</div>
 									<div class="form-group">
-										<label for="inputActualizacion">Actualizacion:</label> <input
+										<label for="inputActualizacion">Actualizaci髇:</label> <input
 											class="form-control" id="inputActualizacion"
 											placeholder="Actualizacion" type="text">
 									</div>
@@ -332,7 +333,7 @@
 									</div>
 									<br />
 									<div class="form-group">
-											<label for="inputGasto">Gastos de Ejecucion:</label> <input
+											<label for="inputGasto">Gastos de Ejecuci髇:</label> <input
 												class="form-control" id="inputGasto" placeholder="Recargos"
 												type="text">
 									</div>
@@ -420,8 +421,7 @@
 	src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
 
 <!-- Include Bootstrap-select CSS, JS -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap-select/js/bootstrap-select.min.js"></script>
 
 <!-- Fin scripts -->
 
@@ -433,15 +433,15 @@
 		var data = [{rfc:'ROAA6411012FA', nombre:'ABEL RODRIGUEZ AGUILAR', domicilio:'CARR.A SAN RAMON KM. 0+800', fechaInicio:new Date(), activo:true,
 								sucursales:[{numero:1, calle:'CARR.A SAN RAMON', numInt:2, numExt:4, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:2, declara:true},
 									{numero:2, calle:'SAN RAMON', numInt:2, numExt:4, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:2, declara:true}]},
-							{rfc:'TOSC850108M67', nombre:'CARLOS FRANCISCO TORRES SORIANO', domicilio:'PRIVADA LOS PINOS N潞 204', fechaInicio:new Date(), activo:true,
+							{rfc:'TOSC850108M67', nombre:'CARLOS FRANCISCO TORRES SORIANO', domicilio:'PRIVADA LOS PINOS NO. 204', fechaInicio:new Date(), activo:true,
 								sucursales:[{numero:1, calle:'PRIVADA LOS PINOS', numInt:204, numExt:13, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:2, declara:true}]},
-							{rfc:'SAAC560304V15', nombre:'CRISTOBAL IVAN SALINAS ARANDA', domicilio:'PRIV. SIERRA HERMOSA N潞 19', fechaInicio:new Date(), activo:true,
+							{rfc:'SAAC560304V15', nombre:'CRISTOBAL IVAN SALINAS ARANDA', domicilio:'PRIV. SIERRA HERMOSA NO. 19', fechaInicio:new Date(), activo:true,
 								sucursales:[{numero:1, calle:'PRIV. SIERRA HERMOSA', numInt:19, numExt:10, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:1, declara:true}]},
-							{rfc:'DRZ9501053P1', nombre:'DISTRIBUIDORA RODRIGUEZ DE ZAC', domicilio:'HIDALGO N潞 5', fechaInicio:new Date(), activo:true,
+							{rfc:'DRZ9501053P1', nombre:'DISTRIBUIDORA RODRIGUEZ DE ZAC', domicilio:'HIDALGO NO. 5', fechaInicio:new Date(), activo:true,
 								sucursales:[{numero:1, calle:'HIDALGO', numInt:5, numExt:1, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:3, declara:true},
 									{numero:1, calle:'HIDALGO', numInt:5, numExt:1, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:1, declara:true}]},
-							{rfc:'GCC-020227-UW5', nombre:'GRUPO CONSTRUCTOR CARTAGENA', domicilio:'AV. VI脩EDOS RIVER No. 805 AGS.', fechaInicio:new Date(), activo:true,
-								sucursales:[{numero:1, calle:'AV. VI脩EDOS RIVER', numInt:805, numExt:8, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:5, declara:true}]}];
+							{rfc:'GCC-020227-UW5', nombre:'GRUPO CONSTRUCTOR CARTAGENA', domicilio:'AV. VI袳DOS RIVER No. 805 AGS.', fechaInicio:new Date(), activo:true,
+								sucursales:[{numero:1, calle:'AV. VI袳DOS RIVER', numInt:805, numExt:8, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:5, declara:true}]}];
 				
 										
 		$('#panelContribuyente').hide();
@@ -526,7 +526,7 @@
 							//$('tbody').find('td').remove();
 							for (var i = 0; i < value.sucursales.length; i++) {
 								tr = $('<tr/>');
-								$(tr).append("<td class="+"N掳" +" >" + value.sucursales[i].numero + "</td>");
+								$(tr).append("<td class="+"No" +" >" + value.sucursales[i].numero + "</td>");
 								$(tr).append("<td class="+"calle" +" >" + value.sucursales[i].calle + "</td>");
 								$(tr).append("<td class="+"numInt" +" >" + value.sucursales[i].numInt + "</td>");
 								$(tr).append("<td class="+"numExt" +" >" + value.sucursales[i].numExt + "</td>");
@@ -571,24 +571,24 @@
 			},
 			//Lista de campos a validar y las reglas que aplican para cada uno de ellos
 			fields : {
-				'inputImporteNomina' : { //validaci贸n del campo
+				'inputImporteNomina' : { //validaci髇 del campo
 							validators : { //validaciones
 								notEmpty : {
-											message : 'Ingrese el importe de la nomina.'
+											message : 'Ingrese el importe de la n髆ina.'
 										}
 							}	
 					},
-				'inputEmpleados' : { //validaci贸n del campo
+				'inputEmpleados' : { //validaci髇 del campo
 							validators : { //validaciones
 								notEmpty : {
-											message : 'Ingrese el n煤mero de empleados.'
+											message : 'Ingrese el n鷐ero de empleados.'
 										}
 							}	
 					},
-				'selectDeclaracion' : { //validaci贸n del campo
+				'selectDeclaracion' : { //validaci髇 del campo
 							validators : { //validaciones
 								notEmpty : {
-											message : 'Seleccione la declaraci贸n.'
+											message : 'Seleccione la declaraci髇.'
 										}
 							}	
 					}

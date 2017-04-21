@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=Windows-1252"
+	pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +70,7 @@
 		<!-- Menú lateral izquierdo -->
 		<aside class="main-sidebar">
 			<section class="sidebar">
-				<jsp:include page="/views/menu/menu.jsp"></jsp:include><!-- Se llama al al archivo donde se encuentra el menú -->
+				<%@ include file="/views/menu/menu.jspf" %><!-- Se llama al al archivo donde se encuentra el menú -->
 			</section>
 		</aside>
 		<!-- Fin menú lateral izquierdo -->
@@ -91,13 +91,15 @@
 			<!-- Usuarios Registrados -->
 			<section class="content">
 
-				<div class="col-md-12" id="div2">
+				<div class="box box-primary">
 
-					<div class="box box-primary">
+					<div class="box-body">
 
-						<div class="box-body">
+						<div class="row">
 
 							<div class="col-md-12">
+
+
 
 								<!-- Contenido -->
 
@@ -122,10 +124,9 @@
 								<div class="row">
 									<div class="col-xs-1" style="text-align: center;"></div>
 									<div class="col-xs-3 " style="text-align: center;">
-										<label for="search" class="control-label">
-											VIN:</label> <input type="text" class="form-control"
-											data-toggle="tooltip" data-placement="top"
-											title="Ingrese VIN" id="search"
+										<label for="search" class="control-label"> VIN:</label> <input
+											type="text" class="form-control" data-toggle="tooltip"
+											data-placement="top" title="Ingrese VIN" id="search"
 											name="search" placeholder="VIN...">
 									</div>
 									<div class="col-xs-4">
@@ -135,7 +136,7 @@
 												id="selectEstatusVerificacion"
 												name="selectEstatusVerificacion">
 												<option value="0" selected>TODOS</option>
-												<option value="1" >CAPTURADA</option>
+												<option value="1">CAPTURADA</option>
 												<option value="2">AUTORIZADA</option>
 												<option value="3">TERMINADA</option>
 												<option value="4">RECHAZADA MINISTERIO</option>
@@ -172,8 +173,26 @@
 								<!-- Fin contenido -->
 							</div>
 						</div>
-					</div>
-				</div>
+
+						<!-- DIV INFORMACION DE LA VERIFICACION SELECIONADA -->
+						<div id="divInfo" style="display: none" class="well">
+							<button id="botonGastos" type="button"
+								class="btn btn-warning btn-md">
+								<i class="fa fa-money" aria-hidden="true"></i> VALIDAR GASTOS
+							</button>
+							&nbsp;&nbsp;
+							<button id="botonOcultar" type="button"
+								class="btn btn-info btn-md pull-right">
+								<i class="fa fa-eye-slash" aria-hidden="true"></i> OCULTAR
+							</button>
+							<br>
+							<br>							
+							<fieldset>
+							<legend>Mas Información</legend>
+							<div class="row" id="contenido"></div>
+							</fieldset>
+							
+						</div>
 			</section>
 			<!-- Fin contenido Registrar marca -->
 
@@ -247,6 +266,11 @@
 
 
 $(document).ready(function(){
+	
+	 
+	$( "#botonOcultar" ).click(function() {
+	  $( "#divInfo" ).hide( "slow" );
+	});
 
 	var idVerificacion;
 
@@ -353,7 +377,30 @@ $(document).ready(function(){
 	//Obtiene un valor del id de la fila seleccionada
 	$('tbody').on("click", "td", function() {
 		idVerificacion = $(this).closest('tr').find('.id').text();
-		console.log(idVerificacion);
+		$( "#divInfo" ).hide( "slow" );
+		$( "#divInfo" ).show( "slow" );
+		
+		var urlBusqueda = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/obtenerVerificacioPorID/"+"?id="+idVerificacion;
+		
+		$.ajax({
+				type: "GET",
+				dataType : 'json',
+				url: urlBusqueda,
+				success: function(data){
+					$('#contenido').html(""); 
+					$.each( data, function( key, val ) {
+						var ejercicio = $('<div class="col-xs-2"><label><strong>EJERCICIO: </strong>'+ val.ejercicio + '</label></div>');
+						ejercicio.appendTo('#contenido');
+						var ejercicio = $('<div class="col-xs-3"><label><strong>TIPO VERICACIÓN: </strong>'+(val.tipoVerificacion == 0 ? "NACIONAL" : "EXTRANJERA"  )+'</label></div>');
+						ejercicio.appendTo('#contenido');
+						var fecha = $('<div class="col-xs-3"><label><strong>FECHA CAPTURA: </strong>'+val.fechaVerificacion+'</label></div>');
+						fecha.appendTo('#contenido');
+			  		});
+				},
+				error : function(jqXHR,textStatus,errorThrown) {
+					console.log(textStatus+ " "+ errorThrown);
+				}
+		});				
 	});
 
 	

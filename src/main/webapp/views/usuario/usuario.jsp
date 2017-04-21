@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=Windows-1252"
+	pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +67,7 @@
 		<!-- Menú lateral izquierdo -->
 		<aside class="main-sidebar">
 			<section class="sidebar">
-				<jsp:include page="/views/menu/menu.jsp"></jsp:include><!-- Se llama al al archivo donde se encuentra el menú -->
+				<%@ include file="/views/menu/menu.jspf" %><!-- Se llama al al archivo donde se encuentra el menú -->
 			</section>
 		</aside>
 		<!-- Fin menú lateral izquierdo -->

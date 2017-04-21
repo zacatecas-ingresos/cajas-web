@@ -141,15 +141,12 @@ public class ActualizacionesRecargosService {
 			Integer mesFiscalFinal,BigDecimal importeActualizacion) {
 
 		BigDecimal recargo = BigDecimal.ZERO;
-		try {
+	
+		recargo = obtenerTasaRecargo(aFiscalInicio, mesFiscalInicio, aFiscalFinal, mesFiscalFinal);
+		
+		System.out.println("RECARGO:::" + recargo);
+		recargo.setScale(2, RoundingMode.HALF_EVEN);
 
-			recargo = obtenerTasaRecargo(aFiscalInicio, mesFiscalInicio, aFiscalFinal, mesFiscalFinal);
-			recargo.setScale(2, RoundingMode.HALF_EVEN);
-
-		} catch (NoResultException ex) {
-			ex.printStackTrace();
-			throw new BusinessException("Ocurrio un problema no se encontrarón resultados.");
-		}
 		BigDecimal montoRecargo = BigDecimal.ZERO;
 		
 		montoRecargo = importeActualizacion.multiply(recargo);
@@ -180,10 +177,13 @@ public class ActualizacionesRecargosService {
 			factorRecargo.setaFiscal(c.getYear());
 			factorRecargo.setMesFiscal(c.getMonthOfYear());
 						
-			INPCEntity inpc = inpcQuery.inpcEntity(factorRecargo.getaFiscal(),factorRecargo.getMesFiscal());
-			
-			factorRecargo.setRecargo(inpc.getRecargo());
-			factoresRecargo.add(factorRecargo);
+			try{
+				INPCEntity inpc = inpcQuery.inpcEntity(factorRecargo.getaFiscal(),factorRecargo.getMesFiscal());
+				factorRecargo.setRecargo(inpc.getRecargo());
+				factoresRecargo.add(factorRecargo);
+			}catch(NoResultException ex){
+				ex.printStackTrace();
+			}
 		}	
 	
 		BigDecimal tasaRecargo = BigDecimal.ZERO;

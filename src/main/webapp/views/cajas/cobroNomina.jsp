@@ -46,7 +46,7 @@
 <style type="text/css">
 	#formCalculos .selectContainer .form-control-feedback {
     /* Adjust feedback icon position */
-    right: -15px;
+    right: -25px;
 }
 </style>
 </head>

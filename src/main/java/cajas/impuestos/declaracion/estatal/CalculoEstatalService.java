@@ -51,7 +51,7 @@ public class CalculoEstatalService {
 		// Validar datos requeridos
 		validarDeclaracion(declaracion);
 
-		// Validar contribuyente, asignación obligacion y sucursales
+		// Validar contribuyente, asignaciÃ³n obligacion y sucursales
 		validarAsignacion(declaracion.getIdContribuyente(), declaracion.getIdSucursal(), declaracion.getIdObligacion());
 
 		// Validar periodo declarado
@@ -59,7 +59,7 @@ public class CalculoEstatalService {
 		PeriodosEntity periodo = entityManager.find(PeriodosEntity.class, declaracion.getPeriodo());
 
 		if (periodo == null) {
-			throw new BusinessException("No se encontró configuración para el periodo seleccionado");
+			throw new BusinessException("No se encontrÃ³ configuraciÃ³n para el periodo seleccionado");
 		}
 
 		int mesDeclaracion = periodo.getIdMes(); // obtener el mes del periodo
@@ -83,8 +83,8 @@ public class CalculoEstatalService {
 		uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(),
 				declaracion.getPeriodo(), TipoTasa.TASA_UAZ);
 		
-		// Validar si la obligación ha vencido para saber si se aplica
-		// actualización y recargo
+		// Validar si la obligaciÃ³n ha vencido para saber si se aplica
+		// actualizaciÃ³n y recargo
 		if (vencimientoObligacion.haVencidoObligacion(declaracion.getIdObligacion(), periodo.getIdMes(),
 				declaracion.getEjercicioFiscal())) {
 
@@ -150,15 +150,15 @@ public class CalculoEstatalService {
 		}
 
 		if (!ValidacionUtil.esNumeroPositivo(declaracion.getNumeroEmpleados())) {
-			throw new BusinessException("El número de empleados es requerido.");
+			throw new BusinessException("El nÃºmero de empleados es requerido.");
 		}
 
 		if (!ValidacionUtil.esNumeroPositivo(declaracion.getIdContribuyente())) {
-			throw new BusinessException("El número de empleados es requerido.");
+			throw new BusinessException("El nÃºmero de empleados es requerido.");
 		}
 
 		if (!ValidacionUtil.esNumeroPositivo(declaracion.getIdObligacion())) {
-			throw new BusinessException("El tipo de obligación es requerido.");
+			throw new BusinessException("El tipo de obligaciÃ³n es requerido.");
 		}
 
 		if (!ValidacionUtil.esNumeroPositivo(declaracion.getIdSucursal())) {
@@ -166,7 +166,7 @@ public class CalculoEstatalService {
 		}
 
 		if (!ValidacionUtil.esCadenaVacia(declaracion.getIdTipoDeclaracion())) {
-			throw new BusinessException("El tipo de declaración es requerido.");
+			throw new BusinessException("El tipo de declaraciÃ³n es requerido.");
 		}
 
 	}
@@ -175,11 +175,11 @@ public class CalculoEstatalService {
 		// Agregar consulta
 		// contribuyente por id
 
-		// validar estatus del contribuyente lanzar excepcion si no está activo
+		// validar estatus del contribuyente lanzar excepcion si no estÃ¡ activo
 
-		// Consultar que el contribuyente tenga la obligación asignada activa.
+		// Consultar que el contribuyente tenga la obligaciÃ³n asignada activa.
 
-		// Consultar que tenga sucursales activas en la obligación
+		// Consultar que tenga sucursales activas en la obligaciÃ³n
 
 	}
 

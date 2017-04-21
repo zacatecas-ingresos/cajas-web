@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="windows-1252"?>
-<!-- Documentaci�n y ayuda en cuanto a como modificar el POM ir a: https://maven.apache.org/pom.html -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Documentación y ayuda en cuanto a como modificar el POM ir a: https://maven.apache.org/pom.html -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
 		http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -11,7 +11,7 @@
     <version>17.03.10-SNAPSHOT</version>
     <packaging>war</packaging>
     <dependencies>
-        <!-- Importa el API CDI, Se emplea scope provided esta API est� incluida
+        <!-- Importa el API CDI, Se emplea scope provided esta API está incluida
         dentro de JBoss WildFly -->
         <dependency>
             <groupId>javax.enterprise</groupId>
@@ -149,8 +149,8 @@
             <version>3.5</version>
         </dependency>
         
-        <!-- Biblioteca de Apache que se emplea en la codificación y 
-        decodificación de varios formatos como Base64 -->
+        <!-- Biblioteca de Apache que se emplea en la codificaciÃ³n y 
+        decodificaciÃ³n de varios formatos como Base64 -->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
@@ -169,7 +169,7 @@
         </dependencies>
     </dependencyManagement>
     <properties>
-        <project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- JBoss dependency versions -->
         <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
 

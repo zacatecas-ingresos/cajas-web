@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=Windows-1252"
-    pageEncoding="Windows-1252"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Estados</title>
 
         <!-- Bootstrap -->
@@ -78,10 +78,10 @@
                                 <form id="form-estados">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="inputabrev" class="control-label">Abreviación del estado</label>
+                                            <label for="inputabrev" class="control-label">AbreviaciÃ³n del estado</label>
                                             <input id="inputabrev" name="inputabrev"
                                                    type="text" class="form-control" maxlength="10"
-                                                   placeholder="Abreviación" required>
+                                                   placeholder="AbreviaciÃ³n" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputnom" class="control-label">Nombre del estado</label>
@@ -116,7 +116,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.3.0
         </div>
-        <strong>Derechos de autor &copy; 2016 <a href="http://www.finanzas.gob.mx">Secretaría de finanzas de Zacatecas</a>.</strong> Todos los derechos reservados.
+        <strong>Derechos de autor &copy; 2016 <a href="http://www.finanzas.gob.mx">SecretarÃ­a de finanzas de Zacatecas</a>.</strong> Todos los derechos reservados.
     </footer>
 
         <!-- Scripts -->
@@ -229,16 +229,16 @@ $(document).ready(function() {
             //live: 'enabled',
             //Lista de campos a validar y las reglas que aplican para cada uno de ellos
             fields : {
-                'inputabrev' : { //validación del campo
-                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+                'inputabrev' : { //validaciÃ³n del campo
+                    trigger : 'blur', //Se especifica cuando se acciona la validaciÃ³n del campo
                     validators : { //validaciones
                         notEmpty : {
                             message : 'La abreviacion del estado es requerida.'
                         },
                     }
                 },
-                'inputnom' : { //validación del campo
-                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+                'inputnom' : { //validaciÃ³n del campo
+                    trigger : 'blur', //Se especifica cuando se acciona la validaciÃ³n del campo
                     validators : { //validaciones
                         notEmpty : {
                             message : 'El nombre del estado es requerido'

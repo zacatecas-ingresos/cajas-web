@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=Windows-1252"
-	pageEncoding="windows-1252"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +67,7 @@
 				</a>
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
-						<jsp:include page="/views/menu/logout.jsp"></jsp:include>
+                                                <%@ include file="/WEB-INF/jspf/logout.jspf" %>
 					</ul>
 				</div>
 			</nav>
@@ -78,7 +77,7 @@
 		<aside class="main-sidebar">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<%@ include file="/views/menu/menu.jspf" %>
+                                <%@ include file="/WEB-INF/jspf/menu.jspf" %>
 			</section>
 			<!-- /.sidebar -->
 		</aside>
@@ -107,14 +106,14 @@
 									<div class="row">
 										<div class="col-md-2">
 											<div class="form-group">
-												<label for="selectCriterio">Criterio B鷖queda:</label> 
+												<label for="selectCriterio">Criterio B煤squeda:</label> 
 											</div>
 										</div>
 										<div class="col-md-4">
 											<select
 												class="form-control" id="selectCriterio">
 												<option value="" selected="selected">Seleccione
-												una opci髇</option>
+												una opci贸n</option>
 												</select>	
 										</div>
 										<div class="col-md-4">
@@ -140,8 +139,8 @@
 										<thead>
 											<tr class="bg-primary">
 											<th>RFC</th>
-											<th>NOMBRE O RAZ覰 SOCIAL</th>
-											<th>DIRECCI覰 FISCAL</th>
+											<th>NOMBRE O RAZ脫N SOCIAL</th>
+											<th>DIRECCI脫N FISCAL</th>
 											<th>FECHA INICIO</th>
 											<th>ESTATUS</th>
 											</tr>
@@ -234,15 +233,15 @@
 							<form id="formCalculos">
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>Declaraci髇</label>
+										<label>Declaraci贸n</label>
 									</div>
 									<div class="form-group">
-										<label for="selectDeclaracion">Tipo Declaraci髇:</label> 
+										<label for="selectDeclaracion">Tipo Declaraci贸n:</label> 
 								        <div class=" col-md-12 selectContainer">
 											<select
 											class="form-control " id="selectDeclaracion" name= "selectDeclaracion">
 											<option value="">Seleccione
-												una opci髇</option>
+												una opci贸n</option>
 											</select>
 										</div>
 									</div>
@@ -269,12 +268,12 @@
 										<label for="inputComplementaria">Detalle de Pago</label>
 									</div>
 									<div class="form-group">
-										<label for="selectAnyoFiscal">A駉 Fiscal:</label>
+										<label for="selectAnyoFiscal">A帽o Fiscal:</label>
 										 <div class="selectContainer">
 											<select
 											class="form-control " id="selectAnyoFiscal" name= "selectAnyoFiscal">
 											<option value="">Seleccione
-												una opci髇</option>
+												una opci贸n</option>
 											</select>
 										</div>
 									</div>
@@ -284,7 +283,7 @@
 											<select
 											class="form-control " id="selectPeriodo" name= "selectPeriodo">
 											<option value="">Seleccione
-												una opci髇</option>
+												una opci贸n</option>
 											</select>
 										</div>
 									</div>
@@ -296,10 +295,10 @@
 											placeholder="Numero empleados" type="text">
 									</div>
 									<div class="form-group">
-										<label for="inputImporteNomina">Importe de N髆ina:</label> <input
+										<label for="inputImporteNomina">Importe de N贸mina:</label> <input
 											class="form-control" id="inputImporteNomina"
 											name="inputImporteNomina"
-											placeholder="Importe n髆ina" type="text">
+											placeholder="Importe n贸mina" type="text">
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -307,8 +306,8 @@
 										<label for="inputComplementaria">Importe a Pagar</label>
 									</div>
 									<div class="form-group">
-										<label for="inputNomina">N髆ina:</label> <input 
-											class="form-control" id="inputNomina" placeholder="N髆ina"
+										<label for="inputNomina">N贸mina:</label> <input 
+											class="form-control" id="inputNomina" placeholder="N贸mina"
 											type="text">
 									</div>
 									<div class="form-group">
@@ -316,7 +315,7 @@
 											id="inputUaz" placeholder="UAZ" type="text">
 									</div>
 									<div class="form-group">
-										<label for="inputActualizacion">Actualizaci髇:</label> <input
+										<label for="inputActualizacion">Actualizaci贸n:</label> <input
 											class="form-control" id="inputActualizacion"
 											placeholder="Actualizacion" type="text">
 									</div>
@@ -333,7 +332,7 @@
 									</div>
 									<br />
 									<div class="form-group">
-											<label for="inputGasto">Gastos de Ejecuci髇:</label> <input
+											<label for="inputGasto">Gastos de Ejecuci贸n:</label> <input
 												class="form-control" id="inputGasto" placeholder="Recargos"
 												type="text">
 									</div>
@@ -440,8 +439,8 @@
 							{rfc:'DRZ9501053P1', nombre:'DISTRIBUIDORA RODRIGUEZ DE ZAC', domicilio:'HIDALGO NO. 5', fechaInicio:new Date(), activo:true,
 								sucursales:[{numero:1, calle:'HIDALGO', numInt:5, numExt:1, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:3, declara:true},
 									{numero:1, calle:'HIDALGO', numInt:5, numExt:1, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:1, declara:true}]},
-							{rfc:'GCC-020227-UW5', nombre:'GRUPO CONSTRUCTOR CARTAGENA', domicilio:'AV. VI袳DOS RIVER No. 805 AGS.', fechaInicio:new Date(), activo:true,
-								sucursales:[{numero:1, calle:'AV. VI袳DOS RIVER', numInt:805, numExt:8, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:5, declara:true}]}];
+							{rfc:'GCC-020227-UW5', nombre:'GRUPO CONSTRUCTOR CARTAGENA', domicilio:'AV. VI脩EDOS RIVER No. 805 AGS.', fechaInicio:new Date(), activo:true,
+								sucursales:[{numero:1, calle:'AV. VI脩EDOS RIVER', numInt:805, numExt:8, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:5, declara:true}]}];
 				
 										
 		$('#panelContribuyente').hide();
@@ -571,24 +570,24 @@
 			},
 			//Lista de campos a validar y las reglas que aplican para cada uno de ellos
 			fields : {
-				'inputImporteNomina' : { //validaci髇 del campo
+				'inputImporteNomina' : { //validaci贸n del campo
 							validators : { //validaciones
 								notEmpty : {
-											message : 'Ingrese el importe de la n髆ina.'
+											message : 'Ingrese el importe de la n贸mina.'
 										}
 							}	
 					},
-				'inputEmpleados' : { //validaci髇 del campo
+				'inputEmpleados' : { //validaci贸n del campo
 							validators : { //validaciones
 								notEmpty : {
-											message : 'Ingrese el n鷐ero de empleados.'
+											message : 'Ingrese el n煤mero de empleados.'
 										}
 							}	
 					},
-				'selectDeclaracion' : { //validaci髇 del campo
+				'selectDeclaracion' : { //validaci贸n del campo
 							validators : { //validaciones
 								notEmpty : {
-											message : 'Seleccione la declaraci髇.'
+											message : 'Seleccione la declaraci贸n.'
 										}
 							}	
 					}

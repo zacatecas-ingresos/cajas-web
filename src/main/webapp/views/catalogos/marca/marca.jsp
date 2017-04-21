@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=Windows-1252"
-	pageEncoding="windows-1252"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,24 +64,24 @@
 		</header>
 		<!-- Fin del encabezado -->
 
-		<!-- Menú lateral izquierdo -->
+		<!-- MenÃº lateral izquierdo -->
 		<aside class="main-sidebar">
 			<section class="sidebar">
-				<%@ include file="/views/menu/menu.jspf" %><!-- Se llama al al archivo donde se encuentra el menú -->
+				<%@ include file="/views/menu/menu.jspf" %><!-- Se llama al al archivo donde se encuentra el menÃº -->
 			</section>
 		</aside>
-		<!-- Fin menú lateral izquierdo -->
+		<!-- Fin menÃº lateral izquierdo -->
 
-		<!-- Contenido de la página -->
+		<!-- Contenido de la pÃ¡gina -->
 		<div class="content-wrapper">
 		
-			<!-- Encabezado del contenido de la página -->
+			<!-- Encabezado del contenido de la pÃ¡gina -->
 			<section class="content-header">
 				<h1>
 					<span style="color: #798c9c"> </span>Administrar Marcas de Vehiculos
 				</h1>
 			</section>
-			<!-- Fin del encabezado del contenido de la página -->
+			<!-- Fin del encabezado del contenido de la pÃ¡gina -->
 			
 			
 
@@ -90,7 +90,7 @@
                             <div class="box box-primary">
                                                 <div class="box-header">
                                                     <div class="box-tools pull-right">
-                                                        <!-- Botón nuevo marcas -->
+                                                        <!-- BotÃ³n nuevo marcas -->
                                                         <div class="dropdown">
                                                             <button class="btn btn-primary dropdown-toggle" type="button"
                                                                     data-toggle="dropdown">
@@ -102,7 +102,7 @@
                                                                 <li><a class="button" id="eliminar">Eliminar Marca</a></li>
                                                             </ul>
                                                         </div>
-                                                        <!--Fin botón nuevo marcas -->
+                                                        <!--Fin botÃ³n nuevo marcas -->
                                                     </div>
                                                 </div>	
 					
@@ -155,7 +155,7 @@
                             href="------">--------------</a>.
                     </strong> Todos los derechos reservados.
                 </footer>
-                <!-- Fin del contenido de la página -->
+                <!-- Fin del contenido de la pÃ¡gina -->
 	</div>
 
 </body>
@@ -248,7 +248,7 @@ $(document).ready(function(){
 	}	
 	
 
-	//Filtro de búsqueda
+	//Filtro de bÃºsqueda
 	$('#search').keyup(function(){
 		
 		var input= $('#search').val();
@@ -307,7 +307,7 @@ $(document).ready(function(){
 				}
 			);
 		}else{
-			//Dirige a la sección para edita la marca selecionada
+			//Dirige a la secciÃ³n para edita la marca selecionada
 			var urlEditarMarca = "${pageContext.request.contextPath}/views/catalogos/marcavehiculo/modificarMarca.jsp"+"?id="+idMarca;
 			window.location=urlEditarMarca;					
 		}	
@@ -463,7 +463,7 @@ $(document).ready(function(){
 	});
 	
 	*/
-	//Dirige a la sección para registrar un usuario
+	//Dirige a la secciÃ³n para registrar un usuario
 	$('#crear').click(function() {
 		var urlCrearMarca = "${pageContext.request.contextPath}/views/catalogos/marca/crearMarca.jsp";
 		window.location = urlCrearMarca;

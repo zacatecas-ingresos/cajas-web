@@ -64,7 +64,7 @@ public class VerificacionVehiculoEJB {
 			vVehicularQuery.registrarVerificacion(verificacionVehiculoEntity);
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();
-			throw new BusinessException("Ocurrio un problema al registrar al registrar la Verificación del Vehiculo.");
+			throw new BusinessException("Ocurrio un problema al registrar al registrar la VerificaciÃ³n del Vehiculo.");
 		}
 	}
 	

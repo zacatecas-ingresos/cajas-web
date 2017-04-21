@@ -7,6 +7,6 @@ public class ConceptoActivoClaveQuery {
 	 * especificado
 	 */
 	public void obtenerConceptoActivoPorClave(String clave, int ejercicioFiscal) {
-		// El método debe retornar la entidad Concepto,
+		// El mÃ©todo debe retornar la entidad Concepto,
 	}
 }

@@ -32,9 +32,6 @@ public class VerificacionAdeudoVehicularEntity implements Serializable{
 	@JoinColumn(name = "id_verificacion_vehiculo")
 	private VerificacionVehicularEntity verificacionVehicularEntity;
 	
-	@Column( name = "id_verificacion_vehiculo")
-	private Integer idVerificacionVehiculo;
-	
 	@Column( name = "anio0_verificacion_adeudo")
 	private Integer anio0VerificacionAdeudo;
 	
@@ -97,14 +94,6 @@ public class VerificacionAdeudoVehicularEntity implements Serializable{
 
 	public void setIdVerificacionAdeudoVehiculo(Integer idVerificacionAdeudoVehiculo) {
 		this.idVerificacionAdeudoVehiculo = idVerificacionAdeudoVehiculo;
-	}
-
-	public Integer getIdVerificacionVehiculo() {
-		return idVerificacionVehiculo;
-	}
-
-	public void setIdVerificacionVehiculo(Integer idVerificacionVehiculo) {
-		this.idVerificacionVehiculo = idVerificacionVehiculo;
 	}
 
 	public Integer getAnio0VerificacionAdeudo() {

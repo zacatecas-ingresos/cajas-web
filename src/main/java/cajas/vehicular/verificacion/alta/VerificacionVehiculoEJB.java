@@ -29,17 +29,11 @@ public class VerificacionVehiculoEJB {
 
 	public void crearVerificacionVehiculoMetodo(VerificacionVehiculo verificacionVehiculo) {
 		
-		/*Integer idMarcaVehiculo = verificacionVehiculo.getIdMarcaVehiculo();
-		if(idMarcaVehiculo == null) {
-			throw new BusinessException("La Marca del Vehiculo es requerido");
-		}*/
-		
 		try {
 			
 			VerificacionVehicularEntity verificacionVehiculoEntity = new VerificacionVehicularEntity();
 			verificacionVehiculoEntity.setIdOficinaVerificacion(verificacionVehiculo.getIdOficinaVerificacion());
 			verificacionVehiculoEntity.setEjercicio(verificacionVehiculo.getEjercicio());
-			verificacionVehiculoEntity.setTipoVerificacion(verificacionVehiculo.getTipoVerificacion());
 			verificacionVehiculoEntity.setEstatusVerificacion(verificacionVehiculo.getEstatusVerificacion());
 			verificacionVehiculoEntity.setFechaVerificacion(DateTime.now().toDate());
 			verificacionVehiculoEntity.setVinVehiculo(verificacionVehiculo.getVinVehiculo());

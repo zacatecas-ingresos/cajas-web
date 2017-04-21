@@ -188,7 +188,7 @@
 							<br>
 							<br>							
 							<fieldset>
-							<legend>Mas Información</legend>
+							<legend>Mas Informacion:</legend>
 							<div class="row" id="contenido"></div>
 							</fieldset>
 							
@@ -390,8 +390,6 @@ $(document).ready(function(){
 					$('#contenido').html(""); 
 					$.each( data, function( key, val ) {
 						var ejercicio = $('<div class="col-xs-2"><label><strong>EJERCICIO: </strong>'+ val.ejercicio + '</label></div>');
-						ejercicio.appendTo('#contenido');
-						var ejercicio = $('<div class="col-xs-3"><label><strong>TIPO VERICACIÓN: </strong>'+(val.tipoVerificacion == 0 ? "NACIONAL" : "EXTRANJERA"  )+'</label></div>');
 						ejercicio.appendTo('#contenido');
 						var fecha = $('<div class="col-xs-3"><label><strong>FECHA CAPTURA: </strong>'+val.fechaVerificacion+'</label></div>');
 						fecha.appendTo('#contenido');

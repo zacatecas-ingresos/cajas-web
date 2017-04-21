@@ -33,9 +33,6 @@ public class VerificacionVehicularEntity implements Serializable {
 	@Column(name = "fecha_verificacion")
 	private Date fechaVerificacion;
 
-	@Column(name = "tipo_verificacion")
-	private Integer tipoVerificacion;
-
 	@Column(name = "vin_vehiculo")
 	private String vinVehiculo;
 	
@@ -136,14 +133,6 @@ public class VerificacionVehicularEntity implements Serializable {
 
 	public void setFechaVerificacion(Date fechaVerificacion) {
 		this.fechaVerificacion = fechaVerificacion;
-	}
-
-	public Integer getTipoVerificacion() {
-		return tipoVerificacion;
-	}
-
-	public void setTipoVerificacion(Integer tipoVerificacion) {
-		this.tipoVerificacion = tipoVerificacion;
 	}
 
 	public String getVinVehiculo() {

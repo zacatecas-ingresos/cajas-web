@@ -115,8 +115,21 @@ public class LineaDeCapturaCerradaUtileria {
 	 */
 	public static String obtenerLineaCapturaCerrada(String referencia, Date fechaV, String importe, Integer digito) {
 		String LCC;
-		LCC = referencia + condensarFechaVencimiento(fechaV) + condesarImporte(importe) + digito;
+		int tamanioReferencia = 20;
+		int resRef = tamanioReferencia-referencia.length();
+		String complementoRef="";
+		if (resRef > 0) {
+			for (int i = 1; i <= resRef; i++) {
+               String cons = "0";
+               complementoRef = complementoRef+cons;
+			}
+		}
+		
+		LCC = complementoRef+referencia + condensarFechaVencimiento(fechaV) + condesarImporte(importe) + digito;
 
+		
+		System.out.println("lcc" + LCC);
+		
 		LCC = LCC + validarLineaCaptura(LCC);
 		System.out.println("LINEA DE CAPTURA GENERADA " + LCC);
 

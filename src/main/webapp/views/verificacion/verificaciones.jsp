@@ -431,6 +431,23 @@ $(document).ready(function(){
             }
         }
     });
+	
+  //Editar Usuario
+	$('#botonGastos').click(function(){
+		if(idVerificacion == null){
+			swal(
+				{
+					title : "No ha seleccionado Ninguna Verificación.",
+					type : "error",
+					closeOnCancel : false
+				}
+			);
+		}else{
+			//Dirige a la sección para edita un usuario
+			var urlAdeudo = "${pageContext.request.contextPath}/views/verificacion/adeudoVerificacion.jsp"+"?id="+idVerificacion;
+			window.location=urlAdeudo;					
+		}	
+	});
 
 	
 });

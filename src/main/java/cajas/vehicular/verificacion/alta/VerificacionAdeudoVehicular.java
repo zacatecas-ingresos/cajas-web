@@ -1,5 +1,5 @@
 package cajas.vehicular.verificacion.alta;
-import cajas.persistence.entity.VerificacionVehicularEntity;
+import cajas.persistence.entity.VerificacionAdeudoVehicularEntity;
 import java.text.SimpleDateFormat;
 
 public class VerificacionAdeudoVehicular {
@@ -22,6 +22,43 @@ public class VerificacionAdeudoVehicular {
 	private Integer baja;
 	private String bajaPlaca;
 	private String fechaVerificacion;
+	
+	public VerificacionAdeudoVehicular verificacionAdeudoVehiculoEntity(VerificacionAdeudoVehicularEntity verificacionAdeudoVehiculoEntity){
+		
+		VerificacionAdeudoVehicular verificacionAdeudoVehiculo = new VerificacionAdeudoVehicular();
+		verificacionAdeudoVehiculo.setIdVerificacionVehiculo(verificacionAdeudoVehiculoEntity.getIdVerificacionVehicular());
+		verificacionAdeudoVehiculo.setAnio0VerificacionAdeudo(verificacionAdeudoVehiculoEntity.getAnio0VerificacionAdeudo());
+		verificacionAdeudoVehiculo.setAnio1VerificacionAdeudo(verificacionAdeudoVehiculoEntity.getAnio1VerificacionAdeudo());
+		verificacionAdeudoVehiculo.setAnio2VerificacionAdeudo(verificacionAdeudoVehiculoEntity.getAnio2VerificacionAdeudo());
+		verificacionAdeudoVehiculo.setAnio3VerificacionAdeudo(verificacionAdeudoVehiculoEntity.getAnio3VerificacionAdeudo());
+		verificacionAdeudoVehiculo.setAnio4VerificacionAdeudo(verificacionAdeudoVehiculoEntity.getAnio4VerificacionAdeudo());
+		verificacionAdeudoVehiculo.setAnio5VerificacionAdeudo(verificacionAdeudoVehiculoEntity.getAnio5VerificacionAdeudo());
+		verificacionAdeudoVehiculo.setFolioVerificacionAdeudo(verificacionAdeudoVehiculoEntity.getFolioVerificacionAdeudo());
+		verificacionAdeudoVehiculo.setProcedencia(verificacionAdeudoVehiculoEntity.getProcedencia());
+		verificacionAdeudoVehiculo.setIdEstado(verificacionAdeudoVehiculoEntity.getIdEstado());
+		verificacionAdeudoVehiculo.setFolioCalcamonia(verificacionAdeudoVehiculoEntity.getFolioCalcamonia());	
+		verificacionAdeudoVehiculo.setDocumento(verificacionAdeudoVehiculoEntity.getDocumento());
+		verificacionAdeudoVehiculo.setEstatus(verificacionAdeudoVehiculoEntity.getEstatus());
+		verificacionAdeudoVehiculo.setObservaciones(verificacionAdeudoVehiculoEntity.getObservaciones());
+		verificacionAdeudoVehiculo.setBaja(verificacionAdeudoVehiculoEntity.getBaja());
+		verificacionAdeudoVehiculo.setBajaPlaca(verificacionAdeudoVehiculoEntity.getBajaPlaca());
+				
+		String pattern = "dd-MM-yyyy";
+	    SimpleDateFormat format = new SimpleDateFormat(pattern);
+	    
+	    String fechaVerificacionAdeudo = format.format(verificacionAdeudoVehiculoEntity.getFechaVerificacionAdeudo());
+	    verificacionAdeudoVehiculo.setFechaVerificacion(fechaVerificacionAdeudo);
+	    
+	    String fechaRegularizacion= format.format(verificacionAdeudoVehiculoEntity.getFechaRegularizacion());
+		verificacionAdeudoVehiculo.setFechaRegularizacion(fechaRegularizacion);
+		
+		
+		return verificacionAdeudoVehiculo;
+	}
+
+
+	
+
 	public Integer getIdVerificacionAdeudoVehiculo() {
 		return idVerificacionAdeudoVehiculo;
 	}

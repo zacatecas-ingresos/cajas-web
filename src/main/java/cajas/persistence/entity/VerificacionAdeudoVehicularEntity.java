@@ -26,11 +26,15 @@ public class VerificacionAdeudoVehicularEntity implements Serializable{
 	
 	/*
 	 * LLave foranea hacia Verificaciones Vehiculos
-	 * */
-	
+	 * 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_verificacion_vehiculo")
-	private VerificacionVehicularEntity verificacionVehicularEntity;
+	private VerificacionVehicularEntity verificacionVehicular;
+	
+	*/
+	
+	@Column(name = "id_verificacion_vehiculo")
+	private Integer idVerificacionVehicular;
 	
 	@Column( name = "anio0_verificacion_adeudo")
 	private Integer anio0VerificacionAdeudo;
@@ -58,10 +62,14 @@ public class VerificacionAdeudoVehicularEntity implements Serializable{
 	
 	/*
 	 * Llave foranea Estado
-	 * */
+	 *
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_estado")
-	private EstadoEntity estado;
+	private EstadoEntity estado;	
+	 */
+	
+	@Column(name = "id_estado")
+	private Integer idEstado;
 	
 	
 	@Column( name = "folio_calcamonia" )
@@ -95,6 +103,7 @@ public class VerificacionAdeudoVehicularEntity implements Serializable{
 	public void setIdVerificacionAdeudoVehiculo(Integer idVerificacionAdeudoVehiculo) {
 		this.idVerificacionAdeudoVehiculo = idVerificacionAdeudoVehiculo;
 	}
+	
 
 	public Integer getAnio0VerificacionAdeudo() {
 		return anio0VerificacionAdeudo;
@@ -160,20 +169,20 @@ public class VerificacionAdeudoVehicularEntity implements Serializable{
 		this.procedencia = procedencia;
 	}
 
-	public VerificacionVehicularEntity getVerificacionVehicularEntity() {
-		return verificacionVehicularEntity;
+	public Integer getIdVerificacionVehicular() {
+		return idVerificacionVehicular;
 	}
 
-	public void setVerificacionVehicularEntity(VerificacionVehicularEntity verificacionVehicularEntity) {
-		this.verificacionVehicularEntity = verificacionVehicularEntity;
+	public void setIdVerificacionVehicular(Integer idVerificacionVehicular) {
+		this.idVerificacionVehicular = idVerificacionVehicular;
 	}
 
-	public EstadoEntity getEstado() {
-		return estado;
+	public Integer getIdEstado() {
+		return idEstado;
 	}
 
-	public void setEstado(EstadoEntity estado) {
-		this.estado = estado;
+	public void setIdEstado(Integer idEstado) {
+		this.idEstado = idEstado;
 	}
 
 	public Integer getFolioCalcamonia() {

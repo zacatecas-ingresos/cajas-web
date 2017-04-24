@@ -8,11 +8,12 @@ package cajas.contribuyentes;
  *
  * @since 11/04/2017
  */
-public class TipoObligacionEnum {
+public class TipoObligacion {
 
-	private TipoObligacionEnum() {
+	private TipoObligacion() {
 	}
 
 	public static final int NOMINA = 1;
+	public static final int HOSPEDAJE = 2;
 
 }

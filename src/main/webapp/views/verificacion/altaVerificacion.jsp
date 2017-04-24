@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=Windows-1252"
-	pageEncoding="windows-1252"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,7 +62,7 @@
 				</a>
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
-						<jsp:include page="/views/menu/logout.jsp"></jsp:include>
+						<%@ include file="/WEB-INF/jspf/logout.jspf" %>
 					</ul>
 				</div>
 			</nav>
@@ -72,7 +72,7 @@
 		<aside class="main-sidebar">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<%@ include file="/views/menu/menu.jspf" %>
+				<%@ include file="/WEB-INF/jspf/menu.jspf" %>
 			</section>
 			<!-- /.sidebar -->
 		</aside>
@@ -297,18 +297,16 @@
 			</section>
 			<!-- Fin contenido Alta Vehiculo -->
 		</div>
+
+                <footer class="main-footer">
+                        <div class="pull-right hidden-xs">
+                                <b>Version</b> 2.3.0
+                        </div>
+                        <strong>Derechos de autor &copy; 2016 <a href="------">--------------</a>.
+                        </strong> Todos los derechos reservados.
+                </footer>
 	</div>
 	<!-- ./wrapper -->
-
-
-	<footer class="main-footer">
-		<div class="pull-right hidden-xs">
-			<b>Version</b> 2.3.0
-		</div>
-		<strong>Derechos de autor &copy; 2016 <a href="------">--------------</a>.
-		</strong> Todos los derechos reservados.
-	</footer>
-
 </body>
 
 

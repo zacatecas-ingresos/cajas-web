@@ -4,11 +4,11 @@
     Author     : Freddy Barrera (freddy.barrera@gmail.com)
 --%>
 
-<%@page contentType="text/html" pageEncoding="windows-1252"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <title>Estados</title>
 
@@ -113,7 +113,7 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Abrevación</th>
+                                        <th>AbrevaciÃ³n</th>
                                         <th>Nombre</th>
                                     </tr>
                                 </thead>
@@ -130,7 +130,7 @@
                 <div class="pull-right hidden-xs">
                     <b>Version</b> 2.3.0
                 </div>
-                <strong>Derechos de autor &copy; 2016 <a href="http://www.finanzas.gob.mx">Secretaría de finanzas de Zacatecas</a>.</strong> Todos los derechos reservados.
+                <strong>Derechos de autor &copy; 2016 <a href="http://www.finanzas.gob.mx">SecretarÃ­a de finanzas de Zacatecas</a>.</strong> Todos los derechos reservados.
             </footer>
         </div>
     <!-- ./wrapper -->
@@ -188,7 +188,7 @@ $(document).ready(function() {
         }
     });
     
-    //Filtro de búsqueda
+    //Filtro de bÃºsqueda
     $('#search').keyup(function() {
         var input= $('#search').val();
         var urlGet = '${pageContext.request.contextPath}/cajas/estados/consulta?porNombreEstado=' + input;

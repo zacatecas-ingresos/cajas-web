@@ -30,7 +30,7 @@ public class PeriodoEJB {
 			return periodos;
 		}catch(NoResultException ex){
 			ex.printStackTrace();
-			throw new BusinessException("No se encontrarón resultaods.");
+			throw new BusinessException("No se encontrarÃ³n resultaods.");
 		}
 	}
 	

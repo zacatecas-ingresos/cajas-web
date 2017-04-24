@@ -173,7 +173,7 @@ public class Filtro implements Filter {
 	 * contexto de la ruta.
 	 *
 	 * <p>
-	 * En caso de que el recurso solicitado no esté dentro del contexto retorna
+	 * En caso de que el recurso solicitado no estÃ© dentro del contexto retorna
 	 * un null.
 	 *
 	 * @param recursoURI

@@ -11,7 +11,6 @@ public class VerificacionVehiculo {
 	private Integer ejercicio;
 	private Integer noSeguimientoVerificion;
 	private String fechaVerificacion;
-	private Integer tipoVerificacion;
 	private String vinVehiculo;
 	private Integer idMarcaVehiculo;
 	private Integer modeloVehiculo;
@@ -55,9 +54,7 @@ public class VerificacionVehiculo {
 		String pattern = "dd-MM-yyyy";
 	    SimpleDateFormat format = new SimpleDateFormat(pattern);
 	    String fechaVerificacion = format.format(verificacionVehicularEntity.getFechaVerificacion());
-	    verificacionVehiculo.setFechaVerificacion(fechaVerificacion);
-		
-		verificacionVehiculo.setTipoVerificacion(verificacionVehicularEntity.getTipoVerificacion());
+	    verificacionVehiculo.setFechaVerificacion(fechaVerificacion);	
 		verificacionVehiculo.setVinVehiculo(verificacionVehicularEntity.getVinVehiculo());
 		if (verificacionVehicularEntity.getMarcaVehiculo() != null) {
 			verificacionVehiculo.setIdMarcaVehiculo(verificacionVehicularEntity.getMarcaVehiculo().getIdMarcaVehiculo());
@@ -114,12 +111,6 @@ public class VerificacionVehiculo {
 		this.fechaVerificacion = fechaVerificacion;
 	}
 
-	public Integer getTipoVerificacion() {
-		return tipoVerificacion;
-	}
-	public void setTipoVerificacion(Integer tipoVerificacion) {
-		this.tipoVerificacion = tipoVerificacion;
-	}
 	public String getVinVehiculo() {
 		return vinVehiculo;
 	}

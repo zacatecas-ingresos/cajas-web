@@ -29,7 +29,7 @@ public class EjercicioEJB {
 			return ejercicios;
 		} catch (NoResultException ex) {
 			ex.printStackTrace();
-			throw new BusinessException("No se encontrarón resultados.");
+			throw new BusinessException("No se encontrarÃ³n resultados.");
 		}
 	}
 

@@ -50,7 +50,7 @@ public class GenerarLineaCapturaTest {
 	@Test
 	public void generarLCC() {
 		LOGGER.info("Iniciando test");
-		String referencia = "01325601000000000069";
+		String referencia = "69";
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
         String dateInString = "20121031";
 		Date fechaVencimiento = null;
@@ -64,7 +64,7 @@ public class GenerarLineaCapturaTest {
 		Integer digito = 2;
 		String lcc = LineaDeCapturaCerradaUtileria.obtenerLineaCapturaCerrada(referencia, fechaVencimiento, importe, digito);
 		
-		String lccEsperada = "0132560100000000006992374206";
+		String lccEsperada = "0000000000000000006992374206";
 		
 		Assert.assertEquals(lccEsperada, lcc);
 	}

@@ -21,7 +21,7 @@ public class ActualizacionesRecargosService {
 
 	/************************************* ACTUALIZACIONES *************************************/
 
-	/************* Calcula el importe de la actualizaci髇 **********/
+	/************* Calcula el importe de la actualizaci贸n **********/
 	public ActualizacionRecargo calculoActualizacion(ContribucionFiscal contribucionFiscal) {
 				
 		ActualizacionRecargo actualizacionRecargo = new ActualizacionRecargo();
@@ -58,13 +58,13 @@ public class ActualizacionesRecargosService {
 			
 			/***
 			 * Bien ahora que ya tenemos los dos INPC, procedemos a realizar el
-			 * calculo del factor de actualizaci髇
+			 * calculo del factor de actualizaci贸n
 			 */
 
 			factorActualizacion = factorActualizacion(inpcAnterior, inpcActual);
 			
 			/*****
-			 * Factor de actualizaci髇 Si el factor de actualizaci髇 es menor a 1 se
+			 * Factor de actualizaci贸n Si el factor de actualizaci贸n es menor a 1 se
 			 * toma como factor 1
 			 */
 			if(factorActualizacion.compareTo(BigDecimal.ZERO) > 0) {
@@ -72,8 +72,8 @@ public class ActualizacionesRecargosService {
 			}
 			
 			/*****
-			 * Ahora si calculamos el monto de la actualizaci髇 multiplicando el
-			 * importe recibido por el factor de la actualizaci髇
+			 * Ahora si calculamos el monto de la actualizaci贸n multiplicando el
+			 * importe recibido por el factor de la actualizaci贸n
 			 */
 						
 			actualizacion = contribucionFiscal.getCantidadAdeuda().multiply(factorActualizacion).setScale(0,RoundingMode.HALF_EVEN);
@@ -100,7 +100,7 @@ public class ActualizacionesRecargosService {
 			actualizacionRecargo.setInpcFinal(inpcActual);
 
 			/****
-			 * Si el factor de actualizaci髇 es menor a uno solo se pagan recargos
+			 * Si el factor de actualizaci贸n es menor a uno solo se pagan recargos
 			 */
 			if(importeRecargo.compareTo(BigDecimal.ZERO) > 0) {
 				contribucionFiscal.setAplicaRecargos(true);
@@ -116,7 +116,7 @@ public class ActualizacionesRecargosService {
 		return actualizacionRecargo;
 	}
 
-	/********** Calculo factor de la actualizaci髇 **********/
+	/********** Calculo factor de la actualizaci贸n **********/
 	private BigDecimal factorActualizacion(BigDecimal inpcAnterior, BigDecimal inpcActual) {
 		BigDecimal factorActualizacion = BigDecimal.ZERO;
 
@@ -141,15 +141,12 @@ public class ActualizacionesRecargosService {
 			Integer mesFiscalFinal,BigDecimal importeActualizacion) {
 
 		BigDecimal recargo = BigDecimal.ZERO;
-		try {
+	
+		recargo = obtenerTasaRecargo(aFiscalInicio, mesFiscalInicio, aFiscalFinal, mesFiscalFinal);
+		
+		System.out.println("RECARGO:::" + recargo);
+		recargo.setScale(2, RoundingMode.HALF_EVEN);
 
-			recargo = obtenerTasaRecargo(aFiscalInicio, mesFiscalInicio, aFiscalFinal, mesFiscalFinal);
-			recargo.setScale(2, RoundingMode.HALF_EVEN);
-
-		} catch (NoResultException ex) {
-			ex.printStackTrace();
-			throw new BusinessException("Ocurrio un problema no se encontrar髇 resultados.");
-		}
 		BigDecimal montoRecargo = BigDecimal.ZERO;
 		
 		montoRecargo = importeActualizacion.multiply(recargo);
@@ -180,10 +177,13 @@ public class ActualizacionesRecargosService {
 			factorRecargo.setaFiscal(c.getYear());
 			factorRecargo.setMesFiscal(c.getMonthOfYear());
 						
-			INPCEntity inpc = inpcQuery.inpcEntity(factorRecargo.getaFiscal(),factorRecargo.getMesFiscal());
-			
-			factorRecargo.setRecargo(inpc.getRecargo());
-			factoresRecargo.add(factorRecargo);
+			try{
+				INPCEntity inpc = inpcQuery.inpcEntity(factorRecargo.getaFiscal(),factorRecargo.getMesFiscal());
+				factorRecargo.setRecargo(inpc.getRecargo());
+				factoresRecargo.add(factorRecargo);
+			}catch(NoResultException ex){
+				ex.printStackTrace();
+			}
 		}	
 	
 		BigDecimal tasaRecargo = BigDecimal.ZERO;

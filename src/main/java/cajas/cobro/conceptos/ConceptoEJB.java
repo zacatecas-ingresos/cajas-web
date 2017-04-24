@@ -14,7 +14,7 @@ public class ConceptoEJB {
 	private ConceptoActivoClaveQuery conceptoActivoClaveQuery;
 
 	protected void registrarConcepto(Concepto concepto) {
-		// Validar que los datos requeridos no estÈn vacÌos
+		// Validar que los datos requeridos no est√©n vac√≠os
 		validarConcepto(concepto);
 
 		// Validar que no exista un concepto registrado activo con el ejericico
@@ -25,14 +25,14 @@ public class ConceptoEJB {
 	}
 
 	protected List<Concepto> consultarConceptosPorClave(String clave) {
-		// Validar que no venga vacia la clave y lanzar excepciÛn si est· vacÌa
+		// Validar que no venga vacia la clave y lanzar excepci√≥n si est√° vac√≠a
 		// Consultar todos los conceptos registrados con la clave especificada
 
 		return null;
 	}
 
 	private void validarConcepto(Concepto concepto) {
-		// ValidaciÛn campos, lanzar excepciÛn, basarse en la validaciÛn que
-		// est· en el c·lculo estatal.
+		// Validaci√≥n campos, lanzar excepci√≥n, basarse en la validaci√≥n que
+		// est√° en el c√°lculo estatal.
 	}
 }

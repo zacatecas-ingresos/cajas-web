@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=Windows-1252"
-	pageEncoding="windows-1252"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +56,7 @@
 				</a>
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
-						<jsp:include page="/views/menu/logout.jsp"></jsp:include>
+						<%@ include file="/WEB-INF/jspf/logout.jspf" %>
 					</ul>
 				</div>
 			</nav>
@@ -66,7 +66,7 @@
 		<aside class="main-sidebar">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<%@ include file="/views/menu/menu.jspf" %>
+				<%@ include file="/WEB-INF/jspf/menu.jspf" %>
 			</section>
 			<!-- /.sidebar -->
 		</aside>

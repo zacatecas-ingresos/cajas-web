@@ -12,7 +12,7 @@ public class INPCQuery {
 	private EntityManager entityManager;
 
 	/**********
-	 * Obtener un registro inpc en base al año y mes que se le mandan
+	 * Obtener un registro inpc en base al aÃ±o y mes que se le mandan
 	 **************/
 	public INPCEntity inpcEntity(Integer aFiscal, Integer mesFiscal) {
 		INPCEntity inpcEntity = entityManager

@@ -93,6 +93,8 @@ public class CalculoEstatalService {
 			Periodo periodoRecargo = generarPeriodoRecargoEstatal(declaracion.getEjercicioFiscal(), periodo.getIdMes());
 			contribucionFiscal.setPeriodoActualizacion(periodoActualizacion);
 			contribucionFiscal.setPeriodoRecargo(periodoRecargo);
+			
+			contribucionFiscal.setUaz(uaz);
 			contribucionFiscal.setCantidadAdeuda(impuesto);
 
 			ActualizacionRecargo actualizacionRecargo = actualizacionesRecargosService

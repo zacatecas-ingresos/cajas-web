@@ -7,6 +7,7 @@ public class ContribucionFiscal {
 	private Periodo periodoActualizacion;
 	private Periodo periodoRecargo;
 	private BigDecimal cantidadAdeuda;
+	private BigDecimal uaz;
 	private Boolean aplicaActualizacion;
 	private Boolean aplicaRecargos;
 
@@ -50,6 +51,14 @@ public class ContribucionFiscal {
 
 	public void setAplicaRecargos(Boolean aplicaRecargos) {
 		this.aplicaRecargos = aplicaRecargos;
+	}
+	
+	public BigDecimal getUaz() {
+		return uaz;
+	}
+	
+	public void setUaz(BigDecimal uaz) {
+		this.uaz = uaz;
 	}
 
 }

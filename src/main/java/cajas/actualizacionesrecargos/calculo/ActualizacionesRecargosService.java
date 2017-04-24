@@ -10,7 +10,6 @@ import javax.persistence.NoResultException;
 
 import org.joda.time.DateTime;
 
-import cajas.exception.BusinessException;
 import cajas.persistence.entity.INPCEntity;
 import cajas.persistence.query.INPCQuery;
 
@@ -62,7 +61,6 @@ public class ActualizacionesRecargosService {
 			 */
 
 			factorActualizacion = factorActualizacion(inpcAnterior, inpcActual);
-			
 			/*****
 			 * Factor de actualización Si el factor de actualización es menor a 1 se
 			 * toma como factor 1
@@ -75,10 +73,13 @@ public class ActualizacionesRecargosService {
 			 * Ahora si calculamos el monto de la actualización multiplicando el
 			 * importe recibido por el factor de la actualización
 			 */
-						
-			actualizacion = contribucionFiscal.getCantidadAdeuda().multiply(factorActualizacion).setScale(0,RoundingMode.HALF_EVEN);
+			
+
+			BigDecimal cantidadTotal = BigDecimal.ZERO;
+			cantidadTotal = contribucionFiscal.getCantidadAdeuda().add(contribucionFiscal.getUaz());
+			actualizacion = cantidadTotal.multiply(factorActualizacion).setScale(0,RoundingMode.HALF_EVEN);
 			cantidadAdeudaActualizacion = actualizacion;
-			actualizacion = actualizacion.subtract(contribucionFiscal.getCantidadAdeuda());
+			actualizacion = actualizacion.subtract(cantidadTotal);
 		}
 		
 		
@@ -144,7 +145,6 @@ public class ActualizacionesRecargosService {
 	
 		recargo = obtenerTasaRecargo(aFiscalInicio, mesFiscalInicio, aFiscalFinal, mesFiscalFinal);
 		
-		System.out.println("RECARGO:::" + recargo);
 		recargo.setScale(2, RoundingMode.HALF_EVEN);
 
 		BigDecimal montoRecargo = BigDecimal.ZERO;
@@ -182,7 +182,7 @@ public class ActualizacionesRecargosService {
 				factorRecargo.setRecargo(inpc.getRecargo());
 				factoresRecargo.add(factorRecargo);
 			}catch(NoResultException ex){
-				ex.printStackTrace();
+				//ex.printStackTrace();
 			}
 		}	
 	

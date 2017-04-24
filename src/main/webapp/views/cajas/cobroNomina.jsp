@@ -39,15 +39,6 @@
 	href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css"
 	rel="stylesheet" type="text/css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap-select/css/bootstrap-select.min.css"
-      rel="stylesheet" type="text/css" />
-
-<style type="text/css">
-	#formCalculos .selectContainer .form-control-feedback {
-    /* Adjust feedback icon position */
-    right: -25px;
-}
-</style>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -237,11 +228,20 @@
 									</div>
 									<div class="form-group">
 										<label for="selectDeclaracion">Tipo Declaración:</label> 
-								        <div class=" col-md-12 selectContainer">
+								        <div class="selectContainer">
 											<select
 											class="form-control " id="selectDeclaracion" name= "selectDeclaracion">
 											<option value="">Seleccione
 												una opción</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="selectObligacion">Obligación:</label> 
+								        <div class="selectContainer">
+											<select
+											class="form-control " id="selectObligacion" name= "selectObligacion">
+											<option value="">Seleccione	una obligación</option>
 											</select>
 										</div>
 									</div>
@@ -355,12 +355,52 @@
 											class="btn btn-danger btn-lg pull-left">
 											<i class="fa fa-close"></i> Cancelar
 									</button>
-									<button type="button" id="calcular-btn"
+									
+									<div class="btn-toolbar">										
+										<button type="button" id="calcular-btn"
 											class="btn btn-success btn-lg pull-right">
-										<i class="fa fa-credit-card"></i> Calcular
-									</button>
+											<i class="fa fa-calculator"></i> Calcular
+										</button>
+
+										<button type="button" id="agregar-btn"
+											class="btn btn-primary btn-lg pull-right">
+											<i class="fa fa-plus"></i> Agregar
+										</button>
+									</div>								
 							</div>
 						</div>						
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box box-info" id="panelResultados" >
+							<div class="box-header">
+								<h3 class="box-title">Resultados</h3>
+							</div>
+							<div class="box-body">
+								<table id="tablaResultados" class="tablaResultados table table-bordered table-hover">
+									<thead>
+										<tr class="bg-primary">
+											<th>NOMINA</th>
+											<th>UAZ</th>
+											<th>ACTUALIZACIONES</th>
+											<th>RECARGOS</th>
+											<th>TOTAL</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+								<div class="box-footer">
+									<button type="button" id="clear-btn"
+											class="btn btn-danger btn-lg pull-left">
+											<i class="fa fa-trash"></i> Quitar Resultados
+									</button>								
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -427,8 +467,10 @@
 
 <script>
 	$(document).ready(function() {
-						
+		
+		var resultados = [];
 		var rfcContribuyente;
+		var datosCalculo;
 		var data = [{rfc:'ROAA6411012FA', nombre:'ABEL RODRIGUEZ AGUILAR', domicilio:'CARR.A SAN RAMON KM. 0+800', fechaInicio:new Date(), activo:true,
 								sucursales:[{numero:1, calle:'CARR.A SAN RAMON', numInt:2, numExt:4, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:2, declara:true},
 									{numero:2, calle:'SAN RAMON', numInt:2, numExt:4, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:2, declara:true}]},
@@ -441,20 +483,25 @@
 									{numero:1, calle:'HIDALGO', numInt:5, numExt:1, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:1, declara:true}]},
 							{rfc:'GCC-020227-UW5', nombre:'GRUPO CONSTRUCTOR CARTAGENA', domicilio:'AV. VIÑEDOS RIVER No. 805 AGS.', fechaInicio:new Date(), activo:true,
 								sucursales:[{numero:1, calle:'AV. VIÑEDOS RIVER', numInt:805, numExt:8, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:5, declara:true}]}];
-				
-										
-		$('#panelContribuyente').hide();
-		$('#panelCalculos').hide();
-		$('#panelComplementaria').hide();
-		$('#resultadoBusqueda').hide();
+	
+
+
+
+	$('#panelContribuyente').hide();
+	$('#panelCalculos').hide();
+	$('#panelComplementaria').hide();
+	$('#resultadoBusqueda').hide();
+	$('#panelResultados').hide();
+	$('#agregar-btn').hide();
 						
-		obtenerCriterioBusqueda();
-		obtenerDeclaracion();
-		obtenerAnyo();
+	obtenerCriterioBusqueda();
+	obtenerDeclaracion();
+	obtenerObligacion();
+	obtenerAnyo();
 		
 		
-		//Busca un contribuyente
-		$('#btnBuscar').click(function() {
+	//Busca un contribuyente
+	$('#btnBuscar').click(function() {
 							
 			//Validaciones
 			if($('#selectCriterio').val().length < 1){
@@ -548,18 +595,12 @@
 				$('#busqueda').hide();
 
 		}
+	});
 
 
 
-		//Validaciones
-		$('#formCalculos')
-			.find('[name="selectDeclaracion"]')
-            .selectpicker()
-            .change(function(e) {
-                $('#formCalculos').formValidation('revalidateField', 'selectDeclaracion');
-            })
-            .end()
-        .formValidation(
+	//Validaciones
+	$('#formCalculos').formValidation(
 			{
 				framework : 'bootstrap', //Indicamos el framework para validar, Bootstrap, Pure,Semantic,etc
 				excluded: ':disabled',
@@ -583,63 +624,50 @@
 											message : 'Ingrese el número de empleados.'
 										}
 							}	
-					},
-				'selectDeclaracion' : { //validación del campo
-							validators : { //validaciones
-								notEmpty : {
-											message : 'Seleccione la declaración.'
-										}
-							}	
 					}
-                }
-		});
-
-
-
-});
-
-		
-		function parseDate(jsonDate) {
-			var dateObject = new Date(jsonDate);
-			var day = dateObject.getDate();
-			var month = dateObject.getMonth() + 1;
-			var year = dateObject.getFullYear();
-			day = day < 10 ? "0" + day : day;
-			month = month < 10 ? "0" + month : month;
-			var date = day + "/" + month + "/" + year;
-			return date;
-		}
-		
-
-		function estatusUsuario(estatus){
-			var urlEstatus;
-			if(estatus == 1){
-				urlEstatus = "${pageContext.request.contextPath}/resources/admin-lte/img/active.png";
-			}else if(estatus == 0){
-				urlEstatus = "${pageContext.request.contextPath}/resources/admin-lte/img/inactive.png";
-			}
-			return urlEstatus;
-		}	
-
-
-		//Mantiene seleccionada una fila cambiando de color	
-		$('tbody').on("click", "tr", function(event) {
-		   	$(this).addClass('bg-info').siblings().removeClass('bg-info');
-		});
-		
-		//cambiar puntero
-		$('tbody').hover(function() {
-			 $(this).css('cursor','pointer');
-		});
-		
-		$('tbody').on("click", "td", function() {
-			rfcContribuyente = $(this).closest('tr').find('.rfc').text();
-		});
-						
+               }
 	});
 
+		
+	function parseDate(jsonDate) {
+		var dateObject = new Date(jsonDate);
+		var day = dateObject.getDate();
+		var month = dateObject.getMonth() + 1;
+		var year = dateObject.getFullYear();
+		day = day < 10 ? "0" + day : day;
+		month = month < 10 ? "0" + month : month;
+		var date = day + "/" + month + "/" + year;
+		return date;
+	}
+		
+
+	function estatusUsuario(estatus){
+		var urlEstatus;
+		if(estatus == 1){
+			urlEstatus = "${pageContext.request.contextPath}/resources/admin-lte/img/active.png";
+		}else if(estatus == 0){
+			urlEstatus = "${pageContext.request.contextPath}/resources/admin-lte/img/inactive.png";
+		}
+		return urlEstatus;
+	}	
+
+
+	//Mantiene seleccionada una fila cambiando de color	
+	$('tbody').on("click", "tr", function(event) {
+	   	$(this).addClass('bg-info').siblings().removeClass('bg-info');
+	});
+		
+	//cambiar puntero
+	$('tbody').hover(function() {
+		 $(this).css('cursor','pointer');
+	});
+		
+	$('tbody').on("click", "td", function() {
+		rfcContribuyente = $(this).closest('tr').find('.rfc').text();
+	});
+							
 	
-	var obtenerCriterioBusqueda = function() {
+	function obtenerCriterioBusqueda() {
 		var criterios = [ {id : 1, criterio : 'Nombre'}, {id : 2, criterio : 'Razon Social'}, 
 			{id : 3,criterio : 'RFC'}];
 		$.grep(criterios, function(value, index) {
@@ -647,18 +675,26 @@
 					'<option value="'+value.id+'">' + value.criterio
 							+ '</option>');
 		});
-	};
+	}								
 	
-	var obtenerDeclaracion = function() {
+	function obtenerDeclaracion() {
 		var declaraciones = [{id:1, declaracion:'Normal'}, {id:2, declaracion:'Complementaria'}];
 		$.grep(declaraciones, function(value, index) {
 			$('#selectDeclaracion').append(
 					'<option value="'+value.id+'">' + value.declaracion
 							+ '</option>');
 		});
-	};
+	}
 
-	var obtenerAnyo = function(){
+	function obtenerObligacion() {
+		var obligaciones = [{id:1, obligacion:'Nomina'}, {id:2, obligacion:'Hospedaje'}];
+		$.grep(obligaciones, function(value, index) {
+			$('#selectObligacion').append('<option value="'+value.id+'">' + value.obligacion
+			+ '</option>');
+		});
+	}	
+
+	function obtenerAnyo(){
 		var urlEjerciciosFiscales = "${pageContext.request.contextPath}/cajas/ejerciciosFiscales";
 		$.ajax({
 				type: "GET",
@@ -668,7 +704,7 @@
 					selectEjercicioFiscales(data);
 				}
 		});
-	};
+	}
 
 	//colocar valores select box
 	function selectEjercicioFiscales(data){
@@ -684,7 +720,7 @@
 	});
 
 
-	var obtenerPeriodo = function(){
+	function obtenerPeriodo(){
 		var ejercicioFiscal = $('#selectAnyoFiscal');
 		var aFiscal = parseInt(ejercicioFiscal.val());
 		var urlPeriodos = "${pageContext.request.contextPath}/cajas/periodos"+"?aFiscal="+aFiscal;
@@ -704,7 +740,9 @@
 			console.log("ID PERIODO::::" + val.idMes  +  "MES::::" + val.mes);
 			$('#selectPeriodo').append('<option value=' + val.idPeriodo  + '>' + val.mes + '</option>');
   		});
-	}
+	}						
+
+
 
 	$('#selectDeclaracion').on("click", function() {
 			if($('#selectDeclaracion').val()==2){
@@ -714,8 +752,7 @@
 			}else{
 				$('#panelComplementaria').hide();
 			}
-		});
-
+	});
 
 	//calculos
 	$('#calcular-btn').click(function() {
@@ -723,7 +760,6 @@
 		//Validaciones
 		var formValidation = $('#formCalculos').data('formValidation');
 		formValidation.validate();
-
 
 		console.log(formValidation.isValid());
 
@@ -733,7 +769,7 @@
 			var mes = $('#selectPeriodo');
 			var ejercicioFiscal = $('#selectAnyoFiscal');
 			var totalErogaciones = $('#inputImporteNomina');
-			var idObligacion;
+			var idObligacion = $('#selectObligacion');
 			var tipoDeclaracion= $('#selectDeclaracion');
 			var numeroEmpleados = $('#inputEmpleados');
 
@@ -742,7 +778,7 @@
 			datos.totalErogaciones = totalErogaciones.val();
 			datos.numeroEmpleados= numeroEmpleados.val();
 			datos.idContribuyente= 1;
-			datos.idObligacion= 1;
+			datos.idObligacion= idObligacion.val();
 			datos.idSucursal= 1;
 			datos.idTipoDeclaracion = tipoDeclaracion.val();
 			var formData = JSON.stringify(datos);
@@ -758,19 +794,45 @@
 				dataType : "json",
 				contentType : 'application/json',
 				success : function(data,textStatus,jQxhr) {
-					var datos = data;
+					datosCalculo = data;
 				swal(
 						{
 							title : "Calculo realizado correctamente.",
 							type : "success",
 						}
 						);
-						colocarValores(datos);
+						colocarValores(data);
+						$('#agregar-btn').show();
 					}
 				});
 		}
 	});
-	
+
+	$('#agregar-btn').click(function() {
+		$('#panelResultados').show();
+		resultados.push(datosCalculo);
+		console.log(JSON.stringify(datosCalculo));
+		tablaResultados(resultados);
+	});
+
+	function tablaResultados(data){
+		$('tbody').find('td').remove();
+		for (var i = 0; i < data.length; i++) {
+			tr = $('<tr/>');
+			$(tr).append("<td class="+"nomina" +" >" + data[i].impuesto + "</td>");
+			$(tr).append("<td class="+"uaz" +" >" + data[i].uaz + "</td>");
+			$(tr).append("<td class="+"actualizaciones" +" >" + data[i].actualizaciones + "</td>");
+			$(tr).append("<td class="+"recargos" +" >" + data[i].recargos + "</td>");
+			$(tr).append("<td class="+"total" +" >" + data[i].total + "</td>");
+			$('#tablaResultados > tbody').append(tr);
+		}
+	};
+
+	$('#clear-btn').click(function() {
+		$('tbody').find('td').remove();
+		resultados= [];
+        $('#panelResultados').hide();
+	});
 
 	$('#cancelar-btn').click(function() {
 		$('#panelContribuyente').hide();
@@ -802,6 +864,8 @@
   		});
 	}	
 
+
+
 	//Errores
     $.ajaxSetup({
         error: function (x, status, error) {
@@ -826,6 +890,7 @@
         }
     });
 
+});
 </script>
 
 </html>

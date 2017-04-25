@@ -1,4 +1,4 @@
-package cajas.contribuyentes;
+package cajas.catalogos.estados;
 
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;

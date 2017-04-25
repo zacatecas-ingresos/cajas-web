@@ -1,4 +1,4 @@
-package cajas.contribuyentes;
+package cajas.catalogos.estados;
 
 import java.util.ArrayList;
 import java.util.List;

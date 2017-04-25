@@ -10,6 +10,7 @@ public class ContribucionFiscal {
 	private BigDecimal uaz;
 	private Boolean aplicaActualizacion;
 	private Boolean aplicaRecargos;
+	private Integer tipoTasaRecargo;
 
 	/*********** Getters and Setters ***********/
 
@@ -60,5 +61,13 @@ public class ContribucionFiscal {
 	public void setUaz(BigDecimal uaz) {
 		this.uaz = uaz;
 	}
-
+	
+	public Integer getTipoTasaRecargo() {
+		return tipoTasaRecargo;
+	}
+	
+	public void setTipoTasaRecargo(Integer tipoTasaRecargo) {
+		this.tipoTasaRecargo = tipoTasaRecargo;
+	}
+	
 }

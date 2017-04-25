@@ -245,6 +245,15 @@
 											</select>
 										</div>
 									</div>
+									<div class="form-group">
+										<label for="selectTasa">Tasa:</label> 
+								        <div class="selectContainer">
+											<select
+											class="form-control " id="selectTasa" name= "selectTasa">
+											<option value="">Seleccione	el tipo de tasa</option>
+											</select>
+										</div>
+									</div>
 									<div id="panelComplementaria">
 										<div class="form-group">
 											<label for="inputRecibo">No. Recibo anterior:</label> <input
@@ -497,6 +506,7 @@
 	obtenerCriterioBusqueda();
 	obtenerDeclaracion();
 	obtenerObligacion();
+	obtenerTipoTasa();
 	obtenerAnyo();
 		
 		
@@ -692,6 +702,15 @@
 		});
 	}
 
+	function obtenerTipoTasa() {
+		var tasas = [{id:1, tasa:'Estatal'}, {id:2, tasa:'Federal'}];
+		$.grep(tasas, function(value, index) {
+			$('#selectTasa').append(
+					'<option value="'+value.id+'">' + value.tasa
+							+ '</option>');
+		});
+	}
+
 	function obtenerObligacion() {
 		var obligaciones = [{id:1, obligacion:'Nomina'}, {id:2, obligacion:'Hospedaje'}];
 		$.grep(obligaciones, function(value, index) {
@@ -775,6 +794,7 @@
 			var ejercicioFiscal = $('#selectAnyoFiscal');
 			var totalErogaciones = $('#inputImporteNomina');
 			var idObligacion = $('#selectObligacion');
+			var tipoTasa = $('#selectTasa');
 			var tipoDeclaracion= $('#selectDeclaracion');
 			var numeroEmpleados = $('#inputEmpleados');
 
@@ -786,6 +806,7 @@
 			datos.idObligacion= idObligacion.val();
 			datos.idSucursal= 1;
 			datos.idTipoDeclaracion = tipoDeclaracion.val();
+			datos.tipoTasaRecargo = tipoTasa.val();
 			var formData = JSON.stringify(datos);
 			
 			

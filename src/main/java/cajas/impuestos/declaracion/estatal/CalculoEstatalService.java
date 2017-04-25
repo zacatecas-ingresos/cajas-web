@@ -86,8 +86,8 @@ public class CalculoEstatalService {
 					declaracion.getEjercicioFiscal(), declaracion.getPeriodo(), TipoTasa.TASA_HOSPEDAJE);
 		}
 
-		uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(),
-				declaracion.getPeriodo(), TipoTasa.TASA_UAZ);
+//		uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(),
+//				declaracion.getPeriodo(), TipoTasa.TASA_UAZ);
 
 		// Validar si la obligación ha vencido para saber si se aplica
 		// actualización y recargo
@@ -95,8 +95,7 @@ public class CalculoEstatalService {
 				declaracion.getEjercicioFiscal())) {
 
 			ContribucionFiscal contribucionFiscal = new ContribucionFiscal();
-			Periodo periodoActualizacion = generarPeriodoActualizacionEstatal(declaracion.getEjercicioFiscal(),
-					periodo.getIdMes());
+			Periodo periodoActualizacion = generarPeriodoActualizacionEstatal(declaracion.getEjercicioFiscal(),periodo.getIdMes());
 			Periodo periodoRecargo = generarPeriodoRecargoEstatal(declaracion.getEjercicioFiscal(), periodo.getIdMes());
 			contribucionFiscal.setPeriodoActualizacion(periodoActualizacion);
 			contribucionFiscal.setPeriodoRecargo(periodoRecargo);
@@ -104,13 +103,19 @@ public class CalculoEstatalService {
 			contribucionFiscal.setUaz(uaz);
 			contribucionFiscal.setCantidadAdeuda(impuesto);
 
-			ActualizacionRecargo actualizacionRecargo = actualizacionesRecargosService
-					.calculoActualizacion(contribucionFiscal);
+			contribucionFiscal.setTipoTasaRecargo(declaracion.getTipoTasaRecargo());
+			
+			ActualizacionRecargo actualizacionRecargo = actualizacionesRecargosService.calculoActualizacion(contribucionFiscal);
 
 			actualizacion = actualizacionRecargo.getImporteActualizacion();
 			recargo = actualizacionRecargo.getImporteRecargo();
 		}
-
+		
+		BigDecimal nomina = BigDecimal.ZERO;
+		nomina = impuesto;
+		impuesto  =impuesto.add(actualizacion);
+		uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(),declaracion.getPeriodo(), TipoTasa.TASA_UAZ);
+		
 		BigDecimal total = impuesto.add(uaz).add(actualizacion).add(recargo);
 
 		CalculoTemporalEstatalEntity calculoTemporal = new CalculoTemporalEstatalEntity();
@@ -134,7 +139,8 @@ public class CalculoEstatalService {
 
 		ImpuestoEstatal impuestoEstatal = new ImpuestoEstatal();
 		impuestoEstatal.setIdCalculoTemporal(calculoTemporal.getIdCalculoTemporal());
-		impuestoEstatal.setImpuesto(impuesto);
+		//impuestoEstatal.setImpuesto(impuesto); antes
+		impuestoEstatal.setImpuesto(nomina);
 		impuestoEstatal.setUaz(uaz);
 		impuestoEstatal.setActualizaciones(actualizacion);
 		impuestoEstatal.setRecargos(recargo);
@@ -174,6 +180,10 @@ public class CalculoEstatalService {
 
 		if (!ValidacionUtil.esCadenaVacia(declaracion.getIdTipoDeclaracion())) {
 			throw new BusinessException("El tipo de declaración es requerido.");
+		}
+		
+		if (!ValidacionUtil.esNumeroPositivo(declaracion.getTipoTasaRecargo())) {
+			throw new BusinessException("El tipo de tasa es requerido.");
 		}
 
 	}

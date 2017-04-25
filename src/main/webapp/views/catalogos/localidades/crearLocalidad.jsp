@@ -245,8 +245,8 @@ $(document).ready(function() {
                         },
                         stringLength : {
                             min : 1,
-                            max : 15,
-                            message : 'El nombre de la localidad debe contener minimo 15 caracteres.'
+                            max : 16,
+                            message : 'El nombre de la localidad debe contener minimo 16 caracteres.'
                         }
                     }
                 }

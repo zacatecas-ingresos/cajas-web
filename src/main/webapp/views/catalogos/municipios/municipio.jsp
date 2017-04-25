@@ -1,16 +1,10 @@
-<%-- 
-    Document   : localidad
-    Created on : Apr 24, 2017, 12:45:24 AM
-    Author     : Santiago Gonzalez (oocamilobo@gmail.com)
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Localidades</title>
+        <title>Municipios</title>
 
         <!-- Bootstrap -->
         <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
@@ -75,10 +69,10 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>Localidaes</h1>
+                    <h1>Municipios</h1>
                 </section>
 
-                <!-- Main content Localidades -->
+                <!-- Main content Municipios -->
                 <section class="content">
                     <div class="row">
                         <div class="col-md-4 col-md-offset-4">
@@ -86,14 +80,14 @@
                                 <input id="search" name="search" type="text"
                                        class="form-control input-sm" 
                                        placeholder="Buscar..." data-toggle="tooltip" 
-                                       data-placement="top" title="Buscar por nombre de la localidad">
+                                       data-placement="top" title="Buscar por nombre del municipio">
                                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
                             </div>
                         </div>
                     </div>
                     <div class="box voffset3">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Lista de localidades</h3>
+                            <h3 class="box-title">Lista de municipios</h3>
                             <div class="box-tools pull-right">
                                 <div class="dropdown">
                                     <button class="btn btn-primary dropdown-toggle" type="button"
@@ -109,7 +103,7 @@
                             </div>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <table id="tblLocalidad" class="table table-hover">
+                            <table id="tblMunicipio" class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th class="hidden">Id</th>
@@ -124,7 +118,7 @@
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </section>
-                <!-- Fin contenido Localidades -->
+                <!-- Fin contenido Municipio -->
             </div>
 
             <footer class="main-footer">
@@ -136,7 +130,7 @@
         </div>
     <!-- ./wrapper -->
 
-	<!-- Scripts -->
+    <!-- Scripts -->
     <!-- jQuery -->
     <script
         src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
@@ -175,31 +169,31 @@
     <!-- Fin scripts -->
     <script>
 $(document).ready(function() {
-	var idMunicipio;
+    var idEstado;
     
     $.ajax({
-        type : "GET",
-        url : "${pageContext.request.contextPath}/cajas/localidades",
+        type : 'GET',
+        url : '${pageContext.request.contextPath}/cajas/municipios',
         dataType : 'json',
         success : function(data) {
-            llenarTablaLocalidades(data);
+            llenarTablaMunicipios(data);
         },
-        error : function(jqXHR,textStatus,errorThrown) {
-            console.log(textStatus+ " "+ errorThrown);
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus + " " + errorThrown);
         }
     });
     
     //Filtro de búsqueda
     $('#search').keyup(function() {
         var input= $('#search').val();
-        var urlGet = '${pageContext.request.contextPath}/cajas/localidades/consulta?porNombreLocalidad=' + input;
+        var urlGet = '${pageContext.request.contextPath}/cajas/municipio/consulta?porNombreMunicipio=' + input;
 
         $.ajax({
-            type: "GET",
+            type: 'GET',
             dataType : 'json',
             url: urlGet,
             success: function(data) {
-                llenarTablaLocalidades(data);
+                llenarTablaMunicipios(data);
             },
             error : function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus + " " + errorThrown);
@@ -207,7 +201,7 @@ $(document).ready(function() {
         });
     });
     
- // Mantiene seleccionada una fila cambiando de color
+    // Mantiene seleccionada una fila cambiando de color
     $('tbody').on("click", "tr", function(event) {
         $(this).addClass('bg-info').siblings().removeClass('bg-info');
     });
@@ -219,34 +213,34 @@ $(document).ready(function() {
 
     //Obtiene el ID de la fila seleccionada
     $('tbody').on("click", "td", function() {
-        idLocalidad = $(this).closest('tr').find('.id').text();
-        console.log(idLocalidad);
+        idMunicipio = $(this).closest('tr').find('.id').text();
+        console.log(idMunicipio);
     });
     
-    // Editar localidad
+    // Editar municipio
     $('#editar').click(function() {
-        if (idLocalidad === null) {
+        if (idMunicipio === null) {
                 swal(
                         {
-                            title : 'No ha seleccionado ninguna Localidad.',
+                            title : 'No ha seleccionado ningun Municipio.',
                             type : "error",
                             closeOnCancel : false
                         }
                 );
         } else {
             // Redirececciona a la edición del elemento selecionado.
-            var urlEditarMarca = '${pageContext.request.contextPath}/views/catalogos/localidades/modificarLocalidad.jsp?id=' + idLocalidad;
-            window.location = urlEditarLocalidad;					
+            var urlEditarMarca = '${pageContext.request.contextPath}/views/catalogos/municipios/modificarMunicipio.jsp?id=' + idMunicipio;
+            window.location = urlEditarMarca;					
         }
     });
     
-    //Elimina localidad
+    //Elimina municipio
     $('#eliminar').click(
         function() {
-            if (idLocalidad === null) {
+            if (idMunicipio === null) {
                 swal(
                     {
-                        title : "No ha seleccionado ninguna Localidad.",
+                        title : "No ha seleccionado ningun Municipio.",
                         type : "error",
                         closeOnCancel : false
                     }
@@ -264,8 +258,8 @@ $(document).ready(function() {
                     },
                     function(isConfirm) {
                         if (isConfirm) {
-                            var urlDelete = "${pageContext.request.contextPath}/cajas/localidades/" + idLocalidad;
-                            var urlLocalidad = "${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp";
+                            var urlDelete = "${pageContext.request.contextPath}/cajas/municipios/" + idMunicipio;
+                            var urlMunicipio = "${pageContext.request.contextPath}/views/catalogos/municipios/municipio.jsp";
 
                             $.ajax(
                                 {
@@ -274,12 +268,12 @@ $(document).ready(function() {
                                     success: function() {
                                         swal(
                                             {
-                                                title : "La localidad se ha eliminado correctamente.",
+                                                title : "El Municipio se ha eliminado correctamente.",
                                                 type : "success",
                                                 closeOnCancel : false
                                             },
                                             function() {
-                                                window.location = urlLocalidad;
+                                                window.location = urlMunicipio;
                                             });
                                     },
                                     error : function(jqXHR, textStatus, errorThrown) {
@@ -295,16 +289,16 @@ $(document).ready(function() {
     );
 });
 
-function llenarTablaLocalidades(data) {
-    $('#tblLocalidad > tbody').find('tr').remove();
-    var tableBody = $('#tblLocalidad > tbody');
+function llenarTablaMunicipio(data) {
+    $('#tblMunicipio > tbody').find('tr').remove();
+    var tableBody = $('#tblMunicipio > tbody');
     for (var i = 0; i < data.length; i++) {
         var row = 
                 '<tr>'
-                + '<td class=\"hidden id\">' + data[i].idLocalidad + '</td>'
+                + '<td class=\"hidden id\">' + data[i].idMunicipio + '</td>'
                 + '<td>' + (i + 1) + '</td>'
-                + '<td>' + data[i].abreviacionLocalidad + '</td>'
-                + '<td>' + data[i].localidad + '</td>'
+                + '<td>' + data[i].abreviacionMunicipio + '</td>'
+                + '<td>' + data[i].municipio + '</td>'
                 + '</tr>';
         $(tableBody).append(row);
     }

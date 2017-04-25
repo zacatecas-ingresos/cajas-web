@@ -23,8 +23,7 @@
 	href="${pageContext.request.contextPath}/resources/admin-lte/css/Fonts.css"
 	rel="stylesheet" />
 <link
-	href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css"
-	rel="stylesheet" />
+	href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css" rel="stylesheet" />
 <link
 	href="${pageContext.request.contextPath}/resources/admin-lte/css/skins/_all-skins.min.css"
 	rel="stylesheet" />
@@ -97,55 +96,146 @@
 							<div class="box-body">
 
 								<form id="form-vehiculos">
-								
-										<div class="col-md-12 well">									
-							
+
+									<div class="col-md-12 well">
+
 										<fieldset>
-											<legend style="text-align: center;">Información Verificacion</legend>
+											<legend style="text-align: center;">Información
+												Verificacion</legend>
 											<div id="contenido" class="form-group"></div>
 										</fieldset>
-										<br>									
+										<br>
 									</div>
 
-									<div class="col-md-12">									
+									<div class="col-md-12">
 										<br>
 										<fieldset>
 											<legend>Periodos de Adeudo</legend>
-											<div id="comprobantes" class="form-group"></div>
+											<div class="form-group">
+												<div class="row">
+													<div id="comprobantes" class="form-group"></div>
+												</div>
+												<br>
+												<div class="row">
+													<div class="col-md-1 ">
+														<label class="checkbox-inline"><input id="baja"
+															type="checkbox" value="1">Baja:</label>
+													</div>
+													<div class="col-md-6">
+														<label for="bajaPlaca" class="control-label">Placa:</label>
+														<input class=" form-control-inlinel" id="bajaPlaca"
+															name="bajaPlaca" placeholder="Placa...">
+													</div>
+												</div>
+											</div>
 										</fieldset>
-										<br>									
+										<br>
 									</div>
+									<div class="col-md-12">
 
-								</form>
-
+										<fieldset>
+											<legend>Verificacíon de Adeudos</legend>
+											<div class="row">
+												<div class="col-md-2">
+													<label for="folioVerificacionAdeudo" class="control-label">Folio
+														Verficación:</label> <input class=" form-control"
+														id="folioVerificacionAdeudo"
+														name="folioVerificacionAdeudo"
+														placeholder="Folio Verificación">
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label for="procedencia" class="control-label">Procedencia:</label>
+														<select class="form-control" id="procedencia"
+															name="procedencia" required>
+															<option value="0" selected>NACIONAL</option>
+															<option value="1">EXTRANJERA</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="row" id="divExtranjero" style="display: none;">
+												<div class="col-md-3">
+													<div class="form-group">
+														<label for="idEstado" class="control-label">Estatus:</label>
+														<select class="form-control" id="idEstado" name="idEstado"
+															required>
+															<option value="32" selected>AGUASCALIENTES</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label for="folioCalcamonia" class="control-label">Folio
+														Verficación:</label> <input class=" form-control"
+														id="folioCalcamonia" name="folioCalcamonia"
+														placeholder="Folio Calcamonia">
+												</div>
+												<div class="col-md-2">
+													<label for="fechaRegularizacion" class="control-label">Fecha
+														Regularizacion: </label> <input class=" form-control"
+														id="fechaRegularizacion" name="fechaRegularizacion">
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label for="documento" class="control-label">Procedencia:</label>
+														<select class="form-control" id="documento"
+															name="documento" required>
+															<option value="1" selected>doc 1</option>
+															<option value="2">doc 2</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<label for="observacion">Observaciones:</label>
+													<textarea class="form-control" rows="3" id="observacion"></textarea>
+												</div>
+												<div class="col-md-3">
+												<div class="form-group">
+													<label for="estatus" class="control-label">Estatus:</label>
+													<select class="form-control" id="estatus" name="estatus"
+														required>
+														<option value="0" selected>Verificado</option>
+														<option value="1">error</option>
+													</select>
+												</div>
+											</div>
+											</div>
+											
+									</div>
+									</fieldset>
+									<br>
 							</div>
-							<div class="box-footer">
-								<button id="cancel-btn" type="button"
-									class="btn btn-default btn-lg pull-left">
-									<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-									Cancelar
-								</button>
-								<button type="button" id="save-btn"
-									class="btn btn-success btn-lg pull-right">
-									<i class="fa fa-credit-card"></i> Guardar
-								</button>
-							</div>
-
+							</form>
+						</div>
+						<div class="box-footer">
+							<button id="cancel-btn" type="button"
+								class="btn btn-default btn-lg pull-left">
+								<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+								Cancelar
+							</button>
+							<button type="button" id="save-btn"
+								class="btn btn-success btn-lg pull-right">
+								<i class="fa fa-credit-card"></i> Guardar
+							</button>
 						</div>
 
 					</div>
-				</div>
-			</section>
-			<!-- Fin contenido Verificacion adeudo -->
-		</div>
 
-		<footer class="main-footer">
-			<div class="pull-right hidden-xs">
-				<b>Version</b> 2.3.0
-			</div>
-			<strong>Derechos de autor &copy; 2016 <a href="------">--------------</a>.
-			</strong> Todos los derechos reservados.
-		</footer>
+				</div>
+		</div>
+		</section>
+		<!-- Fin contenido Verificacion adeudo -->
+	</div>
+
+	<footer class="main-footer">
+		<div class="pull-right hidden-xs">
+			<b>Version</b> 2.3.0
+		</div>
+		<strong>Derechos de autor &copy; 2016 <a href="------">--------------</a>.
+		</strong> Todos los derechos reservados.
+	</footer>
 	</div>
 	<!-- ./wrapper -->
 </body>
@@ -172,8 +262,7 @@
 <script
 	src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
-<script
-	src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
 
 <script
 	src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
@@ -196,8 +285,20 @@
 	$(document)
 			.ready(
 					function() {
-
-						//Obtiene todos los usuarios registrados
+						
+						  $( function() {
+							  	$.datepicker.regional['es-MX'] = {"Name":"es-MX","closeText":"Close","prevText":"Prev","nextText":"Next","currentText":"Today","monthNames":["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],"monthNamesShort":["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""],"dayNames":["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],"dayNamesShort":["dom","lun","mar","mié","jue","vie","sáb"],"dayNamesMin":["do","lu","ma","mi","ju","vi","sá"],"dateFormat":"dd-mm-yy","firstDay":0,"isRTL":false};
+							  	$.datepicker.setDefaults($.datepicker.regional['es-MX']);
+							    $( "#fechaRegularizacion" ).datepicker();
+							  } );
+						
+						$('#procedencia').change(function(){
+							if($(this).val() != 0){
+								$('#divExtranjero').show('slow');
+							}else
+								$('#divExtranjero').hide('slow');
+						});
+						
 						var url = window.location.search.substring(1);
 						var fragmento = url.split("=");
 						var idVerificacion = fragmento[1];
@@ -373,44 +474,5 @@
 		anio5VerificacionAdeudo.appendTo('#comprobantes');
 	};
 
-	$(function() {
-		$("#criterioMarca")
-				.autocomplete(
-						{
-							source : function(request, response) {
-								var criterio = $('#criterioMarca').val();
-								var urlGet = "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo/buscarPorCriterio/"
-										+ "?criterio=" + criterio;
-								$.ajax({
-									type : "GET",
-									dataType : 'json',
-									url : urlGet,
-									data : {
-										term : request.term
-									},
-									success : function(data) {
-										//console.log("data:: " + data);
-										response($.map(data, function(item) {
-											return {
-												id : item.idMarcaVehiculo,
-												label : item.nombre,
-												value : item.nombre
-											};
-										}));
-									},
-									error : function(jqXHR, textStatus,
-											errorThrown) {
-										console.log(textStatus + " "
-												+ errorThrown);
-									}
-								});
-							},
-							minLength : 2,
-							select : function(event, ui) {
-								$("#idMarcaVehiculo").val(ui.item.id);
-
-							}
-						});
-	});
 </script>
 </html>

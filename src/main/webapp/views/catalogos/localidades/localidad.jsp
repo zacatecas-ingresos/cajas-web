@@ -1,7 +1,7 @@
 <%-- 
-    Document   : estado
-    Created on : Apr 20, 2017, 11:34:54 AM
-    Author     : Freddy Barrera (freddy.barrera@gmail.com)
+    Document   : localidad
+    Created on : Apr 24, 2017, 12:45:24 AM
+    Author     : Santiago Gonzalez (oocamilobo@gmail.com)
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Estados</title>
+        <title>Localidades</title>
 
         <!-- Bootstrap -->
         <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
@@ -75,10 +75,10 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>Estados</h1>
+                    <h1>Localidaes</h1>
                 </section>
 
-                <!-- Main content Estados -->
+                <!-- Main content Localidades -->
                 <section class="content">
                     <div class="row">
                         <div class="col-md-4 col-md-offset-4">
@@ -86,14 +86,14 @@
                                 <input id="search" name="search" type="text"
                                        class="form-control input-sm" 
                                        placeholder="Buscar..." data-toggle="tooltip" 
-                                       data-placement="top" title="Buscar por nombre del estado">
+                                       data-placement="top" title="Buscar por nombre de la localidad">
                                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
                             </div>
                         </div>
                     </div>
                     <div class="box voffset3">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Lista de estados</h3>
+                            <h3 class="box-title">Lista de localidades</h3>
                             <div class="box-tools pull-right">
                                 <div class="dropdown">
                                     <button class="btn btn-primary dropdown-toggle" type="button"
@@ -109,7 +109,7 @@
                             </div>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <table id="tblEstado" class="table table-hover">
+                            <table id="tblLocalidad" class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th class="hidden">Id</th>
@@ -124,7 +124,7 @@
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </section>
-                <!-- Fin contenido Estados -->
+                <!-- Fin contenido Localidades -->
             </div>
 
             <footer class="main-footer">
@@ -136,7 +136,7 @@
         </div>
     <!-- ./wrapper -->
 
-    <!-- Scripts -->
+	<!-- Scripts -->
     <!-- jQuery -->
     <script
         src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
@@ -175,31 +175,31 @@
     <!-- Fin scripts -->
     <script>
 $(document).ready(function() {
-    var idEstado;
+	var idMunicipio;
     
     $.ajax({
-        type : 'GET',
-        url : '${pageContext.request.contextPath}/cajas/estados',
+        type : "GET",
+        url : "${pageContext.request.contextPath}/cajas/localidades",
         dataType : 'json',
         success : function(data) {
-            llenarTablaEstados(data);
+            llenarTablaLocalidades(data);
         },
-        error : function(jqXHR, textStatus, errorThrown) {
-            console.log(textStatus + " " + errorThrown);
+        error : function(jqXHR,textStatus,errorThrown) {
+            console.log(textStatus+ " "+ errorThrown);
         }
     });
     
     //Filtro de búsqueda
     $('#search').keyup(function() {
         var input= $('#search').val();
-        var urlGet = '${pageContext.request.contextPath}/cajas/estados/consulta?porNombreEstado=' + input;
+        var urlGet = '${pageContext.request.contextPath}/cajas/localidades/consulta?porNombreLocalidad=' + input;
 
         $.ajax({
-            type: 'GET',
+            type: "GET",
             dataType : 'json',
             url: urlGet,
             success: function(data) {
-                llenarTablaEstados(data);
+                llenarTablaLocalidades(data);
             },
             error : function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus + " " + errorThrown);
@@ -207,7 +207,7 @@ $(document).ready(function() {
         });
     });
     
-    // Mantiene seleccionada una fila cambiando de color
+ // Mantiene seleccionada una fila cambiando de color
     $('tbody').on("click", "tr", function(event) {
         $(this).addClass('bg-info').siblings().removeClass('bg-info');
     });
@@ -219,34 +219,34 @@ $(document).ready(function() {
 
     //Obtiene el ID de la fila seleccionada
     $('tbody').on("click", "td", function() {
-        idEstado = $(this).closest('tr').find('.id').text();
-        console.log(idEstado);
+        idLocalidad = $(this).closest('tr').find('.id').text();
+        console.log(idLocalidad);
     });
     
-    // Editar estado
+    // Editar localidad
     $('#editar').click(function() {
-        if (idEstado === null) {
+        if (idLocalidad === null) {
                 swal(
                         {
-                            title : 'No ha seleccionado ninguna Marca.',
+                            title : 'No ha seleccionado ninguna Localidad.',
                             type : "error",
                             closeOnCancel : false
                         }
                 );
         } else {
             // Redirececciona a la edición del elemento selecionado.
-            var urlEditarMarca = '${pageContext.request.contextPath}/views/catalogos/estados/modificarEstado.jsp?id=' + idEstado;
-            window.location = urlEditarMarca;					
+            var urlEditarMarca = '${pageContext.request.contextPath}/views/catalogos/localidades/modificarLocalidad.jsp?id=' + idLocalidad;
+            window.location = urlEditarLocalidad;					
         }
     });
     
-    //Elimina estado
+    //Elimina localidad
     $('#eliminar').click(
         function() {
-            if (idEstado === null) {
+            if (idLocalidad === null) {
                 swal(
                     {
-                        title : "No ha seleccionado ninguna Marca.",
+                        title : "No ha seleccionado ninguna Localidad.",
                         type : "error",
                         closeOnCancel : false
                     }
@@ -264,8 +264,8 @@ $(document).ready(function() {
                     },
                     function(isConfirm) {
                         if (isConfirm) {
-                            var urlDelete = "${pageContext.request.contextPath}/cajas/estados/" + idEstado;
-                            var urlEstado = "${pageContext.request.contextPath}/views/catalogos/estados/estado.jsp";
+                            var urlDelete = "${pageContext.request.contextPath}/cajas/localidades/" + idLocalidad;
+                            var urlLocalidad = "${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp";
 
                             $.ajax(
                                 {
@@ -274,12 +274,12 @@ $(document).ready(function() {
                                     success: function() {
                                         swal(
                                             {
-                                                title : "El estado se ha eliminado correctamente.",
+                                                title : "La localidad se ha eliminado correctamente.",
                                                 type : "success",
                                                 closeOnCancel : false
                                             },
                                             function() {
-                                                window.location = urlEstado;
+                                                window.location = urlLocalidad;
                                             });
                                     },
                                     error : function(jqXHR, textStatus, errorThrown) {
@@ -295,16 +295,16 @@ $(document).ready(function() {
     );
 });
 
-function llenarTablaEstados(data) {
-    $('#tblEstado > tbody').find('tr').remove();
-    var tableBody = $('#tblEstado > tbody');
+function llenarTablaLocalidades(data) {
+    $('#tblLocalidad > tbody').find('tr').remove();
+    var tableBody = $('#tblLocalidad > tbody');
     for (var i = 0; i < data.length; i++) {
         var row = 
                 '<tr>'
-                + '<td class=\"hidden id\">' + data[i].idEstado + '</td>'
+                + '<td class=\"hidden id\">' + data[i].idLocalidad + '</td>'
                 + '<td>' + (i + 1) + '</td>'
-                + '<td>' + data[i].abreviacionEstado + '</td>'
-                + '<td>' + data[i].estado + '</td>'
+                + '<td>' + data[i].abreviacionLocalidad + '</td>'
+                + '<td>' + data[i].localidad + '</td>'
                 + '</tr>';
         $(tableBody).append(row);
     }

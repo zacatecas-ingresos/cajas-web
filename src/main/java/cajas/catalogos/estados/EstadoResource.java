@@ -1,4 +1,4 @@
-package cajas.contribuyentes;
+package cajas.catalogos.estados;
 
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -34,6 +34,13 @@ public class EstadoResource {
         return estadoEjb.obtenerTodosEstados();
     }
     
+    @GET
+    @Path("consulta")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public List<Estado> buscarEstado(@QueryParam("porNombreEstado") String estado) {
+        return estadoEjb.buscarEstado(estado);
+    }
+
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -53,13 +60,6 @@ public class EstadoResource {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public void eliminarEstado(@PathParam("idEstado") Integer idEstado) {
         estadoEjb.eliminarEstado(idEstado);
-    }
-    
-    @GET
-    @Path("consulta")
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public List<Estado> buscarEstado(@QueryParam("porNombreEstado") String estado) {
-        return estadoEjb.buscarEstado(estado);
     }
 
 }

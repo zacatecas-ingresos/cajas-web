@@ -36,6 +36,9 @@ public class INPCEntity implements Serializable {
 	@Column(name = "recargo")
 	private BigDecimal recargo;
 
+	@Column(name = "recargo_estatal")
+	private BigDecimal recargoEstatal;
+
 	/***************** Getters and Setters *****************/
 
 	public Integer getIdINPC() {
@@ -73,9 +76,17 @@ public class INPCEntity implements Serializable {
 	public BigDecimal getRecargo() {
 		return recargo;
 	}
-	
+
 	public void setRecargo(BigDecimal recargo) {
 		this.recargo = recargo;
+	}
+
+	public BigDecimal getRecargoEstatal() {
+		return recargoEstatal;
+	}
+
+	public void setRecargoEstatal(BigDecimal recargoEstatal) {
+		this.recargoEstatal = recargoEstatal;
 	}
 
 }

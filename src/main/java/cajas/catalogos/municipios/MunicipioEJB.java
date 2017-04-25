@@ -1,4 +1,4 @@
-package cajas.contribuyentes;
+package cajas.catalogos.municipios;
 
 import java.util.List;
 
@@ -68,5 +68,11 @@ public class MunicipioEJB {
         return municipiodtos;
 
     }
+
+	public List<Municipio> obtenerMunicipios() {
+		List<MunicipioEntity> municipioEntities = municipioQuery.obtenerMunicipio();
+		List<Municipio> municipiodtos = municipioFactory.entidadesADtos(municipioEntities);
+		return municipiodtos;
+	}
 
 }

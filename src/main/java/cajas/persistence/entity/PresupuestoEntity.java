@@ -13,62 +13,67 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "presupuesto", schema = "presupuestos")
-public class PresupuestoEntity implements Serializable{
+public class PresupuestoEntity implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2289520626451249665L;
 
-	
 	@Id
 	@Column(name = "id_presupuesto")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idPresupuestoDetalle;
 
-	@Column(name="id_contribuyente")
+	@Column(name = "id_contribuyente")
 	private Integer idContribuyente;
-	
-	
-	@Column(name="id_obligacion")
-	private Integer idObligacion;
-	
-	@Column(name="es_mixta")
-	private Boolean esMixta;
-	
-	@Column(name="id_consecutivo")
-	private Integer idConsecutivo;
-	
-	@Column(name="concecutivo_operacion")
-	private Integer concecutivoOperacion;
-	
-	
-	@Column(name="lcc")
+
+	@Column(name = "lcc")
 	private String lcc;
-	
-	@Column(name="numero_operaciones")
-	private Integer numero_operaciones;
-	
-	@Column(name="importe_total")
+
+	@Column(name = "importe_total")
 	private BigDecimal importeTotal;
-	
-	
-	@Column(name="id_forma_pago")
+
+	@Column(name = "id_forma_pago")
 	private Integer idFormaPago;
-	
-	@Column(name="id_estatus")
+
+	@Column(name = "id_estatus")
 	private Integer idEstatus;
-	
-	
-	@Column(name="fecha_recepcion_operacion")
+
+	@Column(name = "fecha_recepcion_operacion")
 	private Date fechaRecepcionOperacion;
-	
-	
-	@Column(name="fecha_emision_presupuesto")
+
+	@Column(name = "fecha_emision_presupuesto")
 	private Date fechaEmisionPresupuesto;
 
-	@Column(name="integrado")
-	private Boolean integrado;
+	@Column(name = "integrado")
+	private boolean integrado;
+
+	@Column(name = "anyo_expedicion")
+	private int ejercicioExpedicion;
+
+	@Column(name = "id_mes_expedicion")
+	private int idMesExpedicion;
+
+	public int getEjercicioExpedicion() {
+		return ejercicioExpedicion;
+	}
+
+	public void setEjercicioExpedicion(int ejercicioExpedicion) {
+		this.ejercicioExpedicion = ejercicioExpedicion;
+	}
+
+	public int getIdMesExpedicion() {
+		return idMesExpedicion;
+	}
+
+	public void setIdMesExpedicion(int idMesExpedicion) {
+		this.idMesExpedicion = idMesExpedicion;
+	}
+
+	public void setIntegrado(boolean integrado) {
+		this.integrado = integrado;
+	}
 
 	public Integer getIdPresupuestoDetalle() {
 		return idPresupuestoDetalle;
@@ -86,52 +91,12 @@ public class PresupuestoEntity implements Serializable{
 		this.idContribuyente = idContribuyente;
 	}
 
-	public Integer getIdObligacion() {
-		return idObligacion;
-	}
-
-	public void setIdObligacion(Integer idObligacion) {
-		this.idObligacion = idObligacion;
-	}
-
-	public Boolean getEsMixta() {
-		return esMixta;
-	}
-
-	public void setEsMixta(Boolean esMixta) {
-		this.esMixta = esMixta;
-	}
-
-	public Integer getIdConsecutivo() {
-		return idConsecutivo;
-	}
-
-	public void setIdConsecutivo(Integer idConsecutivo) {
-		this.idConsecutivo = idConsecutivo;
-	}
-
-	public Integer getConcecutivoOperacion() {
-		return concecutivoOperacion;
-	}
-
-	public void setConcecutivoOperacion(Integer concecutivoOperacion) {
-		this.concecutivoOperacion = concecutivoOperacion;
-	}
-
 	public String getLcc() {
 		return lcc;
 	}
 
 	public void setLcc(String lcc) {
 		this.lcc = lcc;
-	}
-
-	public Integer getNumero_operaciones() {
-		return numero_operaciones;
-	}
-
-	public void setNumero_operaciones(Integer numero_operaciones) {
-		this.numero_operaciones = numero_operaciones;
 	}
 
 	public BigDecimal getImporteTotal() {
@@ -181,7 +146,5 @@ public class PresupuestoEntity implements Serializable{
 	public void setIntegrado(Boolean integrado) {
 		this.integrado = integrado;
 	}
-	
-	
-	
+
 }

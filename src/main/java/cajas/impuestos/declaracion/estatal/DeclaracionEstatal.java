@@ -17,6 +17,7 @@ public class DeclaracionEstatal {
 	private int idObligacion;
 	private int idSucursal;
 	private String idTipoDeclaracion;
+	private Integer tipoTasaRecargo;
 
 	public String getIdTipoDeclaracion() {
 		return idTipoDeclaracion;
@@ -80,6 +81,14 @@ public class DeclaracionEstatal {
 
 	public void setIdSucursal(int idSucursal) {
 		this.idSucursal = idSucursal;
+	}
+	
+	public Integer getTipoTasaRecargo() {
+		return tipoTasaRecargo;
+	}
+	
+	public void setTipoTasaRecargo(Integer tipoTasaRecargo) {
+		this.tipoTasaRecargo = tipoTasaRecargo;
 	}
 
 }

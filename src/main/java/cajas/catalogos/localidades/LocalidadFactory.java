@@ -1,4 +1,4 @@
-package cajas.contribuyentes;
+package cajas.catalogos.localidades;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,20 +20,17 @@ public class LocalidadFactory {
             entidad = new LocalidadEntity();
             entidad.setIdLocalidad(dto.getIdLocalidad());
                     }
-
         
         entidad.setAbreviacionLocalidad(dto.getAbreviacionLocalidad());
         entidad.setLocalidad(dto.getLocalidad());
+        
         return entidad;
     }
     
-    // DTO a entidad
-    
+    // DTO a entidad    
     public Localidad entidadADto(LocalidadEntity entidad) {
         Localidad dto = new Localidad();
-    
-    
-            
+                
         // Set
         // carro.color = "azul";
         // carro.setColor("azul");

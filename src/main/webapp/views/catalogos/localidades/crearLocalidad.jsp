@@ -5,7 +5,7 @@
     <head>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Estados</title>
+        <title>Localidades</title>
 
         <!-- Bootstrap -->
         <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
@@ -47,7 +47,7 @@
                     </a>
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            <%@ include file="/WEB-INF/jspf/logout.jspf" %>
+                            <%@ include file="/WEB-INF/jspf/logout.jspf"%>
                         </ul>
                     </div>
                 </nav>
@@ -66,25 +66,25 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>Estados</h1>
+                    <h1>Localidades</h1>
                 </section>
 
-                <!-- Main content Estados -->
+                <!-- Main content Localidades -->
                 <section class="content">
                     <!-- Main row -->
                     <div id="div2" class="col-md-12">
                         <div class="box box-primary">
                             <div class="box-body">
-                                <form id="form-estados">
+                                <form id="form-localidades">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="inputabrev" class="control-label">Abreviación del estado</label>
+                                            <label for="inputabrev" class="control-label">Abreviación del localidad</label>
                                             <input id="inputabrev" name="inputabrev"
                                                    type="text" class="form-control" maxlength="10"
                                                    placeholder="Abreviación" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputnom" class="control-label">Nombre del estado</label>
+                                            <label for="inputnom" class="control-label">Nombre de la localidad</label>
                                             <input id="inputnom" name="inputnom"
                                                    type="text" class="form-control"
                                                    maxlength="30" placeholder="Nombre"
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                 </section>
-                <!-- Fin contenido Estados -->
+                <!-- Fin contenido Localidades -->
             </div>
         </div>
     <!-- ./wrapper -->
@@ -160,15 +160,15 @@
 $(document).ready(function() {   
     //Cancelar y dirige a la vista principal de los usuarios registrados
     $('#cancel-btn').click(function() {
-        var urlUsuario = "${pageContext.request.contextPath}/views/catalogos/estados/estado.jsp";
+        var urlUsuario = "${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp";
         window.location = urlUsuario;
     });
 
-    //Registra un estado
+    //Registra una localidad
     $('#save-btn').click(function() {
 
         // Validaciones
-        var formValidation = $('#form-estados').data('formValidation');
+        var formValidation = $('#form-localidades').data('formValidation');
 
         formValidation.validate();
 
@@ -177,20 +177,20 @@ $(document).ready(function() {
         if (formValidation.isValid()) {
 
             var datos = {};
-            var idEstado = $('#inputid');
+            var idLocalidad = $('#inputid');
             var abreviacion = $('#inputabrev');
             var nombre = $('#inputnom');
 
-            datos.idEstado = null;
-            datos.abreviacionEstado = abreviacion.val();
-            datos.estado = nombre.val();
+            datos.idLocalidad = null;
+            datos.abreviacionLocalidad = abreviacion.val();
+            datos.localidad = nombre.val();
 
             var formData = JSON.stringify(datos);
 
             console.log(formData);
 
-            var urlPost = "${pageContext.request.contextPath}/cajas/estados";
-            var urlUsuario = "${pageContext.request.contextPath}/views/catalogos/estados/crearEstado.jsp";
+            var urlPost = "${pageContext.request.contextPath}/cajas/localidades";
+            var urlUsuario = "${pageContext.request.contextPath}/views/catalogos/Localidad/crearLocalidad.jsp";
 
             $.ajax({
                 type : 'POST',
@@ -201,7 +201,7 @@ $(document).ready(function() {
                 success : function(data, textStatus, jQxhr) {
                 swal(
                     {
-                        title : "Estado registrado correctamente.",
+                        title : "Localidad registrada correctamente.",
                         type : "success",
                         closeOnCancel : false
                     },
@@ -218,7 +218,7 @@ $(document).ready(function() {
     });
 
     //Validaciones
-    $('#form-estados').formValidation(
+    $('#form-localidades').formValidation(
         {
             framework : 'bootstrap', //Indicamos el framework para validar, Bootstrap, Pure,Semantic,etc
             icon : {//Feedback Icons
@@ -233,7 +233,7 @@ $(document).ready(function() {
                     trigger : 'blur', //Se especifica cuando se acciona la validación del campo
                     validators : { //validaciones
                         notEmpty : {
-                            message : 'La abreviacion del estado es requerida.'
+                            message : 'La abreviacion de la localidad es requerida.'
                         },
                     }
                 },
@@ -241,12 +241,12 @@ $(document).ready(function() {
                     trigger : 'blur', //Se especifica cuando se acciona la validación del campo
                     validators : { //validaciones
                         notEmpty : {
-                            message : 'El nombre del estado es requerido'
+                            message : 'El nombre de la localidad es requerida'
                         },
                         stringLength : {
                             min : 1,
                             max : 16,
-                            message : 'El nombre del estado debe contener maximo 16 caracteres.'
+                            message : 'El nombre de la localidad debe contener minimo 16 caracteres.'
                         }
                     }
                 }

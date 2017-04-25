@@ -1,4 +1,4 @@
-package cajas.contribuyentes;
+package cajas.catalogos.municipios;
 
 public class Municipio {
 

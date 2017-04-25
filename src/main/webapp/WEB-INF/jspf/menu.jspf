@@ -5,6 +5,8 @@
         <ul class="treeview-menu">
             <li><a href="${pageContext.request.contextPath}/views/catalogos/marca/marca.jsp"><span>Marcas</span></a></li>
             <li><a href="${pageContext.request.contextPath}/views/catalogos/estados/estado.jsp"><span>Estados</span></a></li>
+            <li><a href="${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp"><span>Localidades</span></a></li>
+            <li><a href="${pageContext.request.contextPath}/views/catalogos/municipios/municipio.jsp"><span>Municipios</span></a></li>
         </ul>
     </li>
 </ul>

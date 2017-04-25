@@ -1,7 +1,7 @@
 <%-- 
-    Document   : estado
-    Created on : Apr 20, 2017, 11:34:54 AM
-    Author     : Freddy Barrera (freddy.barrera@gmail.com)
+    Document   : localidad
+    Created on : Apr 24, 2017, 12:45:24 AM
+    Author     : Santiago Gonzalez (oocamilobo@gmail.com)
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Estados</title>
+        <title>Municipios</title>
 
         <!-- Bootstrap -->
         <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
@@ -75,10 +75,10 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>Estados</h1>
+                    <h1>Municipios</h1>
                 </section>
 
-                <!-- Main content Estados -->
+                <!-- Main content Municipios -->
                 <section class="content">
                     <div class="row">
                         <div class="col-md-4 col-md-offset-4">
@@ -86,14 +86,14 @@
                                 <input id="search" name="search" type="text"
                                        class="form-control input-sm" 
                                        placeholder="Buscar..." data-toggle="tooltip" 
-                                       data-placement="top" title="Buscar por nombre del estado">
+                                       data-placement="top" title="Buscar por nombre del municipio">
                                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
                             </div>
                         </div>
                     </div>
                     <div class="box voffset3">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Lista de estados</h3>
+                            <h3 class="box-title">Lista de municipios</h3>
                             <div class="box-tools pull-right">
                                 <div class="dropdown">
                                     <button class="btn btn-primary dropdown-toggle" type="button"
@@ -109,7 +109,7 @@
                             </div>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <table id="tblEstado" class="table table-hover">
+                            <table id="tblMunicipio" class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th class="hidden">Id</th>
@@ -124,7 +124,7 @@
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </section>
-                <!-- Fin contenido Estados -->
+                <!-- Fin contenido Municipio -->
             </div>
 
             <footer class="main-footer">
@@ -179,10 +179,10 @@ $(document).ready(function() {
     
     $.ajax({
         type : 'GET',
-        url : '${pageContext.request.contextPath}/cajas/estados',
+        url : '${pageContext.request.contextPath}/cajas/municipios',
         dataType : 'json',
         success : function(data) {
-            llenarTablaEstados(data);
+            llenarTablaMunicipios(data);
         },
         error : function(jqXHR, textStatus, errorThrown) {
             console.log(textStatus + " " + errorThrown);
@@ -192,14 +192,14 @@ $(document).ready(function() {
     //Filtro de búsqueda
     $('#search').keyup(function() {
         var input= $('#search').val();
-        var urlGet = '${pageContext.request.contextPath}/cajas/estados/consulta?porNombreEstado=' + input;
+        var urlGet = '${pageContext.request.contextPath}/cajas/municipio/consulta?porNombreMunicipio=' + input;
 
         $.ajax({
             type: 'GET',
             dataType : 'json',
             url: urlGet,
             success: function(data) {
-                llenarTablaEstados(data);
+                llenarTablaMunicipios(data);
             },
             error : function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus + " " + errorThrown);
@@ -219,34 +219,34 @@ $(document).ready(function() {
 
     //Obtiene el ID de la fila seleccionada
     $('tbody').on("click", "td", function() {
-        idEstado = $(this).closest('tr').find('.id').text();
-        console.log(idEstado);
+        idMunicipio = $(this).closest('tr').find('.id').text();
+        console.log(idMunicipio);
     });
     
-    // Editar estado
+    // Editar municipio
     $('#editar').click(function() {
-        if (idEstado === null) {
+        if (idMunicipio === null) {
                 swal(
                         {
-                            title : 'No ha seleccionado ninguna Marca.',
+                            title : 'No ha seleccionado ningun Municipio.',
                             type : "error",
                             closeOnCancel : false
                         }
                 );
         } else {
             // Redirececciona a la edición del elemento selecionado.
-            var urlEditarMarca = '${pageContext.request.contextPath}/views/catalogos/estados/modificarEstado.jsp?id=' + idEstado;
+            var urlEditarMarca = '${pageContext.request.contextPath}/views/catalogos/municipios/modificarMunicipio.jsp?id=' + idMunicipio;
             window.location = urlEditarMarca;					
         }
     });
     
-    //Elimina estado
+    //Elimina municipio
     $('#eliminar').click(
         function() {
-            if (idEstado === null) {
+            if (idMunicipio === null) {
                 swal(
                     {
-                        title : "No ha seleccionado ninguna Marca.",
+                        title : "No ha seleccionado ningun Municipio.",
                         type : "error",
                         closeOnCancel : false
                     }
@@ -264,8 +264,8 @@ $(document).ready(function() {
                     },
                     function(isConfirm) {
                         if (isConfirm) {
-                            var urlDelete = "${pageContext.request.contextPath}/cajas/estados/" + idEstado;
-                            var urlEstado = "${pageContext.request.contextPath}/views/catalogos/estados/estado.jsp";
+                            var urlDelete = "${pageContext.request.contextPath}/cajas/municipios/" + idMunicipio;
+                            var urlMunicipio = "${pageContext.request.contextPath}/views/catalogos/municipios/municipio.jsp";
 
                             $.ajax(
                                 {
@@ -274,12 +274,12 @@ $(document).ready(function() {
                                     success: function() {
                                         swal(
                                             {
-                                                title : "El estado se ha eliminado correctamente.",
+                                                title : "El Municipio se ha eliminado correctamente.",
                                                 type : "success",
                                                 closeOnCancel : false
                                             },
                                             function() {
-                                                window.location = urlEstado;
+                                                window.location = urlMunicipio;
                                             });
                                     },
                                     error : function(jqXHR, textStatus, errorThrown) {
@@ -295,16 +295,16 @@ $(document).ready(function() {
     );
 });
 
-function llenarTablaEstados(data) {
-    $('#tblEstado > tbody').find('tr').remove();
-    var tableBody = $('#tblEstado > tbody');
+function llenarTablaMunicipios(data) {
+    $('#tblMunicipio > tbody').find('tr').remove();
+    var tableBody = $('#tblMunicipio > tbody');
     for (var i = 0; i < data.length; i++) {
         var row = 
                 '<tr>'
-                + '<td class=\"hidden id\">' + data[i].idEstado + '</td>'
+                + '<td class=\"hidden id\">' + data[i].idMunicipio + '</td>'
                 + '<td>' + (i + 1) + '</td>'
-                + '<td>' + data[i].abreviacionEstado + '</td>'
-                + '<td>' + data[i].estado + '</td>'
+                + '<td>' + data[i].abreviacionMunicipio + '</td>'
+                + '<td>' + data[i].municipio + '</td>'
                 + '</tr>';
         $(tableBody).append(row);
     }

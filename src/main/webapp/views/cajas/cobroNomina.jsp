@@ -159,7 +159,7 @@
 
 								<div class="col-md-12">
 									
-									<form class="form-horizontal">
+									<form class="form-horizontal" id="formContribuyente" >
 
 										<div class="form-group">
 											<label for="inputNombre" class="col-sm-2 control-label">Nombre:</label> 
@@ -242,6 +242,15 @@
 											<select
 											class="form-control " id="selectObligacion" name= "selectObligacion">
 											<option value="">Seleccione	una obligación</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="selectTasa">Tasa:</label> 
+								        <div class="selectContainer">
+											<select
+											class="form-control " id="selectTasa" name= "selectTasa">
+											<option value="">Seleccione	el tipo de tasa</option>
 											</select>
 										</div>
 									</div>
@@ -395,7 +404,7 @@
 								</table>
 								<div class="box-footer">
 									<button type="button" id="clear-btn"
-											class="btn btn-danger btn-lg pull-left">
+											class="btn btn-danger btn-md pull-left">
 											<i class="fa fa-trash"></i> Quitar Resultados
 									</button>								
 								</div>
@@ -497,6 +506,7 @@
 	obtenerCriterioBusqueda();
 	obtenerDeclaracion();
 	obtenerObligacion();
+	obtenerTipoTasa();
 	obtenerAnyo();
 		
 		
@@ -615,14 +625,20 @@
 							validators : { //validaciones
 								notEmpty : {
 											message : 'Ingrese el importe de la nómina.'
-										}
+										},
+										numeric: {
+				                            message: 'El valor no es un número.'
+				                        }
 							}	
 					},
 				'inputEmpleados' : { //validación del campo
 							validators : { //validaciones
 								notEmpty : {
 											message : 'Ingrese el número de empleados.'
-										}
+										},
+										numeric: {
+				                            message: 'El valor no es un número.'
+				                        }
 							}	
 					}
                }
@@ -686,8 +702,17 @@
 		});
 	}
 
+	function obtenerTipoTasa() {
+		var tasas = [{id:1, tasa:'Estatal'}, {id:2, tasa:'Federal'}];
+		$.grep(tasas, function(value, index) {
+			$('#selectTasa').append(
+					'<option value="'+value.id+'">' + value.tasa
+							+ '</option>');
+		});
+	}
+
 	function obtenerObligacion() {
-		var obligaciones = [{id:1, obligacion:'Nomina'}, {id:2, obligacion:'Hospedaje'}];
+		var obligaciones = [{id:3, obligacion:'Nomina'}, {id:4, obligacion:'Hospedaje'}];
 		$.grep(obligaciones, function(value, index) {
 			$('#selectObligacion').append('<option value="'+value.id+'">' + value.obligacion
 			+ '</option>');
@@ -737,7 +762,6 @@
 		//colocar valores select box
 	function selectPeriodos(data){
 		$.each( data, function( key, val ) {
-			console.log("ID PERIODO::::" + val.idMes  +  "MES::::" + val.mes);
 			$('#selectPeriodo').append('<option value=' + val.idPeriodo  + '>' + val.mes + '</option>');
   		});
 	}						
@@ -770,6 +794,7 @@
 			var ejercicioFiscal = $('#selectAnyoFiscal');
 			var totalErogaciones = $('#inputImporteNomina');
 			var idObligacion = $('#selectObligacion');
+			var tipoTasa = $('#selectTasa');
 			var tipoDeclaracion= $('#selectDeclaracion');
 			var numeroEmpleados = $('#inputEmpleados');
 
@@ -781,6 +806,7 @@
 			datos.idObligacion= idObligacion.val();
 			datos.idSucursal= 1;
 			datos.idTipoDeclaracion = tipoDeclaracion.val();
+			datos.tipoTasaRecargo = tipoTasa.val();
 			var formData = JSON.stringify(datos);
 			
 			
@@ -811,8 +837,8 @@
 	$('#agregar-btn').click(function() {
 		$('#panelResultados').show();
 		resultados.push(datosCalculo);
-		console.log(JSON.stringify(datosCalculo));
 		tablaResultados(resultados);
+		console.log("LENGHT:::" + resultados.length);
 	});
 
 	function tablaResultados(data){
@@ -824,9 +850,22 @@
 			$(tr).append("<td class="+"actualizaciones" +" >" + data[i].actualizaciones + "</td>");
 			$(tr).append("<td class="+"recargos" +" >" + data[i].recargos + "</td>");
 			$(tr).append("<td class="+"total" +" >" + data[i].total + "</td>");
+			$(tr).append("<td align="+ "center" + ">" + '<input type="button" class="eliminar-btn btn btn-sm btn-primary "  value="Quitar">'  + "</td>");
 			$('#tablaResultados > tbody').append(tr);
 		}
 	};
+
+
+	$("table.tablaResultados").on("click", ".eliminar-btn", function (event) {
+		$(this).closest("tr").remove(); 
+		var row = $(this).index()+1;
+		resultados.splice(0, row);
+		$(this).closest("tr").remove();  
+        if (resultados.length == 0) {
+    		resultados= [];
+    		$('#panelResultados').hide();
+		}
+    });
 
 	$('#clear-btn').click(function() {
 		$('tbody').find('td').remove();
@@ -835,11 +874,24 @@
 	});
 
 	$('#cancelar-btn').click(function() {
+		
 		$('#panelContribuyente').hide();
 		$('#panelCalculos').hide();
 		$('#panelComplementaria').hide();
 		$('#busqueda').show();
 		$('#resultadoBusqueda').show();
+		$('#panelResultados').hide();
+		$('#selectPeriodo').empty();
+		$('#agregar-btn').hide();
+
+		rfcContribuyente = null
+		resultados= [];
+		$("#tablaResultados tr").remove();
+		document.getElementById("formCalculos").reset();
+
+		fv = $('#formCalculos').data('formValidation');
+		// Reset form
+        fv.resetForm(true);
 	});
 
 	//colocar valores despues de realizar el calculo

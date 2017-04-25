@@ -159,7 +159,7 @@
 
 								<div class="col-md-12">
 									
-									<form class="form-horizontal">
+									<form class="form-horizontal" id="formContribuyente" >
 
 										<div class="form-group">
 											<label for="inputNombre" class="col-sm-2 control-label">Nombre:</label> 
@@ -395,7 +395,7 @@
 								</table>
 								<div class="box-footer">
 									<button type="button" id="clear-btn"
-											class="btn btn-danger btn-lg pull-left">
+											class="btn btn-danger btn-md pull-left">
 											<i class="fa fa-trash"></i> Quitar Resultados
 									</button>								
 								</div>
@@ -615,14 +615,20 @@
 							validators : { //validaciones
 								notEmpty : {
 											message : 'Ingrese el importe de la nómina.'
-										}
+										},
+										numeric: {
+				                            message: 'El valor no es un número.'
+				                        }
 							}	
 					},
 				'inputEmpleados' : { //validación del campo
 							validators : { //validaciones
 								notEmpty : {
 											message : 'Ingrese el número de empleados.'
-										}
+										},
+										numeric: {
+				                            message: 'El valor no es un número.'
+				                        }
 							}	
 					}
                }
@@ -737,7 +743,6 @@
 		//colocar valores select box
 	function selectPeriodos(data){
 		$.each( data, function( key, val ) {
-			console.log("ID PERIODO::::" + val.idMes  +  "MES::::" + val.mes);
 			$('#selectPeriodo').append('<option value=' + val.idPeriodo  + '>' + val.mes + '</option>');
   		});
 	}						
@@ -811,8 +816,8 @@
 	$('#agregar-btn').click(function() {
 		$('#panelResultados').show();
 		resultados.push(datosCalculo);
-		console.log(JSON.stringify(datosCalculo));
 		tablaResultados(resultados);
+		console.log("LENGHT:::" + resultados.length);
 	});
 
 	function tablaResultados(data){
@@ -824,9 +829,22 @@
 			$(tr).append("<td class="+"actualizaciones" +" >" + data[i].actualizaciones + "</td>");
 			$(tr).append("<td class="+"recargos" +" >" + data[i].recargos + "</td>");
 			$(tr).append("<td class="+"total" +" >" + data[i].total + "</td>");
+			$(tr).append("<td align="+ "center" + ">" + '<input type="button" class="eliminar-btn btn btn-sm btn-primary "  value="Quitar">'  + "</td>");
 			$('#tablaResultados > tbody').append(tr);
 		}
 	};
+
+
+	$("table.tablaResultados").on("click", ".eliminar-btn", function (event) {
+		$(this).closest("tr").remove(); 
+		var row = $(this).index()+1;
+		resultados.splice(0, row);
+		$(this).closest("tr").remove();  
+        if (resultados.length == 0) {
+    		resultados= [];
+    		$('#panelResultados').hide();
+		}
+    });
 
 	$('#clear-btn').click(function() {
 		$('tbody').find('td').remove();
@@ -835,11 +853,24 @@
 	});
 
 	$('#cancelar-btn').click(function() {
+		
 		$('#panelContribuyente').hide();
 		$('#panelCalculos').hide();
 		$('#panelComplementaria').hide();
 		$('#busqueda').show();
 		$('#resultadoBusqueda').show();
+		$('#panelResultados').hide();
+		$('#selectPeriodo').empty();
+		$('#agregar-btn').hide();
+
+		rfcContribuyente = null
+		resultados= [];
+		$("#tablaResultados tr").remove();
+		document.getElementById("formCalculos").reset();
+
+		fv = $('#formCalculos').data('formValidation');
+		// Reset form
+        fv.resetForm(true);
 	});
 
 	//colocar valores despues de realizar el calculo

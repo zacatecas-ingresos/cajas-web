@@ -86,7 +86,7 @@
 				</h1>
 			</section>
 
-			<!-- Main content Alta Vehiculo -->
+			<!-- Main content Verificacion adeudo -->
 			<section class="content">
 				<div class="row">
 					<!-- Main row -->
@@ -95,30 +95,30 @@
 						<div class="box box-primary">
 
 							<div class="box-body">
-								<div class="col-md-12">
 
-									<div class="row">
-										<div class="col-md-12">
-											<h3 style="text-align: center;">Datos Verificacion:</h3>
-										</div>
+								<form id="form-vehiculos">
+								
+										<div class="col-md-12 well">									
+							
+										<fieldset>
+											<legend style="text-align: center;">Información Verificacion</legend>
+											<div id="contenido" class="form-group"></div>
+										</fieldset>
+										<br>									
 									</div>
-									<div class="row">
-										<div id="contenido"></div>
-									</div>
-									<br> <br>
-									<form id="form-adeudo">
+
+									<div class="col-md-12">									
+										<br>
 										<fieldset>
 											<legend>Periodos de Adeudo</legend>
-											<div class="row">
-												<div id="comprobantes" class="col-md-12"></div>
-											</div>
+											<div id="comprobantes" class="form-group"></div>
 										</fieldset>
-									</form>
+										<br>									
+									</div>
 
-								</div>
+								</form>
+
 							</div>
-
-
 							<div class="box-footer">
 								<button id="cancel-btn" type="button"
 									class="btn btn-default btn-lg pull-left">
@@ -134,20 +134,18 @@
 						</div>
 
 					</div>
-
 				</div>
+			</section>
+			<!-- Fin contenido Verificacion adeudo -->
 		</div>
-		</section>
-		<!-- Fin contenido Alta Vehiculo -->
-	</div>
 
-	<footer class="main-footer">
-		<div class="pull-right hidden-xs">
-			<b>Version</b> 2.3.0
-		</div>
-		<strong>Derechos de autor &copy; 2016 <a href="------">--------------</a>.
-		</strong> Todos los derechos reservados.
-	</footer>
+		<footer class="main-footer">
+			<div class="pull-right hidden-xs">
+				<b>Version</b> 2.3.0
+			</div>
+			<strong>Derechos de autor &copy; 2016 <a href="------">--------------</a>.
+			</strong> Todos los derechos reservados.
+		</footer>
 	</div>
 	<!-- ./wrapper -->
 </body>
@@ -355,24 +353,24 @@
 		var d = new Date();
 		var year = d.getFullYear();
 
-		var anioActual = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anioActualComprobantePago" type="checkbox" value="'+year+'">'
+		var anio0VerificacionAdeudo = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio0VerificacionAdeudo" type="checkbox" value="'+year+'">'
 				+ year + '</label></div>');
-		anioActual.appendTo('#comprobantes');
-		var anioActualMenosUno = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio1ComprobantePago" type="checkbox" value="'
+		anio0VerificacionAdeudo.appendTo('#comprobantes');
+		var anio1VerificacionAdeudo = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio1VerificacionAdeudo" type="checkbox" value="'
 				+ (year - 1) + '">' + (year - 1) + '</label></div>');
-		anioActualMenosUno.appendTo('#comprobantes');
-		var anioActualMenosDos = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio2ComprobantePago" type="checkbox" value="'
+		anio1VerificacionAdeudo.appendTo('#comprobantes');
+		var anio2VerificacionAdeudo = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio2VerificacionAdeudo" type="checkbox" value="'
 				+ (year - 2) + '">' + (year - 2) + '</label></div>');
-		anioActualMenosDos.appendTo('#comprobantes');
-		var anioActualMenosTres = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio3ComprobantePago" type="checkbox" value="'
+		anio2VerificacionAdeudo.appendTo('#comprobantes');
+		var anio3VerificacionAdeudo = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio3VerificacionAdeudo" type="checkbox" value="'
 				+ (year - 3) + '">' + (year - 3) + '</label></div>');
-		anioActualMenosTres.appendTo('#comprobantes');
-		var anioActualMenosCuatro = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio4ComprobantePago" type="checkbox" value="'
+		anio3VerificacionAdeudo.appendTo('#comprobantes');
+		var anio4VerificacionAdeudo = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio4VerificacionAdeudo" type="checkbox" value="'
 				+ (year - 4) + '">' + (year - 4) + '</label></div>');
-		anioActualMenosCuatro.appendTo('#comprobantes');
-		var anioActualMenosCinco = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio5ComprobantePago" type="checkbox" value="'
+		anio4VerificacionAdeudo.appendTo('#comprobantes');
+		var anio5VerificacionAdeudo = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio5VerificacionAdeudo" type="checkbox" value="'
 				+ (year - 5) + '">' + (year - 5) + '</label></div>');
-		anioActualMenosCinco.appendTo('#comprobantes');
+		anio5VerificacionAdeudo.appendTo('#comprobantes');
 	};
 
 	$(function() {

@@ -1,3 +1,9 @@
+<%-- 
+    Document   : localidad
+    Created on : Apr 24, 2017, 12:45:24 AM
+    Author     : Santiago Gonzalez (oocamilobo@gmail.com)
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -289,7 +295,7 @@ $(document).ready(function() {
     );
 });
 
-function llenarTablaMunicipio(data) {
+function llenarTablaMunicipios(data) {
     $('#tblMunicipio > tbody').find('tr').remove();
     var tableBody = $('#tblMunicipio > tbody');
     for (var i = 0; i < data.length; i++) {

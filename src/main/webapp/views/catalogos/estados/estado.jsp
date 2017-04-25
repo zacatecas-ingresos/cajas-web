@@ -56,7 +56,7 @@
                     </a>
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            <jsp:include page="/views/menu/logout.jsp"></jsp:include>
+                            <%@ include file="/WEB-INF/jspf/logout.jspf" %>
                         </ul>
                     </div>
                 </nav>
@@ -66,7 +66,7 @@
             <aside class="main-sidebar">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
-                    <%@ include file="/views/menu/menu.jspf" %>
+                    <%@ include file="/WEB-INF/jspf/menu.jspf" %>
                 </section>
                 <!-- /.sidebar -->
             </aside>
@@ -112,7 +112,8 @@
                             <table id="tblEstado" class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <th class="hidden">Id</th>
+                                        <th>No.</th>
                                         <th>Abrevación</th>
                                         <th>Nombre</th>
                                     </tr>
@@ -135,8 +136,7 @@
         </div>
     <!-- ./wrapper -->
 
-
-        <!-- Scripts -->
+    <!-- Scripts -->
     <!-- jQuery -->
     <script
         src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
@@ -175,16 +175,17 @@
     <!-- Fin scripts -->
     <script>
 $(document).ready(function() {
+    var idEstado;
     
     $.ajax({
-        type : "GET",
-        url : "${pageContext.request.contextPath}/cajas/estados",
+        type : 'GET',
+        url : '${pageContext.request.contextPath}/cajas/estados',
         dataType : 'json',
         success : function(data) {
             llenarTablaEstados(data);
         },
-        error : function(jqXHR,textStatus,errorThrown) {
-            console.log(textStatus+ " "+ errorThrown);
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus + " " + errorThrown);
         }
     });
     
@@ -194,7 +195,7 @@ $(document).ready(function() {
         var urlGet = '${pageContext.request.contextPath}/cajas/estados/consulta?porNombreEstado=' + input;
 
         $.ajax({
-            type: "GET",
+            type: 'GET',
             dataType : 'json',
             url: urlGet,
             success: function(data) {
@@ -206,6 +207,92 @@ $(document).ready(function() {
         });
     });
     
+    // Mantiene seleccionada una fila cambiando de color
+    $('tbody').on("click", "tr", function(event) {
+        $(this).addClass('bg-info').siblings().removeClass('bg-info');
+    });
+
+    //cambiar puntero
+    $('tbody').hover(function() {
+        $(this).css('cursor', 'pointer');
+    });
+
+    //Obtiene el ID de la fila seleccionada
+    $('tbody').on("click", "td", function() {
+        idEstado = $(this).closest('tr').find('.id').text();
+        console.log(idEstado);
+    });
+    
+    // Editar estado
+    $('#editar').click(function() {
+        if (idEstado === null) {
+                swal(
+                        {
+                            title : 'No ha seleccionado ninguna Marca.',
+                            type : "error",
+                            closeOnCancel : false
+                        }
+                );
+        } else {
+            // Redirececciona a la edición del elemento selecionado.
+            var urlEditarMarca = '${pageContext.request.contextPath}/views/catalogos/estados/modificarEstado.jsp?id=' + idEstado;
+            window.location = urlEditarMarca;					
+        }
+    });
+    
+    //Elimina estado
+    $('#eliminar').click(
+        function() {
+            if (idEstado === null) {
+                swal(
+                    {
+                        title : "No ha seleccionado ninguna Marca.",
+                        type : "error",
+                        closeOnCancel : false
+                    }
+                );
+            } else {
+                swal(
+                    {
+                        title: "Confirmar eliminación",
+                        text: "Por favor confirme que desea eliminar el archivo seleccionado.",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Aceptar",
+                        closeOnConfirm: false
+                    },
+                    function(isConfirm) {
+                        if (isConfirm) {
+                            var urlDelete = "${pageContext.request.contextPath}/cajas/estados/" + idEstado;
+                            var urlEstado = "${pageContext.request.contextPath}/views/catalogos/estados/estado.jsp";
+
+                            $.ajax(
+                                {
+                                    type: "DELETE",
+                                    url : urlDelete,
+                                    success: function() {
+                                        swal(
+                                            {
+                                                title : "El estado se ha eliminado correctamente.",
+                                                type : "success",
+                                                closeOnCancel : false
+                                            },
+                                            function() {
+                                                window.location = urlEstado;
+                                            });
+                                    },
+                                    error : function(jqXHR, textStatus, errorThrown) {
+                                        console.log(textStatus+ " "+ errorThrown);
+                                    }
+                                }
+                            );
+                        }
+                    }
+                );
+            }
+        }
+    );
 });
 
 function llenarTablaEstados(data) {
@@ -214,6 +301,7 @@ function llenarTablaEstados(data) {
     for (var i = 0; i < data.length; i++) {
         var row = 
                 '<tr>'
+                + '<td class=\"hidden id\">' + data[i].idEstado + '</td>'
                 + '<td>' + (i + 1) + '</td>'
                 + '<td>' + data[i].abreviacionEstado + '</td>'
                 + '<td>' + data[i].estado + '</td>'

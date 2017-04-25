@@ -56,7 +56,7 @@ public class PresupuestoEntity implements Serializable {
 	private int idMesExpedicion;
 
 	@Column(name = "tipo_pago")
-	private int tipoPago;
+	private int tipoPago; 
 
 	public int getEjercicioExpedicion() {
 		return ejercicioExpedicion;

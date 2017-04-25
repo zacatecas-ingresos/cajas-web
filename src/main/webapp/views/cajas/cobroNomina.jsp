@@ -712,7 +712,7 @@
 	}
 
 	function obtenerObligacion() {
-		var obligaciones = [{id:1, obligacion:'Nomina'}, {id:2, obligacion:'Hospedaje'}];
+		var obligaciones = [{id:3, obligacion:'Nomina'}, {id:4, obligacion:'Hospedaje'}];
 		$.grep(obligaciones, function(value, index) {
 			$('#selectObligacion').append('<option value="'+value.id+'">' + value.obligacion
 			+ '</option>');

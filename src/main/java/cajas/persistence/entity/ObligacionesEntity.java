@@ -23,8 +23,10 @@ public class ObligacionesEntity implements Serializable {
 	@Column(name = "obligacion")
 	private String obligacion;
 	
-	@Column(name = "diastiempoprorroga")
+	@Column(name = "dias_tiempo_prorroga")
 	private Integer diasProrroga;
+	
+	/****************************************************************/
 
 	public Integer getIdObligacion() {
 		return idObligacion;

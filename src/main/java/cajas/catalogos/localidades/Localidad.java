@@ -5,8 +5,7 @@ public class Localidad {
     
     private Integer idLocalidad;
     private String abreviacionLocalidad;
-    private String localidad;
-    
+    private String localidad;    
     public Integer getIdLocalidad() {
         return idLocalidad;
     }

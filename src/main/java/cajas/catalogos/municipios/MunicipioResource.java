@@ -11,8 +11,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+
 
 @Path("municipios")
 public class MunicipioResource {
@@ -53,8 +53,8 @@ public class MunicipioResource {
 
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public List<Municipio> buscarMunicipio(@QueryParam("municipio") String municipio) {
-        return municipioEjb.buscarMunicipio(municipio);
+    public List<Municipio> obtenerMunicipios() {
+        return municipioEjb.obtenerMunicipios();
+  
     }
-
 }

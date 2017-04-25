@@ -19,6 +19,7 @@ import javax.persistence.Table;
  * @Since 25/04/2017 15:34:34
  * 
  * 
+ * 
  */
 @Entity
 @Table(name = "detalle_presupuesto_isn", schema = "presupuestos")

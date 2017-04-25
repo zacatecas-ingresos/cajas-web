@@ -8,7 +8,6 @@ import javax.persistence.TypedQuery;
 
 import cajas.persistence.entity.LocalidadEntity;
 
-
 public class LocalidadQuery {
 
 private EntityManager entityManager;
@@ -18,6 +17,10 @@ private EntityManager entityManager;
             "select Localidad"
             + " from LocalidadEntity as localidad"
             + " where localidad.localidad = :nombreLocalidad";
+    private final static String OBTENER_LOCALIDADES =
+    		"select localidad"
+            + " from LocalidadEntity as localidad"
+            + " order by localidad.idLocalidad";
     //Consula con SQL nativo
     private final static String ACTUALIZAR_CON_PROCEDIMIENTO_ALMACENADO =
             "CALL usp_procrecimiento_almacenado(?)";
@@ -57,5 +60,9 @@ private EntityManager entityManager;
         consulta.setParameter(1, nombre);
         consulta.executeUpdate();
     }
+    public List<LocalidadEntity> obtenerLocalidad() {
+		TypedQuery<LocalidadEntity> consulta = entityManager.createQuery(OBTENER_LOCALIDADES, LocalidadEntity.class);
+		return consulta.getResultList();
+	}
     
 }

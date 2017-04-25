@@ -33,7 +33,7 @@ public class VencimientoObligacion {
 		if (obligacion == null) {
 			throw new BusinessException("No existe obligacion en el registro.");
 		}
-		DateTime fechaVencimiento = new DateTime(ejercicioFiscal, mes, 20, 0, 0);
+		DateTime fechaVencimiento = new DateTime(ejercicioFiscal, mes, obligacion.getDiaVencimiento(), 0, 0);
 		fechaVencimiento = fechaVencimiento.plusMonths(1).plusDays(obligacion.getDiasProrroga());
 		if (fechaVencimiento.getDayOfWeek() == DateTimeConstants.FRIDAY) {
 			fechaVencimiento = fechaVencimiento.plusDays(3);

@@ -2,12 +2,12 @@ package cajas.config.parametros;
 
 public class ClaveParametro {
 
-	public static final String DURACION_TOKENS = "1"; //Duracion de los tokens para cada usuario
+	public static final String DURACION_TOKENS = "1"; // Duración de los tokens para cada usuario
 	public static final String DIR_TEMP = "DIR_TEMP";
 	public static final String DIR_DATOS = "DIR_DATOS";
 	
-	/**********Autenticacion********************/
-    public static final int DURACION_MAXIMA_SESION = 7 * 24 * 60 * 60; // 7 di­as.
+	/**********Autenticación********************/
+    public static final int DURACION_MAXIMA_SESION = 7 * 24 * 60 * 60; // 7 días.
 	
     /************** Filtro ***********************/
 	public static final String API_NAME = "CAJAS";
@@ -29,7 +29,7 @@ public class ClaveParametro {
 	public static final String IP_SERVICE = "java:global/cajas-web-17.03.10-SNAPSHOT/IpService!cajas.seguridad.ip.IpService";
 	public static final String IP_EJB = "java:global/cajas-web/IpService!cajas.seguridad.ip.IpService";
 	public static final String PAGELOGIN = "/views/seguridad/login.jsp";
-	public static final String ERROR_SESION = "Ocurrio un problema al iniciar sesi�n.";
-	public static final String INTENTOS_SUPERADOS = "Ha superado el n�mero de intentos para ingresar al sistema.Espere ";
+	public static final String ERROR_SESION = "Ocurrio un problema al iniciar sesión.";
+	public static final String INTENTOS_SUPERADOS = "Ha superado el número de intentos para ingresar al sistema.Espere ";
 	
 }

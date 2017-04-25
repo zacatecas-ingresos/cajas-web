@@ -2,6 +2,7 @@ package cajas.vehicular.verificacion.alta;
 
 import cajas.persistence.entity.VerificacionVehicularEntity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class VerificacionVehiculo {
@@ -9,8 +10,7 @@ public class VerificacionVehiculo {
 	private Integer idVerificacionVehiculo;
 	private Integer ejercicio;
 	private Integer noSeguimientoVerificion;
-	private Date fechaVerificacion;
-	private Integer tipoVerificacion;
+	private String fechaVerificacion;
 	private String vinVehiculo;
 	private Integer idMarcaVehiculo;
 	private Integer modeloVehiculo;
@@ -18,11 +18,11 @@ public class VerificacionVehiculo {
 	private Integer idTipoVehiculo;
 	private String lineaVehiculo;
 	private Integer estatusVerificacion;
-	private Integer facturaVehiculoDocumentacion;
-	private Integer identificacionOficialDocumentacion;
-	private Integer comprobanteDomicilioDocumentacion;
-	private Integer rfcPersonaMoralDocumentacion;
-	private Integer identificacionRepresentanteLegalDocumentacion;
+	private Boolean facturaVehiculoDocumentacion;
+	private Boolean identificacionOficialDocumentacion;
+	private Boolean comprobanteDomicilioDocumentacion;
+	private Boolean rfcPersonaMoralDocumentacion;
+	private Boolean identificacionRepresentanteLegalDocumentacion;
 	private String nombrePersonaVerificacion;
 	private String apellidoPaternoPersonaVerificacion;
 	private String apellidoMaternoPersonaVerificacion;
@@ -43,38 +43,45 @@ public class VerificacionVehiculo {
 	
 	public VerificacionVehiculo verificacionVehiculoEntity(VerificacionVehicularEntity verificacionVehicularEntity) {
 		
-		VerificacionVehiculo vVehiculo = new VerificacionVehiculo();
+		VerificacionVehiculo verificacionVehiculo = new VerificacionVehiculo();
 		
-		vVehiculo.setIdVerificacionVehiculo(verificacionVehicularEntity.getIdVerificacionVehiculo());
-		vVehiculo.setEjercicio(verificacionVehicularEntity.getEjercicio());
-		vVehiculo.setNoSeguimientoVerificion(verificacionVehicularEntity.getNoSeguimientoVerificacion());
-		vVehiculo.setFechaVerificacion(verificacionVehicularEntity.getFechaVerificacion());
-		vVehiculo.setTipoVerificacion(verificacionVehicularEntity.getTipoVerificacion());
-		vVehiculo.setVinVehiculo(verificacionVehicularEntity.getVinVehiculo());
-		vVehiculo.setIdMarcaVehiculo(verificacionVehicularEntity.getIdMarcaVehiculo());
-		vVehiculo.setModeloVehiculo(verificacionVehicularEntity.getModeloVehiculo());
-		vVehiculo.setIdClaseVehiculo(verificacionVehicularEntity.getIdClaseVehiculo());
-		vVehiculo.setIdTipoVehiculo(verificacionVehicularEntity.getIdTipoVehiculo());
-		vVehiculo.setLineaVehiculo(verificacionVehicularEntity.getLineaVehiculo());
-		vVehiculo.setEstatusVerificacion(verificacionVehicularEntity.getEstatusVerificacion());
-		vVehiculo.setFacturaVehiculoDocumentacion(verificacionVehicularEntity.getFacturaVehiculoDocumentacion());
-		vVehiculo.setIdentificacionOficialDocumentacion(verificacionVehicularEntity.getIdentificacionOficialDocumentacion());
-		vVehiculo.setComprobanteDomicilioDocumentacion(verificacionVehicularEntity.getComprobanteDomicilioDocumentacion());
-		vVehiculo.setRfcPersonaMoralDocumentacion(verificacionVehicularEntity.getComprobanteDomicilioDocumentacion());
-		vVehiculo.setIdentificacionRepresentanteLegalDocumentacion(verificacionVehicularEntity.getIdentificacionRepresentanteLegalDocumentacion());
-		vVehiculo.setNombrePersonaVerificacion(verificacionVehicularEntity.getNombrePersonaVerificacion());
-		vVehiculo.setApellidoPaternoPersonaVerificacion(verificacionVehicularEntity.getApellidoPaternoPersonaVerificacion());
-		vVehiculo.setApellidoMaternoPersonaVerificacion(verificacionVehicularEntity.getApellidoMaternoPersonaVerificacion());
-		vVehiculo.setNumeroMotorVehiculo(verificacionVehicularEntity.getNumeroMotorVehiculo());
-		vVehiculo.setIdOficinaVerificacion(verificacionVehicularEntity.getIdOficinaVerificacion());
-		vVehiculo.setAnio1ComprobantePago(verificacionVehicularEntity.getAnio1ComprobantePago());
-		vVehiculo.setAnio2ComprobantePago(verificacionVehicularEntity.getAnio2ComprobantePago());
-		vVehiculo.setAnio3ComprobantePago(verificacionVehicularEntity.getAnio3ComprobantePago());
-		vVehiculo.setAnio4ComprobantePago(verificacionVehicularEntity.getAnio4ComprobantePago());
-		vVehiculo.setAnio5ComprobantePago(verificacionVehicularEntity.getAnio5ComprobantePago());
-		vVehiculo.setAnioActualComprobantePago(verificacionVehicularEntity.getAnioActualComprobantePago());
+		verificacionVehiculo.setIdVerificacionVehiculo(verificacionVehicularEntity.getIdVerificacionVehiculo());
+		verificacionVehiculo.setEjercicio(verificacionVehicularEntity.getEjercicio());
+		verificacionVehiculo.setNoSeguimientoVerificion(verificacionVehicularEntity.getNoSeguimientoVerificacion());
+		
+		
+		
+		String pattern = "dd-MM-yyyy";
+	    SimpleDateFormat format = new SimpleDateFormat(pattern);
+	    String fechaVerificacion = format.format(verificacionVehicularEntity.getFechaVerificacion());
+	    verificacionVehiculo.setFechaVerificacion(fechaVerificacion);	
+		verificacionVehiculo.setVinVehiculo(verificacionVehicularEntity.getVinVehiculo());
+		if (verificacionVehicularEntity.getMarcaVehiculo() != null) {
+			verificacionVehiculo.setIdMarcaVehiculo(verificacionVehicularEntity.getMarcaVehiculo().getIdMarcaVehiculo());
+		}
+		verificacionVehiculo.setModeloVehiculo(verificacionVehicularEntity.getModeloVehiculo());
+		verificacionVehiculo.setIdClaseVehiculo(verificacionVehicularEntity.getIdClaseVehiculo());
+		verificacionVehiculo.setIdTipoVehiculo(verificacionVehicularEntity.getIdTipoVehiculo());
+		verificacionVehiculo.setLineaVehiculo(verificacionVehicularEntity.getLineaVehiculo());
+		verificacionVehiculo.setEstatusVerificacion(verificacionVehicularEntity.getEstatusVerificacion());
+		verificacionVehiculo.setFacturaVehiculoDocumentacion(verificacionVehicularEntity.getFacturaVehiculoDocumentacion());
+		verificacionVehiculo.setIdentificacionOficialDocumentacion(verificacionVehicularEntity.getIdentificacionOficialDocumentacion());
+		verificacionVehiculo.setComprobanteDomicilioDocumentacion(verificacionVehicularEntity.getComprobanteDomicilioDocumentacion());
+		verificacionVehiculo.setRfcPersonaMoralDocumentacion(verificacionVehicularEntity.getComprobanteDomicilioDocumentacion());
+		verificacionVehiculo.setIdentificacionRepresentanteLegalDocumentacion(verificacionVehicularEntity.getIdentificacionRepresentanteLegalDocumentacion());
+		verificacionVehiculo.setNombrePersonaVerificacion(verificacionVehicularEntity.getNombrePersonaVerificacion());
+		verificacionVehiculo.setApellidoPaternoPersonaVerificacion(verificacionVehicularEntity.getApellidoPaternoPersonaVerificacion());
+		verificacionVehiculo.setApellidoMaternoPersonaVerificacion(verificacionVehicularEntity.getApellidoMaternoPersonaVerificacion());
+		verificacionVehiculo.setNumeroMotorVehiculo(verificacionVehicularEntity.getNumeroMotorVehiculo());
+		verificacionVehiculo.setIdOficinaVerificacion(verificacionVehicularEntity.getIdOficinaVerificacion());
+		verificacionVehiculo.setAnio1ComprobantePago(verificacionVehicularEntity.getAnio1ComprobantePago());
+		verificacionVehiculo.setAnio2ComprobantePago(verificacionVehicularEntity.getAnio2ComprobantePago());
+		verificacionVehiculo.setAnio3ComprobantePago(verificacionVehicularEntity.getAnio3ComprobantePago());
+		verificacionVehiculo.setAnio4ComprobantePago(verificacionVehicularEntity.getAnio4ComprobantePago());
+		verificacionVehiculo.setAnio5ComprobantePago(verificacionVehicularEntity.getAnio5ComprobantePago());
+		verificacionVehiculo.setAnioActualComprobantePago(verificacionVehicularEntity.getAnioActualComprobantePago());
 	
-		return vVehiculo;
+		return verificacionVehiculo;
 	} 
 	
 	public Integer getIdVerificacionVehiculo() {
@@ -95,18 +102,15 @@ public class VerificacionVehiculo {
 	public void setNoSeguimientoVerificion(Integer noSeguimientoVerificion) {
 		this.noSeguimientoVerificion = noSeguimientoVerificion;
 	}
-	public Date getFechaVerificacion() {
+	
+	public String getFechaVerificacion() {
 		return fechaVerificacion;
 	}
-	public void setFechaVerificacion(Date fechaVerificacion) {
+
+	public void setFechaVerificacion(String fechaVerificacion) {
 		this.fechaVerificacion = fechaVerificacion;
 	}
-	public Integer getTipoVerificacion() {
-		return tipoVerificacion;
-	}
-	public void setTipoVerificacion(Integer tipoVerificacion) {
-		this.tipoVerificacion = tipoVerificacion;
-	}
+
 	public String getVinVehiculo() {
 		return vinVehiculo;
 	}
@@ -149,34 +153,34 @@ public class VerificacionVehiculo {
 	public void setEstatusVerificacion(Integer estatusVerificacion) {
 		this.estatusVerificacion = estatusVerificacion;
 	}
-	public Integer getFacturaVehiculoDocumentacion() {
+	public Boolean getFacturaVehiculoDocumentacion() {
 		return facturaVehiculoDocumentacion;
 	}
-	public void setFacturaVehiculoDocumentacion(Integer facturaVehiculoDocumentacion) {
+	public void setFacturaVehiculoDocumentacion(Boolean facturaVehiculoDocumentacion) {
 		this.facturaVehiculoDocumentacion = facturaVehiculoDocumentacion;
 	}
-	public Integer getIdentificacionOficialDocumentacion() {
+	public Boolean getIdentificacionOficialDocumentacion() {
 		return identificacionOficialDocumentacion;
 	}
-	public void setIdentificacionOficialDocumentacion(Integer identificacionOficialDocumentacion) {
+	public void setIdentificacionOficialDocumentacion(Boolean identificacionOficialDocumentacion) {
 		this.identificacionOficialDocumentacion = identificacionOficialDocumentacion;
 	}
-	public Integer getComprobanteDomicilioDocumentacion() {
+	public Boolean getComprobanteDomicilioDocumentacion() {
 		return comprobanteDomicilioDocumentacion;
 	}
-	public void setComprobanteDomicilioDocumentacion(Integer comprobanteDomicilioDocumentacion) {
+	public void setComprobanteDomicilioDocumentacion(Boolean comprobanteDomicilioDocumentacion) {
 		this.comprobanteDomicilioDocumentacion = comprobanteDomicilioDocumentacion;
 	}
-	public Integer getRfcPersonaMoralDocumentacion() {
+	public Boolean getRfcPersonaMoralDocumentacion() {
 		return rfcPersonaMoralDocumentacion;
 	}
-	public void setRfcPersonaMoralDocumentacion(Integer rfcPersonaMoralDocumentacion) {
+	public void setRfcPersonaMoralDocumentacion(Boolean rfcPersonaMoralDocumentacion) {
 		this.rfcPersonaMoralDocumentacion = rfcPersonaMoralDocumentacion;
 	}
-	public Integer getIdentificacionRepresentanteLegalDocumentacion() {
+	public Boolean getIdentificacionRepresentanteLegalDocumentacion() {
 		return identificacionRepresentanteLegalDocumentacion;
 	}
-	public void setIdentificacionRepresentanteLegalDocumentacion(Integer identificacionRepresentanteLegalDocumentacion) {
+	public void setIdentificacionRepresentanteLegalDocumentacion(Boolean identificacionRepresentanteLegalDocumentacion) {
 		this.identificacionRepresentanteLegalDocumentacion = identificacionRepresentanteLegalDocumentacion;
 	}
 	public String getNombrePersonaVerificacion() {

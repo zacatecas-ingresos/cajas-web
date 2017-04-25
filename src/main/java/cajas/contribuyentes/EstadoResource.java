@@ -15,8 +15,6 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-
-
 @Path("estados")
 public class EstadoResource {
 
@@ -30,19 +28,24 @@ public class EstadoResource {
         return estadoEjb.obtenerEstado(idEstado);
     }
     
+    @GET
+    @Produces ({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public List<Estado> obtenerTodosEstados() {
+        return estadoEjb.obtenerTodosEstados();
+    }
+    
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public void crearEstado(Estado estado){
         estadoEjb.crearEstado(estado);
-        
     }
+    
     @PUT
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public void editarEstado(Estado estado){
         estadoEjb.editarEstado(estado);
-        
     }
     
     @DELETE
@@ -50,18 +53,13 @@ public class EstadoResource {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public void eliminarEstado(@PathParam("idEstado") Integer idEstado) {
         estadoEjb.eliminarEstado(idEstado);
-        
-        
     }
     
     @GET
+    @Path("consulta")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public List<Estado> buscarEstado(@QueryParam("estado") String estado){
+    public List<Estado> buscarEstado(@QueryParam("porNombreEstado") String estado) {
         return estadoEjb.buscarEstado(estado);
-        
     }
-    
-    
 
-    
 }

@@ -68,7 +68,7 @@ public class FechaUtil {
 	}
 
 	/**
-	 * Retorna el año de la fecha
+	 * Retorna el aÃ±o de la fecha
 	 *
 	 * @param fecha
 	 * @return

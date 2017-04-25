@@ -56,7 +56,7 @@
 				</a>
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
-						<jsp:include page="/views/menu/logout.jsp"></jsp:include>
+						<%@ include file="/WEB-INF/jspf/logout.jspf" %>
 					</ul>
 				</div>
 			</nav>
@@ -66,7 +66,7 @@
 		<aside class="main-sidebar">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<jsp:include page="/views/menu/menu.jsp"></jsp:include>
+				<%@ include file="/WEB-INF/jspf/menu.jspf" %>
 			</section>
 			<!-- /.sidebar -->
 		</aside>

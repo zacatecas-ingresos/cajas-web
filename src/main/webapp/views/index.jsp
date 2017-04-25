@@ -66,7 +66,7 @@
 					</a>
 					<div class="navbar-custom-menu">
 						<ul class="nav navbar-nav">
-							<jsp:include page="/views/menu/logout.jsp"></jsp:include>						
+                                                        <%@ include file="/WEB-INF/jspf/logout.jspf" %>
 						</ul>
 					</div>
 				</nav>
@@ -75,7 +75,7 @@
 			<aside class="main-sidebar">
 				<!-- sidebar: style can be found in sidebar.less -->
 				<section class="sidebar">
-					<jsp:include page="/views/menu/menu.jsp"></jsp:include>
+					<%@ include file="/WEB-INF/jspf/menu.jspf" %>
 				</section>
 				<!-- /.sidebar -->
 			</aside>
@@ -194,7 +194,7 @@
 					<b>Version</b> 2.3.0
 				</div>
 				<strong>Derechos de autor &copy; 2016 <a
-					href="http://fiscoflex.mx">FiscoFlex</a>.
+					href="http://www.finanzas.gob.mx">Secretaría de finanzas de Zacatecas</a>.
 				</strong> Todos los derechos reservados.
 			</footer>
 	

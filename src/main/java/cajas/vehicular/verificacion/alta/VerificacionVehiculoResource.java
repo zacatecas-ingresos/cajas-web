@@ -1,6 +1,7 @@
 package cajas.vehicular.verificacion.alta;
 import java.io.Console;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
@@ -14,6 +15,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import cajas.exception.BusinessException;
+import cajas.seguridad.usuario.Usuario;
 
 @Path("/vehicular/verificacion")
 public class VerificacionVehiculoResource {
@@ -28,13 +30,15 @@ public class VerificacionVehiculoResource {
 	@Consumes({ "application/json" })
 	public Response crearVerificacionVehiculo(VerificacionVehiculo verificacionVehiculo) {
 		try {
-			verificacionVehiculoEjb.crearVerificacionVehiculoMetodo(verificacionVehiculo);
-			return Response.ok(Status.OK,"application/json").tag("Verificacion de Vehiculo registrada correctamente.").build();
+			verificacionVehiculoEjb.crearVerificacionVehiculoMetodo(verificacionVehiculo);			
+			Map<String,String> resultado = new HashMap<>();
+			resultado.put("Status", "OK");
+			resultado.put("valor", verificacionVehiculoEjb.numeroSeguimientoPorVin(verificacionVehiculo.getVinVehiculo()));
+			return Response.ok(resultado,"application/json").build();
 		} catch (BusinessException ex) {
 			return Response.ok(Status.NOT_IMPLEMENTED,"application/json").tag(ex.getMessage()).build();
 		}
-	}
-	
+	}	
 	
 	/*****Comprueba si ya existe una verificacion con ese VIN *********/
 	@GET
@@ -77,6 +81,51 @@ public class VerificacionVehiculoResource {
 			return Response.ok(resultado).build();
 		}
 	}
+	
+	/*****Obtiene los usuarios registrados*********/
+	@GET
+	@Path("/obtenerVerificaciones")
+	@Produces({ "application/json" })
+	public Response obtenerVerificaciones() {
+		try {
+			List<VerificacionVehiculo> verificaciones = verificacionVehiculoEjb.obtenerVerificaciones();
+			return Response.ok(verificaciones).build();
+		} catch (BusinessException ex) {
+			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+		}
+	}
+	
+	/*****Obtiene Verificacion por ID*********/
+	@GET
+	@Path("/obtenerVerificacioPorID")
+	@Produces({ "application/json" })
+	public Response obtenerVerificacioPorID(@QueryParam("id")Integer id) {
+		try {
+			List<VerificacionVehiculo> verificaciones = verificacionVehiculoEjb.obtenerVerificacionPorId(id);
+			return Response.ok(verificaciones).build();
+		} catch (BusinessException ex) {
+			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+		}
+	}
+	
+	
+	/************Obtiene una lista de usuarios de acuerdo al paramtero recibida y 
+	 * encontrando aquellos que coinciden
+	 */
+	@GET
+	@Path("/buscarPorCriterio")
+	@Produces({"application/json"})
+	public Response buscarPorCriterio(@QueryParam("vin")String parametroBusqueda, @QueryParam("estatusVerificacion")Integer estatusVerificacion,
+			@QueryParam("noSeguimiento")Integer noSeguimiento){
+		try{
+			List<VerificacionVehiculo> verificaciones = verificacionVehiculoEjb.obtenerVerificacionesFiltro(parametroBusqueda,estatusVerificacion);
+			return Response.ok(verificaciones).build();
+		}catch(BusinessException ex){
+			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+		}
+	}
+	
+	
 	
 	
 }

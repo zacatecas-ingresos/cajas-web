@@ -5,101 +5,102 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "verificaciones_vehiculo", schema = "vehicular")
-public class VerificacionVehicularEntity implements Serializable{
+@Table(name = "verificaciones_vehiculo", schema = "vehicular")
+public class VerificacionVehicularEntity implements Serializable {
 
 	private static final long serialVersionUID = 4520026756457631203L;
-	
+
 	@Id
-	@Column( name = "id_verificacion_vehiculo")
+	@Column(name = "id_verificacion_vehiculo")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idVerificacionVehiculo;
-	
-	@Column( name = "ejercicio" )
+
+	@Column(name = "ejercicio")
 	private Integer ejercicio;
-	
-	@Column( name = "no_seguimiento_verificacion" )
+
+	@Column(name = "no_seguimiento_verificacion")
 	private Integer noSeguimientoVerificacion;
-	
-	@Column( name = "fecha_verificacion" )
+
+	@Column(name = "fecha_verificacion")
 	private Date fechaVerificacion;
-	
-	@Column( name = "tipo_verificacion" )
-	private Integer tipoVerificacion;
-	
-	@Column( name = "vin_vehiculo" )
+
+	@Column(name = "vin_vehiculo")
 	private String vinVehiculo;
 	
-	@Column( name = "id_marca_vehiculo" )
-	private Integer idMarcaVehiculo;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_marca_vehiculo")
+	private MarcaVehiculoEntity marcaVehiculo;
 	
-	@Column( name = "modelo_vehiculo" )
+	@Column(name = "modelo_vehiculo")
 	private Integer modeloVehiculo;
-	
-	@Column( name = "id_clase_vehiculo" )
+
+	@Column(name = "id_clase_vehiculo")
 	private Integer idClaseVehiculo;
-	
-	@Column( name = "id_tipo_vehiculo" )
+
+	@Column(name = "id_tipo_vehiculo")
 	private Integer idTipoVehiculo;
-	
-	@Column( name = "linea_vehiculo" )
+
+	@Column(name = "linea_vehiculo")
 	private String lineaVehiculo;
-	
-	@Column( name = "estatus_verificacion" )
+
+	@Column(name = "estatus_verificacion")
 	private Integer estatusVerificacion;
-	
-	@Column( name = "factura_vehiculo_documentacion" )
-	private Integer facturaVehiculoDocumentacion;
-	
-	@Column( name = "identificacion_oficial_documentacion" )
-	private Integer identificacionOficialDocumentacion;
-	
-	@Column( name = "comprobante_domicilio_documentacion" )
-	private Integer comprobanteDomicilioDocumentacion;
-	
-	@Column( name = "rfc_persona_moral_documentacion" )
-	private Integer rfcPersonaMoralDocumentacion;
-	
-	@Column( name = "identificacion_representante_legal_documentacion" )
-	private Integer identificacionRepresentanteLegalDocumentacion;
-	
-	@Column( name = "nombre_persona_verificacion" )
+
+	@Column(name = "factura_vehiculo_documentacion")
+	private Boolean facturaVehiculoDocumentacion;
+
+	@Column(name = "identificacion_oficial_documentacion")
+	private Boolean identificacionOficialDocumentacion;
+
+	@Column(name = "comprobante_domicilio_documentacion")
+	private Boolean comprobanteDomicilioDocumentacion;
+
+	@Column(name = "rfc_persona_moral_documentacion")
+	private Boolean rfcPersonaMoralDocumentacion;
+
+	@Column(name = "identificacion_representante_legal_documentacion")
+	private Boolean identificacionRepresentanteLegalDocumentacion;
+
+	@Column(name = "nombre_persona_verificacion")
 	private String nombrePersonaVerificacion;
-	
-	@Column( name = "apellido_paterno_persona_verificacion" )
+
+	@Column(name = "apellido_paterno_persona_verificacion")
 	private String apellidoPaternoPersonaVerificacion;
-	
-	@Column( name = "apellido_materno_persona_verificacion" )
+
+	@Column(name = "apellido_materno_persona_verificacion")
 	private String apellidoMaternoPersonaVerificacion;
-	
-	@Column( name = "numero_motor_vehiculo" )
+
+	@Column(name = "numero_motor_vehiculo")
 	private String numeroMotorVehiculo;
-	
-	@Column( name = "id_oficina_verificacion" )
+
+	@Column(name = "id_oficina_verificacion")
 	private Integer idOficinaVerificacion;
-	
-	@Column( name = "anio1_comprobante_pago" )
+
+	@Column(name = "anio1_comprobante_pago")
 	private Integer anio1ComprobantePago;
 
-	@Column( name = "anio2_comprobante_pago" )
+	@Column(name = "anio2_comprobante_pago")
 	private Integer anio2ComprobantePago;
 
-	@Column( name = "anio3_comprobante_pago" )
+	@Column(name = "anio3_comprobante_pago")
 	private Integer anio3ComprobantePago;
-	
-	@Column( name = "anio4_comprobante_pago" )
-	private Integer anio4ComprobantePago;	
-	
-	@Column( name = "anio5_comprobante_pago" )
+
+	@Column(name = "anio4_comprobante_pago")
+	private Integer anio4ComprobantePago;
+
+	@Column(name = "anio5_comprobante_pago")
 	private Integer anio5ComprobantePago;
-	
-	@Column( name = "anio_actual_comprobante_pago" )
+
+	@Column(name = "anio_actual_comprobante_pago")
 	private Integer anioActualComprobantePago;
 
 	public Integer getIdVerificacionVehiculo() {
@@ -134,14 +135,6 @@ public class VerificacionVehicularEntity implements Serializable{
 		this.fechaVerificacion = fechaVerificacion;
 	}
 
-	public Integer getTipoVerificacion() {
-		return tipoVerificacion;
-	}
-
-	public void setTipoVerificacion(Integer tipoVerificacion) {
-		this.tipoVerificacion = tipoVerificacion;
-	}
-
 	public String getVinVehiculo() {
 		return vinVehiculo;
 	}
@@ -149,13 +142,11 @@ public class VerificacionVehicularEntity implements Serializable{
 	public void setVinVehiculo(String vinVehiculo) {
 		this.vinVehiculo = vinVehiculo;
 	}
-
-	public Integer getIdMarcaVehiculo() {
-		return idMarcaVehiculo;
+	public MarcaVehiculoEntity getMarcaVehiculo() {
+		return marcaVehiculo;
 	}
-
-	public void setIdMarcaVehiculo(Integer idMarcaVehiculo) {
-		this.idMarcaVehiculo = idMarcaVehiculo;
+	public void setMarcaVehiculo(MarcaVehiculoEntity marcaVehiculo) {
+		this.marcaVehiculo = marcaVehiculo;
 	}
 
 	public Integer getModeloVehiculo() {
@@ -198,43 +189,44 @@ public class VerificacionVehicularEntity implements Serializable{
 		this.estatusVerificacion = estatusVerificacion;
 	}
 
-	public Integer getFacturaVehiculoDocumentacion() {
+	public Boolean getFacturaVehiculoDocumentacion() {
 		return facturaVehiculoDocumentacion;
 	}
 
-	public void setFacturaVehiculoDocumentacion(Integer facturaVehiculoDocumentacion) {
+	public void setFacturaVehiculoDocumentacion(Boolean facturaVehiculoDocumentacion) {
 		this.facturaVehiculoDocumentacion = facturaVehiculoDocumentacion;
 	}
 
-	public Integer getIdentificacionOficialDocumentacion() {
+	public Boolean getIdentificacionOficialDocumentacion() {
 		return identificacionOficialDocumentacion;
 	}
 
-	public void setIdentificacionOficialDocumentacion(Integer identificacionOficialDocumentacion) {
+	public void setIdentificacionOficialDocumentacion(Boolean identificacionOficialDocumentacion) {
 		this.identificacionOficialDocumentacion = identificacionOficialDocumentacion;
 	}
 
-	public Integer getComprobanteDomicilioDocumentacion() {
+	public Boolean getComprobanteDomicilioDocumentacion() {
 		return comprobanteDomicilioDocumentacion;
 	}
 
-	public void setComprobanteDomicilioDocumentacion(Integer comprobanteDomicilioDocumentacion) {
+	public void setComprobanteDomicilioDocumentacion(Boolean comprobanteDomicilioDocumentacion) {
 		this.comprobanteDomicilioDocumentacion = comprobanteDomicilioDocumentacion;
 	}
 
-	public Integer getRfcPersonaMoralDocumentacion() {
+	public Boolean getRfcPersonaMoralDocumentacion() {
 		return rfcPersonaMoralDocumentacion;
 	}
 
-	public void setRfcPersonaMoralDocumentacion(Integer rfcPersonaMoralDocumentacion) {
+	public void setRfcPersonaMoralDocumentacion(Boolean rfcPersonaMoralDocumentacion) {
 		this.rfcPersonaMoralDocumentacion = rfcPersonaMoralDocumentacion;
 	}
 
-	public Integer getIdentificacionRepresentanteLegalDocumentacion() {
+	public Boolean getIdentificacionRepresentanteLegalDocumentacion() {
 		return identificacionRepresentanteLegalDocumentacion;
 	}
 
-	public void setIdentificacionRepresentanteLegalDocumentacion(Integer identificacionRepresentanteLegalDocumentacion) {
+	public void setIdentificacionRepresentanteLegalDocumentacion(
+			Boolean identificacionRepresentanteLegalDocumentacion) {
 		this.identificacionRepresentanteLegalDocumentacion = identificacionRepresentanteLegalDocumentacion;
 	}
 
@@ -269,6 +261,7 @@ public class VerificacionVehicularEntity implements Serializable{
 	public void setNumeroMotorVehiculo(String numeroMotorVehiculo) {
 		this.numeroMotorVehiculo = numeroMotorVehiculo;
 	}
+
 	public Integer getIdOficinaVerificacion() {
 		return idOficinaVerificacion;
 	}
@@ -276,7 +269,7 @@ public class VerificacionVehicularEntity implements Serializable{
 	public void setIdOficinaVerificacion(Integer idOficinaVerificacion) {
 		this.idOficinaVerificacion = idOficinaVerificacion;
 	}
-	
+
 	public Integer getAnio1ComprobantePago() {
 		return anio1ComprobantePago;
 	}
@@ -324,8 +317,5 @@ public class VerificacionVehicularEntity implements Serializable{
 	public void setAnioActualComprobantePago(Integer anioActualComprobantePago) {
 		this.anioActualComprobantePago = anioActualComprobantePago;
 	}
-
-	
-	
 
 }

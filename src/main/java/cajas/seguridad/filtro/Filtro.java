@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.servlet.Filter;
@@ -22,6 +21,7 @@ import cajas.config.parametros.ClaveParametro;
 import cajas.exception.BusinessException;
 import cajas.seguridad.token.TokenService;
 import cajas.seguridad.usuario.Usuario;
+import org.jboss.logging.Logger;
 
 public class Filtro implements Filter {
 
@@ -34,7 +34,7 @@ public class Filtro implements Filter {
 	private Usuario usuarioSesion;
 
 	@EJB
-	TokenService tokenService;
+        private TokenService tokenService;
 
 	/*************** Filtro ****************************/
 
@@ -43,7 +43,7 @@ public class Filtro implements Filter {
 	 *************/
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		LOG.info(String.format("[\t Inicia el filtro:]"));
+		LOG.info("[\tInicia el filtro:]");
 		contextPath = filterConfig.getServletContext().getContextPath();
 	}
 
@@ -51,7 +51,7 @@ public class Filtro implements Filter {
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
 			throws IOException, ServletException {
 		
-		LOG.info(String.format("[\t Filtro:]"));
+		LOG.info("[\tFiltro:]");
 		/**** caracteres especiales ******/
 		servletRequest.setCharacterEncoding("UTF-8");
 
@@ -173,7 +173,7 @@ public class Filtro implements Filter {
 	 * contexto de la ruta.
 	 *
 	 * <p>
-	 * En caso de que el recurso solicitado no esté dentro del contexto retorna
+	 * En caso de que el recurso solicitado no estÃ© dentro del contexto retorna
 	 * un null.
 	 *
 	 * @param recursoURI
@@ -230,7 +230,7 @@ public class Filtro implements Filter {
 
 	@Override
 	public void destroy() {
-		LOG.info(String.format("[\t Fin del filtro:]"));
+		LOG.info("[\t Fin del filtro:]");
 	}
 
 	/***********************************************************************************************/

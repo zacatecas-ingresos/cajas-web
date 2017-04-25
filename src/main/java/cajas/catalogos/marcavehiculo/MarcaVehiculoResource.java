@@ -50,11 +50,11 @@ public class MarcaVehiculoResource {
 	@GET
 	@Path("/buscarPorCriterio")
 	@Produces({"application/json"})
-	public Response buscarMarcaVehiculoPorCriterio(@QueryParam("parametro")String criterio){
-		try{
+	public Response buscarMarcaVehiculoPorCriterio(@QueryParam("criterio") String criterio) {
+		try {
 			List<MarcaVehiculo> marcaVehiculoList = marcaVehiculoEjb.obtenerMarcasVehiculoFiltro(criterio);
 			return Response.ok(marcaVehiculoList).build();
-		}catch(BusinessException ex){
+		} catch (BusinessException ex) {
 			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
 		}
 	}

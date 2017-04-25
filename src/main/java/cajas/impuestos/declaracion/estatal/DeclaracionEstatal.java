@@ -8,6 +8,7 @@ import java.math.BigDecimal;
  * @since 07/04/2017
  */
 public class DeclaracionEstatal {
+
 	private int periodo;
 	private int ejercicioFiscal;
 	private BigDecimal totalErogaciones;

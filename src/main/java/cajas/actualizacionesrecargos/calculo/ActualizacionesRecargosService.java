@@ -2,15 +2,16 @@ package cajas.actualizacionesrecargos.calculo;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
-import cajas.exception.BusinessException;
+import org.joda.time.DateTime;
+
 import cajas.persistence.entity.INPCEntity;
 import cajas.persistence.query.INPCQuery;
-import cajas.util.FechaUtil;
 
 public class ActualizacionesRecargosService {
 
@@ -19,94 +20,104 @@ public class ActualizacionesRecargosService {
 
 	/************************************* ACTUALIZACIONES *************************************/
 
-	/************* Calcula el importe de la actualizaci髇 **********/
+	/************* Calcula el importe de la actualizaci贸n **********/
 	public ActualizacionRecargo calculoActualizacion(ContribucionFiscal contribucionFiscal) {
-
+				
 		ActualizacionRecargo actualizacionRecargo = new ActualizacionRecargo();
 		BigDecimal actualizacion = BigDecimal.ZERO;
 		BigDecimal inpcAnterior = BigDecimal.ZERO;
 		BigDecimal inpcActual = BigDecimal.ZERO;
 		BigDecimal porcentajeRecargo = BigDecimal.ZERO;
 		BigDecimal importeRecargo = BigDecimal.ZERO;
-		Boolean aplicaRecargo = Boolean.FALSE;
+		BigDecimal factorActualizacion = BigDecimal.ZERO;
+		BigDecimal cantidadAdeudaActualizacion = BigDecimal.ZERO;
 
 		/*******
 		 * Obtengo el INPC del mes anterior en el que se debio efectuar el pago
 		 * 
 		 */
-		inpcAnterior = obtenerINPC(contribucionFiscal.getaFiscalAdeudo(), contribucionFiscal.getMesFiscalAdeudo());
+		if(contribucionFiscal.getPeriodoActualizacion() != null){
+			
+			inpcAnterior = obtenerINPC(contribucionFiscal.getPeriodoActualizacion().getEjercicioInicial(),contribucionFiscal.getPeriodoActualizacion().getMesInicial());
+						
+			/*******
+			 * Obtengo el INPC del mes anterior en el que se va a realizar el pago
+			 * 
+			 */
+			inpcActual = obtenerINPC(contribucionFiscal.getPeriodoActualizacion().getEjercicioFinal(), contribucionFiscal.getPeriodoActualizacion().getMesFinal());
+			
+			/***
+			 * Si el INPC del mes en el que se va a efectuar el pago no devuelve
+			 * ningun resultado obtengo el INPC del mes anterior al solicitado
+			 * inicialmente
+			 */
+			if (inpcActual == null) {
+				inpcActual = obtenerINPC(contribucionFiscal.getPeriodoActualizacion().getEjercicioFinal(),contribucionFiscal.getPeriodoActualizacion().getMesFinal() -1);
+			}			
+			
+			/***
+			 * Bien ahora que ya tenemos los dos INPC, procedemos a realizar el
+			 * calculo del factor de actualizaci贸n
+			 */
 
-		/*******
-		 * Obtengo el INPC del mes anterior en el que se va a realizar el pago
-		 * 
-		 */
-		contribucionFiscal.setMesFiscalPago(FechaUtil.mesActual() - 1);
-		inpcActual = obtenerINPC(FechaUtil.ejercicioActual(), contribucionFiscal.getMesFiscalPago());
+			factorActualizacion = factorActualizacion(inpcAnterior, inpcActual);
+			/*****
+			 * Factor de actualizaci贸n Si el factor de actualizaci贸n es menor a 1 se
+			 * toma como factor 1
+			 */
+			if(factorActualizacion.compareTo(BigDecimal.ZERO) > 0) {
+				contribucionFiscal.setAplicaActualizacion(true);
+			}
+			
+			/*****
+			 * Ahora si calculamos el monto de la actualizaci贸n multiplicando el
+			 * importe recibido por el factor de la actualizaci贸n
+			 */
+			
 
-		/***
-		 * Si el INPC del mes en el que se va a efectuar el pago no devuelve
-		 * ningun resultado obtengo el INPC del mes anterior al solicitado
-		 * inicialmente
-		 */
-		if (inpcActual == null) {
-			contribucionFiscal.setMesFiscalPago(contribucionFiscal.getMesFiscalPago() - 1);
-			inpcActual = obtenerINPC(contribucionFiscal.getaFiscalPago(), contribucionFiscal.getMesFiscalPago());
+			BigDecimal cantidadTotal = BigDecimal.ZERO;
+			cantidadTotal = contribucionFiscal.getCantidadAdeuda().add(contribucionFiscal.getUaz());
+			actualizacion = cantidadTotal.multiply(factorActualizacion).setScale(0,RoundingMode.HALF_EVEN);
+			cantidadAdeudaActualizacion = actualizacion;
+			actualizacion = actualizacion.subtract(cantidadTotal);
 		}
+		
+		
+		/******************* Recargos *******************/
+		if(contribucionFiscal.getPeriodoRecargo() != null){
+			
+			/*****
+			 * Calculo del recargo
+			 * 
+			 */
+			importeRecargo = calculoRecargo(contribucionFiscal.getPeriodoRecargo().getEjercicioInicial(), contribucionFiscal.getPeriodoRecargo().getMesInicial(),
+			contribucionFiscal.getPeriodoRecargo().getEjercicioFinal(),contribucionFiscal.getPeriodoRecargo().getMesFinal(),cantidadAdeudaActualizacion);
+			
+			/***
+			 * Set Valores calculados
+			 * 
+			 */
+			actualizacionRecargo.setInpcInicio(inpcAnterior);
+			actualizacionRecargo.setInpcFinal(inpcActual);
 
-		/***
-		 * Bien ahora que ya tenemos los dos INPC, procedemos a realizar el
-		 * calculo del factor de actualizaci髇
-		 */
-
-		BigDecimal factorActualizacion = BigDecimal.ZERO;
-		factorActualizacion = factorActualizacion(inpcAnterior, inpcActual);
-
-		/*****
-		 * Factor de actualizaci髇 Si el factor de actualizaci髇 es menor a 1 se
-		 * toma como factor 1
-		 */
-		factorActualizacion = (factorActualizacion.compareTo(BigDecimal.ONE) == -1) ? BigDecimal.ONE
-				: factorActualizacion;
-
-		/*****
-		 * Ahora si calculamos el monto de la actualizaci髇 multiplicando el
-		 * importe recibido por el factor de la actualizaci髇
-		 */
-		actualizacion = contribucionFiscal.getCantidadAdeuda().multiply(factorActualizacion).setScale(0,
-				RoundingMode.UP);
-
-		/*****
-		 * Calculo del recargo
-		 * 
-		 */
-		importeRecargo = calculoRecargo(contribucionFiscal.getaFiscalAdeudo(), contribucionFiscal.getMesFiscalAdeudo(),
-				contribucionFiscal.getaFiscalPago(), contribucionFiscal.getMesFiscalPago(),
-				contribucionFiscal.getPagoVencido(), actualizacion, contribucionFiscal.getTipoRecargo());
-
-		/***
-		 * Set Valores calculados
-		 * 
-		 */
-		actualizacionRecargo.setInpcInicio(inpcAnterior);
-		actualizacionRecargo.setInpcFinal(inpcActual);
+			/****
+			 * Si el factor de actualizaci贸n es menor a uno solo se pagan recargos
+			 */
+			if(importeRecargo.compareTo(BigDecimal.ZERO) > 0) {
+				contribucionFiscal.setAplicaRecargos(true);
+			}
+						
+		}
+		
 		actualizacionRecargo.setFactorActualizacion(factorActualizacion);
-
-		/****
-		 * Si el factor de actualizaci髇 es menor a uno solo se pagan recargos
-		 */
-		if (factorActualizacion.compareTo(BigDecimal.ONE) == -1) {
-			actualizacionRecargo.setImporteActualizacion(null);
-		} else {
-			actualizacionRecargo.setImporteActualizacion(actualizacion);
-		}
 		actualizacionRecargo.setPorcentajeRecargo(porcentajeRecargo);
-		actualizacionRecargo.setImporteRecargo(importeRecargo);
-		actualizacionRecargo.setAplicaRecargo(aplicaRecargo);
-
+		actualizacionRecargo.setImporteRecargo(importeRecargo);		
+		actualizacionRecargo.setImporteActualizacion(actualizacion);
+		
 		return actualizacionRecargo;
 	}
 
-	/********** Calculo factor de la actualizaci髇 **********/
+	/********** Calculo factor de la actualizaci贸n **********/
 	private BigDecimal factorActualizacion(BigDecimal inpcAnterior, BigDecimal inpcActual) {
 		BigDecimal factorActualizacion = BigDecimal.ZERO;
 
@@ -120,7 +131,6 @@ public class ActualizacionesRecargosService {
 			INPCEntity inpcEntity = inpcQuery.inpcEntity(aFiscal, mesFiscal);
 			return inpcEntity.getInpc();
 		} catch (NoResultException ex) {
-			ex.printStackTrace();
 			return null;
 		}
 	}
@@ -129,41 +139,56 @@ public class ActualizacionesRecargosService {
 
 	/********* Calculo del recargo ***********/
 	private BigDecimal calculoRecargo(Integer aFiscalInicio, Integer mesFiscalInicio, Integer aFiscalFinal,
-			Integer mesFiscalFinal, Boolean vencioPago, BigDecimal importeActualizacion, String tipoRecargo) {
+			Integer mesFiscalFinal,BigDecimal importeActualizacion) {
 
 		BigDecimal recargo = BigDecimal.ZERO;
-		try {
+	
+		recargo = obtenerTasaRecargo(aFiscalInicio, mesFiscalInicio, aFiscalFinal, mesFiscalFinal);
+		
+		recargo.setScale(2, RoundingMode.HALF_EVEN);
 
-			recargo = obtenerTasaRecargo(aFiscalInicio, mesFiscalInicio, aFiscalFinal, mesFiscalFinal, vencioPago,
-					tipoRecargo);
-			recargo.setScale(2, RoundingMode.HALF_EVEN);
-
-		} catch (NoResultException ex) {
-			ex.printStackTrace();
-			throw new BusinessException("Ocurrio un problema no se encontrar髇 resultados.");
-		}
 		BigDecimal montoRecargo = BigDecimal.ZERO;
-
+		
 		montoRecargo = importeActualizacion.multiply(recargo);
-
-		montoRecargo = montoRecargo.divide(new BigDecimal(100), 2, RoundingMode.HALF_EVEN);
+		
+		montoRecargo = montoRecargo.divide(new BigDecimal(100), 0, RoundingMode.HALF_EVEN);
 
 		return montoRecargo;
 	}
 
 	/********** Obtener INPC *************/
 	private BigDecimal obtenerTasaRecargo(Integer aFiscalInicio, Integer mesFiscalInicio, Integer aFiscalFinal,
-			Integer mesFiscalFinal, Boolean vencioPago, String tipoRecargo) {
-
-		List<INPCEntity> inpcEntity = inpcQuery.listaINPC(aFiscalInicio, mesFiscalInicio, aFiscalFinal, mesFiscalFinal,
-				vencioPago);
-		BigDecimal tasaRecargo = BigDecimal.ZERO;
-		for (INPCEntity inpc : inpcEntity) {
-			if (tipoRecargo.equals("MORA")) {
-				tasaRecargo = tasaRecargo.add(inpc.getRecargoMora());
-			} else if (tipoRecargo.equals("PRORROGA")) {
-				tasaRecargo = tasaRecargo.add(inpc.getRecargoProrroga());
+			Integer mesFiscalFinal) {
+		
+		// Genera un arreglo de fechas en el intervalo para
+		// facilitar la creacion de una lista de factores de recargo mensual
+		DateTime limiteSuperior = new DateTime(aFiscalFinal,mesFiscalFinal, 1, 0, 0);
+		List<DateTime> mesAnyo = new ArrayList<DateTime>();
+		DateTime fechaIndice = new DateTime(aFiscalInicio, mesFiscalInicio, 1, 0, 0);
+		while (fechaIndice.compareTo(limiteSuperior) <= 0) {
+				mesAnyo.add(fechaIndice);
+				fechaIndice = fechaIndice.plusMonths(1);
+		}
+		
+		List<INPCEntity> factoresRecargo = new ArrayList<INPCEntity>();
+		for (DateTime c : mesAnyo) {
+			
+			INPCEntity factorRecargo = new INPCEntity();
+			factorRecargo.setaFiscal(c.getYear());
+			factorRecargo.setMesFiscal(c.getMonthOfYear());
+						
+			try{
+				INPCEntity inpc = inpcQuery.inpcEntity(factorRecargo.getaFiscal(),factorRecargo.getMesFiscal());
+				factorRecargo.setRecargo(inpc.getRecargo());
+				factoresRecargo.add(factorRecargo);
+			}catch(NoResultException ex){
+				//ex.printStackTrace();
 			}
+		}	
+	
+		BigDecimal tasaRecargo = BigDecimal.ZERO;
+		for (INPCEntity inpc : factoresRecargo) {
+			tasaRecargo = tasaRecargo.add(inpc.getRecargo());
 		}
 		return tasaRecargo;
 	}

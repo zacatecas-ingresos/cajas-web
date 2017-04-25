@@ -64,7 +64,7 @@
        Fin checkbox -->
       <div class="row">
       	<div class="col-xs-12">
-          <button id="login" type="button" class="btn btn-primary btn-block btn-flat">Iniciar Sesión</button>
+          <button id="login" type="button" class="btn btn-primary btn-block btn-flat">Iniciar sesión</button>
         </div>
       </div>
     </form>

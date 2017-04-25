@@ -46,6 +46,11 @@ public class EstadoEJB {
         
         return estado;
     }
+
+    public List<Estado> obtenerTodosEstados() {
+        List<EstadoEntity> estadosEntities = estadoQuery.obtenerTodosEstados();
+        return estadoFactory.entidadesADtos(estadosEntities);
+    }
     
     public void editarEstado(Estado estado) {
         // Implementar reglas de negocio
@@ -62,8 +67,8 @@ public class EstadoEJB {
     
     public List<Estado> buscarEstado(String estado) {
         List<EstadoEntity>estadoEntities = estadoQuery.buscarEstado(estado);
-        List<Estado> estadodtos = estadoFactory.entidadesADtos(estadoEntities);
-        return estadodtos;
+        List<Estado> estadosDtos = estadoFactory.entidadesADtos(estadoEntities);
+        return estadosDtos;
     }
     
 }

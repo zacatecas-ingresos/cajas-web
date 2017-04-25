@@ -37,7 +37,7 @@ public class DiasNoLaboralesQuery {
 
 			try {
 				TypedQuery<DiasNoLaboralesEntity> query = entityManager
-						.createQuery("SELECT d FROM DiasNoLaboralesEntity d WHERE d.dia_no_laboral = :dia",
+						.createQuery("SELECT d FROM DiasNoLaboralesEntity d WHERE d.diaNoLaboral = :dia",
 								DiasNoLaboralesEntity.class)
 						.setParameter("dia", temp.toDate());
 				query.getSingleResult();

@@ -83,7 +83,7 @@ public class ValidacionUtil {
      * @return <code>true</code> si la cadena está vacia, <code>false</code> si la cadena no esta vacia.
      */
     public static boolean esCadenaVacia(String cadena) {
-        return cadena == null || cadena.trim().isEmpty();
+        return (cadena == null || cadena.trim().isEmpty()?false:true);
     }
 
 	public static boolean fechaFutura(Date fecha) {

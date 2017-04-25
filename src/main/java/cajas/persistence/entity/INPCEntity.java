@@ -33,11 +33,8 @@ public class INPCEntity implements Serializable {
 	@Column(name = "inpc")
 	private BigDecimal inpc;
 
-	@Column(name = "recargo_mora")
-	private BigDecimal recargoMora;
-
-	@Column(name = "recargo_prorroga")
-	private BigDecimal recargoProrroga;
+	@Column(name = "recargo")
+	private BigDecimal recargo;
 
 	/***************** Getters and Setters *****************/
 
@@ -73,20 +70,12 @@ public class INPCEntity implements Serializable {
 		this.inpc = inpc;
 	}
 
-	public BigDecimal getRecargoMora() {
-		return recargoMora;
+	public BigDecimal getRecargo() {
+		return recargo;
 	}
-
-	public void setRecargoMora(BigDecimal recargoMora) {
-		this.recargoMora = recargoMora;
-	}
-
-	public BigDecimal getRecargoProrroga() {
-		return recargoProrroga;
-	}
-
-	public void setRecargoProrroga(BigDecimal recargoProrroga) {
-		this.recargoProrroga = recargoProrroga;
+	
+	public void setRecargo(BigDecimal recargo) {
+		this.recargo = recargo;
 	}
 
 }

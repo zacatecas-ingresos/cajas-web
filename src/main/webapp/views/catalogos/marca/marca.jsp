@@ -67,7 +67,7 @@
 		<!-- Menú lateral izquierdo -->
 		<aside class="main-sidebar">
 			<section class="sidebar">
-				<jsp:include page="/views/menu/menu.jsp"></jsp:include><!-- Se llama al al archivo donde se encuentra el menú -->
+				<%@ include file="/views/menu/menu.jspf" %><!-- Se llama al al archivo donde se encuentra el menú -->
 			</section>
 		</aside>
 		<!-- Fin menú lateral izquierdo -->
@@ -87,37 +87,30 @@
 
 			<!-- Usuarios Registrados -->
 			<section class="content">
-				
-				<div class="col-md-12" id="div2">
-					
-					<div class="box box-primary">
+                            <div class="box box-primary">
+                                                <div class="box-header">
+                                                    <div class="box-tools pull-right">
+                                                        <!-- Botón nuevo marcas -->
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-primary dropdown-toggle" type="button"
+                                                                    data-toggle="dropdown">
+                                                                Opciones <span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="button" id="crear">Crear Marca</a></li>
+                                                                <li><a class="button" id="editar" >Modificar Marca</a></li>
+                                                                <li><a class="button" id="eliminar">Eliminar Marca</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <!--Fin botón nuevo marcas -->
+                                                    </div>
+                                                </div>	
 					
 						<div class="box-body">
 						
 							<div class="col-md-12">
 								
 								<!-- Contenido -->
-									
-									<!-- Botón nuevo marcas -->
-									<div class="col-xs-1 col-md-5"></div>
-									<div class="col-xs-1 col-md-5"></div>
-									<div class="col-xs-10 col-md-2">
-											<div class="dropdown">
-											<button class="btn btn-primary dropdown-toggle" type="button"
-												data-toggle="dropdown">
-												Opciones <span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu">
-												<li><a class="button" id="crear">Crear Marca</a></li>
-												<li><a class="button" id="editar" >Modificar Marca</a></li>
-												<li><a class="button" id="eliminar">Eliminar Marca</a></li>
-											</ul>
-										</div>
-									</div>
-									<!--Fin botón nuevo marcas -->
-									
-									<br /><br />
-									
 									<div class="row">
 									<div class="col-xs-3" style=" text-align: center;"></div>
 									<div class="col-xs-6 well" style=" text-align: center ;">
@@ -150,32 +143,20 @@
 							</div>
 						</div>
 					</div>
-				</div>
 			</section>
 			<!-- Fin contenido Registrar marca -->
-
 		</div>
-		<!-- Fin del contenido de la página -->
 
-		<!-- Footer -->
-		<div class="wrapper">
-			<footer class="main-footer">
-			<div class="pull-right hidden-xs">
-				<b>Version</b> 2.3.0
-			</div>
-			<strong>Derechos de autor &copy; 2016 <a
-				href="------">--------------</a>.
-			</strong> Todos los derechos reservados.
-		</footer>
-		</div>
-		<!-- Fin del footer -->
-
-		<!-- Add the sidebar's background. This div must be placed
-	           immediately after the control sidebar -->
-		<div class="control-sidebar-bg"></div>		
-		
+                <footer class="main-footer">
+                    <div class="pull-right hidden-xs">
+                        <b>Version</b> 2.3.0
+                    </div>
+                    <strong>Derechos de autor &copy; 2016 <a
+                            href="------">--------------</a>.
+                    </strong> Todos los derechos reservados.
+                </footer>
+                <!-- Fin del contenido de la página -->
 	</div>
-	
 
 </body>
 
@@ -255,12 +236,13 @@ $(document).ready(function(){
 
 
 	//estatus de los usuarios
-	function estatusMarca(estatus){
+	function estatusMarca(estatus) {
+            console.log(estatus);
 		var urlEstatus;
-		if(estatus == 1){
-			urlEstatus = "${pageContext.request.contextPath}/resources/admin-lte/img/active.png";
-		}else if(estatus == 0){
-			urlEstatus = "${pageContext.request.contextPath}/resources/admin-lte/img/inactive.png";
+		if(estatus === true) {
+                    urlEstatus = "${pageContext.request.contextPath}/resources/admin-lte/img/active.png";
+		} else if(estatus === false) {
+                    urlEstatus = "${pageContext.request.contextPath}/resources/admin-lte/img/inactive.png";
 		}
 		return urlEstatus;
 	}	
@@ -279,7 +261,7 @@ $(document).ready(function(){
 
 		if(input === null){
 			urlGet = urlMarca;
-		}else{
+		} else {
 			urlGet = urlMarca;
 		}	
 		
@@ -316,7 +298,7 @@ $(document).ready(function(){
 	
 	//Editar Marca
 	$('#editar').click(function(){
-		if(idMarca == null){
+		if(idMarca === null){
 			swal(
 				{
 					title : "No ha seleccionado ninguna Marca.",
@@ -334,7 +316,7 @@ $(document).ready(function(){
 	
 	//Elimina Marca
 	$('#eliminar').click(function(){
-		if(idMarca == null){
+		if(idMarca === null){
 			swal(
 					{
 				  	title : "No ha seleccionado ninguna Marca.",
@@ -492,7 +474,7 @@ $(document).ready(function(){
 	//Errores
     $.ajaxSetup({
         error: function (x, status, error) {	        	
-            if (x.status == 400) {
+            if (x.status === 400) {
             	var result = x.responseJSON;
             	swal({
 					title:"Error " + result.code, 
@@ -500,7 +482,7 @@ $(document).ready(function(){
 					type:"error",
 					closeOnCancel: false
 				});	            		               
-            } else if(x.status == 500) {
+            } else if(x.status === 500) {
             	swal({
 					title:"Error 500", 
 					text:"Disculpe las molestias no podemos procesar su solicitud.", 

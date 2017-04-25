@@ -4,13 +4,12 @@ import java.math.BigDecimal;
 
 public class ContribucionFiscal {
 
-	private Integer aFiscalAdeudo;
-	private Integer mesFiscalAdeudo;
-	private Integer aFiscalPago;
-	private Integer mesFiscalPago;
+	private Periodo periodoActualizacion;
+	private Periodo periodoRecargo;
 	private BigDecimal cantidadAdeuda;
-	private Boolean pagoVencido;
-	private String tipoRecargo;
+	private BigDecimal uaz;
+	private Boolean aplicaActualizacion;
+	private Boolean aplicaRecargos;
 
 	/*********** Getters and Setters ***********/
 
@@ -18,56 +17,48 @@ public class ContribucionFiscal {
 		return cantidadAdeuda;
 	}
 
-	public Integer getaFiscalAdeudo() {
-		return aFiscalAdeudo;
+	public Periodo getPeriodoActualizacion() {
+		return periodoActualizacion;
 	}
 
-	public void setaFiscalAdeudo(Integer aFiscalAdeudo) {
-		this.aFiscalAdeudo = aFiscalAdeudo;
+	public void setPeriodoActualizacion(Periodo periodoActualizacion) {
+		this.periodoActualizacion = periodoActualizacion;
 	}
 
-	public Integer getMesFiscalAdeudo() {
-		return mesFiscalAdeudo;
+	public Periodo getPeriodoRecargo() {
+		return periodoRecargo;
 	}
 
-	public void setMesFiscalAdeudo(Integer mesFiscalAdeudo) {
-		this.mesFiscalAdeudo = mesFiscalAdeudo;
-	}
-
-	public Integer getaFiscalPago() {
-		return aFiscalPago;
-	}
-
-	public void setaFiscalPago(Integer aFiscalPago) {
-		this.aFiscalPago = aFiscalPago;
-	}
-
-	public Integer getMesFiscalPago() {
-		return mesFiscalPago;
-	}
-
-	public void setMesFiscalPago(Integer mesFiscalPago) {
-		this.mesFiscalPago = mesFiscalPago;
+	public void setPeriodoRecargo(Periodo periodoRecargo) {
+		this.periodoRecargo = periodoRecargo;
 	}
 
 	public void setCantidadAdeuda(BigDecimal cantidadAdeuda) {
 		this.cantidadAdeuda = cantidadAdeuda;
 	}
 
-	public Boolean getPagoVencido() {
-		return pagoVencido;
+	public Boolean getAplicaActualizacion() {
+		return aplicaActualizacion;
 	}
 
-	public void setPagoVencido(Boolean pagoVencido) {
-		this.pagoVencido = pagoVencido;
+	public void setAplicaActualizacion(Boolean aplicaActualizacion) {
+		this.aplicaActualizacion = aplicaActualizacion;
+	}
+
+	public Boolean getAplicaRecargos() {
+		return aplicaRecargos;
+	}
+
+	public void setAplicaRecargos(Boolean aplicaRecargos) {
+		this.aplicaRecargos = aplicaRecargos;
 	}
 	
-	public String getTipoRecargo() {
-		return tipoRecargo;
+	public BigDecimal getUaz() {
+		return uaz;
 	}
 	
-	public void setTipoRecargo(String tipoRecargo) {
-		this.tipoRecargo = tipoRecargo;
+	public void setUaz(BigDecimal uaz) {
+		this.uaz = uaz;
 	}
 
 }

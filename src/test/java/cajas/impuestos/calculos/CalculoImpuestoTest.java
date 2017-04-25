@@ -64,12 +64,11 @@ public class CalculoImpuestoTest {
 
 		LOGGER.info("Iniciando Test Calculo Impuestos Estatales");
 		Integer aFiscal = 2017;
-		String periodo = "ENERO";
-		Integer tipoPeriodo = 2;
+		int periodo = 1;
 		BigDecimal impuesto = new BigDecimal("150.00");
 		BigDecimal baseGravable = new BigDecimal(5000);
 
-		BigDecimal impuestoCalculado = calculoImpuestoService.impuestoEstatal(baseGravable,aFiscal,periodo,tipoPeriodo,1);
+		BigDecimal impuestoCalculado = calculoImpuestoService.impuestoEstatal(baseGravable, aFiscal, periodo, 1);
 
 		Assert.assertEquals(impuesto, impuestoCalculado);
 	}

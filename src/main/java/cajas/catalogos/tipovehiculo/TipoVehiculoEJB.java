@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 import cajas.exception.BusinessException;
+import cajas.persistence.entity.ClaseVehiculoEntity;
 import cajas.persistence.entity.TipoVehiculoEntity;
 
 @Stateless
@@ -69,6 +70,22 @@ public class TipoVehiculoEJB {
 			TipoVehiculoPorNombreQuery tipoVehiculoPorNombreQuery = new TipoVehiculoPorNombreQuery(entityManager);
 			List<TipoVehiculoEntity> tipoVehiculoEntityList = null;
 			tipoVehiculoEntityList = tipoVehiculoPorNombreQuery.consultar(parametro);
+			for(TipoVehiculoEntity tipoVehiculoEntity : tipoVehiculoEntityList) {
+				tipoVehiculoList.add(new TipoVehiculo(tipoVehiculoEntity));
+			}
+		} catch (NoResultException ex) {
+		}
+		return tipoVehiculoList;
+	}
+
+	public List<TipoVehiculo> obtenerTiposVehiculoPorIdClaseVehiculo(Integer idClaseVehiculo) {
+		List<TipoVehiculo> tipoVehiculoList = new ArrayList<>();
+		try {
+			ClaseVehiculoEntity claseVehiculoEntity = entityManager.find(ClaseVehiculoEntity.class, idClaseVehiculo);
+			
+			TipoVehiculoListaPorIdClaseVehiculoQuery tipoVehiculoListaPorIdClaseVehiculoQuery = new TipoVehiculoListaPorIdClaseVehiculoQuery(entityManager);
+			List<TipoVehiculoEntity> tipoVehiculoEntityList = null;
+			tipoVehiculoEntityList = tipoVehiculoListaPorIdClaseVehiculoQuery.consultar(claseVehiculoEntity);
 			for(TipoVehiculoEntity tipoVehiculoEntity : tipoVehiculoEntityList) {
 				tipoVehiculoList.add(new TipoVehiculo(tipoVehiculoEntity));
 			}

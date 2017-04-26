@@ -13,7 +13,7 @@ public class TipoObligacion {
 	private TipoObligacion() {
 	}
 
-	public static final int NOMINA = 1;
-	public static final int HOSPEDAJE = 2;
+	public static final int NOMINA = 3;
+	public static final int HOSPEDAJE = 4;
 
 }

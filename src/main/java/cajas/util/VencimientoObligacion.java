@@ -33,7 +33,7 @@ public class VencimientoObligacion {
 		if (obligacion == null) {
 			throw new BusinessException("No existe obligacion en el registro.");
 		}
-		DateTime fechaVencimiento = new DateTime(ejercicioFiscal, mes, 20, 0, 0);
+		DateTime fechaVencimiento = new DateTime(ejercicioFiscal, mes, obligacion.getDiaVencimiento(), 0, 0);
 		fechaVencimiento = fechaVencimiento.plusMonths(1).plusDays(obligacion.getDiasProrroga());
 		if (fechaVencimiento.getDayOfWeek() == DateTimeConstants.FRIDAY) {
 			fechaVencimiento = fechaVencimiento.plusDays(3);
@@ -48,5 +48,31 @@ public class VencimientoObligacion {
 		
 		return vencido;
 	}
+	
+	//Se aplica el recargo el dia 20 del mes siguiente al periodo declarado.
+    public boolean aplicaRecargo(Integer anyoFiscalDeclarado, Integer periodoDeclarado){
+    	boolean aplica = false;
+    	DateTime fechaLimite = new DateTime(anyoFiscalDeclarado, periodoDeclarado, 20,0,0,0,0);
+    	         fechaLimite = fechaLimite.plusMonths(1);
+    	//System.out.println(fechaLimite.toString());
+    	         fechaLimite =  diasNoLaboralesQuery.siguienteDiaHabil(fechaLimite);
+    	//System.out.println("con dias" + fechaLimite.toString());
+    	if(FechaUtil.fechaActualSinTiempo().compareTo(fechaLimite) == 1){
+    		aplica = true;
+    	}    
+    	
+ 	    return aplica;
+    }
+    
+    //Se aplica la actualizacion al segundo mes del periodo declarado.
+    public boolean aplicaActualizacion(Integer anyoFiscalDeclarado, Integer periodoDeclarado){
+    	boolean aplica = false;
+    	DateTime fechaLimite = new DateTime(anyoFiscalDeclarado, periodoDeclarado, 1,0,0,0,0);
+    	         fechaLimite = fechaLimite.plusMonths(2);
+    	if(FechaUtil.fechaActualSinTiempo().compareTo(fechaLimite) == 1){
+    		aplica = true;
+    	}   
+    	return aplica;
+    }
 
 }

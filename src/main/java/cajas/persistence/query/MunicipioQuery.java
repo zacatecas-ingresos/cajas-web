@@ -17,6 +17,10 @@ public class MunicipioQuery {
             "select municipio"
             + " from MunicipioEntity as municipio"
             + " where municipio.municipio = :nombreMunicipio";
+    private final static String OBTENER_MUNICIPIOS =
+    		"select municipio"
+            + " from MunicipioEntity as municipio"
+            + " order by municipio.idMunicipio";
     //Consula con SQL nativo
     private final static String ACTUALIZAR_CON_PROCEDIMIENTO_ALMACENADO =
             "CALL usp_procrecimiento_almacenado(?)";
@@ -56,5 +60,11 @@ public class MunicipioQuery {
         consulta.setParameter(1, nombre);
         consulta.executeUpdate();
     }
+
+
+	public List<MunicipioEntity> obtenerMunicipio() {
+		TypedQuery<MunicipioEntity> consulta = entityManager.createQuery(OBTENER_MUNICIPIOS, MunicipioEntity.class);
+		return consulta.getResultList();
+	}
     
 }

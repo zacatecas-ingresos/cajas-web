@@ -10,6 +10,7 @@ import javax.persistence.NoResultException;
 
 import org.joda.time.DateTime;
 
+import cajas.impuestos.declaracion.estatal.TipoTasaRecargo;
 import cajas.persistence.entity.INPCEntity;
 import cajas.persistence.query.INPCQuery;
 
@@ -91,7 +92,7 @@ public class ActualizacionesRecargosService {
 			 * 
 			 */
 			importeRecargo = calculoRecargo(contribucionFiscal.getPeriodoRecargo().getEjercicioInicial(), contribucionFiscal.getPeriodoRecargo().getMesInicial(),
-			contribucionFiscal.getPeriodoRecargo().getEjercicioFinal(),contribucionFiscal.getPeriodoRecargo().getMesFinal(),cantidadAdeudaActualizacion);
+			contribucionFiscal.getPeriodoRecargo().getEjercicioFinal(),contribucionFiscal.getPeriodoRecargo().getMesFinal(),cantidadAdeudaActualizacion,contribucionFiscal.getTipoTasaRecargo());
 			
 			/***
 			 * Set Valores calculados
@@ -137,13 +138,12 @@ public class ActualizacionesRecargosService {
 
 	/************************************* RECARGOS *************************************/
 
-	/********* Calculo del recargo ***********/
 	private BigDecimal calculoRecargo(Integer aFiscalInicio, Integer mesFiscalInicio, Integer aFiscalFinal,
-			Integer mesFiscalFinal,BigDecimal importeActualizacion) {
+			Integer mesFiscalFinal,BigDecimal importeActualizacion,Integer tipoTasaRecargo) {
 
 		BigDecimal recargo = BigDecimal.ZERO;
 	
-		recargo = obtenerTasaRecargo(aFiscalInicio, mesFiscalInicio, aFiscalFinal, mesFiscalFinal);
+		recargo = obtenerTasaRecargo(aFiscalInicio, mesFiscalInicio, aFiscalFinal, mesFiscalFinal,tipoTasaRecargo);
 		
 		recargo.setScale(2, RoundingMode.HALF_EVEN);
 
@@ -158,7 +158,7 @@ public class ActualizacionesRecargosService {
 
 	/********** Obtener INPC *************/
 	private BigDecimal obtenerTasaRecargo(Integer aFiscalInicio, Integer mesFiscalInicio, Integer aFiscalFinal,
-			Integer mesFiscalFinal) {
+			Integer mesFiscalFinal,Integer tipoTasaRecargo) {
 		
 		// Genera un arreglo de fechas en el intervalo para
 		// facilitar la creacion de una lista de factores de recargo mensual
@@ -179,7 +179,11 @@ public class ActualizacionesRecargosService {
 						
 			try{
 				INPCEntity inpc = inpcQuery.inpcEntity(factorRecargo.getaFiscal(),factorRecargo.getMesFiscal());
-				factorRecargo.setRecargo(inpc.getRecargo());
+				if(tipoTasaRecargo.equals(TipoTasaRecargo.tasaEstatal)){//Estatal
+					factorRecargo.setRecargo(inpc.getRecargoEstatal());
+				}else if(tipoTasaRecargo.equals(TipoTasaRecargo.tasaFederal)){
+					factorRecargo.setRecargo(inpc.getRecargo());
+				}
 				factoresRecargo.add(factorRecargo);
 			}catch(NoResultException ex){
 				//ex.printStackTrace();

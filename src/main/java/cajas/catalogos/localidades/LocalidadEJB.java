@@ -59,7 +59,6 @@ public class LocalidadEJB {
 
     public void eliminarLocalidad(Integer idLocalidad) {
         localidadQuery.eliminarLocalidad(idLocalidad);
-
     }
 
     //buscar municipio por nombre 
@@ -70,4 +69,9 @@ public class LocalidadEJB {
 
     }
 
+    public List<Localidad> obtenerLocalidades() {
+		List<LocalidadEntity> localidadEntities = localidadQuery.obtenerLocalidad();
+		List<Localidad> localidaddtos = localidadFactory.entidadesADtos(localidadEntities);
+		return localidaddtos;
+    }
 }

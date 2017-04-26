@@ -12,7 +12,11 @@ public class ConceptoEJB {
 	
 	@Inject
 	private ConceptoActivoClaveQuery conceptoActivoClaveQuery;
-
+	
+	@Inject
+	private ConceptoService conceptoService;
+	
+	//dar de alta nuevos conceptos
 	protected void registrarConcepto(Concepto concepto) {
 		// Validar que los datos requeridos no estén vacíos
 		validarConcepto(concepto);
@@ -21,7 +25,14 @@ public class ConceptoEJB {
 		// fiscal y la clave
 
 		// Creas la entidad y la registras
+		conceptoService.registrarConcepto(concepto);
 
+	}
+	
+	//modificar conceptos dados de alta
+	protected void modificarConcepto(Integer idConcepto, Concepto concepto){
+		
+		conceptoService.modificarConcepto(idConcepto, concepto);
 	}
 
 	protected List<Concepto> consultarConceptosPorClave(String clave) {

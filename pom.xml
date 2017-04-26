@@ -126,6 +126,18 @@
             <artifactId>shrinkwrap-resolver-impl-maven-archive</artifactId>
             <scope>test</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>org.wildfly</groupId>
+            <artifactId>wildfly-arquillian-container-remote</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>sun.jdk</groupId>
+                    <artifactId>jconsole</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
         <!-- Biblioteca de Google para manejar los JSON-->
         <dependency>
@@ -150,7 +162,7 @@
         </dependency>
         
         <!-- Biblioteca de Apache que se emplea en la codificaciÃ³n y 
-        decodificaciÃ³n de varios formatos como Base64 -->
+        decodificación de varios formatos como Base64 -->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>

@@ -53,6 +53,9 @@ public class ConceptosEntity implements Serializable{
 	
 	@Column(name = "tipo_nivel")
 	private Integer tipoNivel;
+	
+	@Column(name = "activo")
+	private boolean activo;
 
 	public Integer getIdConcepto() {
 		return IdConcepto;
@@ -148,6 +151,14 @@ public class ConceptosEntity implements Serializable{
 
 	public void setTipoNivel(Integer tipoNivel) {
 		this.tipoNivel = tipoNivel;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 	
 

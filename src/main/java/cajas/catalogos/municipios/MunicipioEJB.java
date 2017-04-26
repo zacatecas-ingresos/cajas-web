@@ -69,4 +69,10 @@ public class MunicipioEJB {
 
     }
 
+	public List<Municipio> obtenerMunicipios() {
+		List<MunicipioEntity> municipioEntities = municipioQuery.obtenerMunicipio();
+		List<Municipio> municipiodtos = municipioFactory.entidadesADtos(municipioEntities);
+		return municipiodtos;
+	}
+
 }

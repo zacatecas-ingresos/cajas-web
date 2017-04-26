@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<head>
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
@@ -161,8 +160,8 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="criterioMarca" class="control-label">Marca</label>
-														<input id="criterioMarca" class="form-control"> <input
-															id="idMarcaVehiculo" type="hidden">
+														<input id="criterioMarca" class="form-control"> 
+														<input id="idMarcaVehiculo" type="hidden">
 													</div>
 												</div>
 											</div>
@@ -781,7 +780,13 @@
 								$("#idMarcaVehiculo").val(ui.item.id);
 								/*console.log("Selected: " + ui.item.value + ", "
 										+ ui.item.label + ", " + ui.item.id);*/
-							}
+							},
+					        change: function(event, ui) {
+					            $("#idMarcaVehiculo").val(ui.item ? ui.item.id : "");
+					            if ($("#idMarcaVehiculo").val() == "" ) {
+					            	$('#criterioMarca').val("");
+						        }
+					        }
 						});
 	});
 </script>

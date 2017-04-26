@@ -6,6 +6,7 @@ package cajas.persistence.query;
 
 import cajas.persistence.entity.ContribuyenteEntity;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,7 +28,7 @@ public class ContribuyenteQuery {
         ContribuyenteEntity contribuyenteEntity = entityManager.find(ContribuyenteEntity.class, idContribuyente);
         return contribuyenteEntity;
     }
-    
+
     public void editarContribuyente(ContribuyenteEntity contribuyenteEntity) {
         entityManager.merge(contribuyenteEntity);
     }
@@ -36,4 +37,5 @@ public class ContribuyenteQuery {
         ContribuyenteEntity contribuyenteEntity = obtenerContribuyente(idContribuyente);
         entityManager.remove(contribuyenteEntity);
     }
+
 }

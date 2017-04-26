@@ -8,11 +8,13 @@ package cajas.contribuyentes;
 import cajas.exception.BusinessException;
 import cajas.persistence.entity.ContribuyenteEntity;
 import cajas.persistence.query.ContribuyenteQuery;
+import cajas.util.ValidarFormatoCURP;
 import cajas.util.ValidarFormatoRFC;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.jboss.logging.Logger;
 
 /**
  *
@@ -25,6 +27,8 @@ public class ContribuyenteEJB {
     private EntityManager entityManager;
     private ContribuyenteQuery contribuyenteQuery;
     private final ContribuyenteFactory contribuyenteFactory = new ContribuyenteFactory();
+
+    private static final Logger LOGGER = Logger.getLogger(ContribuyenteEJB.class.getName());
     
     @PostConstruct
     private void init() {
@@ -35,12 +39,17 @@ public class ContribuyenteEJB {
         if (contribuyente == null) {
             throw new NullPointerException("No se puede guardar un contribuyente nulo");
         }
-        
+
         if (!ValidarFormatoRFC.validarRfc(contribuyente.getRfc())) {
             throw new BusinessException("Verifique el formato del RFC.");
         }
-        
-        ContribuyenteEntity contribuyenteEntity = contribuyenteQuery.crearContribuyente(contribuyenteFactory.dtoAEntity(contribuyente));
+
+        if (!ValidarFormatoCURP.validarCurp(contribuyente.getCurp())) {
+            throw new BusinessException("Verifique el formato del CURP.");
+        }
+
+        ContribuyenteEntity contribuyenteEntity = contribuyenteFactory.dtoAEntity(contribuyente);
+        contribuyenteEntity = contribuyenteQuery.crearContribuyente(contribuyenteEntity);
         return contribuyenteEntity.getIdContribuyente();
     }
     

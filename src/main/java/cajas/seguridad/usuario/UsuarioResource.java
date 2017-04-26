@@ -57,7 +57,7 @@ public class UsuarioResource {
 		}
 	}
 	
-	/*****Compureba si existe un usuario por su nombre de usuario usado en la edición*********/
+	/*****Compureba si existe un usuario por su nombre de usuario usado en la ediciÃ³n*********/
 	@GET
 	@Path("/existeNombreUsuarioEdicion")
 	@Produces({"application/json"})
@@ -103,7 +103,7 @@ public class UsuarioResource {
 		}
 	}
 	
-	/*****Compureba si existe un usuario por su email usado en edición*********/
+	/*****Compureba si existe un usuario por su email usado en ediciÃ³n*********/
 	@GET
 	@Path("/existeEmailEdicion")
 	@Produces({"application/json"})

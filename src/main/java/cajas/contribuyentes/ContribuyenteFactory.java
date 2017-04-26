@@ -23,6 +23,15 @@ public class ContribuyenteFactory {
         }
         
         entidad.setRfc(dto.getRfc());
+        entidad.setCurp(dto.getCurp());
+        entidad.setTipoPersona(dto.getTipoPersona());
+        entidad.setNombre(dto.getNombre());
+        entidad.setPrimerApellido(dto.getPrimerApellido());
+        entidad.setSegundoApellido(dto.getSegundoApellido());
+        entidad.setSexo(dto.getSexo());
+        entidad.setFechaNacimiento(dto.getFechaNacimiento());
+        entidad.setNacionalidad(dto.getNacionalidad());
+
         return entidad;
     }
     
@@ -30,7 +39,15 @@ public class ContribuyenteFactory {
         Contribuyente dto = new Contribuyente();
         dto.setId(entidad.getIdContribuyente());
         dto.setRfc(entidad.getRfc());
-        
+        dto.setCurp(entidad.getCurp());
+        dto.setTipoPersona(entidad.getTipoPersona());
+        dto.setNombre(entidad.getNombre());
+        dto.setPrimerApellido(entidad.getPrimerApellido());
+        dto.setSegundoApellido(entidad.getSegundoApellido());
+        dto.setSexo(entidad.getSexo());
+        dto.setFechaNacimiento(entidad.getFechaNacimiento());
+        dto.setNacionalidad(entidad.getNacionalidad());
+
         return dto;
     }
 

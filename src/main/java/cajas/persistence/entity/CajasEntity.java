@@ -1,7 +1,6 @@
 package cajas.persistence.entity;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,10 +36,10 @@ public class CajasEntity  implements Serializable{
 	private Integer idTipoCaja;
 	
 	@Column (name = "integracion")
-	private BigDecimal integracion;
+	private Boolean integracion;
 	
 	@Column (name = "expide_placa")
-	private BigDecimal expidePlaca;
+	private Boolean expidePlaca;
 	
 	@Column (name = "id_banco")
 	private Integer idBanco;
@@ -93,19 +92,19 @@ public class CajasEntity  implements Serializable{
 		this.idTipoCaja = idTipoCaja;
 	}
 
-	public BigDecimal getIntegracion() {
+	public Boolean getIntegracion() {
 		return integracion;
 	}
 
-	public void setIntegracion(BigDecimal integracion) {
+	public void setIntegracion(Boolean integracion) {
 		this.integracion = integracion;
 	}
 
-	public BigDecimal getExpidePlaca() {
+	public Boolean getExpidePlaca() {
 		return expidePlaca;
 	}
 
-	public void setExpidePlaca(BigDecimal expidePlaca) {
+	public void setExpidePlaca(Boolean expidePlaca) {
 		this.expidePlaca = expidePlaca;
 	}
 

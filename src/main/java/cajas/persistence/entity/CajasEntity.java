@@ -45,6 +45,7 @@ public class CajasEntity  implements Serializable{
 	private Integer idBanco;
 
 	
+	
 	public Integer getIdCaja() {
 		return idCaja;
 	}

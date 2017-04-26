@@ -44,6 +44,7 @@ public class CajasEntity  implements Serializable{
 	@Column (name = "id_banco")
 	private Integer idBanco;
 
+	
 	public Integer getIdCaja() {
 		return idCaja;
 	}

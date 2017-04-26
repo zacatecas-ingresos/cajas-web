@@ -1,5 +1,4 @@
 package cajas.vehicular.verificacion.alta;
-import java.io.Console;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import cajas.exception.BusinessException;
-import cajas.seguridad.usuario.Usuario;
 
 @Path("/vehicular/verificacion")
 public class VerificacionVehiculoResource {

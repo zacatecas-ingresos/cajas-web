@@ -18,6 +18,12 @@ public class PresupuestoEJB {
 	@Inject
 	private PresupuestoService presupuestoService;
 
+	/**
+	 * Generación de presupuesto estatal, nómina, hospedaje
+	 * 
+	 * @param calculos
+	 *            id´s de los conceptos del presupuesto
+	 */
 	protected Integer generarPresupuestoEstatal(List<Integer> calculos) {
 		return presupuestoService.generarPresupuestoEstatal(calculos);
 	}

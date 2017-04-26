@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<head>
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
@@ -129,7 +128,7 @@
 														<option value="2">AUTORIZADA</option>
 														<option value="3">TERMINADA</option>
 														<option value="4">RECHAZADA MINISTERIO</option>
-														<option value="5">RECHAZADA VERIFICACIO</option>
+														<option value="5">RECHAZADA VERIFICACION</option>
 														<option value="6">PAGADO</option>
 														<option value="7">PAGA DESPUES</option>
 														<option value="8">CONDONADO</option>
@@ -161,8 +160,8 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="criterioMarca" class="control-label">Marca</label>
-														<input id="criterioMarca" class="form-control"> <input
-															id="idMarcaVehiculo" type="hidden">
+														<input id="criterioMarca" class="form-control"> 
+														<input id="idMarcaVehiculo" type="hidden">
 													</div>
 												</div>
 											</div>
@@ -178,18 +177,14 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="selectClase" class="control-label">Clase</label>
-														<select class="form-control" id="selectClase"
-															name="selectClase" required>
-															<option value="1">AUTOMOVIL</option>
+														<select id="selectClase" class="form-control" name="selectClase" required>
 														</select>
 													</div>
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="selectTipo" class="control-label">Tipo</label>
-														<select class="form-control" id="selectTipo"
-															name="selectTipo" required>
-															<option value="1">VAGONETA</option>
+														<select id="selectTipo" class="form-control" required>
 														</select>
 													</div>
 												</div>
@@ -694,10 +689,10 @@
 												},
 											}
 										});
+								
 
 						//Errores
-						$
-								.ajaxSetup({
+						$.ajaxSetup({
 									error : function(x, status, error) {
 										if (x.status == 400) {
 											var result = x.responseJSON;
@@ -717,6 +712,7 @@
 										}
 									}
 								});
+					 
 
 					});
 
@@ -745,6 +741,42 @@
 	};
 
 	$(function() {
+
+		var urlGet = "${pageContext.request.contextPath}/cajas/catalogos/clasevehiculo/obtenerListaCompleta";
+		$.ajax({
+			type : "GET",
+			dataType : 'json',
+			url : urlGet,
+			success : function(data) {
+		        $.each(data, function(key, item) {
+		            $('#selectClase').append($('<option>').text(item.nombre).attr('value', item.idClaseVehiculo));
+		        });
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log(textStatus + " " + errorThrown);
+			}
+		});
+
+		$('#selectClase').change(function(){
+			$('#selectTipo').empty();
+			var idClaseVehiculo = $(this).val();
+			console.log(idClaseVehiculo);
+			var urlGet = "${pageContext.request.contextPath}/cajas/catalogos/tipovehiculo/obtenerListaPorIdClaseVehiculo?idClaseVehiculo=" + idClaseVehiculo;
+	        $.ajax({
+				type : "GET",
+				dataType : 'json',
+				url : urlGet,
+				success : function(data) {
+			        $.each(data, function(key, item) {
+			            $('#selectTipo').append($('<option>').text(item.nombre).attr('value', item.idClaseVehiculo));
+			        });
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					console.log(textStatus + " " + errorThrown);
+				}
+	        })
+		});
+
 		$("#criterioMarca")
 				.autocomplete(
 						{
@@ -760,7 +792,6 @@
 										term : request.term
 									},
 									success : function(data) {
-										//console.log("data:: " + data);
 										response($.map(data, function(item) {
 											return {
 												id : item.idMarcaVehiculo,
@@ -769,19 +800,21 @@
 											};
 										}));
 									},
-									error : function(jqXHR, textStatus,
-											errorThrown) {
-										console.log(textStatus + " "
-												+ errorThrown);
+									error : function(jqXHR, textStatus, errorThrown) {
+										console.log(textStatus + " " + errorThrown);
 									}
 								});
 							},
 							minLength : 2,
 							select : function(event, ui) {
 								$("#idMarcaVehiculo").val(ui.item.id);
-								/*console.log("Selected: " + ui.item.value + ", "
-										+ ui.item.label + ", " + ui.item.id);*/
-							}
+							},
+					        change: function(event, ui) {
+					            $("#idMarcaVehiculo").val(ui.item ? ui.item.id : "");
+					            if ($("#idMarcaVehiculo").val() == "" ) {
+					            	$('#criterioMarca').val("");
+						        }
+					        }
 						});
 	});
 </script>

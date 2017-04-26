@@ -4,7 +4,6 @@
 package cajas.persistence.entity;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,6 +27,9 @@ public class DetallePresupuestoIsnEntity {
 	@Column(name = "id_detalle_presupuesto_isn")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idDetallePresupuestoIsn;
+
+	@Column(name = "id_presupuesto_obligacion")
+	private Integer idPresupuestoObligacion;
 
 	@Column(name = "id_contribuyente")
 	private Integer idContribuyente;
@@ -65,11 +67,13 @@ public class DetallePresupuestoIsnEntity {
 	@Column(name = "total")
 	private BigDecimal total;
 
-	@Column(name = "fecha_calculo")
-	private Date fechaCalculo;
+	public Integer getIdPresupuestoObligacion() {
+		return idPresupuestoObligacion;
+	}
 
-	@Column(name = "hora_calculo")
-	private Date horaCalculo;
+	public void setIdPresupuestoObligacion(Integer idPresupuestoObligacion) {
+		this.idPresupuestoObligacion = idPresupuestoObligacion;
+	}
 
 	public Integer getIdContribuyente() {
 		return idContribuyente;
@@ -165,22 +169,6 @@ public class DetallePresupuestoIsnEntity {
 
 	public void setTotal(BigDecimal total) {
 		this.total = total;
-	}
-
-	public Date getFechaCalculo() {
-		return fechaCalculo;
-	}
-
-	public void setFechaCalculo(Date fechaCalculo) {
-		this.fechaCalculo = fechaCalculo;
-	}
-
-	public Date getHoraCalculo() {
-		return horaCalculo;
-	}
-
-	public void setHoraCalculo(Date horaCalculo) {
-		this.horaCalculo = horaCalculo;
 	}
 
 	public Integer getIdDetallePresupuestoIsn() {

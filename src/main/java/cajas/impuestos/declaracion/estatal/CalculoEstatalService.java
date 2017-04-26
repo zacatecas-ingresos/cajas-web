@@ -71,13 +71,14 @@ public class CalculoEstatalService {
 				throw new BusinessException("El periodo que intenta declarar es improcedente");
 			}
 		}
+		
 
 		// Verificar los tipos de datos
 		BigDecimal impuesto = BigDecimal.ZERO;
 		BigDecimal uaz = BigDecimal.ZERO;
 		BigDecimal actualizacion = BigDecimal.ZERO;
 		BigDecimal recargo = BigDecimal.ZERO;
-
+		
 		if (declaracion.getIdObligacion() == TipoObligacion.NOMINA) {
 			impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(),
 					declaracion.getEjercicioFiscal(), declaracion.getPeriodo(), TipoTasa.TASA_NOMINA);
@@ -102,8 +103,7 @@ public class CalculoEstatalService {
 
 			contribucionFiscal.setUaz(uaz);
 			contribucionFiscal.setCantidadAdeuda(impuesto);
-
-			contribucionFiscal.setTipoTasaRecargo(declaracion.getTipoTasaRecargo());
+			contribucionFiscal.setTipoTasaRecargo(TipoTasaRecargo.tasaEstatal);
 			
 			ActualizacionRecargo actualizacionRecargo = actualizacionesRecargosService.calculoActualizacion(contribucionFiscal);
 
@@ -180,10 +180,6 @@ public class CalculoEstatalService {
 
 		if (!ValidacionUtil.esCadenaVacia(declaracion.getIdTipoDeclaracion())) {
 			throw new BusinessException("El tipo de declaración es requerido.");
-		}
-		
-		if (!ValidacionUtil.esNumeroPositivo(declaracion.getTipoTasaRecargo())) {
-			throw new BusinessException("El tipo de tasa es requerido.");
 		}
 
 	}

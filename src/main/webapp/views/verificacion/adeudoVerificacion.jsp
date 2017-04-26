@@ -23,7 +23,8 @@
 	href="${pageContext.request.contextPath}/resources/admin-lte/css/Fonts.css"
 	rel="stylesheet" />
 <link
-	href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css" rel="stylesheet" />
+	href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css"
+	rel="stylesheet" />
 <link
 	href="${pageContext.request.contextPath}/resources/admin-lte/css/skins/_all-skins.min.css"
 	rel="stylesheet" />
@@ -95,7 +96,7 @@
 
 							<div class="box-body">
 
-								<form id="form-vehiculos">
+								<form id="form-adeudo">
 
 									<div class="col-md-12 well">
 
@@ -124,24 +125,23 @@
 													<div class="col-md-6">
 														<label for="bajaPlaca" class="control-label">Placa:</label>
 														<input class=" form-control-inlinel" id="bajaPlaca"
-															name="bajaPlaca" placeholder="Placa...">
+															name="bajaPlaca" placeholder="Placa..." maxlength="10">
 													</div>
 												</div>
 											</div>
 										</fieldset>
 										<br>
 									</div>
-									<div class="col-md-12">
-
+									<div class="col-md-12">														
 										<fieldset>
 											<legend>Verificacíon de Adeudos</legend>
 											<div class="row">
-												<div class="col-md-2">
+												<div class="col-md-4">
 													<label for="folioVerificacionAdeudo" class="control-label">Folio
 														Verficación:</label> <input class=" form-control"
 														id="folioVerificacionAdeudo"
 														name="folioVerificacionAdeudo"
-														placeholder="Folio Verificación">
+														placeholder="Folio Verificación" maxlength="7">
 												</div>
 												<div class="col-md-4">
 													<div class="form-group">
@@ -157,27 +157,28 @@
 											<div class="row" id="divExtranjero" style="display: none;">
 												<div class="col-md-3">
 													<div class="form-group">
-														<label for="idEstado" class="control-label">Estatus:</label>
+														<label for="idEstado" class="control-label">Estado:</label>
 														<select class="form-control" id="idEstado" name="idEstado"
 															required>
-															<option value="32" selected>AGUASCALIENTES</option>
+															<option value="1" selected>AGUASCALIENTES</option>
 														</select>
 													</div>
 												</div>
 												<div class="col-md-2">
 													<label for="folioCalcamonia" class="control-label">Folio
-														Verficación:</label> <input class=" form-control"
+														Calcamonia:</label> <input class=" form-control"
 														id="folioCalcamonia" name="folioCalcamonia"
-														placeholder="Folio Calcamonia">
+														placeholder="Folio Calcamonia" maxlength="10">
 												</div>
 												<div class="col-md-2">
 													<label for="fechaRegularizacion" class="control-label">Fecha
 														Regularizacion: </label> <input class=" form-control"
-														id="fechaRegularizacion" name="fechaRegularizacion">
-												</div>
+														id="fechaRegularizacion" name="fechaRegularizacion" placeholder="dd-mm-yyyy">
+												</div>											
+												
 												<div class="col-md-4">
 													<div class="form-group">
-														<label for="documento" class="control-label">Procedencia:</label>
+														<label for="documento" class="control-label">Documento:</label>
 														<select class="form-control" id="documento"
 															name="documento" required>
 															<option value="1" selected>doc 1</option>
@@ -189,20 +190,19 @@
 											<div class="row">
 												<div class="col-md-6">
 													<label for="observacion">Observaciones:</label>
-													<textarea class="form-control" rows="3" id="observacion"></textarea>
+													<textarea class="form-control" rows="1" id="observacion"></textarea>
 												</div>
 												<div class="col-md-3">
-												<div class="form-group">
-													<label for="estatus" class="control-label">Estatus:</label>
-													<select class="form-control" id="estatus" name="estatus"
-														required>
-														<option value="0" selected>Verificado</option>
-														<option value="1">error</option>
-													</select>
+													<div class="form-group">
+														<label for="estatus" class="control-label">Estatus:</label>
+														<select class="form-control" id="estatus" name="estatus"
+															required>
+															<option value="0" selected>Verificado</option>
+															<option value="1">error</option>
+														</select>
+													</div>
 												</div>
 											</div>
-											</div>
-											
 									</div>
 									</fieldset>
 									<br>
@@ -262,7 +262,8 @@
 <script
 	src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
-<script src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
 
 <script
 	src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
@@ -286,19 +287,41 @@
 			.ready(
 					function() {
 						
-						  $( function() {
-							  	$.datepicker.regional['es-MX'] = {"Name":"es-MX","closeText":"Close","prevText":"Prev","nextText":"Next","currentText":"Today","monthNames":["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],"monthNamesShort":["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""],"dayNames":["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],"dayNamesShort":["dom","lun","mar","mié","jue","vie","sáb"],"dayNamesMin":["do","lu","ma","mi","ju","vi","sá"],"dateFormat":"dd-mm-yy","firstDay":0,"isRTL":false};
-							  	$.datepicker.setDefaults($.datepicker.regional['es-MX']);
-							    $( "#fechaRegularizacion" ).datepicker();
-							  } );
+						/*
 						
-						$('#procedencia').change(function(){
-							if($(this).val() != 0){
-								$('#divExtranjero').show('slow');
-							}else
-								$('#divExtranjero').hide('slow');
-						});
-						
+						$(function() {
+							$.datepicker.regional['es-MX'] = {
+								"Name" : "es-MX",
+								"closeText" : "Close",
+								"prevText" : "Prev",
+								"nextText" : "Next",
+								"currentText" : "Today",
+								"monthNames" : [ "enero", "febrero", "marzo",
+										"abril", "mayo", "junio", "julio",
+										"agosto", "septiembre", "octubre",
+										"noviembre", "diciembre", "" ],
+								"monthNamesShort" : [ "ene", "feb", "mar",
+										"abr", "may", "jun", "jul", "ago",
+										"sep", "oct", "nov", "dic", "" ],
+								"dayNames" : [ "domingo", "lunes", "martes",
+										"miércoles", "jueves", "viernes",
+										"sábado" ],
+								"dayNamesShort" : [ "dom", "lun", "mar", "mié",
+										"jue", "vie", "sáb" ],
+								"dayNamesMin" : [ "do", "lu", "ma", "mi", "ju",
+										"vi", "sá" ],
+								"dateFormat" : "dd-mm-yy",
+								"firstDay" : 0,
+								"isRTL" : false
+							};
+							$.datepicker
+									.setDefaults($.datepicker.regional['es-MX']);
+							
+							//$("#fechaRegularizacion").datepicker();
+							
+					
+						});*/
+
 						var url = window.location.search.substring(1);
 						var fragmento = url.split("=");
 						var idVerificacion = fragmento[1];
@@ -357,10 +380,9 @@
 										});
 
 						//Registra un vehiculo
-						$('#save-btn').click(function() {
-							/*
-											var anio = new Date().toISOString()
-													.slice(0, 4);
+						$('#save-btn')
+								.click(
+										function() {
 
 											//Validaciones
 											var formValidation = $(
@@ -369,17 +391,108 @@
 
 											formValidation.validate();
 
-
+											//console.log(formValidation.isValid());
+											//alert(formValidation.isValid());
+											
 											if (formValidation.isValid()) {
 
 												var datos = {};
+												var idVerificacionVehiculo = idVerificacion;
+												var folioVerificacionAdeudo = $(
+														'#folioVerificacionAdeudo')
+														.val();
+												var procedencia = $(
+														'#procedencia').val();
+												var idEstado = $('#idEstado')
+														.val();
+												var folioCalcamonia = $(
+														'#folioCalcamonia')
+														.val();
+												var fechaRegularizacion = $(
+														'#fechaRegularizacion')
+														.val();
+												var documento = $('#documento')
+														.val();
+												var estatus = $('#estatus')
+														.val();
+												var observacion = $(
+														'#observacion').val();
+												var baja = $('#baja').val();
+												var bajaPlaca = $('#bajaPlaca')
+														.val();
+
+												var anio0VerificacionAdeudo = 0;
+												var anio1VerificacionAdeudo = 0;
+												var anio2VerificacionAdeudo = 0;
+												var anio3VerificacionAdeudo = 0;
+												var anio4VerificacionAdeudo = 0;
+												var anio5VerificacionAdeudo = 0;
+
+												if ($(
+														"#anio0VerificacionAdeudo")
+														.is(':checked')) {
+													anio0VerificacionAdeudo = $(
+															"#anio0VerificacionAdeudo")
+															.val();
+												}
+												if ($(
+														"#anio1VerificacionAdeudo")
+														.is(':checked')) {
+													anio1VerificacionAdeudo = $(
+															"#anio1VerificacionAdeudo")
+															.val();
+												}
+												if ($(
+														"#anio2VerificacionAdeudo")
+														.is(':checked')) {
+													anio2VerificacionAdeudo = $(
+															"#anio2VerificacionAdeudo")
+															.val();
+												}
+												if ($(
+														"#anio3VerificacionAdeudo")
+														.is(':checked')) {
+													anio3VerificacionAdeudo = $(
+															"#anio3VerificacionAdeudo")
+															.val();
+												}
+												if ($(
+														"#anio4VerificacionAdeudo")
+														.is(':checked')) {
+													anio4VerificacionAdeudo = $(
+															"#anio4VerificacionAdeudo")
+															.val();
+												}
+												if ($(
+														"#anio5VerificacionAdeudo")
+														.is(':checked')) {
+													anio5VerificacionAdeudo = $(
+															"#anio5VerificacionAdeudo")
+															.val();
+												}
+
+												datos.idVerificacionVehiculo = idVerificacionVehiculo;
+												datos.folioVerificacionAdeudo = folioVerificacionAdeudo;
+												datos.procedencia = procedencia;
+												datos.idEstado = idEstado;
+												datos.folioCalcamonia = folioCalcamonia;
+												datos.fechaRegularizacion = fechaRegularizacion;
+												datos.documento = documento;
+												datos.estatus = estatus;
+												datos.observaciones = observacion;
+												datos.baja = baja;
+												datos.bajaPlaca = bajaPlaca;
+												datos.anio0VerificacionAdeudo = anio0VerificacionAdeudo;
+												datos.anio1VerificacionAdeudo = anio1VerificacionAdeudo;
+												datos.anio2VerificacionAdeudo = anio2VerificacionAdeudo;
+												datos.anio3VerificacionAdeudo = anio3VerificacionAdeudo;
+												datos.anio4VerificacionAdeudo = anio4VerificacionAdeudo;
+												datos.anio5VerificacionAdeudo = anio5VerificacionAdeudo;
 
 												var formData = JSON
 														.stringify(datos);
 
-												console.log(formData);
-
-												var urlPost = "${pageContext.request.contextPath}/cajas/vehicular/verificacion";
+												var urlPost = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/adeudo";
 												var admin = "${pageContext.request.contextPath}/views/verificacion/verificaciones.jsp";
 
 												$
@@ -395,9 +508,8 @@
 																	jQxhr) {
 																swal(
 																		{
-																			text : "Verificación Vehicular registrada correctamente",
-																			title : "No Seguimiento: "
-																					+ data.valor,
+																			text : "Verificación Adeudo registrada correctamente",
+																			title : "Exito",
 																			type : "success",
 																			closeOnCancel : false
 																		},
@@ -406,24 +518,123 @@
 																		});
 															}
 														});
-											}*/
+											}
 
-						});
+										});
 
 						//Validaciones
-						$('#form-adeudo').formValidation({
-							framework : 'bootstrap', //Indicamos el framework para validar, Bootstrap, Pure,Semantic,etc
-							icon : {//Feedback Icons
-								valid : 'glyphicon glyphicon-ok',
-								invalid : 'glyphicon glyphicon-remove',
-								validating : 'glyphicon glyphicon-refresh'
-							},
-							//live: 'enabled',
-							//Lista de campos a validar y las reglas que aplican para cada uno de ellos
-							fields : {
+						$('#form-adeudo')
+								.formValidation(
+										{
+											framework : 'bootstrap', //Indicamos el framework para validar, Bootstrap, Pure,Semantic,etc
+											icon : {//Feedback Icons
+												valid : 'glyphicon glyphicon-ok',
+												invalid : 'glyphicon glyphicon-remove',
+												validating : 'glyphicon glyphicon-refresh'
+											},
+											//live: 'enabled',
+											//Lista de campos a validar y las reglas que aplican para cada uno de ellos
+											excluded: ':disabled',
+    										live: 'enabled',
+											fields : {
+												'folioVerificacionAdeudo' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													//enabled: true,
+													validators : { //validaciones
 
-							}
-						});
+														notEmpty : {
+															message : 'Folio requerido.'
+														},
+														numeric : {
+															message : 'Folio debe ser numerico',
+														},
+														stringLength : {															
+															max : 7,
+															message : 'Excede valor'
+														},
+													}
+												},
+												'estatus' : { //validación del campo
+													//enabled: true,
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
+
+														notEmpty : {
+															message : 'Estatus es requerido.'
+														}
+													}
+												},
+												'procedencia' : { //validación del campo
+													//enabled: true,
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
+
+														notEmpty : {
+															message : 'Procedencia Vehiculo es requerido.'
+														},
+													}
+												},
+												'folioCalcamonia' : { //validación del campo													
+													enabled: false,
+													validators : { //validaciones
+														notEmpty : {
+															message : 'Folio Calcamonia Requerido',
+														},
+														stringLength : {															
+															max : 7,
+															message : 'Excede valor'
+														},
+													}
+												},
+												'fechaRegularizacion' : { //validación del campo
+													enabled: false,
+													trigger : 'blur',
+													validators : { //validaciones
+														notEmpty : {
+															message : 'Fecha Requerida',
+														},
+													}
+												},
+												'idEstado' : { //validación del campo													
+													enabled: false,
+													validators : { //validaciones
+														notEmpty : {
+															message : 'Estado Requerido',
+														},
+													}
+												},
+												'documento' : { //validación del campo													
+													enabled: false,
+													validators : { //validaciones
+														notEmpty : {
+															message : 'Documento Requerido',
+														},
+													}
+												},
+												'fechaRegularizacion': {
+													enabled: false,
+													validators: {
+								                        notEmpty: {
+								                            message: 'La Fecha es Requerida'
+								                        },
+								                        date: {
+								                            format: 'MM-DD-YYYY',
+								                            message: 'Formato no valido'
+								                        },
+								                    }
+								                },
+											}
+										});
+						
+						$('#procedencia').change(function() {
+									if ($(this).val() != 0) {
+										mostrar();	
+									} else {
+									ocultar();
+									}
+								});
+						
+	
 
 						//Errores
 						$
@@ -450,6 +661,24 @@
 
 					});
 
+	function mostrar(){
+		$('#divExtranjero').show();
+		$('#form-adeudo').formValidation('enableFieldValidators','folioCalcamonia',true).formValidation('revalidateField','folioCalcamonia');
+		$('#form-adeudo').formValidation('enableFieldValidators','fechaRegularizacion',true).formValidation('revalidateField','fechaRegularizacion');
+		$('#form-adeudo').formValidation('enableFieldValidators','idEstado',true).formValidation('revalidateField','idEstado');
+		$('#form-adeudo').formValidation('enableFieldValidators','documento',true).formValidation('revalidateField','documento');
+		$('#form-adeudo').formValidation('enableFieldValidators','fechaRegularizacion',true).formValidation('revalidateField','fechaRegularizacion');
+	}
+	
+	function ocultar(){
+		$('#divExtranjero').hide();
+		$('#form-adeudo').formValidation('enableFieldValidators','folioCalcamonia',false).formValidation('revalidateField','folioCalcamonia');
+		$('#form-adeudo').formValidation('enableFieldValidators','fechaRegularizacion',false).formValidation('revalidateField','fechaRegularizacion');
+		$('#form-adeudo').formValidation('enableFieldValidators','idEstado',false).formValidation('revalidateField','idEstado');
+		$('#form-adeudo').formValidation('enableFieldValidators','documento',false).formValidation('revalidateField','documento');
+		}
+	
+	
 	function combos() {
 		var d = new Date();
 		var year = d.getFullYear();
@@ -473,6 +702,5 @@
 				+ (year - 5) + '">' + (year - 5) + '</label></div>');
 		anio5VerificacionAdeudo.appendTo('#comprobantes');
 	};
-
 </script>
 </html>

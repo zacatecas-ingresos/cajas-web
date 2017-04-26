@@ -22,7 +22,7 @@ public class PresupuestoObligacionEntity implements Serializable {
 	@Id
 	@Column(name = "id_presupuesto_obligacion")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idDetallePresupuesto;
+	private Integer idPresupuestoObligacion;
 
 	@Column(name = "id_presupuesto")
 	private Integer idPresupuesto;
@@ -57,12 +57,12 @@ public class PresupuestoObligacionEntity implements Serializable {
 	@Column(name = "total")
 	private BigDecimal total;
 
-	public Integer getIdDetallePresupuesto() {
-		return idDetallePresupuesto;
+	public Integer getIdPresupuestoObligacion() {
+		return idPresupuestoObligacion;
 	}
 
-	public void setIdDetallePresupuesto(Integer idDetallePresupuesto) {
-		this.idDetallePresupuesto = idDetallePresupuesto;
+	public void setIdPresupuesto(Integer idPresupuesto) {
+		this.idPresupuesto = idPresupuesto;
 	}
 
 	public Integer getIdContribuyente() {

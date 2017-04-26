@@ -23,7 +23,7 @@ public class PresupuestoEntity implements Serializable {
 	@Id
 	@Column(name = "id_presupuesto")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idPresupuestoDetalle;
+	private Integer idPresupuesto;
 
 	@Column(name = "id_contribuyente")
 	private Integer idContribuyente;
@@ -75,12 +75,8 @@ public class PresupuestoEntity implements Serializable {
 		this.integrado = integrado;
 	}
 
-	public Integer getIdPresupuestoDetalle() {
-		return idPresupuestoDetalle;
-	}
-
-	public void setIdPresupuestoDetalle(Integer idPresupuestoDetalle) {
-		this.idPresupuestoDetalle = idPresupuestoDetalle;
+	public Integer getIdPresupuesto() {
+		return idPresupuesto;
 	}
 
 	public Integer getIdContribuyente() {
@@ -137,14 +133,6 @@ public class PresupuestoEntity implements Serializable {
 
 	public void setFechaEmisionPresupuesto(Date fechaEmisionPresupuesto) {
 		this.fechaEmisionPresupuesto = fechaEmisionPresupuesto;
-	}
-
-	public Boolean getIntegrado() {
-		return integrado;
-	}
-
-	public void setIntegrado(Boolean integrado) {
-		this.integrado = integrado;
 	}
 
 }

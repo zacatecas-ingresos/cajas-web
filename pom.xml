@@ -131,6 +131,12 @@
             <groupId>org.wildfly</groupId>
             <artifactId>wildfly-arquillian-container-remote</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>sun.jdk</groupId>
+                    <artifactId>jconsole</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Biblioteca de Google para manejar los JSON-->

@@ -190,7 +190,7 @@ $(document).ready(function() {
             console.log(formData);
 
             var urlPost = "${pageContext.request.contextPath}/cajas/localidades";
-            var urlUsuario = "${pageContext.request.contextPath}/views/catalogos/Localidad/crearLocalidad.jsp";
+            var urlLocalidad = "${pageContext.request.contextPath}/views/catalogos/localidades/crearLocalidad.jsp";
 
             $.ajax({
                 type : 'POST',
@@ -206,7 +206,7 @@ $(document).ready(function() {
                         closeOnCancel : false
                     },
                         function() {
-                        window.location = urlUsuario;
+                        window.location = urlLocalidad;
                         });
                 },
                 error : function(jqXHR,textStatus,errorThrown) {

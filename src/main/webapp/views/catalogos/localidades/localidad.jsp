@@ -1,6 +1,6 @@
 <%-- 
     Document   : localidad
-    Created on : Apr 24, 2017, 12:45:24 AM
+    Created on : 2017
     Author     : Santiago Gonzalez (oocamilobo@gmail.com)
 --%>
 
@@ -175,7 +175,7 @@
     <!-- Fin scripts -->
     <script>
 $(document).ready(function() {
-	var idMunicipio;
+	var idLocalidad;
     
     $.ajax({
         type : "GET",
@@ -235,7 +235,7 @@ $(document).ready(function() {
                 );
         } else {
             // Redirececciona a la edición del elemento selecionado.
-            var urlEditarMarca = '${pageContext.request.contextPath}/views/catalogos/localidades/modificarLocalidad.jsp?id=' + idLocalidad;
+            var urlEditarLocalidad = '${pageContext.request.contextPath}/views/catalogos/localidades/modificarLocalidad.jsp?id=' + idLocalidad;
             window.location = urlEditarLocalidad;					
         }
     });
@@ -309,6 +309,36 @@ function llenarTablaLocalidades(data) {
         $(tableBody).append(row);
     }
 };
+$('#crear').click(function() {
+	var urlCrearLocalidad = "${pageContext.request.contextPath}/views/catalogos/localidades/crearLocalidad.jsp";
+	window.location = urlCrearLocalidad;
+});
+
+
+
+//Errores
+$.ajaxSetup({
+    error: function (x, status, error) {	        	
+        if (x.status === 400) {
+        	var result = x.responseJSON;
+        	swal({
+				title:"Error " + result.code, 
+				text:result.message, 
+				type:"error",
+				closeOnCancel: false
+			});	            		               
+        } else if(x.status === 500) {
+        	swal({
+				title:"Error 500", 
+				text:"Disculpe las molestias no podemos procesar su solicitud.", 
+				type:"error",
+				closeOnCancel: false
+			});
+        }
+    }
+});
+
+
         </script>
     </body>
 </html>

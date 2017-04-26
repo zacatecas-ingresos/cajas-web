@@ -1,3 +1,8 @@
+<%-- 
+    Document   : localidad
+    Created on : 2017
+    Author     : Santiago Gonzalez (oocamilobo@gmail.com)
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -161,7 +166,7 @@ $(document).ready(function() {
     //Cancelar y dirige a la vista principal de los usuarios registrados
     $('#cancel-btn').click(function() {
         var urlMunicipio = "${pageContext.request.contextPath}/views/catalogos/municipios/municipio.jsp";
-        window.location = urlUsuario;
+        window.location = urlMunicipio;
     });
 
     //Registra un municipio

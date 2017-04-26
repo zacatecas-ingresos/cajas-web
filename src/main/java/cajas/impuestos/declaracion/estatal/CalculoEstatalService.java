@@ -71,6 +71,7 @@ public class CalculoEstatalService {
 				throw new BusinessException("El periodo que intenta declarar es improcedente");
 			}
 		}
+		
 
 		// Verificar los tipos de datos
 		BigDecimal impuesto = BigDecimal.ZERO;

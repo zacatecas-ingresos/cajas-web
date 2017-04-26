@@ -38,7 +38,6 @@
 <link
 	href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css"
 	rel="stylesheet" type="text/css">
-
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">

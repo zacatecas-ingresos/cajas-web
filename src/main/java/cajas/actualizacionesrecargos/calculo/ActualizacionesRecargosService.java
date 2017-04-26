@@ -138,7 +138,6 @@ public class ActualizacionesRecargosService {
 
 	/************************************* RECARGOS *************************************/
 
-	/********* Calculo del recargo ***********/
 	private BigDecimal calculoRecargo(Integer aFiscalInicio, Integer mesFiscalInicio, Integer aFiscalFinal,
 			Integer mesFiscalFinal,BigDecimal importeActualizacion,Integer tipoTasaRecargo) {
 

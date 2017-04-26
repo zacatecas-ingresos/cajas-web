@@ -50,5 +50,9 @@ public class DiasNoLaboralesQuery {
 
 		return numeroDias;
 	}
+	
+	public DateTime siguienteDiaHabil(DateTime diaInhabil) {
+		return diaInhabil.plusDays(obtenerNumeroDiasNoLaborales(diaInhabil));
+	}
 
 }

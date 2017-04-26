@@ -24,7 +24,7 @@ public class VerificacionAdeudoVehicular {
 	private String fechaVerificacion;
 	
 	public VerificacionAdeudoVehicular verificacionAdeudoVehiculoEntity(VerificacionAdeudoVehicularEntity verificacionAdeudoVehiculoEntity){
-		
+			
 		VerificacionAdeudoVehicular verificacionAdeudoVehiculo = new VerificacionAdeudoVehicular();
 		verificacionAdeudoVehiculo.setIdVerificacionVehiculo(verificacionAdeudoVehiculoEntity.getIdVerificacionVehicular());
 		verificacionAdeudoVehiculo.setAnio0VerificacionAdeudo(verificacionAdeudoVehiculoEntity.getAnio0VerificacionAdeudo());
@@ -51,8 +51,7 @@ public class VerificacionAdeudoVehicular {
 	    
 	    String fechaRegularizacion= format.format(verificacionAdeudoVehiculoEntity.getFechaRegularizacion());
 		verificacionAdeudoVehiculo.setFechaRegularizacion(fechaRegularizacion);
-		
-		
+				
 		return verificacionAdeudoVehiculo;
 	}
 

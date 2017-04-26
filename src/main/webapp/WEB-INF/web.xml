@@ -6,11 +6,6 @@
 
 	<display-name>cajas</display-name>
 
-	<context-param>
-		<param-name>log4jConfigLocation</param-name>
-		<param-value>classpath:/log4j.properties</param-value>
-	</context-param>
-
 	<!-- login filter -->
 	<filter>
 		<filter-name>login</filter-name>

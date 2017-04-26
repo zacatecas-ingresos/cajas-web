@@ -1,6 +1,6 @@
 <%-- 
     Document   : localidad
-    Created on : Apr 24, 2017, 12:45:24 AM
+    Created on : 2017
     Author     : Santiago Gonzalez (oocamilobo@gmail.com)
 --%>
 
@@ -184,15 +184,15 @@ $(document).ready(function() {
         success : function(data) {
             llenarTablaMunicipios(data);
         },
-        error : function(jqXHR, textStatus, errorThrown) {
-            console.log(textStatus + " " + errorThrown);
+        error : function(jqXHR,textStatus,errorThrown) {
+            console.log(textStatus+ " "+ errorThrown);
         }
     });
     
     //Filtro de búsqueda
     $('#search').keyup(function() {
         var input= $('#search').val();
-        var urlGet = '${pageContext.request.contextPath}/cajas/municipio/consulta?porNombreMunicipio=' + input;
+        var urlGet = '${pageContext.request.contextPath}/cajas/municipios/consulta?porNombreMunicipio=' + input;
 
         $.ajax({
             type: 'GET',
@@ -235,8 +235,8 @@ $(document).ready(function() {
                 );
         } else {
             // Redirececciona a la edición del elemento selecionado.
-            var urlEditarMarca = '${pageContext.request.contextPath}/views/catalogos/municipios/modificarMunicipio.jsp?id=' + idMunicipio;
-            window.location = urlEditarMarca;					
+            var urlEditarMunicipio = '${pageContext.request.contextPath}/views/catalogos/municipios/modificarMunicipio.jsp?id=' + idMunicipio;
+            window.location = urlEditarMunicipio;					
         }
     });
     
@@ -309,6 +309,36 @@ function llenarTablaMunicipios(data) {
         $(tableBody).append(row);
     }
 };
+$('#crear').click(function() {
+	var urlCrearMunicipio = "${pageContext.request.contextPath}/views/catalogos/municipios/crearMunicipio.jsp";
+	window.location = urlCrearMunicipio;
+});
+
+
+
+//Errores
+$.ajaxSetup({
+    error: function (x, status, error) {	        	
+        if (x.status === 400) {
+        	var result = x.responseJSON;
+        	swal({
+				title:"Error " + result.code, 
+				text:result.message, 
+				type:"error",
+				closeOnCancel: false
+			});	            		               
+        } else if(x.status === 500) {
+        	swal({
+				title:"Error 500", 
+				text:"Disculpe las molestias no podemos procesar su solicitud.", 
+				type:"error",
+				closeOnCancel: false
+			});
+        }
+    }
+});
+
+
         </script>
     </body>
 </html>

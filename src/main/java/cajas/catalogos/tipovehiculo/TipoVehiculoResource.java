@@ -75,6 +75,23 @@ public class TipoVehiculoResource {
 	}
 
 	/**
+	 * Obtener la lista de marcas de vehiculos con base a su ClaseVehiculo  
+	 *  
+	 * @return tipoVehiculoList
+	 **/
+	@GET
+	@Path("/obtenerListaPorIdClaseVehiculo")
+	@Produces({"application/json"})
+	public Response obtenerListaTipoVehiculoPorIdClaseVehiculo(@QueryParam("idClaseVehiculo") Integer idClaseVehiculo) {
+		try{
+			List<TipoVehiculo> tipoVehiculoList = tipoVehiculoEjb.obtenerTiposVehiculoPorIdClaseVehiculo(idClaseVehiculo);
+			return Response.ok(tipoVehiculoList).build();
+		}catch(BusinessException ex){
+			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+		}
+	}
+
+	/**
 	 * Obtiene un TipoVehiculo por id
 	 * 
 	 * @param idTipoVehiculo

@@ -23,13 +23,16 @@ public class PresupuestoEntity implements Serializable {
 	@Id
 	@Column(name = "id_presupuesto")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idPresupuestoDetalle;
+	private Integer idPresupuesto;
 
 	@Column(name = "id_contribuyente")
 	private Integer idContribuyente;
 
-	@Column(name = "lcc")
-	private String lcc;
+	@Column(name = "lcc_bancos")
+	private String lccBancos;
+
+	@Column(name = "lcc_oxxos")
+	private String lccOxxos;
 
 	@Column(name = "importe_total")
 	private BigDecimal importeTotal;
@@ -75,12 +78,8 @@ public class PresupuestoEntity implements Serializable {
 		this.integrado = integrado;
 	}
 
-	public Integer getIdPresupuestoDetalle() {
-		return idPresupuestoDetalle;
-	}
-
-	public void setIdPresupuestoDetalle(Integer idPresupuestoDetalle) {
-		this.idPresupuestoDetalle = idPresupuestoDetalle;
+	public Integer getIdPresupuesto() {
+		return idPresupuesto;
 	}
 
 	public Integer getIdContribuyente() {
@@ -91,12 +90,24 @@ public class PresupuestoEntity implements Serializable {
 		this.idContribuyente = idContribuyente;
 	}
 
-	public String getLcc() {
-		return lcc;
+	public String getLccBancos() {
+		return lccBancos;
 	}
 
-	public void setLcc(String lcc) {
-		this.lcc = lcc;
+	public void setLccBancos(String lccBancos) {
+		this.lccBancos = lccBancos;
+	}
+
+	public String getLccOxxos() {
+		return lccOxxos;
+	}
+
+	public void setLccOxxos(String lccOxxos) {
+		this.lccOxxos = lccOxxos;
+	}
+
+	public boolean isIntegrado() {
+		return integrado;
 	}
 
 	public BigDecimal getImporteTotal() {
@@ -137,14 +148,6 @@ public class PresupuestoEntity implements Serializable {
 
 	public void setFechaEmisionPresupuesto(Date fechaEmisionPresupuesto) {
 		this.fechaEmisionPresupuesto = fechaEmisionPresupuesto;
-	}
-
-	public Boolean getIntegrado() {
-		return integrado;
-	}
-
-	public void setIntegrado(Boolean integrado) {
-		this.integrado = integrado;
 	}
 
 }

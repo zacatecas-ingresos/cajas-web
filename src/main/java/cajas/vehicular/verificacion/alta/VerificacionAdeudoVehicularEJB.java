@@ -54,12 +54,14 @@ public class VerificacionAdeudoVehicularEJB {
 		verificacionAdeudoVehicularEntity.setBaja(verificacionAdeudoVehicular.getBaja());
 		verificacionAdeudoVehicularEntity.setBajaPlaca(verificacionAdeudoVehicular.getBajaPlaca());
 		
+		String pattern = "dd-MM-yyyy";
+	    SimpleDateFormat format = new SimpleDateFormat(pattern);
+		
 		try {
-			SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-			Date date = formatter.parse(verificacionAdeudoVehicular.getFechaRegularizacion());
-			verificacionAdeudoVehicularEntity.setFechaRegularizacion(date);
-		} catch (ParseException  e) {
-			 e.printStackTrace();
+			verificacionAdeudoVehicularEntity.setFechaRegularizacion(format.parse(verificacionAdeudoVehicular.getFechaRegularizacion()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		verificacionAdeudoVehicularEntity.setFechaVerificacionAdeudo(DateTime.now().toDate());

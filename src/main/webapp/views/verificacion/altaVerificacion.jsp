@@ -128,7 +128,7 @@
 														<option value="2">AUTORIZADA</option>
 														<option value="3">TERMINADA</option>
 														<option value="4">RECHAZADA MINISTERIO</option>
-														<option value="5">RECHAZADA VERIFICACIO</option>
+														<option value="5">RECHAZADA VERIFICACION</option>
 														<option value="6">PAGADO</option>
 														<option value="7">PAGA DESPUES</option>
 														<option value="8">CONDONADO</option>
@@ -689,6 +689,7 @@
 												},
 											}
 										});
+								
 
 						//Errores
 						$.ajaxSetup({

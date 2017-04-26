@@ -245,15 +245,6 @@
 											</select>
 										</div>
 									</div>
-									<div class="form-group">
-										<label for="selectTasa">Tasa:</label> 
-								        <div class="selectContainer">
-											<select
-											class="form-control " id="selectTasa" name= "selectTasa">
-											<option value="">Seleccione	el tipo de tasa</option>
-											</select>
-										</div>
-									</div>
 									<div id="panelComplementaria">
 										<div class="form-group">
 											<label for="inputRecibo">No. Recibo anterior:</label> <input
@@ -303,10 +294,16 @@
 											class="form-control" id="inputEmpleados" name="inputEmpleados"
 											placeholder="Numero empleados" type="text">
 									</div>
-									<div class="form-group">
+									<div class="form-group" id="importeNomina" >
 										<label for="inputImporteNomina">Importe de Nómina:</label> <input
 											class="form-control" id="inputImporteNomina"
 											name="inputImporteNomina"
+											placeholder="Importe nómina" type="text">
+									</div>
+									<div class="form-group" id="importeHospedaje">
+										<label for="inputImporteHospedaje">Importe de Hospedaje:</label> <input
+											class="form-control" id="inputImporteHospedaje"
+											name="inputImporteHospedaje"
 											placeholder="Importe nómina" type="text">
 									</div>
 								</div>
@@ -314,9 +311,14 @@
 									<div class="form-group">
 										<label for="inputComplementaria">Importe a Pagar</label>
 									</div>
-									<div class="form-group">
+									<div class="form-group" id="resultadoNomina" >
 										<label for="inputNomina">Nómina:</label> <input 
 											class="form-control" id="inputNomina" placeholder="Nómina"
+											type="text">
+									</div>
+									<div class="form-group" id="resultadoHospedaje" >
+										<label for="inputHospedaje">Hospedaje:</label> <input 
+											class="form-control" id="inputHospedaje" placeholder="Hospedaje"
 											type="text">
 									</div>
 									<div class="form-group">
@@ -502,11 +504,12 @@
 	$('#resultadoBusqueda').hide();
 	$('#panelResultados').hide();
 	$('#agregar-btn').hide();
+	$('#resultadoHospedaje').hide();
+	$('#importeHospedaje').hide();
 						
 	obtenerCriterioBusqueda();
 	obtenerDeclaracion();
 	obtenerObligacion();
-	obtenerTipoTasa();
 	obtenerAnyo();
 		
 		
@@ -621,16 +624,6 @@
 			},
 			//Lista de campos a validar y las reglas que aplican para cada uno de ellos
 			fields : {
-				'inputImporteNomina' : { //validación del campo
-							validators : { //validaciones
-								notEmpty : {
-											message : 'Ingrese el importe de la nómina.'
-										},
-										numeric: {
-				                            message: 'El valor no es un número.'
-				                        }
-							}	
-					},
 				'inputEmpleados' : { //validación del campo
 							validators : { //validaciones
 								notEmpty : {
@@ -702,15 +695,6 @@
 		});
 	}
 
-	function obtenerTipoTasa() {
-		var tasas = [{id:1, tasa:'Estatal'}, {id:2, tasa:'Federal'}];
-		$.grep(tasas, function(value, index) {
-			$('#selectTasa').append(
-					'<option value="'+value.id+'">' + value.tasa
-							+ '</option>');
-		});
-	}
-
 	function obtenerObligacion() {
 		var obligaciones = [{id:3, obligacion:'Nomina'}, {id:4, obligacion:'Hospedaje'}];
 		$.grep(obligaciones, function(value, index) {
@@ -778,6 +762,24 @@
 			}
 	});
 
+	$('#selectObligacion').on("click", function() {
+			if($('#selectObligacion').val()==3){
+
+				$('#importeNomina').show();
+				$('#resultadoNomina').show();
+				$('#importeHospedaje').hide();
+				$('#resultadoHospedaje').hide();
+
+			}else if($('#selectObligacion').val()==4){
+
+				$('#importeNomina').hide();
+				$('#resultadoNomina').hide();
+				$('#importeHospedaje').show();
+				$('#resultadoHospedaje').show();
+
+			}
+	});
+
 	//calculos
 	$('#calcular-btn').click(function() {
 
@@ -792,9 +794,15 @@
 			var datos = {};
 			var mes = $('#selectPeriodo');
 			var ejercicioFiscal = $('#selectAnyoFiscal');
-			var totalErogaciones = $('#inputImporteNomina');
+			var totalErogaciones;
+
+			if($('#selectObligacion').val()==3){
+				totalErogaciones = $('#inputImporteNomina');
+			}else if($('#selectObligacion').val()==4){
+				totalErogaciones = $('#inputImporteHospedaje');
+			}
+
 			var idObligacion = $('#selectObligacion');
-			var tipoTasa = $('#selectTasa');
 			var tipoDeclaracion= $('#selectDeclaracion');
 			var numeroEmpleados = $('#inputEmpleados');
 
@@ -806,12 +814,11 @@
 			datos.idObligacion= idObligacion.val();
 			datos.idSucursal= 1;
 			datos.idTipoDeclaracion = tipoDeclaracion.val();
-			datos.tipoTasaRecargo = tipoTasa.val();
 			var formData = JSON.stringify(datos);
 			
 			
 			console.log(formData);
-			var urlPut = "${pageContext.request.contextPath}/cajas/presupuestoEstatal";
+			var urlPut = "${pageContext.request.contextPath}/cajas/calculoEstatal";
 			var presupuestoEstatal = "${pageContext.request.contextPath}/views/cajas/cobroNomina.jsp";
 		$.ajax({
 				type : 'PUT',
@@ -908,7 +915,11 @@
 				$('#inputRecargo').val(val);
 			}
 			if(key=="impuesto"){
-				$('#inputNomina').val(val);
+				if($('#selectObligacion').val()==3){
+					$('#inputNomina').val(val);
+				}else if($('#selectObligacion').val()==4){
+					$('#inputHospedaje').val(val);
+				}
 			}
 			if(key=="total"){
 				$('#inputTotal').val(val);

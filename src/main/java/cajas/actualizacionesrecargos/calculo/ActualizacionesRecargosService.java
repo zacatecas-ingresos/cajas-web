@@ -10,6 +10,7 @@ import javax.persistence.NoResultException;
 
 import org.joda.time.DateTime;
 
+import cajas.impuestos.declaracion.estatal.TipoTasaRecargo;
 import cajas.persistence.entity.INPCEntity;
 import cajas.persistence.query.INPCQuery;
 
@@ -179,9 +180,9 @@ public class ActualizacionesRecargosService {
 						
 			try{
 				INPCEntity inpc = inpcQuery.inpcEntity(factorRecargo.getaFiscal(),factorRecargo.getMesFiscal());
-				if(tipoTasaRecargo.equals(1)){//Estatal
+				if(tipoTasaRecargo.equals(TipoTasaRecargo.tasaEstatal)){//Estatal
 					factorRecargo.setRecargo(inpc.getRecargoEstatal());
-				}else if(tipoTasaRecargo.equals(2)){
+				}else if(tipoTasaRecargo.equals(TipoTasaRecargo.tasaFederal)){
 					factorRecargo.setRecargo(inpc.getRecargo());
 				}
 				factoresRecargo.add(factorRecargo);

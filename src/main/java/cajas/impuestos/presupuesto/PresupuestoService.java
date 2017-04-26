@@ -19,6 +19,7 @@ import cajas.persistence.query.DetallePresupuestoIsnQuery;
 import cajas.persistence.query.PresupuestoObligacionQuery;
 import cajas.persistence.query.PresupuestoQuery;
 import cajas.util.FechaUtil;
+import cajas.util.LineaDeCapturaCerradaUtileria;
 
 /**
  * @author Leila Schiaffini Ehuan
@@ -57,7 +58,8 @@ public class PresupuestoService {
 		presupuesto.setIdMesExpedicion(FechaUtil.mesActual());
 		presupuesto.setImporteTotal(importeTotal);
 		presupuesto.setIntegrado(false);
-		presupuesto.setLcc("S/LCC");
+		presupuesto.setLccBancos(" ");
+		presupuesto.setLccOxxos(" ");
 
 		presupuestoQuery.registrarActualizarPresupuesto(presupuesto);
 
@@ -103,6 +105,18 @@ public class PresupuestoService {
 			}
 
 		}
+
+		presupuesto.setImporteTotal(importeTotal);
+		String lccBancos = LineaDeCapturaCerradaUtileria.obtenerLineaCapturaCerrada(
+				presupuesto.getIdPresupuesto().toString(), FechaUtil.fechaActual(),
+				presupuesto.getImporteTotal().toString(), 2);
+
+		String lccOxxo = LineaDeCapturaCerradaUtileria.obtenerLineaCapturaOxxo(
+				presupuesto.getIdPresupuesto().toString(), FechaUtil.fechaActual(),
+				presupuesto.getImporteTotal().toString());
+		presupuesto.setLccBancos(lccBancos);
+		presupuesto.setLccOxxos(lccOxxo);
+		presupuestoQuery.registrarActualizarPresupuesto(presupuesto);
 
 		return presupuesto.getIdPresupuesto();
 	}

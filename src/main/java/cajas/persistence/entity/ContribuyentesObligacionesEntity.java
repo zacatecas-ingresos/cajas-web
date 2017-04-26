@@ -23,11 +23,11 @@ public class ContribuyentesObligacionesEntity implements Serializable{
 	@Id
 	@ManyToOne(fetch= FetchType.LAZY)
 	@JoinColumn(name = "id_contribuyente")
-	private ContribuyenteEntity idContribuyente;
+	private ContribuyenteEntity contribuyente;
 	
 	@ManyToOne(fetch= FetchType.LAZY)
 	@JoinColumn(name = "id_obligacion")
-	private ObligacionesEntity idObligacion;
+	private ObligacionesEntity obligacion;
 	
 	@Column(name = "fecha_alta")
 	private Date fechaAlta;
@@ -39,19 +39,19 @@ public class ContribuyentesObligacionesEntity implements Serializable{
 	private Integer estatus;
 
 	public ContribuyenteEntity getIdContribuyente() {
-		return idContribuyente;
+		return contribuyente;
 	}
 
 	public void setIdContribuyente(ContribuyenteEntity idContribuyente) {
-		this.idContribuyente = idContribuyente;
+		this.contribuyente = idContribuyente;
 	}
 
 	public ObligacionesEntity getIdObligacion() {
-		return idObligacion;
+		return obligacion;
 	}
 
 	public void setIdObligacion(ObligacionesEntity idObligacion) {
-		this.idObligacion = idObligacion;
+		this.obligacion = idObligacion;
 	}
 
 	public Date getFechaAlta() {

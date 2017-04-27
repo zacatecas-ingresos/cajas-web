@@ -407,6 +407,10 @@
 									<button type="button" id="clear-btn"
 											class="btn btn-danger btn-md pull-left">
 											<i class="fa fa-trash"></i> Quitar Resultados
+									</button>	
+									<button type="button" id="save-btn"
+											class="btn btn-success btn-md pull-right">
+											<i class="fa fa-trash"></i> Guardar Resultados
 									</button>								
 								</div>
 							</div>
@@ -503,6 +507,7 @@
 	$('#resultadoBusqueda').hide();
 	$('#panelResultados').hide();
 	$('#agregar-btn').hide();
+	$('#save-btn').hide();
 	$('#resultadoHospedaje').hide();
 	$('#importeHospedaje').hide();
 						
@@ -835,6 +840,7 @@
 						);
 						colocarValores(data);
 						$('#agregar-btn').show();
+						$('#save-btn').show();
 					}
 				});
 		}
@@ -844,7 +850,28 @@
 		$('#panelResultados').show();
 		resultados.push(datosCalculo);
 		tablaResultados(resultados);
-		console.log("LENGHT:::" + resultados.length);
+	});
+
+	$('#save-btn').click(function() {
+		console.log("GUARDANDO::::::");
+		var urlPost = "${pageContext.request.contextPath}/cajas/presupuestos";
+		var formData = JSON.stringify(resultados);	
+		console.log(formData);
+		$.ajax({
+				type : 'POST',
+				url : urlPost,
+				data : formData,
+				dataType : "json",
+				contentType : 'application/json',
+				success : function(data,textStatus,jQxhr) {
+				swal(
+						{
+							title : "Calculo realizado correctamente.",
+							type : "success",
+						}
+				);
+			}
+		});
 	});
 
 	function tablaResultados(data){
@@ -889,6 +916,7 @@
 		$('#panelResultados').hide();
 		$('#selectPeriodo').empty();
 		$('#agregar-btn').hide();
+		$('#save-btn').hide();
 
 		rfcContribuyente = null
 		resultados= [];

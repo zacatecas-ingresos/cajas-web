@@ -24,7 +24,7 @@ public class PresupuestoEJB {
 	 * @param calculos
 	 *            id´s de los conceptos del presupuesto
 	 */
-	protected Integer generarPresupuestoEstatal(List<Integer> calculos) {
+	public Integer generarPresupuestoEstatal(List<Integer> calculos) {
 		return presupuestoService.generarPresupuestoEstatal(calculos);
 	}
 

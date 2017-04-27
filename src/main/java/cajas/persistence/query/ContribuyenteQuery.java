@@ -44,10 +44,5 @@ public class ContribuyenteQuery {
     public void editarContribuyente(ContribuyenteEntity contribuyenteEntity) {
         entityManager.merge(contribuyenteEntity);
     }
-    
-    public void eliminarContribuyente(Integer idContribuyente) {
-        ContribuyenteEntity contribuyenteEntity = obtenerContribuyente(idContribuyente);
-        entityManager.remove(contribuyenteEntity);
-    }
 
 }

@@ -77,7 +77,7 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					<span style="color: #798c9c"> </span>Presupuesto ISN
+					<span style="color: #798c9c"> </span>Presupuesto Estatal
 				</h1>
 			</section>
 
@@ -300,6 +300,13 @@
 											name="inputImporteHospedaje"
 											placeholder="Importe nómina" type="text">
 									</div>
+									<div class="form-group">
+										<button type="button" id="calcular-btn"
+											class="btn btn-success btn-lg pull-left">
+											<i class="fa fa-calculator"></i> Calcular
+										</button>
+									</div>
+
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
@@ -356,22 +363,20 @@
 							</div>
 							<!-- /.box-body -->
 							<div class="box-footer">
-									<button type="button" id="cancelar-btn"
-											class="btn btn-danger btn-lg pull-left">
+								<div class="row" >
+									<div class="col-md-6">
+										<button type="button" id="cancelar-btn"
+											class="btn btn-danger btn-lg pull-right">
 											<i class="fa fa-close"></i> Cancelar
-									</button>
-									
-									<div class="btn-toolbar">										
-										<button type="button" id="calcular-btn"
-											class="btn btn-success btn-lg pull-right">
-											<i class="fa fa-calculator"></i> Calcular
 										</button>
-
+									</div>
+									<div class="col-md-6">
 										<button type="button" id="agregar-btn"
-											class="btn btn-primary btn-lg pull-right">
+											class="btn btn-primary btn-lg pull-left">
 											<i class="fa fa-plus"></i> Agregar
-										</button>
-									</div>								
+										</button>										
+									</div>									
+								</div>								
 							</div>
 						</div>						
 					</div>
@@ -405,7 +410,7 @@
 									</button>	
 									<button type="button" id="save-btn"
 											class="btn btn-success btn-md pull-right">
-											<i class="fa fa-trash"></i> Guardar Resultados
+											<i class="fa fa-trash"></i> Generar Presupuesto
 									</button>								
 								</div>
 							</div>
@@ -808,7 +813,7 @@
 			
 			console.log(formData);
 			var urlPut = "${pageContext.request.contextPath}/cajas/calculoEstatal";
-			var presupuestoEstatal = "${pageContext.request.contextPath}/views/cajas/cobroNomina.jsp";
+			var presupuestoEstatal = "${pageContext.request.contextPath}/views/cajas/presupuestoEstatal.jsp";
 		$.ajax({
 				type : 'PUT',
 				url : urlPut,
@@ -838,8 +843,9 @@
 	});
 
 	$('#save-btn').click(function() {
-		console.log("GUARDANDO::::::");
+		
 		var urlPost = "${pageContext.request.contextPath}/cajas/presupuestos";
+		var presupuestoEstatal = "${pageContext.request.contextPath}/views/cajas/presupuestoEstatal.jsp";
 		var formData = JSON.stringify(resultados);	
 		console.log(formData);
 		$.ajax({
@@ -853,8 +859,10 @@
 						{
 							title : "Calculo realizado correctamente.",
 							type : "success",
-						}
-				);
+						},
+							function() {
+							window.location = presupuestoEstatal;
+				});
 			}
 		});
 	});

@@ -21,6 +21,8 @@ import cajas.config.parametros.ClaveParametro;
 import cajas.exception.BusinessException;
 import cajas.seguridad.token.TokenService;
 import cajas.seguridad.usuario.Usuario;
+import cajas.seguridad.usuario.UsuarioService;
+
 import org.jboss.logging.Logger;
 
 public class Filtro implements Filter {
@@ -34,7 +36,10 @@ public class Filtro implements Filter {
 	private Usuario usuarioSesion;
 
 	@EJB
-        private TokenService tokenService;
+	private TokenService tokenService;
+
+	@EJB
+	private UsuarioService usuarioService;
 
 	/*************** Filtro ****************************/
 
@@ -50,7 +55,7 @@ public class Filtro implements Filter {
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
 			throws IOException, ServletException {
-		
+
 		LOG.info("[\tFiltro:]");
 		/**** caracteres especiales ******/
 		servletRequest.setCharacterEncoding("UTF-8");
@@ -67,7 +72,6 @@ public class Filtro implements Filter {
 
 		ModifyRequest newRequest = new ModifyRequest(httpRequest);
 
-		
 		if (newRequest.getHeader(ClaveParametro.HEADER) != null) {
 
 			try {
@@ -79,10 +83,14 @@ public class Filtro implements Filter {
 						httpResponse.sendRedirect(contextPath + ClaveParametro.INDEX);
 					}
 
-					
-					if(httpRequest.getParameter(ClaveParametro.CERRAR_SESION) != null){
+					if (httpRequest.getParameter(ClaveParametro.CERRAR_SESION) != null) {
 						eliminarCookieUsuario();
-						httpResponse.sendRedirect(contextPath + ClaveParametro.LOGIN);					
+						httpResponse.sendRedirect(contextPath + ClaveParametro.LOGIN);
+					}
+
+					if (usuarioSesion == null) {
+						usuarioSesion = usuarioService.obtenerUsuarioPorToken(newRequest.getHeader(ClaveParametro.HEADER));
+						colocarUsuarioSesion(usuarioSesion);
 					}
 					
 					filterChain.doFilter(newRequest, servletResponse);
@@ -226,6 +234,12 @@ public class Filtro implements Filter {
 		if (httpSession != null) {
 			httpSession.invalidate();
 		}
+	}
+
+	/****** Colocar usuario en sesion ******/
+	public void colocarUsuarioSesion(Usuario usuario) {
+		httpSession.setAttribute(ClaveParametro.API_NAME, usuario);
+		httpSession.setMaxInactiveInterval(ClaveParametro.DURACION_MAXIMA_SESION);
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public class ValidacionContribuyenteService {
 	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
 
-	protected InfoContribuyente obtenerContirbuyentePoRfc(String rfc) {
+	protected InfoContribuyente obtenerContribuyentePoRfc(String rfc) {
 		ContribuyenteQuery contribuyenteQuery = new ContribuyenteQuery(entityManager);
 		return contribuyenteQuery.obtenerContirbuyentePoRfc(rfc);
 	}

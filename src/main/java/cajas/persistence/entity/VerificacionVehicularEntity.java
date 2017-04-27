@@ -103,6 +103,15 @@ public class VerificacionVehicularEntity implements Serializable {
 	@Column(name = "anio_actual_comprobante_pago")
 	private Integer anioActualComprobantePago;
 
+	@Column(name = "fecha_verificacion_ministerial")
+	private Date fechaVerificacionMinisterial;
+
+	@Column(name = "folio_verificacion_ministerial")
+	private Integer folioVerificacionMinisterial;
+
+	@Column(name = "observaciones_ministerial")
+	private String observacionesMinisterial;
+
 	public Integer getIdVerificacionVehiculo() {
 		return idVerificacionVehiculo;
 	}
@@ -318,4 +327,27 @@ public class VerificacionVehicularEntity implements Serializable {
 		this.anioActualComprobantePago = anioActualComprobantePago;
 	}
 
+	public Date getFechaVerificacionMinisterial() {
+		return fechaVerificacionMinisterial;
+	}
+
+	public void setFechaVerificacionMinisterial(Date fechaVerificacionMinisterial) {
+		this.fechaVerificacionMinisterial = fechaVerificacionMinisterial;
+	}
+
+	public Integer getFolioVerificacionMinisterial() {
+		return folioVerificacionMinisterial;
+	}
+
+	public void setFolioVerificacionMinisterial(Integer folioVerificacionMinisterial) {
+		this.folioVerificacionMinisterial = folioVerificacionMinisterial;
+	}
+
+	public String getObservacionesMinisterial() {
+		return observacionesMinisterial;
+	}
+
+	public void setObservacionesMinisterial(String observacionesMinisterial) {
+		this.observacionesMinisterial = observacionesMinisterial;
+	}
 }

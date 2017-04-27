@@ -112,7 +112,7 @@
 										<br>
 										<fieldset>
 											<legend>Periodos de Adeudo</legend>
-											<div class="form-group">
+										
 												<div class="row">
 													<div id="comprobantes" class="form-group"></div>
 												</div>
@@ -125,10 +125,10 @@
 													<div class="col-md-6">
 														<label for="bajaPlaca" class="control-label">Placa:</label>
 														<input class=" form-control-inlinel" id="bajaPlaca"
-															name="bajaPlaca" placeholder="Placa..." maxlength="10">
+															name="bajaPlaca" placeholder="Placa..." maxlength="10" disabled>
 													</div>
 												</div>
-											</div>
+										
 										</fieldset>
 										<br>
 									</div>
@@ -369,6 +369,7 @@
 									}
 								});
 
+						// MANDA LLAMAR LOS COMBOS QUE SE GENERAN DE MANERA DINAMICA
 						combos();
 
 						//Cancelar y dirige a la vista principal de los vehiculos registrados
@@ -534,8 +535,8 @@
 											},
 											//live: 'enabled',
 											//Lista de campos a validar y las reglas que aplican para cada uno de ellos
-											excluded: ':disabled',
-    										live: 'enabled',
+											//excluded: ':disabled',
+    										//live: 'enabled',
 											fields : {
 												'folioVerificacionAdeudo' : { //validación del campo
 													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
@@ -586,15 +587,6 @@
 														},
 													}
 												},
-												'fechaRegularizacion' : { //validación del campo
-													enabled: false,
-													trigger : 'blur',
-													validators : { //validaciones
-														notEmpty : {
-															message : 'Fecha Requerida',
-														},
-													}
-												},
 												'idEstado' : { //validación del campo													
 													enabled: false,
 													validators : { //validaciones
@@ -611,8 +603,16 @@
 														},
 													}
 												},
-												'fechaRegularizacion': {
+												'bajaPlaca' : { //validación del campo													
 													enabled: false,
+													validators : { //validaciones
+														notEmpty : {
+															message : 'Placa Requerida',
+														},
+													}
+												},
+												'fechaRegularizacion': {
+													//enabled: false,
 													validators: {
 								                        notEmpty: {
 								                            message: 'La Fecha es Requerida'
@@ -627,15 +627,30 @@
 										});
 						
 						$('#procedencia').change(function() {
-									if ($(this).val() != 0) {
-										mostrar();	
-									} else {
-									ocultar();
-									}
-								});
+							if ($(this).val() != 0) {
+								mostrar();	
+							} else {
+								ocultar();
+							}
+						});
 						
-	
-
+						$('#baja').change(function() {
+							 if (this.checked) {
+							    	$('#bajaPlaca').removeAttr("disabled"); 
+							    	$('#form-adeudo')
+					                .formValidation('enableFieldValidators', 'bajaPlaca', true)
+					                .formValidation('revalidateField', 'bajaPlaca');
+							    } else {
+							    	 $('#bajaPlaca').attr("disabled", "disabled"); 
+							    	 $('#bajaPlaca').val('');
+							    	 $('#bajaPlaca').parent().children('i').css('display', 'none');
+							    	 $('#bajaPlaca').parent().children('small').css('display', 'none');
+							    	 $('#form-adeudo')
+					                    .formValidation('enableFieldValidators', 'bajaPlaca', false)
+					                    .formValidation('revalidateField', 'bajaPlaca');
+							    }
+						    });
+						
 						//Errores
 						$
 								.ajaxSetup({
@@ -659,6 +674,7 @@
 									}
 								});
 
+					//documentReady
 					});
 
 	function mostrar(){

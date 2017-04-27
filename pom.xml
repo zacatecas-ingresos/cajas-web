@@ -74,6 +74,22 @@
             <scope>provided</scope>
         </dependency>
         
+        <!-- Import the JavaServer Pages 2.3 API, we use provided scope as the API
+        is included in JBoss WildFly -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.servlet.jsp</groupId>
+            <artifactId>jboss-jsp-api_2.3_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Import the JavaServer Pages Standard Tag Library 1.2 API, we use provided scope as the API
+        is included in JBoss WildFly -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.servlet.jstl</groupId>
+            <artifactId>jboss-jstl-api_1.2_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Import the JSR 353: JavaTM API for JSON Processing API, we use 
         provided scope as the API is included in JBoss WildFly -->
         <dependency>
@@ -161,7 +177,7 @@
             <version>3.5</version>
         </dependency>
         
-        <!-- Biblioteca de Apache que se emplea en la codificaciÃ³n y 
+        <!-- Biblioteca de Apache que se emplea en la codificación y 
         decodificación de varios formatos como Base64 -->
         <dependency>
             <groupId>commons-codec</groupId>

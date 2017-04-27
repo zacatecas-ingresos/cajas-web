@@ -65,6 +65,11 @@ public class ContribuyenteEntity implements Serializable {
     @Column(name = "razon_social")
     private String razonSocial;
     
+    @Column(name ="estatus")
+    private Integer idEstatus;
+    
+    
+    
     public Integer getIdContribuyente() {
         return idContribuyente;
     }

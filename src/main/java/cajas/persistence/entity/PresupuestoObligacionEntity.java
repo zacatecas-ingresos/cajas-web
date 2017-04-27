@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Table(name = "presupuesto_obligacion", schema = "presupuestos")
 public class PresupuestoObligacionEntity implements Serializable {
 
+	
 	/**
 	 * 
 	 */

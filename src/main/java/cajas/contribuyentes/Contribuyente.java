@@ -16,12 +16,14 @@ public class Contribuyente {
     private String rfc;
     private String curp;
     private TipoPersona tipoPersona;
+    private String nombreCompuesto;
     private String nombre;
     private String primerApellido;
     private String segundoApellido;
     private Sexo sexo;
     private Date fechaNacimiento;
     private String nacionalidad;
+    private String razonSocial;
 
     public Integer getId() {
         return id;
@@ -54,6 +56,25 @@ public class Contribuyente {
     public void setTipoPersona(TipoPersona tipoPersona) {
         this.tipoPersona = tipoPersona;
     }
+
+    /**
+     * Get the value of nombreCompuesto
+     *
+     * @return the value of nombreCompuesto
+     */
+    public String getNombreCompuesto() {
+        return nombreCompuesto;
+    }
+
+    /**
+     * Set the value of nombreCompuesto
+     *
+     * @param nombreCompuesto new value of nombreCompuesto
+     */
+    public void setNombreCompuesto(String nombreCompuesto) {
+        this.nombreCompuesto = nombreCompuesto;
+    }
+
 
     public String getNombre() {
         return nombre;
@@ -103,5 +124,22 @@ public class Contribuyente {
         this.nacionalidad = nacionalidad;
     }
 
+    /**
+     * Get the value of razonSocial
+     *
+     * @return the value of razonSocial
+     */
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    /**
+     * Set the value of razonSocial
+     *
+     * @param razonSocial new value of razonSocial
+     */
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
+    }
     
 }

@@ -5,6 +5,7 @@
 package cajas.persistence.query;
 
 import cajas.persistence.entity.ContribuyenteEntity;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -29,6 +30,12 @@ public class ContribuyenteQuery {
         return contribuyenteEntity;
     }
 
+    public List<ContribuyenteEntity> buscarContribuyente(String criterio) {
+        TypedQuery<ContribuyenteEntity> consulta = entityManager.createQuery("select contribuyente from ContribuyenteEntity as contribuyente where contribuyente.rfc like :criterio or contribuyente.nombre like :criterio or contribuyente.primerApellido like :criterio or contribuyente.segundoApellido like :criterio or contribuyente.razonSocial like :criterio", ContribuyenteEntity.class);
+        consulta.setParameter("criterio", '%' + criterio + '%');
+        return consulta.getResultList();
+    }
+    
     public void editarContribuyente(ContribuyenteEntity contribuyenteEntity) {
         entityManager.merge(contribuyenteEntity);
     }

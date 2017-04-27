@@ -10,10 +10,12 @@ import cajas.persistence.entity.ContribuyenteEntity;
 import cajas.persistence.query.ContribuyenteQuery;
 import cajas.util.ValidarFormatoCURP;
 import cajas.util.ValidarFormatoRFC;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.apache.commons.lang3.StringUtils;
 import org.jboss.logging.Logger;
 
 /**
@@ -61,6 +63,16 @@ public class ContribuyenteEJB {
         ContribuyenteEntity contribuyenteEntity = contribuyenteQuery.obtenerContribuyente(idContribuyente);
         Contribuyente contribuyente = contribuyenteFactory.entityADto(contribuyenteEntity);
         return contribuyente;
+    }
+
+    public List<Contribuyente> buscarContribuyente(String criterio) {
+        if (StringUtils.isBlank(criterio)) {
+            throw new BusinessException("No se puede realizar una búsqueda sin un criterio.");
+        }
+        
+        List<ContribuyenteEntity> contribuyenteEntities = contribuyenteQuery.buscarContribuyente(criterio);
+        List<Contribuyente> contribuyenteDtos = contribuyenteFactory.entitiesADtos(contribuyenteEntities);
+        return contribuyenteDtos;
     }
     
     public void editarContribuyente(Contribuyente contribuyente) {

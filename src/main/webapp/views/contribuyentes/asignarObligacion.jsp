@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<head>
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
@@ -217,18 +216,16 @@
 			</section>
 			<!-- Fin contenido Registrar Usuario -->
 		</div>
+
+            <footer class="main-footer">
+                    <div class="pull-right hidden-xs">
+                            <b>Version</b> 2.3.0
+                    </div>
+                    <strong>Derechos de autor &copy; 2016 <a href="------">--------------</a>.
+                    </strong> Todos los derechos reservados.
+            </footer>
 	</div>
 	<!-- ./wrapper -->
-
-
-	<footer class="main-footer">
-		<div class="pull-right hidden-xs">
-			<b>Version</b> 2.3.0
-		</div>
-		<strong>Derechos de autor &copy; 2016 <a href="------">--------------</a>.
-		</strong> Todos los derechos reservados.
-	</footer>
-
 </body>
 
 
@@ -243,7 +240,7 @@
 
 <!-- jQuery Form -->
 <script
-	src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js" /></script>
+	src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js" ></script>
 
 <script
 	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>

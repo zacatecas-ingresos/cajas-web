@@ -67,7 +67,7 @@ public class ContribuyenteEJBTest {
         return war;    
     }
     
-    @Ignore
+    //@Ignore
     @Test
     public void crearContribuyente() {
         LOGGER.infov(PLANTILLA_INICANDO_TEST, "crearContribuyente");

@@ -145,6 +145,10 @@ public class CalculoEstatalService {
 		impuestoEstatal.setActualizaciones(actualizacion);
 		impuestoEstatal.setRecargos(recargo);
 		impuestoEstatal.setTotal(total);
+		impuestoEstatal.setPeriodo(declaracion.getPeriodo());
+		impuestoEstatal.setaFiscal(declaracion.getEjercicioFiscal());
+		impuestoEstatal.setObligacion(declaracion.getIdObligacion());
+		impuestoEstatal.setDeclaracion(declaracion.getIdTipoDeclaracion());
 		return impuestoEstatal;
 	}
 

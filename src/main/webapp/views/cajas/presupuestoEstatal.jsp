@@ -94,29 +94,18 @@
 							</div>
 							<div class="box-body">
 									<div class="row">
-										<div class="col-md-2">
+										<div class="col-md-3">
 											<div class="form-group">
 												<label>Ingrese un Criterio Búsqueda:</label> 
 											</div>
 										</div>
-										<div class="col-md-3">
+										<div class="col-md-6">
 											<div class="form-group">
 												<input type="text" class="form-control" id="inputCriterio"
 												placeholder="Ingrese criterio busqueda">
 											</div>
 										</div>
-										<div class="col-md-2">
-											<div class="form-group">
-												<label>Obligación:</label> 
-											</div>
-										</div>
 										<div class="col-md-3">
-											<select
-												class="form-control " id="selectObligacion" name= "selectObligacion">
-												<option value="">Seleccione	una obligación</option>
-											</select>
-										</div>
-										<div class="col-md-2">
 											<button type="button"
 											class="btn btn-sm btn-success glyphicon glyphicon-search"
 											id="btnBuscar">
@@ -238,6 +227,15 @@
 												una opción</option>
 											</select>
 										</div>
+									</div>
+									<div class="form-group">
+										<label for="selectObligacion">Obligación:</label> 
+										 <div class="selectContainer">
+											<select
+												class="form-control " id="selectObligacion" name= "selectObligacion">
+												<option value="">Seleccione	una obligación</option>
+											</select>
+										 </div>
 									</div>
 									<div id="panelComplementaria">
 										<div class="form-group">
@@ -519,23 +517,7 @@
 	//Busca un contribuyente
 	$('#btnBuscar').click(function() {
 							
-			//Validaciones
-			if($('#selectObligacion').val().length < 1){
-				swal(
-						{
-						  	title : "Debe seleccionar el tipo de obligación.",
-						 	type : "error",
-							closeOnCancel : false
-						}
-					);
-				
-				$('#selectObligacion').css("border-color", "#ff0000");				
-				return;		
-			}else{
-					$('#selectObligacion').css("border-color", "#d2d6de");
-				}
-				
-			if($('#inputCriterio').val().length < 1){
+		if($('#inputCriterio').val().length < 1){
 				swal(
 						{
 						  	title : "Debe Ingresar criterio de busqueda.",
@@ -837,8 +819,32 @@
 	});
 
 	$('#agregar-btn').click(function() {
+		var existe = false;
 		$('#panelResultados').show();
-		resultados.push(datosCalculo);
+		console.log(JSON.stringify(datosCalculo));
+
+		if(resultados.length == 0){
+			resultados.push(datosCalculo);
+		}else{
+			for (var i = 0; i < resultados.length; i++) {
+
+				if(resultados[i].periodo==datosCalculo.periodo && resultados[i].aFiscal==datosCalculo.aFiscal 
+					&& resultados[i].obligacion == datosCalculo.obligacion && resultados[i].declaracion== datosCalculo.declaracion){
+					existe = true;
+				}
+			}
+			if(!existe){
+				resultados.push(datosCalculo);
+			}else{
+				swal(
+						{
+							title : "Seleccione un presupuesto con un periodo, año u obligación distinto.",
+							type : "error",
+							closeOnCancel : false
+						}
+					);
+			}
+		}
 		tablaResultados(resultados);
 	});
 

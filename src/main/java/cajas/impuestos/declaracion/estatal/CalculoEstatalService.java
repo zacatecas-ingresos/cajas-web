@@ -23,6 +23,7 @@ import cajas.util.ValidacionUtil;
 import cajas.util.VencimientoObligacion;
 
 public class CalculoEstatalService {
+	
 	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
 

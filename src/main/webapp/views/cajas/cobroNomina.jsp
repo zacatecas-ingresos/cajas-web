@@ -96,21 +96,25 @@
 									<div class="row">
 										<div class="col-md-2">
 											<div class="form-group">
-												<label for="selectCriterio">Criterio Búsqueda:</label> 
+												<label>Ingrese un Criterio Búsqueda:</label> 
 											</div>
 										</div>
-										<div class="col-md-4">
-											<select
-												class="form-control" id="selectCriterio">
-												<option value="" selected="selected">Seleccione
-												una opción</option>
-												</select>	
-										</div>
-										<div class="col-md-4">
+										<div class="col-md-3">
 											<div class="form-group">
 												<input type="text" class="form-control" id="inputCriterio"
 												placeholder="Ingrese criterio busqueda">
 											</div>
+										</div>
+										<div class="col-md-2">
+											<div class="form-group">
+												<label>Obligación:</label> 
+											</div>
+										</div>
+										<div class="col-md-3">
+											<select
+												class="form-control " id="selectObligacion" name= "selectObligacion">
+												<option value="">Seleccione	una obligación</option>
+											</select>
 										</div>
 										<div class="col-md-2">
 											<button type="button"
@@ -232,15 +236,6 @@
 											class="form-control " id="selectDeclaracion" name= "selectDeclaracion">
 											<option value="">Seleccione
 												una opción</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="selectObligacion">Obligación:</label> 
-								        <div class="selectContainer">
-											<select
-											class="form-control " id="selectObligacion" name= "selectObligacion">
-											<option value="">Seleccione	una obligación</option>
 											</select>
 										</div>
 									</div>
@@ -511,7 +506,6 @@
 	$('#resultadoHospedaje').hide();
 	$('#importeHospedaje').hide();
 						
-	obtenerCriterioBusqueda();
 	obtenerDeclaracion();
 	obtenerObligacion();
 	obtenerAnyo();
@@ -521,19 +515,19 @@
 	$('#btnBuscar').click(function() {
 							
 			//Validaciones
-			if($('#selectCriterio').val().length < 1){
+			if($('#selectObligacion').val().length < 1){
 				swal(
 						{
-						  	title : "Debe seleccionar el tipo de busuqeda a realizar.",
+						  	title : "Debe seleccionar el tipo de obligación.",
 						 	type : "error",
 							closeOnCancel : false
 						}
 					);
 				
-				$('#selectCriterio').css("border-color", "#ff0000");				
+				$('#selectObligacion').css("border-color", "#ff0000");				
 				return;		
 			}else{
-					$('#selectCriterio').css("border-color", "#d2d6de");
+					$('#selectObligacion').css("border-color", "#d2d6de");
 				}
 				
 			if($('#inputCriterio').val().length < 1){
@@ -678,17 +672,7 @@
 	$('tbody').on("click", "td", function() {
 		rfcContribuyente = $(this).closest('tr').find('.rfc').text();
 	});
-							
-	
-	function obtenerCriterioBusqueda() {
-		var criterios = [ {id : 1, criterio : 'Nombre'}, {id : 2, criterio : 'Razon Social'}, 
-			{id : 3,criterio : 'RFC'}];
-		$.grep(criterios, function(value, index) {
-			$('#selectCriterio').append(
-					'<option value="'+value.id+'">' + value.criterio
-							+ '</option>');
-		});
-	}								
+												
 	
 	function obtenerDeclaracion() {
 		var declaraciones = [{id:1, declaracion:'Normal'}, {id:2, declaracion:'Complementaria'}];
@@ -700,6 +684,7 @@
 	}
 
 	function obtenerObligacion() {
+		console.log("Obtener Obligación...");
 		var obligaciones = [{id:3, obligacion:'Nomina'}, {id:4, obligacion:'Hospedaje'}];
 		$.grep(obligaciones, function(value, index) {
 			$('#selectObligacion').append('<option value="'+value.id+'">' + value.obligacion

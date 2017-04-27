@@ -14,7 +14,12 @@ import javax.persistence.TypedQuery;
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class ContribuyenteQuery {
+    
     private final EntityManager entityManager;
+    private static final String BUSCAR_CONTRIBUYENTE = 
+            "select contribuyente"
+            + " from ContribuyenteEntity as contribuyente"
+            + " where contribuyente.rfc like :criterio or contribuyente.nombreCompuesto like :criterio";
 
     public ContribuyenteQuery(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -31,7 +36,7 @@ public class ContribuyenteQuery {
     }
 
     public List<ContribuyenteEntity> buscarContribuyente(String criterio) {
-        TypedQuery<ContribuyenteEntity> consulta = entityManager.createQuery("select contribuyente from ContribuyenteEntity as contribuyente where contribuyente.rfc like :criterio or contribuyente.nombre like :criterio or contribuyente.primerApellido like :criterio or contribuyente.segundoApellido like :criterio or contribuyente.razonSocial like :criterio", ContribuyenteEntity.class);
+        TypedQuery<ContribuyenteEntity> consulta = entityManager.createQuery(BUSCAR_CONTRIBUYENTE, ContribuyenteEntity.class);
         consulta.setParameter("criterio", '%' + criterio + '%');
         return consulta.getResultList();
     }

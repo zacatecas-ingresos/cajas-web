@@ -45,25 +45,27 @@ public class VerificacionAdeudoVehicularEJB {
 		verificacionAdeudoVehicularEntity.setAnio4VerificacionAdeudo(verificacionAdeudoVehicular.getAnio4VerificacionAdeudo());
 		verificacionAdeudoVehicularEntity.setAnio5VerificacionAdeudo(verificacionAdeudoVehicular.getAnio5VerificacionAdeudo());
 		verificacionAdeudoVehicularEntity.setFolioVerificacionAdeudo(verificacionAdeudoVehicular.getFolioVerificacionAdeudo());
-		verificacionAdeudoVehicularEntity.setProcedencia(verificacionAdeudoVehicular.getProcedencia());
-		verificacionAdeudoVehicularEntity.setIdEstado(verificacionAdeudoVehicular.getIdEstado());
-		verificacionAdeudoVehicularEntity.setFolioCalcamonia(verificacionAdeudoVehicular.getFolioCalcamonia());
-		verificacionAdeudoVehicularEntity.setDocumento(verificacionAdeudoVehicular.getDocumento());
+		
+		//Si el vehiculo es extranjera se guarda estado, fecha regularizacion, folio pedimiento(calcamonia), documento ni estatus
+		if(verificacionAdeudoVehicular.getProcedencia() > 0){
+			verificacionAdeudoVehicularEntity.setIdEstado(verificacionAdeudoVehicular.getIdEstado());
+			verificacionAdeudoVehicularEntity.setFolioCalcamonia(verificacionAdeudoVehicular.getFolioCalcamonia());
+			verificacionAdeudoVehicularEntity.setDocumento(verificacionAdeudoVehicular.getDocumento());
+			String pattern = "dd-MM-yyyy";
+		    SimpleDateFormat format = new SimpleDateFormat(pattern);
+			
+			try {
+				verificacionAdeudoVehicularEntity.setFechaRegularizacion(format.parse(verificacionAdeudoVehicular.getFechaRegularizacion()));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		verificacionAdeudoVehicularEntity.setEstatus(verificacionAdeudoVehicular.getEstatus());
+		verificacionAdeudoVehicularEntity.setProcedencia(verificacionAdeudoVehicular.getProcedencia());
 		verificacionAdeudoVehicularEntity.setObservaciones(verificacionAdeudoVehicular.getObservaciones());
 		verificacionAdeudoVehicularEntity.setBaja(verificacionAdeudoVehicular.getBaja());
-		verificacionAdeudoVehicularEntity.setBajaPlaca(verificacionAdeudoVehicular.getBajaPlaca());
-		
-		String pattern = "dd-MM-yyyy";
-	    SimpleDateFormat format = new SimpleDateFormat(pattern);
-		
-		try {
-			verificacionAdeudoVehicularEntity.setFechaRegularizacion(format.parse(verificacionAdeudoVehicular.getFechaRegularizacion()));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		verificacionAdeudoVehicularEntity.setBajaPlaca(verificacionAdeudoVehicular.getBajaPlaca());		
 		verificacionAdeudoVehicularEntity.setFechaVerificacionAdeudo(DateTime.now().toDate());
 		
 		vVehicularQuery.registrarVerificacion(verificacionAdeudoVehicularEntity);

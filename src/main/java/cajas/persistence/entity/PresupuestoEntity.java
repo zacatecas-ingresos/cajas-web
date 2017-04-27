@@ -31,7 +31,7 @@ public class PresupuestoEntity implements Serializable {
 	@Column(name = "lcc_bancos")
 	private String lccBancos;
 
-	@Column(name = "lcc_oxxos")
+	@Column(name = "lcc_oxxo")
 	private String lccOxxos;
 
 	@Column(name = "importe_total")

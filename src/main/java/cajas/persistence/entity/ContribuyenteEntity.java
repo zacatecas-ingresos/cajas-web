@@ -4,7 +4,6 @@ import cajas.contribuyentes.Sexo;
 import cajas.contribuyentes.TipoPersona;
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -34,7 +33,7 @@ public class ContribuyenteEntity implements Serializable {
     private String curp;
     
     @Column(name = "tipo_persona")
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private TipoPersona tipoPersona;
     
     @Column(name = "nombres")
@@ -57,8 +56,8 @@ public class ContribuyenteEntity implements Serializable {
     @Column(name = "nacionalidad")
     private String nacionalidad;
 
-    @Column(name = "correo_electronico")
-    private String correoElectronico;
+//    @Column(name = "correo_electronico")
+//    private String correoElectronico;
 
     public Integer getIdContribuyente() {
         return idContribuyente;
@@ -225,17 +224,17 @@ public class ContribuyenteEntity implements Serializable {
      *
      * @return the value of correoElectronico
      */
-    public String getCorreoElectronico() {
-        return correoElectronico;
-    }
+//    public String getCorreoElectronico() {
+//        return correoElectronico;
+//    }
 
     /**
      * Set the value of correoElectronico
      *
      * @param correoElectronico new value of correoElectronico
      */
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
-    }
+//    public void setCorreoElectronico(String correoElectronico) {
+//        this.correoElectronico = correoElectronico;
+//    }
 
 }

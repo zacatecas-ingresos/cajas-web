@@ -10,7 +10,13 @@ package cajas.contribuyentes;
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public enum Sexo {
+    /**
+     * Femenino.
+     */
     F("FEMENINO"),
+    /**
+     * Masculino.
+     */
     M("MASCULINO");
     
     Sexo(String valor) {

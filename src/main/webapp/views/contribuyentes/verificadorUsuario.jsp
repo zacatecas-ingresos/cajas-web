@@ -205,7 +205,7 @@ $(document).ready(function() {
 
 	//Cancelar y dirige a la vista principal de los usuarios registrados
 	$('#cancel-btn').click(function() {
-		var urlUsuario = "${pageContext.request.contextPath}/views/contribuyentes/verificadorUsuario.jsp";
+		var urlUsuario = "${pageContext.request.contextPath}/views/contribuyentes/	verificadorUsuario.jsp";
 		window.location = urlUsuario;
 	});
 

@@ -5,7 +5,7 @@
 package cajas.contribuyentes;
 
 /**
- * Este enumerable define si el contribuyente es una persona moral o física.
+ * Este enumerable define si el contribuyente es una persona física o moral.
  * 
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */

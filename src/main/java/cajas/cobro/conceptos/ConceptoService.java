@@ -73,4 +73,51 @@ public class ConceptoService {
 			throw new BusinessException("No existe concepto.");
 		}
 	}
+	
+	public void validarConcepto(Concepto concepto){
+		
+		if(!ValidacionUtil.esNumeroPositivo(concepto.getIdConcepto())){
+			throw new BusinessException("El concepto es requerido.");
+		}
+		
+		if (!ValidacionUtil.esCadenaVacia(concepto.getDescripcion())){
+			throw new BusinessException("La descripcion es requerida.");
+		}
+		
+		if(!ValidacionUtil.esCadenaVacia(concepto.getNivel1())){
+			throw new BusinessException("El nivel 1 es requerido.");
+		}
+		
+		if(!ValidacionUtil.esCadenaVacia(concepto.getNivel2())){
+			throw new BusinessException("E nivel 2 es requerido.");
+		}
+		
+		if(!ValidacionUtil.esCadenaVacia(concepto.getNivel3())){
+			throw new BusinessException("El nivel 3 es requerido.");
+		}
+		
+		if(!ValidacionUtil.esCadenaVacia(concepto.getNivel4())){
+			throw new BusinessException("El nivel 4 es requerido.");
+		}
+		
+		if(!ValidacionUtil.esCadenaVacia(concepto.getNivel5())){
+			throw new BusinessException("El nivel 5 es requerido.");
+		}
+		
+		if(!ValidacionUtil.esCadenaVacia(concepto.getNivel6())){
+			throw new BusinessException("El nivel 6 es requerido.");
+		}
+		
+		if(!ValidacionUtil.esNumeroPositivo(concepto.getCobroDerecho())){
+			throw new BusinessException("El cobro de derecho es requerido.");
+		}
+		
+		if(!ValidacionUtil.esNumeroPositivo(concepto.getEjercicioFiscal())){
+			throw new BusinessException("El ejercicio fiscal es requerido.");
+		}
+		
+		if(!ValidacionUtil.esNumeroPositivo(concepto.getTipoNivel())){
+			throw new BusinessException("El tipo de nivel es requerido.");
+		}
+	}
 }

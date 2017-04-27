@@ -28,6 +28,8 @@ public class Concepto {
 	
 	private Integer tipoNivel;
 
+	private boolean activo;
+	
 	public Integer getIdConcepto() {
 		return IdConcepto;
 	}
@@ -122,6 +124,14 @@ public class Concepto {
 
 	public void setTipoNivel(Integer tipoNivel) {
 		this.tipoNivel = tipoNivel;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 

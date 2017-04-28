@@ -86,58 +86,22 @@
             </section>
             <!-- Fin del encabezado del contenido de la página -->
 
-
-
-            <!-- Usuarios Registrados -->
             <section class="content">
 
-                <div class="box box-primary">
+              
 
                     <div class="box-body">
 
-                        <div class="row">
-
+                        
                             <div class="col-md-12">
 
 
 
-                                <!-- Contenido -->
-
-                                <!-- Botón nuevo marcas 
-                                <div class="col-xs-1 col-md-5"></div>
-                                <div class="col-xs-1 col-md-5"></div>
-                                <div class="col-xs-10 col-md-2">
-                                    <div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle" type="button"
-                                            data-toggle="dropdown">
-                                            Opciones <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="button" id="crear">Modificar Verificación</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                Fin botón nuevo marcas -->
+                                <!-- Contenido -->                             
 
                                 <br /> <br />
-
-                                <div class="row">
-                                    <div class="col-xs-1" style="text-align: left;"></div>
-                                    <div class="row">
-									<div class="col-xs-3" style=" text-align: left;"></div>
-									<div class="col-xs-6 well" style=" text-align: left; ;">
-										<label for="search" class="control-label"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> BUSCAR</label>
-										<input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Ingrese numero de seguimiento" id="search"
-														name="search" placeholder="N° de seguimiento...">
-									</div>
-									<div class="col-xs-3" style=" text-align: left;"></div>
-									</div>	
-                                    <div class="col-xs-1" style="text-align: left;"></div>
-                                </div>
-                                <br /> <br />
-
-            <section class="content">
-                <div class="row">
+                                                               
+           
                     <!-- Main row -->
                     <div class="col-md-12" id="div2">
                         <div class="box box-primary">
@@ -160,17 +124,19 @@
                                                         	   placeholder="Serie (VIN)" 
                                                         	   required 
                                                         	   data-fv-field="inputVin" />
-                                                        <i class="form-control-feedback" data-fv-icon-for="inputVin" style="display: none;"></i>
-	                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="inputVin" data-fv-result="NOT_VALIDATED" style="display: none;">El VIN es requerido.</small>
-	                                                    <small class="help-block" data-fv-validator="stringLength" data-fv-for="inputVin" data-fv-result="NOT_VALIDATED" style="display: none;">El VIN por lo menos 17 caracteres.</small>
-	                                                    <small class="help-block" data-fv-validator="vin" data-fv-for="inputVin" data-fv-result="NOT_VALIDATED" style="display: none;">El VIN no esta formado correctamente.</small>
-	                                                    <small class="help-block" data-fv-validator="remote" data-fv-for="inputVin" data-fv-result="NOT_VALIDATED" style="display: none;">¡El VIN que ingreso ya existe!</small>
-                                                    </div>
+                                                        <i class="form-control-feedback" 
+                                                           data-fv-icon-for="inputVin" 
+                                                           style="display: none;"></i>
+	                                                </div>
                                          </div>                                            
                                               <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="criterioMarca" class="control-label">Marca</label>
-                                                        <input id="criterioMarca" class="form-control ui-autocomplete-input" autocomplete="off"> 
+                                                        <label for="criterioMarca" class="control-label">
+                                                        Marca
+                                                        </label>
+                                                        <input id="criterioMarca" 
+                                                               class="form-control ui-autocomplete-input" 
+                                                               autocomplete="off"> 
                                                         <input id="idMarcaVehiculo" type="hidden">
                                                     </div>
                                               </div>                                    
@@ -179,78 +145,190 @@
                                         <div class="row">                                               
                                                 <div class="col-md-4">
                                                     <div class="form-group has-feedback">
-                                                        <label for="inputNumeroMotor" class="control-label">Numero
-                                                            Motor</label> <input id="inputNumeroMotor" name="inputNumeroMotor" type="text" class="form-control" maxlength="17" placeholder="Numero Motor" required="" data-fv-field="inputNumeroMotor">
-                                                            <i class="form-control-feedback" data-fv-icon-for="inputNumeroMotor" style="display: none;"></i>
-                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="inputNumeroMotor" data-fv-result="NOT_VALIDATED" style="display: none;">El Numero de Motor es requerido.</small>
-                                                    <small class="help-block" data-fv-validator="remote" data-fv-for="inputNumeroMotor" data-fv-result="NOT_VALIDATED" style="display: none;">¡El Numero de Motor que ingreso ya existe!</small>
-                                                    <small class="help-block" data-fv-validator="stringLength" data-fv-for="inputNumeroMotor" data-fv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length</small></div>
+                                                        <label for="inputNumeroMotor" class="control-label">
+                                                        Numero Motor
+                                                        </label> 
+                                                        <input id="inputNumeroMotor" 
+                                                               name="inputNumeroMotor" 
+                                                               type="text" class="form-control" 
+                                                               maxlength="17" 
+                                                               placeholder="Numero Motor" 
+                                                               required="" data-fv-field="inputNumeroMotor">
+                                                            <i class="form-control-feedback" 
+                                                               data-fv-icon-for="inputNumeroMotor" 
+                                                               style="display: none;"></i>
+                                                   </div>
                                                 </div>                                              
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-2">
                                                     <div class="form-group has-feedback">
-                                                        <label for="inputModelo" class="control-label">Modelo</label>
-                                                        <input id="inputModelo" name="inputModelo" type="text" class="form-control" maxlength="4" placeholder="Modelo" required="" data-fv-field="inputModelo">
-                                                        <i class="form-control-feedback" data-fv-icon-for="inputModelo" style="display: none;"></i>
-                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="inputModelo" data-fv-result="NOT_VALIDATED" style="display: none;">El Modelo es requerido.</small>
-                                                    <small class="help-block" data-fv-validator="numeric" data-fv-for="inputModelo" data-fv-result="NOT_VALIDATED" style="display: none;">El Modelo debe ser numerico</small>
-                                                    <small class="help-block" data-fv-validator="stringLength" data-fv-for="inputModelo" data-fv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length</small></div>
+                                                        <label for="inputModelo" class="control-label">
+                                                        Modelo
+                                                        </label>
+                                                        <input id="inputModelo" 
+                                                               name="inputModelo" 
+                                                               type="text" 
+                                                               class="form-control" 
+                                                               maxlength="4" 
+                                                               placeholder="Modelo" 
+                                                               required="" data-fv-field="inputModelo">
+                                                        <i class="form-control-feedback" 
+                                                           data-fv-icon-for="inputModelo" 
+                                                           style="display: none;"></i>
+                                                    <small class="help-block" 
+                                                           data-fv-validator="notEmpty" 
+                                                           data-fv-for="inputModelo" 
+                                                           data-fv-result="NOT_VALIDATED" 
+                                                           style="display: none;">El Modelo es requerido.</small>
+                                                    <small class="help-block" 
+                                                           data-fv-validator="numeric" 
+                                                           data-fv-for="inputModelo" 
+                                                           data-fv-result="NOT_VALIDATED" 
+                                                           style="display: none;">El Modelo debe ser numerico</small>
+                                                    <small class="help-block" 
+                                                           data-fv-validator="stringLength" 
+                                                           data-fv-for="inputModelo" 
+                                                           data-fv-result="NOT_VALIDATED" 
+                                                           style="display: none;">Please enter a value with valid length</small></div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group has-feedback">
-                                                        <label for="selectClase" class="control-label">Clase</label>
-                                                        <select class="form-control" id="selectClase" name="selectClase" required="" data-fv-field="selectClase">
+                                                        <label for="selectClase" class="control-label">
+                                                        Clase
+                                                        </label>
+                                                        <select class="form-control" 
+                                                                id="selectClase" 
+                                                                name="selectClase" 
+                                                                required="" data-fv-field="selectClase">
                                                             <option value="1">AUTOMOVIL</option>
-                                                        </select><i class="form-control-feedback" data-fv-icon-for="selectClase" style="display: none;"></i>
-                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="selectClase" data-fv-result="NOT_VALIDATED" style="display: none;">La Clase es requerida.</small></div>
+                                                        </select><i class="form-control-feedback" 
+                                                                    data-fv-icon-for="selectClase" 
+                                                                    style="display: none;"></i>
+                                                    <small class="help-block" 
+                                                           data-fv-validator="notEmpty" 
+                                                           data-fv-for="selectClase" 
+                                                           data-fv-result="NOT_VALIDATED" 
+                                                           style="display: none;">La Clase es requerida.</small></div>
                                                 </div>
                                                 
                                                 <div class="col-md-3">
                                                     <div class="form-group has-feedback">
-                                                        <label for="selectTipo" class="control-label">Tipo</label>
-                                                        <select class="form-control" id="selectTipo" name="selectTipo" required="" data-fv-field="selectTipo">
-                                                            <option value="1">VAGONETA</option>
-                                                        </select><i class="form-control-feedback" data-fv-icon-for="selectTipo" style="display: none;"></i>
-                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="selectTipo" data-fv-result="NOT_VALIDATED" style="display: none;">El Tipo es requerido.</small></div>
+                                                        <label for="selectTipo" class="control-label">
+                                                        Tipo
+                                                        </label>
+                                                        <select class="form-control" 
+                                                                id="selectTipo" 
+                                                                name="selectTipo" 
+                                                                required="" data-fv-field="selectTipo">
+                                                            <option value="1">
+                                                            VAGONETA
+                                                            </option>
+                                                        </select>
+                                                        <i class="form-control-feedback"
+                                                           data-fv-icon-for="selectTipo" 
+                                                           style="display: none;"></i>
+                                                    <small class="help-block"
+                                                           data-fv-validator="notEmpty" 
+                                                           data-fv-for="selectTipo" 
+                                                           data-fv-result="NOT_VALIDATED" 
+                                                           style="display: none;">El Tipo es requerido.</small></div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group has-feedback">
-                                                        <label for="inputLinea" class="control-label">Linea</label>
-                                                        <input class="form-control" id="inputLinea" name="inputLinea" required="" data-fv-field="inputLinea"><i class="form-control-feedback" data-fv-icon-for="inputLinea" style="display: none;"></i>
-                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="inputLinea" data-fv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small></div>
+                                                        <label for="inputLinea" class="control-label">
+                                                        Linea
+                                                        </label>
+                                                        <input class="form-control" 
+                                                               id="inputLinea" 
+                                                               name="inputLinea" 
+                                                               required="" data-fv-field="inputLinea">
+                                                               <i class="form-control-feedback" 
+                                                                  data-fv-icon-for="inputLinea" 
+                                                                  style="display: none;"></i>
+                                                    <small class="help-block" 
+                                                           data-fv-validator="notEmpty" 
+                                                           data-fv-for="inputLinea" 
+                                                           data-fv-result="NOT_VALIDATED" 
+                                                           style="display: none;">Please enter a value</small></div>
                                                 </div>
                                                 <div class="col-md-4">
                                                 <div class="form-group has-feedback">
-                                                    <label for="selectStatus" class="control-label">STATUS</label> <select class="form-control" id="selectStatus" name="selectStatus" disabled="" required="" data-fv-field="selectStatus">
+                                                    <label for="selectStatus" class="control-label">
+                                                    STATUS
+                                                    </label> 
+                                                    <select class="form-control" 
+                                                            id="selectStatus" 
+                                                            name="selectStatus" 
+                                                            disabled="" required="" 
+                                                            data-fv-field="selectStatus">
                                                         <option value="1">PAGADO</option>
                                                         <option value="2">SIN PAGO</option>
                                                         <option value="3">EN ESPERA</option>
-                                                    </select><i class="form-control-feedback" data-fv-icon-for="selectOficina" style="display: none;"></i>
-                                                <small class="help-block" data-fv-validator="notEmpty" data-fv-for="selectOficina" data-fv-result="NOT_VALIDATED" style="display: none;">La Oficina es requerida.</small></div>
+                                                    </select><i class="form-control-feedback" 
+                                                                data-fv-icon-for="selectOficina" 
+                                                                style="display: none;"></i>
+                                                <small class="help-block" 
+                                                       data-fv-validator="notEmpty" 
+                                                       data-fv-for="selectOficina" 
+                                                       data-fv-result="NOT_VALIDATED" 
+                                                       style="display: none;">La Oficina es requerida.</small></div>
                                                </div>
                                             </div>
                                         </fieldset>                                       
                                         <br>                                       
-                                        <br>
+                                        <br>  
                                         <fieldset>
                                             <legend>Validacion Ministerial</legend>
                                             <div class="row">
                                             <div class="col-md-6">
                                                     <div class="form-group has-feedback">
-                                                        <label for="inputModelo" class="control-label">Folio Ministerial</label>
-                                                        <input id="infolioMinisterial" name="inputfolioMinisterial" type="text" class="form-control" maxlength="4" placeholder="folioMinisterial" required="" data-fv-field="inputfolioMinisterial">
-                                                        <i class="form-control-feedback" data-fv-icon-for="inputfolioMinisterial" style="display: none;"></i>
-                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="inputfolioMinisterial" data-fv-result="NOT_VALIDATED" style="display: none;">El folio es requerido.</small>
-                                                    <small class="help-block" data-fv-validator="numeric" data-fv-for="inputModelo" data-fv-result="NOT_VALIDATED" style="display: none;">El folio debe ser numerico</small>
-                                                    <small class="help-block" data-fv-validator="stringLength" data-fv-for="inputfolioMinisterial" data-fv-result="NOT_VALIDATED" style="display: none;">Please enter a value with valid length</small></div>
+                                                        <label for="folioMinisterial" class="control-label">
+                                                        Folio Ministerial
+                                                        </label>
+                                                        <input id="infolioMinisterial" 
+                                                               name="infolioMinisterial" 
+                                                               type="text" class="form-control" 
+                                                               maxlength="8" placeholder="folioMinisterial" 
+                                                               required="" data-fv-field="infolioMinisterial">
+                                                        <i class="form-control-feedback" 
+                                                           data-fv-icon-for="infolioMinisterial" style="display: none;"></i>                                                   
+                                                    <small class="help-block" 
+                                                           data-fv-validator="stringLength" 
+                                                           data-fv-for="infolioMinisterial" 
+                                                           data-fv-result="NOT_VALIDATED" 
+                                                           style="display: none;">Please enter a value with valid length</small>
+                                                            <small class="help-block" 
+                                                           data-fv-validator="notEmpty" 
+                                                           data-fv-for="infolioMinisterial" 
+                                                           data-fv-result="NOT_VALIDATED" 
+                                                           style="display: none;">El Folio es requerido.</small>
+                                                    <small class="help-block" 
+                                                           data-fv-validator="numeric" 
+                                                           data-fv-for="infolioMinisterial" 
+                                                           data-fv-result="NOT_VALIDATED" 
+                                                           style="display: none;">El Folio debe ser numerico</small>
+                                                    <small class="help-block" 
+                                                           data-fv-validator="stringLength" 
+                                                           data-fv-for="infolioMinisterial" 
+                                                           data-fv-result="NOT_VALIDATED" 
+                                                           style="display: none;">Please enter a value with valid length</small></div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group has-feedback">
-                                                        <label for="inputobsMinisterial" class="control-label">Observaciones</label>
-                                                        <input id="inputobsMinisterial" name="inputobsMinisterial" type="text" class="form-control" maxlength="144" placeholder="Observaciones" required="" data-fv-field="inputobsMinisterial">
-                                                        <i class="form-control-feedback" data-fv-icon-for="inputobsMinisterial" style="display: none;"></i>
+                                                        <label for="inputobsMinisterial" 
+                                                               class="control-label">
+                                                               Observaciones
+                                                        </label>
+                                                        <input id="inputobsMinisterial" 
+                                                               name="inputobsMinisterial" 
+                                                               type="text" class="form-control" 
+                                                               maxlength="144" placeholder="Observaciones" 
+                                                               required="" data-fv-field="inputobsMinisterial">
+                                                        <i class="form-control-feedback" 
+                                                           data-fv-icon-for="inputobsMinisterial" style="display: none;"></i>
                                                 </div>
+                                                <!-- estatus verificacion 
                                                 <div class="row">
                                                 <div class="col-md-6">
                                                 <div class="form-group has-feedback">
@@ -270,17 +348,26 @@
                                                         <option value="7">PAGA DESPUES</option>
                                                         <option value="8">CONDONADO</option>
                                                         <option value="9">CANCELADO</option>
-                                                    </select><i class="form-control-feedback" data-fv-icon-for="selectEstatusVerificacion" style="display: none;"></i>
-                                                <small class="help-block" data-fv-validator="notEmpty" data-fv-for="selectEstatusVerificacion" data-fv-result="NOT_VALIDATED" style="display: none;">El Estatus de Verificacion es requerido.</small></div>
+                                                    </select><i class="form-control-feedback" 
+                                                                data-fv-icon-for="selectEstatusVerificacion" 
+                                                                style="display: none;"></i>
+                                                <small class="help-block" 
+                                                       data-fv-validator="notEmpty" 
+                                                       data-fv-for="selectEstatusVerificacion" 
+                                                       data-fv-result="NOT_VALIDATED" 
+                                                       style="display: none;">El Estatus de Verificacion es requerido.</small></div>
                                                 </div>
                                                 </div>
-                                            <!-- Date selector
+                                                Estatus verificacion-->
+                                           <!-- Inicio selector de fecha
                                             <div class="col-md-6">
                                                     <div class="form-group has-feedback">
-                                                        <label for="selectClase" class="control-label">Fecha de validacion ministerial</label>
+                                                        <label for="selectClase" class="control-label">
+                                                        Fecha de validacion ministerial
+                                                        </label>
                                                       <input id="fechaverimin" type="date" name="bday">
                                                         </div>
-                                             Fin de Date selector-->
+                                             Fin del selector de fecha-->
 
                                             </div>
                                             </div>
@@ -304,7 +391,7 @@
             <!-- Fin contenido Alta Vehiculo -->
         </div> <!-- Fin contenido -->
                             </div>
-                        </div>
+                        
                         <!-- DIV INFORMACION DE LA VERIFICACION SELECIONADA -->
                         <div id="divInfo" style="display: none" class="well">
                             <button id="botonGastos" type="button"
@@ -323,9 +410,9 @@
                             <div class="row" id="contenido"></div>
                             </fieldset>                            
                         </div>
-            </section>
+            
              <!--Fin contenido Registrar marca -->
-        </div>
+        
         <!-- Fin del contenido de la página -->
 
         <!-- Footer -->
@@ -343,7 +430,7 @@
         <!-- Add the sidebar's background. This div must be placed
                immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
-    </div>
+ 
 </body>
 <!-- Scripts -->
 <!-- jQuery -->
@@ -397,14 +484,22 @@
                             dataType: "json",
                             success : function(data) {
                                 for(d in data){
-                                    $('#inputVin').val(data['vinVehiculo']);
+                                	$('#inputVin').val(data['vinVehiculo']);
+                                	$('#inputNumeroMotor').val(data['numeroMotorVehiculo']);
+                                	$('#idMarcaVehiculo').val(data['idMarcaVehiculo']);
+                                	$('#inputModelo').val(data['modeloVehiculo']);
+                                	$('#selectClase').val(data['idClaseVehiculo']);
+                                	$('#selectTipo').val(data['idTipoVehiculo']);
+                                	$('#inputLinea').val(data['lineaVehiculo']);
+                                	$('#inputobsMinisterial').val(data['estatusVerificacion']);
+                                	$('#infolioMinisterial').val(data['noSeguimientoVerificion']);                               	
+                                
                                 }               
                             },
                             error : function(jqXHR,textStatus,errorThrown) {
                                 console.log(textStatus+ " "+ errorThrown);
                             }           
                     });
-
 
                         //Genera los checkbox de años
                         combos();
@@ -437,10 +532,7 @@
 
                                             if (formValidation.isValid()) {
 
-                                                var datos = {};
-                                                var idOficinaVerificacion = $('#selectOficina');
-                                                var ejercicio = $('#inputEjercicio');
-                                                var estatusVerificacion = $('#selectEstatusVerificacion');
+                                                var datos = {};                                                
                                                 var vinVehiculo = $('#inputVin');
                                                 var numeroMotorVehiculo = $('#inputNumeroMotor');
                                                 var idMarcaVehiculo = $('#idMarcaVehiculo');
@@ -448,78 +540,9 @@
                                                 var idClaseVehiculo = $('#selectClase');
                                                 var idTipoVehiculo = $('#selectTipo');
                                                 var lineaVehiculo = $('#inputLinea');
-                                                var nombrePersonaVerificacion = $('#inputNombrePersona');
-                                                var apellidoPaternoPersonaVerificacion = $('#inputApellidoPaterno');
-                                                var apellidoMaternoPersonaVerificacion = $('#inputApellidoMaterno');
-                                                var email = $('#inputEmail');
-
-                                                var facturaVehiculoDocumentacion = $(
-                                                        "#facturaVehiculoDocumentacionInput")
-                                                        .is(':checked');
-                                                var identificacionOficialDocumentacion = $(
-                                                        "#identificacionOficialDocumentacion")
-                                                        .is(':checked');
-                                                var comprobanteDomicilioDocumentacion = $(
-                                                        "#comprobanteDomicilioDocumentacionInput")
-                                                        .is(':checked');
-                                                var rfcPersonaMoralDocumentacion = $(
-                                                        "#rfcPersonaMoralDocumentacionInput")
-                                                        .is(':checked');
-                                                var identificacionRepresentanteLegalDocumentacion = $(
-                                                        "#identificacionRepresentanteLegalDocumentacionInput")
-                                                        .is(':checked');
-
-                                                var anioActualComprobantePago = 0;
-                                                var anio1ComprobantePago = 0;
-                                                var anio2ComprobantePago = 0;
-                                                var anio3ComprobantePago = 0;
-                                                var anio4ComprobantePago = 0;
-                                                var anio5ComprobantePago = 0;
-
-                                                if ($(
-                                                        "#anioActualComprobantePago")
-                                                        .is(':checked')) {
-                                                    anioActualComprobantePago = $(
-                                                            "#anioActualComprobantePago")
-                                                            .val();
-                                                }
-                                                if ($("#anio1ComprobantePago")
-                                                        .is(':checked')) {
-                                                    anio1ComprobantePago = $(
-                                                            "#anio1ComprobantePago")
-                                                            .val();
-                                                }
-                                                if ($("#anio2ComprobantePago")
-                                                        .is(':checked')) {
-                                                    anio2ComprobantePago = $(
-                                                            "#anio2ComprobantePago")
-                                                            .val();
-                                                }
-                                                if ($("#anio3ComprobantePago")
-                                                        .is(':checked')) {
-                                                    anio3ComprobantePago = $(
-                                                            "#anio3ComprobantePago")
-                                                            .val();
-                                                }
-                                                if ($("#anio4ComprobantePago")
-                                                        .is(':checked')) {
-                                                    anio4ComprobantePago = $(
-                                                            "#anio4ComprobantePago")
-                                                            .val();
-                                                }
-                                                if ($("#anio5ComprobantePago")
-                                                        .is(':checked')) {
-                                                    anio5ComprobantePago = $(
-                                                            "#anio5ComprobantePago")
-                                                            .val();
-                                                }
-
-                                                datos.idOficinaVerificacion = idOficinaVerificacion
-                                                        .val();
-                                                datos.ejercicio = ejercicio
-                                                        .val();
-                                                datos.estatusVerificacion = estatusVerificacion
-                                                        .val();
+                                                var obsMinisterial = $('#inputobsMinisterial');
+                                                var folioMinisterial = $('#infolioMinisterial');
+                                               
                                                 datos.vinVehiculo = vinVehiculo
                                                         .val();
                                                 datos.numeroMotorVehiculo = numeroMotorVehiculo
@@ -533,25 +556,11 @@
                                                 datos.idTipoVehiculo = idTipoVehiculo
                                                         .val();
                                                 datos.lineaVehiculo = lineaVehiculo
+                                                        .val(); 
+                                                datos.obsMinisterial = obsMinisterial
                                                         .val();
-                                                datos.nombrePersonaVerificacion = nombrePersonaVerificacion
+                                                datos.folioMinisterial = folioMinisterial
                                                         .val();
-                                                datos.apellidoPaternoPersonaVerificacion = apellidoPaternoPersonaVerificacion
-                                                        .val();
-                                                datos.apellidoMaternoPersonaVerificacion = apellidoMaternoPersonaVerificacion
-                                                        .val();
-                                                datos.email = email.val();
-                                                datos.facturaVehiculoDocumentacion = facturaVehiculoDocumentacion;
-                                                datos.identificacionOficialDocumentacion = identificacionOficialDocumentacion;
-                                                datos.comprobanteDomicilioDocumentacion = comprobanteDomicilioDocumentacion;
-                                                datos.rfcPersonaMoralDocumentacion = rfcPersonaMoralDocumentacion;
-                                                datos.identificacionRepresentanteLegalDocumentacion = identificacionRepresentanteLegalDocumentacion;
-                                                datos.anioActualComprobantePago = anioActualComprobantePago;
-                                                datos.anio1ComprobantePago = anio1ComprobantePago;
-                                                datos.anio2ComprobantePago = anio2ComprobantePago;
-                                                datos.anio3ComprobantePago = anio3ComprobantePago;
-                                                datos.anio4ComprobantePago = anio4ComprobantePago;
-                                                datos.anio5ComprobantePago = anio5ComprobantePago;
 
                                                 var formData = JSON
                                                         .stringify(datos);
@@ -559,7 +568,7 @@
                                                 console.log(formData);
 
                                                 var urlPost = "${pageContext.request.contextPath}/cajas/vehicular/verificacion";
-                                                var admin = "${pageContext.request.contextPath}/views/verificacion/verificaciones.jsp";
+                                                var admin = "${pageContext.request.contextPath}/views/verificacion/verificacionMinisterial.jsp";
 
                                                 $
                                                         .ajax({
@@ -574,8 +583,8 @@
                                                                     jQxhr) {
                                                                 swal(
                                                                         {
-                                                                            text : "Verificación Vehicular registrada correctamente",
-                                                                            title : "No Seguimiento: "
+                                                                            text : "Verificación Vehicular Ministerial registrada correctamente",
+                                                                            title : "Verificación Vehicular Ministerial registrada correctamente: "
                                                                                     + data.valor,
                                                                             type : "success",
                                                                             closeOnCancel : false
@@ -602,68 +611,7 @@
                                             //live: 'enabled',
                                             //Lista de campos a validar y las reglas que aplican para cada uno de ellos
                                             fields : {
-                                                'inputVin' : { //validación del campo
-                                                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-                                                    validators : { //validaciones
-
-                                                        notEmpty : {
-                                                            message : 'El VIN es requerido.'
-                                                        },
-                                                        stringLength : {
-                                                            min : 17,
-                                                            max : 17,
-                                                            message : 'El VIN por lo menos 17 caracteres.'
-                                                        },
-                                                        vin : {
-                                                            message : 'El VIN no esta formado correctamente.'
-                                                        },
-                                                        remote : {
-                                                            url : '${pageContext.request.contextPath}/cajas/vehicular/verificacion/existeVin?'
-                                                                    + $(
-                                                                            '#inputVin')
-                                                                            .val(),
-                                                            message : "¡El VIN que ingreso ya existe!",
-                                                            data : function(
-                                                                    validator,
-                                                                    $field,
-                                                                    value) {
-                                                                return {
-                                                                    inputVin : validator
-                                                                            .getFieldElements(
-                                                                                    'inputVin')
-                                                                            .val()
-                                                                };
-                                                            }
-                                                        }
-                                                    },
-                                                },
-                                                'inputNumeroMotor' : { //validación del campo
-                                                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-                                                    validators : { //validaciones
-
-                                                        notEmpty : {
-                                                            message : 'El Numero de Motor es requerido.'
-                                                        },
-                                                        remote : {
-                                                            url : '${pageContext.request.contextPath}/cajas/vehicular/verificacion/existeNumeroMotor?'
-                                                                    + $(
-                                                                            '#inputNumeroMotor')
-                                                                            .val(),
-                                                            message : "¡El Numero de Motor que ingreso ya existe!",
-                                                            data : function(
-                                                                    validator,
-                                                                    $field,
-                                                                    value) {
-                                                                return {
-                                                                    inputNumeroMotor : validator
-                                                                            .getFieldElements(
-                                                                                    'inputNumeroMotor')
-                                                                            .val()
-                                                                };
-                                                            }
-                                                        }
-                                                    }
-                                                },
+                                                   
                                                 'selectMarca' : { //validación del campo
                                                     trigger : 'blur', //Se especifica cuando se acciona la validación del campo
                                                     validators : { //validaciones

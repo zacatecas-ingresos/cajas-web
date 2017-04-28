@@ -29,6 +29,12 @@ public class InfoContribuyente {
 		}
 	}
 
+	public InfoContribuyente(Integer idContribuyente, String contribuyente, String rfc) {
+		this.idContribuyente = idContribuyente;
+		this.contribuyente = contribuyente;
+		this.rfc = rfc;
+	}
+
 	public int getIdEstatusContribuyente() {
 		return idEstatusContribuyente;
 	}

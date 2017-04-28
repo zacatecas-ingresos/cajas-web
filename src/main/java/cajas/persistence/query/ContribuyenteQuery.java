@@ -55,7 +55,7 @@ public class ContribuyenteQuery {
 	 */
 	public InfoContribuyente obtenerContirbuyentePoRfc(String rfc) {
 		try {
-			return entityManager.createQuery(BUSCAR_CONTRIBUYENTE_RFC, InfoContribuyente.class).setParameter(rfc, rfc)
+			return entityManager.createQuery(BUSCAR_CONTRIBUYENTE_RFC, InfoContribuyente.class).setParameter("rfc", rfc)
 					.getSingleResult();
 		} catch (NoResultException exception) {
 			throw new BusinessException("No se encontró contribuyente con el rfc " + rfc);

@@ -12,7 +12,7 @@ public class ContribuyentesObligacionesQuery {
 	private final EntityManager entityManager;
 
 	private static final String CONSULTA_OBLIGACION_ASIGNADA = "SELECT c FROM ContribuyentesObligacionesEntity AS c "
-			+ "WHERE c.idObligacion=:idObligacion AND WHERE c.idContribuyente =:idContribuyente";
+			+ "WHERE c.idObligacion=:idObligacion AND c.idContribuyente =:idContribuyente";
 
 	public ContribuyentesObligacionesQuery(EntityManager entityManager) {
 		this.entityManager = entityManager;

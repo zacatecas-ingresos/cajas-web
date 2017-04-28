@@ -23,6 +23,7 @@ import cajas.util.ValidacionUtil;
 import cajas.util.VencimientoObligacion;
 
 public class CalculoEstatalService {
+	
 	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
 
@@ -34,11 +35,6 @@ public class CalculoEstatalService {
 
 	@Inject
 	private VencimientoObligacion vencimientoObligacion;
-
-	protected List<Contribuyente> consultarContribuyentePorCriterio(String criterio) {
-		List<Contribuyente> contribuyentes = new ArrayList<>();
-		return contribuyentes;
-	}
 
 	protected List<Sucursal> consultarSucursalesPorIdContribuyente(Integer idContribuyente) {
 		List<Sucursal> sucursales = new ArrayList<>();
@@ -71,14 +67,13 @@ public class CalculoEstatalService {
 				throw new BusinessException("El periodo que intenta declarar es improcedente");
 			}
 		}
-		
 
 		// Verificar los tipos de datos
 		BigDecimal impuesto = BigDecimal.ZERO;
 		BigDecimal uaz = BigDecimal.ZERO;
 		BigDecimal actualizacion = BigDecimal.ZERO;
 		BigDecimal recargo = BigDecimal.ZERO;
-		
+
 		if (declaracion.getIdObligacion() == TipoObligacion.NOMINA) {
 			impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(),
 					declaracion.getEjercicioFiscal(), declaracion.getPeriodo(), TipoTasa.TASA_NOMINA);
@@ -87,8 +82,9 @@ public class CalculoEstatalService {
 					declaracion.getEjercicioFiscal(), declaracion.getPeriodo(), TipoTasa.TASA_HOSPEDAJE);
 		}
 
-//		uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(),
-//				declaracion.getPeriodo(), TipoTasa.TASA_UAZ);
+		// uaz = calculoImpuestoService.impuestoEstatal(impuesto,
+		// declaracion.getEjercicioFiscal(),
+		// declaracion.getPeriodo(), TipoTasa.TASA_UAZ);
 
 		// Validar si la obligación ha vencido para saber si se aplica
 		// actualización y recargo
@@ -96,7 +92,8 @@ public class CalculoEstatalService {
 				declaracion.getEjercicioFiscal())) {
 
 			ContribucionFiscal contribucionFiscal = new ContribucionFiscal();
-			Periodo periodoActualizacion = generarPeriodoActualizacionEstatal(declaracion.getEjercicioFiscal(),periodo.getIdMes());
+			Periodo periodoActualizacion = generarPeriodoActualizacionEstatal(declaracion.getEjercicioFiscal(),
+					periodo.getIdMes());
 			Periodo periodoRecargo = generarPeriodoRecargoEstatal(declaracion.getEjercicioFiscal(), periodo.getIdMes());
 			contribucionFiscal.setPeriodoActualizacion(periodoActualizacion);
 			contribucionFiscal.setPeriodoRecargo(periodoRecargo);
@@ -104,18 +101,20 @@ public class CalculoEstatalService {
 			contribucionFiscal.setUaz(uaz);
 			contribucionFiscal.setCantidadAdeuda(impuesto);
 			contribucionFiscal.setTipoTasaRecargo(TipoTasaRecargo.tasaEstatal);
-			
-			ActualizacionRecargo actualizacionRecargo = actualizacionesRecargosService.calculoActualizacion(contribucionFiscal);
+
+			ActualizacionRecargo actualizacionRecargo = actualizacionesRecargosService
+					.calculoActualizacion(contribucionFiscal);
 
 			actualizacion = actualizacionRecargo.getImporteActualizacion();
 			recargo = actualizacionRecargo.getImporteRecargo();
 		}
-		
+
 		BigDecimal nomina = BigDecimal.ZERO;
 		nomina = impuesto;
-		impuesto  =impuesto.add(actualizacion);
-		uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(),declaracion.getPeriodo(), TipoTasa.TASA_UAZ);
-		
+		impuesto = impuesto.add(actualizacion);
+		uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(),
+				declaracion.getPeriodo(), TipoTasa.TASA_UAZ);
+
 		BigDecimal total = impuesto.add(uaz).add(actualizacion).add(recargo);
 
 		CalculoTemporalEstatalEntity calculoTemporal = new CalculoTemporalEstatalEntity();
@@ -139,12 +138,16 @@ public class CalculoEstatalService {
 
 		ImpuestoEstatal impuestoEstatal = new ImpuestoEstatal();
 		impuestoEstatal.setIdCalculoTemporal(calculoTemporal.getIdCalculoTemporal());
-		//impuestoEstatal.setImpuesto(impuesto); antes
+		// impuestoEstatal.setImpuesto(impuesto); antes
 		impuestoEstatal.setImpuesto(nomina);
 		impuestoEstatal.setUaz(uaz);
 		impuestoEstatal.setActualizaciones(actualizacion);
 		impuestoEstatal.setRecargos(recargo);
 		impuestoEstatal.setTotal(total);
+		impuestoEstatal.setPeriodo(declaracion.getPeriodo());
+		impuestoEstatal.setaFiscal(declaracion.getEjercicioFiscal());
+		impuestoEstatal.setObligacion(declaracion.getIdObligacion());
+		impuestoEstatal.setDeclaracion(declaracion.getIdTipoDeclaracion());
 		return impuestoEstatal;
 	}
 

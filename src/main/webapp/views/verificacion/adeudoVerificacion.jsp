@@ -159,8 +159,7 @@
 													<div class="form-group">
 														<label for="idEstado" class="control-label">Estado:</label>
 														<select class="form-control" id="idEstado" name="idEstado"
-															required>
-															<option value="1" selected>AGUASCALIENTES</option>
+															required>															
 														</select>
 													</div>
 												</div>
@@ -181,8 +180,6 @@
 														<label for="documento" class="control-label">Documento:</label>
 														<select class="form-control" id="documento"
 															name="documento" required>
-															<option value="1" selected>doc 1</option>
-															<option value="2">doc 2</option>
 														</select>
 													</div>
 												</div>
@@ -428,14 +425,17 @@
 												var anio3VerificacionAdeudo = 0;
 												var anio4VerificacionAdeudo = 0;
 												var anio5VerificacionAdeudo = 0;
+												var baja = 0;
 
-												if ($(
-														"#anio0VerificacionAdeudo")
-														.is(':checked')) {
-													anio0VerificacionAdeudo = $(
-															"#anio0VerificacionAdeudo")
-															.val();
+												if ($("#baja").is(':checked'))
+												{
+													baja = $("#anio0VerificacionAdeudo").val();
 												}
+												
+												if ($("#anio0VerificacionAdeudo").is(':checked'))
+													{
+														anio0VerificacionAdeudo = $("#anio0VerificacionAdeudo").val();
+													}
 												if ($(
 														"#anio1VerificacionAdeudo")
 														.is(':checked')) {
@@ -650,6 +650,37 @@
 					                    .formValidation('revalidateField', 'bajaPlaca');
 							    }
 						    });
+						
+						var urlGetEstados = "${pageContext.request.contextPath}/cajas/estados";
+						$.ajax({
+							type : "GET",
+							dataType : 'json',
+							url : urlGetEstados,
+							success : function(data) {
+						        $.each(data, function(key, item) {
+						            $('#idEstado').append($('<option>').text(item.estado).attr('value', item.idEstado));
+						        });
+							},
+							error : function(jqXHR, textStatus, errorThrown) {
+								console.log(textStatus + " " + errorThrown);
+							}
+						});
+						
+						var urlGetDocumentos = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/documentoPedimento/obtenerDocumentos";
+						$.ajax({
+							type : "GET",
+							dataType : 'json',
+							url : urlGetDocumentos,
+							success : function(data) {
+						        $.each(data, function(key, item) {
+						            $('#documento').append($('<option>').text(item.documento).attr('value', item.idDocumentoPedimento));
+						        });
+							},
+							error : function(jqXHR, textStatus, errorThrown) {
+								console.log(textStatus + " " + errorThrown);
+							}
+						});
+						
 						
 						//Errores
 						$

@@ -93,12 +93,5 @@ public class ContribuyenteEJB {
         contribuyenteEntity = contribuyenteFactory.dtoAEntity(contribuyente, contribuyenteEntity);
         contribuyenteQuery.editarContribuyente(contribuyenteEntity);
     }
-    
-    public void eliminarContribuyente(Integer idContribuyente) {
-        if (idContribuyente == null || idContribuyente <= 0) {
-            throw new BusinessException("No se puede eliminar un ID nulo o menor que cero.");
-        }
-        
-        contribuyenteQuery.eliminarContribuyente(idContribuyente);
-    }
+
 }

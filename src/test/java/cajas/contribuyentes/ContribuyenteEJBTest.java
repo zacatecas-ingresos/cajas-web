@@ -67,7 +67,7 @@ public class ContribuyenteEJBTest {
         return war;    
     }
     
-    //@Ignore
+    @Ignore
     @Test
     public void crearContribuyente() {
         LOGGER.infov(PLANTILLA_INICANDO_TEST, "crearContribuyente");
@@ -119,13 +119,6 @@ public class ContribuyenteEJBTest {
         contribuyente.setId(1);
         contribuyente.setRfc("MARK870510MCCJXR00");
         contribuyenteEJB.editarContribuyente(contribuyente);
-    }
-    
-    @Ignore
-    @Test
-    public void eliminarContribuyente() {
-        LOGGER.infov(PLANTILLA_INICANDO_TEST, "eliminarContribuyente");
-        contribuyenteEJB.eliminarContribuyente(1);
     }
 
 }

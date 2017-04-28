@@ -77,7 +77,7 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					<span style="color: #798c9c"> </span>Presupuesto ISN
+					<span style="color: #798c9c"> </span>Presupuesto Estatal
 				</h1>
 			</section>
 
@@ -94,29 +94,18 @@
 							</div>
 							<div class="box-body">
 									<div class="row">
-										<div class="col-md-2">
+										<div class="col-md-3">
 											<div class="form-group">
 												<label>Ingrese un Criterio Búsqueda:</label> 
 											</div>
 										</div>
-										<div class="col-md-3">
+										<div class="col-md-6">
 											<div class="form-group">
 												<input type="text" class="form-control" id="inputCriterio"
 												placeholder="Ingrese criterio busqueda">
 											</div>
 										</div>
-										<div class="col-md-2">
-											<div class="form-group">
-												<label>Obligación:</label> 
-											</div>
-										</div>
 										<div class="col-md-3">
-											<select
-												class="form-control " id="selectObligacion" name= "selectObligacion">
-												<option value="">Seleccione	una obligación</option>
-											</select>
-										</div>
-										<div class="col-md-2">
 											<button type="button"
 											class="btn btn-sm btn-success glyphicon glyphicon-search"
 											id="btnBuscar">
@@ -124,27 +113,6 @@
 										</div>
 									</div>
 								<br /> <br />
-							</div>
-							
-							<div class="box-footer"  id="resultadoBusqueda" >
-								<div class="col-md-12">
-									<table id="tablaContribuyente"
-										class="tablaUsuarios table table-bordered table-hover">
-										<thead>
-											<tr class="bg-primary">
-											<th>RFC</th>
-											<th>NOMBRE O RAZÓN SOCIAL</th>
-											<th>DIRECCIÓN FISCAL</th>
-											<th>FECHA INICIO</th>
-											<th>ESTATUS</th>
-											</tr>
-										</thead>
-										<tbody>
-										</tbody>
-									</table>
-								</div>								
-								<br /> <br />
-								<button type="button" class="btn btn-primary glyphicon glyphicon-eye-open" id="seleccionarContribuyente">&nbsp;Ver Contribuyente</button>
 							</div>
 						</div>
 					</div>
@@ -188,11 +156,19 @@
 												placeholder="Nombre contribuyente" >
 											</div>
 										</div>
+										<div class="form-group">
+											<label for="selectObligacion" class="col-sm-2 control-label" >Obligación:</label> 
+											 <div class="col-sm-4">
+												<select
+													class="form-control " id="selectObligacion" name= "selectObligacion">
+													<option value="">Seleccione	una obligación</option>
+												</select>
+											 </div>
+										</div>
 									</form>
 								</div>
-							<br /> <br />
 
-							<div class="col-md-12">
+							<div class="col-md-12" id="panelSucursales">
 								<table id="tablaSucursales"
 									class="tablaUsuarios table table-bordered table-hover">
 									<thead>
@@ -300,6 +276,13 @@
 											name="inputImporteHospedaje"
 											placeholder="Importe nómina" type="text">
 									</div>
+									<div class="form-group">
+										<button type="button" id="calcular-btn"
+											class="btn btn-success btn-lg pull-left">
+											<i class="fa fa-calculator"></i> Calcular
+										</button>
+									</div>
+
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
@@ -356,22 +339,20 @@
 							</div>
 							<!-- /.box-body -->
 							<div class="box-footer">
-									<button type="button" id="cancelar-btn"
-											class="btn btn-danger btn-lg pull-left">
+								<div class="row" >
+									<div class="col-md-6">
+										<button type="button" id="cancelar-btn"
+											class="btn btn-danger btn-lg pull-right">
 											<i class="fa fa-close"></i> Cancelar
-									</button>
-									
-									<div class="btn-toolbar">										
-										<button type="button" id="calcular-btn"
-											class="btn btn-success btn-lg pull-right">
-											<i class="fa fa-calculator"></i> Calcular
 										</button>
-
+									</div>
+									<div class="col-md-6">
 										<button type="button" id="agregar-btn"
-											class="btn btn-primary btn-lg pull-right">
+											class="btn btn-primary btn-lg pull-left">
 											<i class="fa fa-plus"></i> Agregar
-										</button>
-									</div>								
+										</button>										
+									</div>									
+								</div>								
 							</div>
 						</div>						
 					</div>
@@ -405,7 +386,7 @@
 									</button>	
 									<button type="button" id="save-btn"
 											class="btn btn-success btn-md pull-right">
-											<i class="fa fa-trash"></i> Guardar Resultados
+											<i class="fa fa-trash"></i> Generar Presupuesto
 									</button>								
 								</div>
 							</div>
@@ -475,36 +456,22 @@
 
 
 <script>
-	$(document).ready(function() {
+$(document).ready(function() {
 		
-		var resultados = [];
-		var rfcContribuyente;
-		var datosCalculo;
-		var data = [{rfc:'ROAA6411012FA', nombre:'ABEL RODRIGUEZ AGUILAR', domicilio:'CARR.A SAN RAMON KM. 0+800', fechaInicio:new Date(), activo:true,
-								sucursales:[{numero:1, calle:'CARR.A SAN RAMON', numInt:2, numExt:4, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:2, declara:true},
-									{numero:2, calle:'SAN RAMON', numInt:2, numExt:4, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:2, declara:true}]},
-							{rfc:'TOSC850108M67', nombre:'CARLOS FRANCISCO TORRES SORIANO', domicilio:'PRIVADA LOS PINOS NO. 204', fechaInicio:new Date(), activo:true,
-								sucursales:[{numero:1, calle:'PRIVADA LOS PINOS', numInt:204, numExt:13, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:2, declara:true}]},
-							{rfc:'SAAC560304V15', nombre:'CRISTOBAL IVAN SALINAS ARANDA', domicilio:'PRIV. SIERRA HERMOSA NO. 19', fechaInicio:new Date(), activo:true,
-								sucursales:[{numero:1, calle:'PRIV. SIERRA HERMOSA', numInt:19, numExt:10, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:1, declara:true}]},
-							{rfc:'DRZ9501053P1', nombre:'DISTRIBUIDORA RODRIGUEZ DE ZAC', domicilio:'HIDALGO NO. 5', fechaInicio:new Date(), activo:true,
-								sucursales:[{numero:1, calle:'HIDALGO', numInt:5, numExt:1, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:3, declara:true},
-									{numero:1, calle:'HIDALGO', numInt:5, numExt:1, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:1, declara:true}]},
-							{rfc:'GCC-020227-UW5', nombre:'GRUPO CONSTRUCTOR CARTAGENA', domicilio:'AV. VIÑEDOS RIVER No. 805 AGS.', fechaInicio:new Date(), activo:true,
-								sucursales:[{numero:1, calle:'AV. VIÑEDOS RIVER', numInt:805, numExt:8, colonia:'SIN DATO', municipio:'ZACATECAS', empleados:5, declara:true}]}];
-	
-
-
+	var resultados = [];
+	var rfcContribuyente;
+	var datosCalculo;
+	var contribuyente;
 
 	$('#panelContribuyente').hide();
 	$('#panelCalculos').hide();
 	$('#panelComplementaria').hide();
-	$('#resultadoBusqueda').hide();
 	$('#panelResultados').hide();
 	$('#agregar-btn').hide();
 	$('#save-btn').hide();
 	$('#resultadoHospedaje').hide();
 	$('#importeHospedaje').hide();
+	$('#panelSucursales').hide();
 						
 	obtenerDeclaracion();
 	obtenerObligacion();
@@ -514,23 +481,7 @@
 	//Busca un contribuyente
 	$('#btnBuscar').click(function() {
 							
-			//Validaciones
-			if($('#selectObligacion').val().length < 1){
-				swal(
-						{
-						  	title : "Debe seleccionar el tipo de obligación.",
-						 	type : "error",
-							closeOnCancel : false
-						}
-					);
-				
-				$('#selectObligacion').css("border-color", "#ff0000");				
-				return;		
-			}else{
-					$('#selectObligacion').css("border-color", "#d2d6de");
-				}
-				
-			if($('#inputCriterio').val().length < 1){
+		if($('#inputCriterio').val().length < 1){
 				swal(
 						{
 						  	title : "Debe Ingresar criterio de busqueda.",
@@ -541,73 +492,90 @@
 				$('#inputCriterio').css("border-color", "#ff0000");
 				return;		
 			}else{
-					$('#inputCriterio').css("border-color", "#d2d6de");
+				
+				$('#inputCriterio').css("border-color", "#d2d6de");
+				var urlContribuyente = "${pageContext.request.contextPath}/cajas/validarContribuyente/contribuyente?rfc="
+				+$('#inputCriterio').val();
+				$.ajax({
+					type : 'GET',
+					dataType : 'json',
+					url : urlContribuyente,
+					contentType : 'application/json',
+					success : function(data,textStatus,jQxhr) {
+							contribuyente = data;
+							$('#inputNombre').val(data.contribuyente);
+							$('#inputRfc').val(data.rfc);
+							$('#panelContribuyente').show();
+						}
+					});
 				}
 
-			$('#panelContribuyente').hide();
-			$('#panelCalculos').hide();
-									
-			$('tbody').find('td').remove();
-			for (var i = 0; i < data.length; i++) {
-				tr = $('<tr/>');
-				$(tr).append("<td class="+"rfc" +" >" + data[i].rfc + "</td>");
-				$(tr).append("<td class="+"nombre" +" >" + data[i].nombre + "</td>");
-				$(tr).append("<td class="+"domicilio" +" >" + data[i].domicilio + "</td>");
-				$(tr).append("<td class="+"fechaInicio" +" >" + parseDate(data[i].fechaInicio) + "</td>");
-				$(tr).append("<td class="+"activo" +" >" + "<img src="+estatusUsuario(data[i].activo)+" style="+"width:30px; height:auto;" + "></img></td>");
-				$('#tablaContribuyente > tbody').append(tr);
-			}								
-					
-			$('#resultadoBusqueda').show();	
-
+				$('#panelCalculos').hide();						
 		});
-		
 
-		$('#seleccionarContribuyente').click(function(){
-			if(rfcContribuyente == null){
-				swal(
-						{
-							title : "No ha seleccionado a un contribuyente.",
-							type : "error",
-							closeOnCancel : false
-						}
-					);
-			}else{
-								
-					$.grep(data, function(value, index) {
-						if(rfcContribuyente==value.rfc){
-							$('#inputNombre').val(value.nombre);
-							$('#inputRfc').val(value.rfc);
-							$('#inputDomicilio').val(value.domicilio);
-										
-							//$('tbody').find('td').remove();
-							for (var i = 0; i < value.sucursales.length; i++) {
-								tr = $('<tr/>');
-								$(tr).append("<td class="+"No" +" >" + value.sucursales[i].numero + "</td>");
-								$(tr).append("<td class="+"calle" +" >" + value.sucursales[i].calle + "</td>");
-								$(tr).append("<td class="+"numInt" +" >" + value.sucursales[i].numInt + "</td>");
-								$(tr).append("<td class="+"numExt" +" >" + value.sucursales[i].numExt + "</td>");
-								$(tr).append("<td class="+"colonia" +" >" + value.sucursales[i].colonia + "</td>");
-								$(tr).append("<td class="+"municipio" +" >" + value.sucursales[i].municipio + "</td>");
-								$(tr).append("<td class="+"empleados" +" >" + value.sucursales[i].empleados + "</td>");
-								//$(tr).append("<td class="+"declara" +" >"+"<input type="+"checkbox"+"checked="+sucursales[i].declara+">"+ "</td>");
-								$('#tablaSucursales > tbody').append(tr);
-							}
-										
-						}
-									
-					});
-								
-								
-				$('#panelContribuyente').show();
-				$('#panelCalculos').show();	
-				$('#panelComplementaria').hide();
-				$('#resultadoBusqueda').hide();
-				$('#busqueda').hide();
 
+		$('#selectObligacion').on("change", function() {
+
+			var urlContribuyente = "${pageContext.request.contextPath}/cajas/validarContribuyente/sucursales?idContribuyente="
+			+ contribuyente.idContribuyente +"&idObligacion="+parseInt($('#selectObligacion').val());
+				$.ajax({
+					type : 'GET',
+					dataType : 'json',
+					url : urlContribuyente,
+					contentType : 'application/json',
+					success : function(data,textStatus,jQxhr) {
+							
+							tablaContribuyenteSucursales(data);
+
+							$('#panelSucursales').show();
+							$('#panelCalculos').show();
+
+							if($('#selectObligacion').val()==3){
+
+								$('#importeNomina').show();
+								$('#resultadoNomina').show();
+								$('#importeHospedaje').hide();
+								$('#resultadoHospedaje').hide();
+
+							}else if($('#selectObligacion').val()==4){
+
+								$('#importeNomina').hide();
+								$('#resultadoNomina').hide();
+								$('#importeHospedaje').show();
+								$('#resultadoHospedaje').show();
+						}
+					},
+					error : function(jqXHR,textStatus,errorThrown) {
+						if (jqXHR.status == 400) {
+			            	var result = jqXHR.responseJSON;
+			            	console.log(result.code);
+			            	console.log(result.message);
+			            	swal({
+								title:"Error " + result.code, 
+								text:result.message, 
+								type:"error",
+								closeOnCancel: false
+							});	
+
+							$("#tablaResultados tr").remove();            		               
+							$('#panelSucursales').hide();
+							$('#panelCalculos').hide();
+			            } 	
+					}
+				});
+		});
+
+	function tablaContribuyenteSucursales(data){
+		$('tbody').find('td').remove();
+		for (var i = 0; i < data.length; i++) {
+			tr = $('<tr/>');
+			$(tr).append("<td class="+"calle" +" >" + data[i].calle + "</td>");
+			$(tr).append("<td class="+"noExterior" +" >" + data[i].numeroExterior + "</td>");
+			$(tr).append("<td class="+"noInterior" +" >" + data[i].numeroInterior + "</td>");
+			$('#tablaSucursales > tbody').append(tr);
 		}
-	});
-
+	};
+	
 
 
 	//Validaciones
@@ -751,24 +719,6 @@
 			}
 	});
 
-	$('#selectObligacion').on("click", function() {
-			if($('#selectObligacion').val()==3){
-
-				$('#importeNomina').show();
-				$('#resultadoNomina').show();
-				$('#importeHospedaje').hide();
-				$('#resultadoHospedaje').hide();
-
-			}else if($('#selectObligacion').val()==4){
-
-				$('#importeNomina').hide();
-				$('#resultadoNomina').hide();
-				$('#importeHospedaje').show();
-				$('#resultadoHospedaje').show();
-
-			}
-	});
-
 	//calculos
 	$('#calcular-btn').click(function() {
 
@@ -808,7 +758,7 @@
 			
 			console.log(formData);
 			var urlPut = "${pageContext.request.contextPath}/cajas/calculoEstatal";
-			var presupuestoEstatal = "${pageContext.request.contextPath}/views/cajas/cobroNomina.jsp";
+			var presupuestoEstatal = "${pageContext.request.contextPath}/views/cajas/presupuestoEstatal.jsp";
 		$.ajax({
 				type : 'PUT',
 				url : urlPut,
@@ -832,14 +782,39 @@
 	});
 
 	$('#agregar-btn').click(function() {
+		var existe = false;
 		$('#panelResultados').show();
-		resultados.push(datosCalculo);
+		console.log(JSON.stringify(datosCalculo));
+
+		if(resultados.length == 0){
+			resultados.push(datosCalculo);
+		}else{
+			for (var i = 0; i < resultados.length; i++) {
+
+				if(resultados[i].periodo==datosCalculo.periodo && resultados[i].aFiscal==datosCalculo.aFiscal 
+					&& resultados[i].obligacion == datosCalculo.obligacion && resultados[i].declaracion== datosCalculo.declaracion){
+					existe = true;
+				}
+			}
+			if(!existe){
+				resultados.push(datosCalculo);
+			}else{
+				swal(
+						{
+							title : "Seleccione un presupuesto con un periodo, año u obligación distinto.",
+							type : "error",
+							closeOnCancel : false
+						}
+					);
+			}
+		}
 		tablaResultados(resultados);
 	});
 
 	$('#save-btn').click(function() {
-		console.log("GUARDANDO::::::");
+		
 		var urlPost = "${pageContext.request.contextPath}/cajas/presupuestos";
+		var presupuestoEstatal = "${pageContext.request.contextPath}/views/cajas/presupuestoEstatal.jsp";
 		var formData = JSON.stringify(resultados);	
 		console.log(formData);
 		$.ajax({
@@ -853,8 +828,10 @@
 						{
 							title : "Calculo realizado correctamente.",
 							type : "success",
-						}
-				);
+						},
+							function() {
+							window.location = presupuestoEstatal;
+				});
 			}
 		});
 	});
@@ -897,11 +874,11 @@
 		$('#panelCalculos').hide();
 		$('#panelComplementaria').hide();
 		$('#busqueda').show();
-		$('#resultadoBusqueda').show();
 		$('#panelResultados').hide();
 		$('#selectPeriodo').empty();
 		$('#agregar-btn').hide();
 		$('#save-btn').hide();
+		$('#panelSucursales').hide();
 
 		rfcContribuyente = null
 		resultados= [];
@@ -913,10 +890,14 @@
         fv.resetForm(true);
 	});
 
+	function resetForm(){
+
+		
+	}
+
 	//colocar valores despues de realizar el calculo
 	function colocarValores(data){	
 		$.each( data, function( key, val ) {
-			console.log("KEY:::" + key);
 			if(key=="uaz"){
 				$('#inputUaz').val(val);
 			}

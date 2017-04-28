@@ -11,12 +11,13 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 
 
 
-@Path("localidades")
+@Path("/localidades")
 public class LocalidadResource {
 
     @EJB
@@ -25,7 +26,8 @@ public class LocalidadResource {
         @GET
         @Path ("{idLocalidad}")
         @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-        public Localidad obtenerLocalidad(@PathParam("idLocalidad") Integer idLocalidad) {
+        public Localidad obtenerLocalidad(@QueryParam("idLocalidad") Integer idLocalidad) {
+        	System.out.println("aquiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffgsfsdfgdsfgdf");
             return localidadEjb.obtenerLocalidad(idLocalidad);
             
         }

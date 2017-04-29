@@ -19,7 +19,7 @@ public class ConceptoEJB {
 	private ConceptoService conceptoService;
 	
 	//dar de alta nuevos conceptos
-	protected void registrarConcepto(Concepto concepto) {
+	public void registrarConcepto(Concepto concepto) {
 		// Validar que los datos requeridos no estén vacíos
 		validarConcepto(concepto);
 
@@ -37,7 +37,7 @@ public class ConceptoEJB {
 		conceptoService.modificarConcepto(idConcepto, concepto);
 	}
 
-	protected List<Concepto> consultarConceptosPorClave(String clave) {
+	public List<Concepto> consultarConceptosPorClave(String clave) {
 		// Validar que no venga vacia la clave y lanzar excepción si está vacía
 		// Consultar todos los conceptos registrados con la clave especificada
 

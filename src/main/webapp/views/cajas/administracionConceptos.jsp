@@ -59,7 +59,7 @@
 				</a>
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
-						<jsp:include page="/views/menu/logout.jsp"></jsp:include>
+                                                <%@ include file="/WEB-INF/jspf/logout.jspf" %>
 					</ul>
 				</div>
 			</nav>
@@ -69,7 +69,7 @@
 		<aside class="main-sidebar">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<jsp:include page="/views/menu/menu.jsp"></jsp:include>
+                                <%@ include file="/WEB-INF/jspf/menu.jspf" %>
 			</section>
 			<!-- /.sidebar -->
 		</aside>
@@ -365,6 +365,12 @@
 									<label for="inputComplementaria">Datos Generales</label>
 								</div>
 								<div class="form-group">
+									<label for="inputClave">Clave:</label> <input
+										class="form-control" id="inputClave"
+										placeholder="Clave concepto" type="text">
+								</div>
+								
+								<div class="form-group">
 									<label for="selectAnyoFiscal">Año Fiscal:</label> <select
 													class="form-control" id="selectAnyoFiscal">
 													<option value="" selected="selected">Seleccione
@@ -440,7 +446,17 @@
 							</div>
 							<div class="col-md-2"></div>
 						</div>
-						<div class="box-footer clearfix"></div>
+						<div class="box-footer clearfix">
+							<button id="cancel-btn" type="button"
+									class="btn btn-default btn-lg pull-left">
+									<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+									Cancelar
+								</button>
+								<button type="button" id="save-btn"
+										class="btn btn-success btn-lg pull-right">
+									<i class="fa fa-credit-card"></i> Guardar
+								</button>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -548,35 +564,31 @@
 												$('#inputCriterio').css("border-color", "#d2d6de");
 											}
 
-											var estiloBotonVer="'btn-sm btn-success glyphicon glyphicon-eye-open btn-mover'";
-											var estiloBotonEditar="'btn btn-sm btn-primary glyphicon glyphicon-pencil btn-mover'";
-
-											$('tbody').find('td').remove();
-											for (var i = 0; i < conceptos.length; i++) {
-												tr = $('<tr/>');
-												$(tr).append("<td class="+"visualizar"+">"+"<button id="+"btn"+conceptos[i].id+" onclick="+"consultarConcepto()"+" class="+estiloBotonVer+" style="+"text-align:center;" + ">"+"</button></td>");
-												$(tr).append("<td class="+"editar"+">"+"<button id="+"btnEditar"+conceptos[i].id+" onclick="+"editarConcepto()"+" class="+estiloBotonEditar+" style="+"text-align:center;" + ">"+"</button></td>");
-												$(tr).append("<td class="+"id" +" >"+ conceptos[i].id+ "</td>");
-												$(tr).append("<td class="+"aFiscal" +" >"+ conceptos[i].aFiscal+ "</td>");
-												$(tr).append("<td class="+"descripcion" +" >"+ conceptos[i].descripcion+ "</td>");
-												$(tr).append("<td class="+"n1" +" >"+ conceptos[i].n1+ "</td>");
-												$(tr).append("<td class="+"n2" +" >"+ conceptos[i].n2+ "</td>");
-												$(tr).append("<td class="+"n3" +" >"+ conceptos[i].n3+ "</td>");
-												$(tr).append("<td class="+"n4" +" >"+ conceptos[i].n4+ "</td>");
-												$(tr).append("<td class="+"n5" +" >"+ conceptos[i].n5+ "</td>");
-												$(tr).append("<td class="+"n6" +" >"+ conceptos[i].n6+ "</td>");
-												$(tr).append("<td class="+"clave" +" >"+ conceptos[i].clave+ "</td>");
-												$('#tablaConceptos > tbody')
-														.append(tr);
-											}
+											var clave = $('#inputCriterio').val();
+											console.log(clave);
+											 $.ajax({
+													type: "GET",
+													url: "${pageContext.request.contextPath}/cajas/concepto/obtenerConcepto?clave="+clave,
+													dataType: "json",
+													success : function(data) {
+														console.log(data);
+														conceptos = data;
+														//console.log("guardar "+guardarBusqueda);
+														tabla(conceptos);
+													},
+													error : function(jqXHR,textStatus,errorThrown) {
+														console.log(textStatus+ " "+ errorThrown);
+													}			
+											});
 
 										});
 
 						$('#nuevoConcepto')
-								.click(function() {
-									$('#panelAltaConcepto').show();
-									$('#administradorConcepto').hide();
-										});
+						.click(
+								function() {
+									var urlUsuario = "${pageContext.request.contextPath}/views/cajas/altaConcepto.jsp";
+									window.location = urlUsuario;
+								});
 
 						$('#panelAltaConcepto')
 						.click(function() {
@@ -638,12 +650,35 @@
 					});
 
 	var idConcepto;
+	
+	var conceptos;
 
-	var conceptos = [{id : 24534, aFiscal : 2015, descripcion : 'IMP S/NOMINA PAGO ESPONTÁNEO', n1 : 4115, n2 : 100, n3 : 100, n4 : 10, n5 : 0, n6 : 0, clave: 161},
-		{id : 30949, aFiscal : 2016, descripcion : 'IMP S/NOMINA ACTO CONTROL DE OBLIGACIONES', n1 : 4191, n2 : 4115, n3 : 100, n4 : 100, n5 : 30, n6 : 0, clave: 161},
-		{id : 31534, aFiscal : 2016, descripcion : 'IMP S/NOMINA PAGO ESPONTÁNEO', n1 : 4115, n2 : 100, n3 : 100, n4 : 10, n5 : 0, n6 : 0, clave: 161},
-		{id : 32534, aFiscal : 2017, descripcion : 'IMP S/NOMINA PAGO ESPONTÁNEO', n1 : 4115, n2 : 100, n3 : 100, n4 : 10, n5 : 0, n6 : 0, clave: 161}];
+	function tabla(conceptos){
+		
+		var estiloBotonVer="'btn-sm btn-success glyphicon glyphicon-eye-open btn-mover'";
+		var estiloBotonEditar="'btn btn-sm btn-primary glyphicon glyphicon-pencil btn-mover'";
 
+		$('tbody').find('td').remove();
+		for (var i = 0; i < conceptos.length; i++) {
+			tr = $('<tr/>');
+			$(tr).append("<td class="+"visualizar"+">"+"<button id="+"btn"+conceptos[i].idConcepto+" onclick="+"consultarConcepto()"+" class="+estiloBotonVer+" style="+"text-align:center;" + ">"+"</button></td>");
+			$(tr).append("<td class="+"editar"+">"+"<button id="+"btnEditar"+conceptos[i].idConcepto+" onclick="+"editarConcepto()"+" class="+estiloBotonEditar+" style="+"text-align:center;" + ">"+"</button></td>");
+			$(tr).append("<td class="+"id" +" >"+ conceptos[i].idConcepto+ "</td>");
+			$(tr).append("<td class="+"aFiscal" +" >"+ conceptos[i].ejercicioFiscal+ "</td>");
+			$(tr).append("<td class="+"descripcion" +" >"+ conceptos[i].descripcion+ "</td>");
+			$(tr).append("<td class="+"n1" +" >"+ conceptos[i].nivel1+ "</td>");
+			$(tr).append("<td class="+"n2" +" >"+ conceptos[i].nivel2+ "</td>");
+			$(tr).append("<td class="+"n3" +" >"+ conceptos[i].nivel3+ "</td>");
+			$(tr).append("<td class="+"n4" +" >"+ conceptos[i].nivel4+ "</td>");
+			$(tr).append("<td class="+"n5" +" >"+ conceptos[i].nivel5+ "</td>");
+			$(tr).append("<td class="+"n6" +" >"+ conceptos[i].nivel6+ "</td>");
+			$(tr).append("<td class="+"clave" +" >"+ conceptos[i].clave+ "</td>");
+			$('#tablaConceptos > tbody')
+					.append(tr);
+		}
+	};
+
+	
 	var obtenerCriterioBusqueda = function() {
 		var criterios = [ {
 			id : 1,
@@ -698,19 +733,32 @@
 		$('#myModal').modal('show');
 
 		$.grep(conceptos, function(value, index) {
-			if(idConcepto==value.id){
+			if(idConcepto==value.idConcepto){
+				var descripcionTipo= "Afectable";
+				switch (value.tipoNivel) {
+				case 1:
+					descripcionTipo= "Afectable";
+					break;
+				case 2:
+					descripcionTipo= "Concentradora"
+					break;
+
+				default:
+					descripcionTipo= "Ninguna descripcion";
+					break;
+				}
 				console.log('obtener datos');
-				$('#inputAnyoConsulta').val(value.aFiscal);
+				$('#inputAnyoConsulta').val(value.ejercicioFiscal);
 				$('#inputDescripcionConsulta').val(value.descripcion);
-				$('#inputCuotaConsulta').val('0.00');
+				$('#inputCuotaConsulta').val(value.cobroDerecho);
 				$('#inputFundamentoConsulta').val('FUNDAMENTACION');
-				$('#inputN1Consulta').val(value.n1);
-				$('#inputN2Consulta').val(value.n2);
-				$('#inputN3Consulta').val(value.n3);
-				$('#inputN4Consulta').val(value.n4);
-				$('#inputN5Consulta').val(value.n5);
-				$('#inputN6Consulta').val(value.n6);
-				$('#nivelConsulta').val('Afectable');
+				$('#inputN1Consulta').val(value.nivel1);
+				$('#inputN2Consulta').val(value.nivel2);
+				$('#inputN3Consulta').val(value.nivel3);
+				$('#inputN4Consulta').val(value.nivel4);
+				$('#inputN5Consulta').val(value.nivel5);
+				$('#inputN6Consulta').val(value.nivel6);
+				$('#nivelConsulta').val(descripcionTipo);
 			}
 		});
 		
@@ -731,19 +779,19 @@
 		$('#myModalEditar').modal('show');
 
 		$.grep(conceptos, function(value, index) {
-			if(idConcepto==value.id){
+			if(idConcepto==value.idConcepto){
 				console.log('obtener datos');
-				$('#inputAnyoEditar').val(value.aFiscal);
+				$('#inputAnyoEditar').val(value.ejercicioFiscal);
 				$('#inputDescripcionEditar').val(value.descripcion);
-				$('#inputCuotaEditar').val('0.00');
+				$('#inputCuotaEditar').val(value.cobroDerecho);
 				$('#inputFundamentoEditar').val('FUNDAMENTACION');
-				$('#inputN1Editar').val(value.n1);
-				$('#inputN2Editar').val(value.n2);
-				$('#inputN3Editar').val(value.n3);
-				$('#inputN4Editar').val(value.n4);
-				$('#inputN5Editar').val(value.n5);
-				$('#inputN6Editar').val(value.n6);
-				$('#nivelEditar').val('Afectable');
+				$('#inputN1Consulta').val(value.nivel1);
+				$('#inputN2Consulta').val(value.nivel2);
+				$('#inputN3Consulta').val(value.nivel3);
+				$('#inputN4Consulta').val(value.nivel4);
+				$('#inputN5Consulta').val(value.nivel5);
+				$('#inputN6Consulta').val(value.nivel6);
+				$('#nivelEditar').val(value.tipoNivel);
 			}
 		});
 		

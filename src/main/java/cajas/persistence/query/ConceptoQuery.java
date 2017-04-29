@@ -20,7 +20,7 @@ public class ConceptoQuery {
 	public List<ConceptosEntity> obtenerConceptos(String clave){
 		
 		List<ConceptosEntity> listaConceptos = entityManager.
-				createNamedQuery("SELECT c FROM ConceptosEntity AS c WHERE c.clave=:clave", ConceptosEntity.class)
+				createQuery("FROM ConceptosEntity c WHERE c.clave=:clave ", ConceptosEntity.class)
 				.setParameter("clave", clave).getResultList();
 		
 		return listaConceptos;

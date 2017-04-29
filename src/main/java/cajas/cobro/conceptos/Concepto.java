@@ -6,7 +6,7 @@ public class Concepto {
 	
 	private Integer IdConcepto;
 
-	private String Descripcion;
+	private String descripcion;
 
 	private String nivel1;
 	
@@ -39,11 +39,11 @@ public class Concepto {
 	}
 
 	public String getDescripcion() {
-		return Descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
-		Descripcion = descripcion;
+		this.descripcion = descripcion;
 	}
 
 	public String getNivel1() {

@@ -16,7 +16,7 @@ public class ConceptoService {
 	@Inject
 	private ConceptoQuery conceptoQuery;
 	
-	protected List<Concepto> consultarConceptosPorClave(String clave) {
+	public List<Concepto> consultarConceptosPorClave(String clave) {
 		// Validar que no venga vacia la clave y lanzar excepción si está vacía
 		// Consultar todos los conceptos registrados con la clave especificada
 		if(!ValidacionUtil.esCadenaVacia(clave)){
@@ -39,7 +39,7 @@ public class ConceptoService {
 		return conceptos;
 	}
 
-	protected void registrarConcepto(Concepto concepto) {
+	public void registrarConcepto(Concepto concepto) {
 
 		boolean verificarConcepto = conceptoQuery.existeConcepto(concepto.getClave(), concepto.getEjercicioFiscal());
 		

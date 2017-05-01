@@ -40,3 +40,11 @@
         </ul>
     </li>
 </ul>
+<ul class="sidebar-menu">
+    <li><a> <i class="fa fa-user" aria-hidden="true"></i> <span>Contribuyente</span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="${pageContext.request.contextPath}/views/contribuyentes/contribuyente.jsp"><span>Administración</span></a></li>
+        </ul>
+    </li>
+</ul>

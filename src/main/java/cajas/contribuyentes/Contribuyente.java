@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  *
- * @author Freddy Barrera (freddy.barrera@gmail.com)
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class Contribuyente {
 

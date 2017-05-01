@@ -33,7 +33,7 @@ public class ContribuyenteEntity implements Serializable {
     private String curp;
     
     @Column(name = "tipo_persona")
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private TipoPersona tipoPersona;
     
     @Column(name = "nombre_compuesto")

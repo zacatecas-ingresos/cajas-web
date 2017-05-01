@@ -10,7 +10,6 @@ package cajas.contribuyentes;
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public enum TipoPersona {
-    NO_DEFINIDO,
     FISICA,
     MORAL
 }

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,6 +24,7 @@
 		<link href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css" rel="stylesheet" type="text/css">
 		
 		<link href="${pageContext.request.contextPath}/resources/sit/css/sit.css" rel="stylesheet" type="text/css">
+		<link href="path/to/multiselect.css" media="screen" rel="stylesheet" type="text/css">
 	</head>
 
 	<body class="hold-transition skin-blue sidebar-mini">
@@ -88,7 +90,7 @@
 										<th><abbr title="Registro federal de contribuyentes">RFC</abbr></th>
 										<th>Nombre o Razón social</th>
 										<th>Dirección fiscal</th>
-										<th>Fecha de nacimiento</th>
+										<th>Tipo de Persona</th>
 										<th>Estado</th>
 									</tr>
 								</tbody>
@@ -123,9 +125,9 @@
 								</div>
 
 								<div class="form-group">
-									<label for="inputDomicilio" class="col-sm-2 control-label">Docimilio</label> 
+									<label for="inputTipo" class="col-sm-2 control-label">Tipo Persona</label> 
 									<div class="col-sm-10">
-										<input disabled="true" type="text" class="form-control" id="inputDomicilio" placeholder="Nombre contribuyente" >
+										<input disabled="true" type="text" class="form-control" id="inputTipo" placeholder="Tipo de contribuyente" >
 									</div>
 								</div>
 							</form>
@@ -134,26 +136,70 @@
 
 					<div id="panelObligacion" class="box box-primary hidden">
 						<div class="box-header">
-							<h3 class="box-title">Obligación</h3>
+							<h3 class="box-title">Registrar Obligación al Contribuyente</h3>
 						</div>
 						<div class="box-body">
 							<div class="col-md-4">
 								<div class="form-group">
-									<label for="selectObligacion">Tipo de obligación</label>
+									<label for="selectObligacion">Seleccione la Obligación</label>
 									<div class="selectContainer">
-										
-												<input type="checkbox" id="c1" name="cc" />
-											    <label for="c1"><span></span>Nomina</label>
-											    <p>
-											    <input type="checkbox" id="c2" name="cc" />
-											    <label for="c2"><span></span>Hospedaje</label>
-											    <p><br/>
-											    								
-									
+											<dl class="dropdown">   										
+											 <SELECT>
+											   <option value="ISNOMINA">NOMINA</option>
+											   <option value="Hospedaje">HOSPEDAJE</option>
+											   <option value="Juegos">Juegos de azar</option>
+											   <option value="REGIMEN">Régimen intermedio</option>									  
+											  </SELECT>		
+											  </dl>	 																	    										
 									</div>
 								</div>
 							</div>
 						</div>
+						
+						<div class="box-body">
+							<form id="formContribuyente" class="form-horizontal">
+								<div class="form-group">
+									<label for="inputNombre" class="col-sm-2 control-label">Fecha de Alta de Obligacion</label> 
+		 							<div class="col-sm-10">
+										<input  type="date" class="form-control" id="inputdate" placeholder="Nombre del contribuyente" />
+		 							</div>
+								</div>
+								<div class="form-group">
+									<label for="inputdias" class="col-sm-2 control-label">Dias de Vencimiento</label> 
+									<div class="col-sm-10">
+										<input  type="text" class="form-control" id="inputdias" placeholder="Dias de Vencimiento" >
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="inputEstatus" class="col-sm-2 control-label">Estatus</label> 
+									<div class="col-sm-10">
+										<input  type="text" class="form-control" id="inputEstatus" placeholder="Estatus del Contribuyente" >
+									</div>
+								</div>
+							
+						
+								<div class="form-group">
+									<label for="inputtipo" class="col-sm-2 control-label">Tipo de Obligacion</label> 
+									<div class="col-sm-10">
+										<input  type="text" class="form-control" id="inputtipo" placeholder="Tipo de Obligacion" >
+									</div>
+								</div>
+								</form>
+							</div>	
+									
+						<table id="tblObligaciones" class="table table-hover voffset4" >
+								<tbody>
+									<tr class="bg-primary">
+										<th><abbr title="X">Obligacion</abbr></th>										
+										<th>Dia de Vencimiento</th>
+										<th>Fecha de Inicio</th>
+										<th>Estatus</th>
+										<th>Usuario de Alta</th>
+										<th>Tipo de obligacion</th>
+									</tr>
+								</tbody>
+							</table>
 						<div class="box-footer">
 							<button id="cancelar-btn" type="button" class="btn btn-danger btn-lg">
 								<i class="fa fa-close"></i> Cancelar
@@ -175,6 +221,7 @@
 				</strong> Todos los derechos reservados.
 			</footer>
 		</div>
+		
 		<!-- ./wrapper -->
 	
 		<!-- Scripts -->
@@ -207,8 +254,10 @@
 		<!-- Fin scripts -->
 
 		<script>
+
 $(document).ready(function() {
 	var rfcContribuyente;
+	
 	
 	$('#busqueda').keyup(function() {
 			buscar();		
@@ -230,15 +279,20 @@ $(document).ready(function() {
     $('#tblContribuyente > tbody').on("click", "td", function() {
     	rfcContribuyente = {
     		nombre : $(this).closest('tr').find('.nombre').text(),
-			rfc : $(this).closest('tr').find('.rfc').text(),
-			domicilio : ''
+			rfc : $(this).closest('tr').find('.RFC').text(),
+			TipoPersona :  $(this).closest('tr').find('.TipoPersona').text()
+			
     	} 
+    	
+    	//alert(rfcContribuyente.nombre);
         
     });
 	
 	$('#seleccionarContribuyente').click(function() {
 		
+		
 			mostrarContribuyente(rfcContribuyente);	
+			
 			
 		}
 	);
@@ -277,11 +331,11 @@ function llenarTablaContribuyentes(data) {
 
 	for (var i = 0; i < data.length; i++) {
 	    var row = '<tr>'
-			+ '<td class=\"rfc\" >' + data[i].rfc + '</td>'
+			+ '<td class=\"RFC\" >' + data[i].rfc + '</td>'
 			+ '<td class=\"nombre\">' + data[i].nombreCompuesto + '</td>'
 			+ '<td >-</td>'
-			+ '<td >' + data[i].fechaNacimiento + '</td>'
-	        + '<td >-</td>'
+			+ '<td class=\"TipoPersona\">' + data[i].tipoPersona + '</td>'
+			+ '<td >-</td>'
 			+ '</tr>';
 	   tableBody.append(row);
 	}
@@ -290,17 +344,20 @@ function llenarTablaContribuyentes(data) {
 function mostrarContribuyente(contribuyente) {
 	//console.log("Iniciando mostrar contribuyente");
 	
+	
 	$('#inputNombre').val(contribuyente.nombre);
 	$('#inputRfc').val(contribuyente.rfc);
-	$('#inputDomicilio').val(contribuyente.domicilio);
+	$('#inputTipo').val(contribuyente.TipoPersona);
 	
 	$('#panelContribuyente').removeClass('hidden');
 	$('#panelObligacion').removeClass('hidden');
+	//$('#panelRegobligacion').removeClass('hidden');
+	
 	
 } 
-function seleccionarObligaciones(obligaciones){
+//function mostrarObligaciones(obligaciones){
 	
-}
-		</script>
+//}
+	</script>
 	</body>
 </html>

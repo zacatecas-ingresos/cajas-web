@@ -113,10 +113,9 @@ public class VerificacionVehiculoResource {
 	@GET
 	@Path("/buscarPorCriterio")
 	@Produces({"application/json"})
-	public Response buscarPorCriterio(@QueryParam("vin")String parametroBusqueda, @QueryParam("estatusVerificacion")Integer estatusVerificacion,
-			@QueryParam("noSeguimiento")Integer noSeguimiento){
+	public Response buscarPorCriterio(@QueryParam("criterioBusqueda")String criterioBusqueda){
 		try{
-			List<VerificacionVehiculo> verificaciones = verificacionVehiculoEjb.obtenerVerificacionesFiltro(parametroBusqueda,estatusVerificacion);
+			List<VerificacionVehiculo> verificaciones = verificacionVehiculoEjb.obtenerVerificacionesFiltro(criterioBusqueda);
 			return Response.ok(verificaciones).build();
 		}catch(BusinessException ex){
 			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();

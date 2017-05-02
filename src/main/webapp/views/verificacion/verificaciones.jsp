@@ -1,29 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<title>Verificaciones Vehiculares</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<title>Marcas de Vehiculos</title>
 
-	<!-- Bootstrap -->
-	<link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- Bootstrap -->
+<link
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
 
-	<!-- Font Awesome -->
-	<link href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<!-- Font Awesome -->
+<link
+	href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" />
 
-	<!-- AdminLTE -->
-	<link href="${pageContext.request.contextPath}/resources/admin-lte/css/Fonts.css" rel="stylesheet" />
-	<link href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css" rel="stylesheet" />
-	<link href="${pageContext.request.contextPath}/resources/admin-lte/css/skins/_all-skins.min.css" rel="stylesheet" />
+<!-- AdminLTE -->
+<link
+	href="${pageContext.request.contextPath}/resources/admin-lte/css/Fonts.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/resources/admin-lte/css/skins/_all-skins.min.css"
+	rel="stylesheet" />
 
-	<!-- Sweetalert -->
-	<link href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+<!-- Sweetalert -->
+<link
+	href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css"
+	rel="stylesheet" type="text/css">
 
-	<!-- FormValidation -->
-	<link href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css" rel="stylesheet" type="text/css">
+<!-- FormValidation -->
+<link
+	href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css"
+	rel="stylesheet" type="text/css">
+
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
+
 	<div class="wrapper">
+
 		<!-- Encabezado -->
 		<header class="main-header">
 			<!-- Logo -->
@@ -49,20 +70,22 @@
 		<!-- Menú lateral izquierdo -->
 		<aside class="main-sidebar">
 			<section class="sidebar">
-				<%@ include file="/WEB-INF/jspf/menu.jspf" %>
+				<%@ include file="/WEB-INF/jspf/menu.jspf" %><!-- Se llama al al archivo donde se encuentra el menú -->
 			</section>
 		</aside>
 		<!-- Fin menú lateral izquierdo -->
 
 		<!-- Contenido de la página -->
 		<div class="content-wrapper">
+
 			<!-- Encabezado del contenido de la página -->
 			<section class="content-header">
 				<h1>
-					<span style="color: #798c9c">Verificaciones</span>
+					<span style="color: #798c9c"> </span>Administrar Verificaciones
 				</h1>
 			</section>
 			<!-- Fin del encabezado del contenido de la página -->
+
 
 
 			<!-- Usuarios Registrados -->
@@ -73,37 +96,40 @@
 					<div class="box-body">
 
 						<div class="row">
+
 							<div class="col-md-12">
+
+
+
 								<!-- Contenido -->
 
+								<!-- Botón nuevo marcas -->
+								<div class="col-xs-1 col-md-5"></div>
+								<div class="col-xs-1 col-md-5"></div>
+								<div class="col-xs-10 col-md-2">
+									<div class="dropdown">
+										<button class="btn btn-primary dropdown-toggle" type="button"
+											data-toggle="dropdown">
+											Opciones <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="button" id="crear">Crear Verificación</a></li>
+										</ul>
+									</div>
+								</div>
+								<!--Fin botón nuevo marcas -->
+
+								<br /> <br />
+
 								<div class="row">
-									<div class="col-xs-1" style="text-align: center;"></div>
-									<div class="col-xs-3 " style="text-align: center;">
-										<label for="search" class="control-label"> VIN:</label> <input
+									<div class="col-xs-2" style="text-align: center;"></div>
+									<div class="col-xs-4" style="text-align: center;">
+										<label for="search" class="control-label"> Buscar:</label> <input
 											type="text" class="form-control" data-toggle="tooltip"
-											data-placement="top" title="Ingrese VIN" id="search"
-											name="search" placeholder="VIN...">
+											data-placement="top" title="Buscar" id="search"
+											name="search" placeholder="Buscar...">
 									</div>
-									<div class="col-xs-4">
-										<div class="form-group">
-											<label for="selectEstatusVerificacion" class="control-label">Estatus
-												Verificacion:</label> <select class="form-control"
-												id="selectEstatusVerificacion"
-												name="selectEstatusVerificacion">
-												<option value="0" selected>TODOS</option>
-												<option value="1">CAPTURADA</option>
-												<option value="2">AUTORIZADA</option>
-												<option value="3">TERMINADA</option>
-												<option value="4">RECHAZADA MINISTERIO</option>
-												<option value="5">RECHAZADA VERIFICACIO</option>
-												<option value="6">PAGADO</option>
-												<option value="7">PAGA DESPUES</option>
-												<option value="8">CONDONADO</option>
-												<option value="9">CANCELADO</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-xs-1" style="text-align: center;"></div>
+									<div class="col-xs-2" style="text-align: center;"></div>
 								</div>
 								<br /> <br />
 
@@ -146,6 +172,7 @@
 							<legend>Mas Informacion:</legend>
 							<div class="row" id="contenido"></div>
 							</fieldset>
+							
 						</div>
 			</section>
 			<!-- Fin contenido Registrar marca -->
@@ -168,28 +195,57 @@
 		<!-- Add the sidebar's background. This div must be placed
 	           immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
+
 	</div>
+
+
 </body>
 
+
 <!-- Scripts -->
+
 <!-- jQuery -->
-<script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
+
 <!-- jQuery UI -->
-<script src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
+
 <!-- jQuery Form -->
-<script src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js" /></script>
-<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js" /></script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+
 <!-- Bootstrap WYSIHTML5 -->
-<script src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
-<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/formvalidation/js/formValidation.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/formvalidation/js/formValidation.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
+
 <!-- Fin scripts -->
 
+
+
 <script>
+
+
 $(document).ready(function(){
 	
 	 
@@ -248,27 +304,18 @@ $(document).ready(function(){
 		}	
 		
 
-
-	//Filtro de búsqueda
-		
-		$( "#selectEstatusVerificacion" ).change(function() {
-			var estatusVerificacion = $('#selectEstatusVerificacion').val();
-			var search= $('#search').val();
-			busca(search,estatusVerificacion);
-		});
 		
 		$('#search').on('keyup',function(){		
-			var estatusVerificacion = $('#selectEstatusVerificacion').val();
 			var search= $('#search').val();		
-			busca(search,estatusVerificacion);		
+			busca(search);		
 		});
 	
-	function busca(search,estatusVerificacion){
+	function busca(search){
 		var table = $('#tablaVerificacion').find('tbody').find('tr');
 
 		var urlGet;
 		var urlBusqueda = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/buscarPorCriterio/";
-		var urlBusqueda = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/buscarPorCriterio/"+"?vin="+search+"&estatusVerificacion="+estatusVerificacion;
+		var urlBusqueda = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/buscarPorCriterio/"+"?criterioBusqueda="+search;
 				
 		if(search === null){
 			var urlGet = urlBusqueda

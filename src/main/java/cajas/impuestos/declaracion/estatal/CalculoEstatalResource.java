@@ -1,8 +1,5 @@
 package cajas.impuestos.declaracion.estatal;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
@@ -12,6 +9,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import cajas.exception.BusinessException;
+import cajas.util.RespuestaResource;
 
 @Path("/calculoEstatal")
 public class CalculoEstatalResource {
@@ -25,14 +23,11 @@ public class CalculoEstatalResource {
 	@Consumes({ "application/json" })
 	@Produces({ "application/json" })
 	public Response calcularImpuesto(DeclaracionEstatal declaracionEstatal) {
-		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			ImpuestoEstatal impuestoEstatal = impuestosEstatalesEJB.calcularImpuesto(declaracionEstatal);
 			return Response.ok(impuestoEstatal).build();
 		} catch (BusinessException ex) {
-			respuesta.put("code", "400");
-			respuesta.put("message", ex.getMessage());
-			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 

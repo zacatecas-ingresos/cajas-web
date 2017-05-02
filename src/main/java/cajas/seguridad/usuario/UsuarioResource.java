@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import cajas.exception.BusinessException;
+import cajas.util.RespuestaResource;
 
 @Path("/usuario")
 public class UsuarioResource {
@@ -29,14 +30,11 @@ public class UsuarioResource {
 	@Consumes({ "application/json" })
 	@Produces({"application/json"})
 	public Response altaUsuario(RegistroUsuario usuario) {
-		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			usuarioService.crearUsuario(usuario);
 			return Response.ok(Status.OK).build();
 		} catch (BusinessException ex) {
-			respuesta.put("code", "400");
-			respuesta.put("message", ex.getMessage());
-			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 	
@@ -139,14 +137,11 @@ public class UsuarioResource {
 	@Consumes({ "application/json" })
 	@Produces({"application/json"})
 	public Response actualizarUsuario(RegistroUsuario usuario) {
-		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			usuarioService.actualizarUsuario(usuario);
 			return Response.ok(Status.OK).build();
 		} catch (BusinessException ex) {
-			respuesta.put("code", "400");
-			respuesta.put("message", ex.getMessage());
-			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 
@@ -155,14 +150,11 @@ public class UsuarioResource {
 	@Path("/desactivarUsuario")
 	@Produces({"application/json"})
 	public Response desactivarUsuario(@QueryParam("idUsuario") Integer idUsuario) {
-		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			usuarioService.desactivarActivarUsuario(idUsuario);
 			return Response.ok(Status.OK).build();
 		} catch (BusinessException ex) {
-			respuesta.put("code", "400");
-			respuesta.put("message", ex.getMessage());
-			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 	
@@ -171,14 +163,11 @@ public class UsuarioResource {
 	@Path("/activarUsuario")
 	@Produces({"application/json"})
 	public Response activarUsuario(@QueryParam("idUsuario") Integer idUsuario) {
-		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			usuarioService.desactivarActivarUsuario(idUsuario);
 			return Response.ok(Status.OK).build();
 		} catch (BusinessException ex) {
-			respuesta.put("code", "400");
-			respuesta.put("message", ex.getMessage());
-			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 
@@ -187,14 +176,11 @@ public class UsuarioResource {
 	@Path("/usuarioPorCorreo")
 	@Produces({ "application/json" })
 	public Response obtenerUsuarioPorCorreo(@QueryParam("correo") String correo) {
-		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			Usuario usuario = usuarioService.obtenerUsuarioPorCorreo(correo);
 			return Response.ok(usuario).build();
 		} catch (BusinessException ex) {
-			respuesta.put("code", "400");
-			respuesta.put("message", ex.getMessage());
-			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 
@@ -203,14 +189,11 @@ public class UsuarioResource {
 	@Path("/usuarioPorNombre")
 	@Produces({ "application/json" })
 	public Response obtenerUsuarioPorNombre(@QueryParam("nombre") String nombre) {
-		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			Usuario usuario = usuarioService.obtenerUsuarioPorNombre(nombre);
 			return Response.ok(usuario).build();
 		} catch (BusinessException ex) {
-			respuesta.put("code", "400");
-			respuesta.put("message", ex.getMessage());
-			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}	
 	
@@ -219,14 +202,11 @@ public class UsuarioResource {
 	@Path("/usuarioPorId")
 	@Produces({ "application/json" })
 	public Response obtenerUsuarioPorId(@QueryParam("idUsuario") Integer idUsuario) {
-		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			Usuario usuario = usuarioService.obtenerUsuarioPorId(idUsuario);
 			return Response.ok(usuario).build();
 		} catch (BusinessException ex) {
-			respuesta.put("code", "400");
-			respuesta.put("message", ex.getMessage());
-			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 
@@ -234,14 +214,11 @@ public class UsuarioResource {
 	@GET
 	@Produces({ "application/json" })
 	public Response obtenerUsuarios() {
-		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			List<Usuario> usuarios = usuarioService.obtenerUsuarios();
 			return Response.ok(usuarios).build();
 		} catch (BusinessException ex) {
-			respuesta.put("code", "400");
-			respuesta.put("message", ex.getMessage());
-			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 	
@@ -253,14 +230,11 @@ public class UsuarioResource {
 	@Path("/buscarUsuarios")
 	@Produces({"application/json"})
 	public Response obtenerUsuariosFiltro(@QueryParam("parametro")String parametroBusqueda){
-		Map<String, String> respuesta = new HashMap<String, String>();
 		try{
 			List<Usuario> usuarios = usuarioService.obtenerUsuariosFiltro(parametroBusqueda);
 			return Response.ok(usuarios).build();
 		}catch(BusinessException ex){
-			respuesta.put("code", "400");
-			respuesta.put("message", ex.getMessage());
-			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 	
@@ -269,14 +243,11 @@ public class UsuarioResource {
 	@DELETE
 	@Produces({ "application/json" })
 	public Response eliminarUsuario(@QueryParam("idUsuario") Integer idUsuario) {
-		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			usuarioService.eliminarUsuario(idUsuario);
 			return Response.ok(Status.OK,"application/json").build();
 		} catch (BusinessException ex) {
-			respuesta.put("code", "400");
-			respuesta.put("message", ex.getMessage());
-			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 

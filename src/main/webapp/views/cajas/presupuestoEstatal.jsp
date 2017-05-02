@@ -165,6 +165,14 @@
 												</select>
 											 </div>
 										</div>
+										<div class="form-group">
+											 <div class="col-sm-4">
+												<button type="button" id="cancelar-btn-contribuyente"
+													class="btn btn-danger btn-md pull-left">
+													<i class="fa fa-close"></i> Cancelar
+												</button>
+											 </div>
+										</div>
 									</form>
 								</div>
 
@@ -506,6 +514,7 @@ $(document).ready(function() {
 							$('#inputNombre').val(data.contribuyente);
 							$('#inputRfc').val(data.rfc);
 							$('#panelContribuyente').show();
+							$('#busqueda').hide();
 						}
 					});
 				}
@@ -529,6 +538,7 @@ $(document).ready(function() {
 
 							$('#panelSucursales').show();
 							$('#panelCalculos').show();
+							$('#cancelar-btn-contribuyente').hide();
 
 							if($('#selectObligacion').val()==3){
 
@@ -560,6 +570,7 @@ $(document).ready(function() {
 							$("#tablaResultados tr").remove();            		               
 							$('#panelSucursales').hide();
 							$('#panelCalculos').hide();
+
 			            } 	
 					}
 				});
@@ -879,6 +890,7 @@ $(document).ready(function() {
 		$('#agregar-btn').hide();
 		$('#save-btn').hide();
 		$('#panelSucursales').hide();
+		$('#cancelar-btn-contribuyente').show();
 
 		rfcContribuyente = null
 		resultados= [];
@@ -890,10 +902,13 @@ $(document).ready(function() {
         fv.resetForm(true);
 	});
 
-	function resetForm(){
+	$('#cancelar-btn-contribuyente').click(function() {
+		$('#busqueda').show();
+		$('#panelContribuyente').hide();
+		$('#cancelar-btn-contribuyente').show();
+		rfcContribuyente = null
+	});
 
-		
-	}
 
 	//colocar valores despues de realizar el calculo
 	function colocarValores(data){	

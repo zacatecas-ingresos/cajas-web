@@ -37,7 +37,7 @@ public class VerificacionAdeudoVehicular {
 		verificacionAdeudoVehiculo.setProcedencia(verificacionAdeudoVehiculoEntity.getProcedencia());
 		verificacionAdeudoVehiculo.setIdEstado(verificacionAdeudoVehiculoEntity.getEstado().getIdEstado());
 		verificacionAdeudoVehiculo.setFolioCalcamonia(verificacionAdeudoVehiculoEntity.getFolioCalcamonia());	
-		verificacionAdeudoVehiculo.setDocumento(verificacionAdeudoVehiculoEntity.getDocumentoPedimento().getIdDocumentoPedimento());
+		verificacionAdeudoVehiculo.setIdDocumento(verificacionAdeudoVehiculoEntity.getDocumentoPedimento().getIdDocumentoPedimento());
 		verificacionAdeudoVehiculo.setEstatus(verificacionAdeudoVehiculoEntity.getEstatus());
 		verificacionAdeudoVehiculo.setObservaciones(verificacionAdeudoVehiculoEntity.getObservaciones());
 		verificacionAdeudoVehiculo.setBaja(verificacionAdeudoVehiculoEntity.getBaja());

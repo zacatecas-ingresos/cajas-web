@@ -18,6 +18,10 @@ public class VerificacionVehiculoMinisterial {
 	private String numeroMotorVehiculo;
 	private Integer folioVerificacionMinisterial;
 	private String observacionesMinisterial;
+	private Integer idfolioVerificacionMinisterial;
+
+	public VerificacionVehiculoMinisterial() {
+	}
 
 	public VerificacionVehiculoMinisterial(VerificacionVehicularEntity verificacionVehicularEntity) {
 		this.setIdVerificacionVehiculo(verificacionVehicularEntity.getIdVerificacionVehiculo());
@@ -123,19 +127,27 @@ public class VerificacionVehiculoMinisterial {
 		this.numeroMotorVehiculo = numeroMotorVehiculo;
 	}
 
-	public Integer getFolioVerificacionMinisterial() {
-		return folioVerificacionMinisterial;
-	}
-
-	public void setFolioVerificacionMinisterial(Integer folioVerificacionMinisterial) {
-		this.folioVerificacionMinisterial = folioVerificacionMinisterial;
-	}
-
 	public String getObservacionesMinisterial() {
 		return observacionesMinisterial;
 	}
 
 	public void setObservacionesMinisterial(String observacionesMinisterial) {
 		this.observacionesMinisterial = observacionesMinisterial;
+	}
+
+	public Integer getIdfolioVerificacionMinisterial() {
+		return idfolioVerificacionMinisterial;
+	}
+
+	public void setIdfolioVerificacionMinisterial(Integer idfolioVerificacionMinisterial) {
+		this.idfolioVerificacionMinisterial = idfolioVerificacionMinisterial;
+	}
+
+	public void setFolioVerificacionMinisterial(Integer folioVerificacionMinisterial) {
+		this.folioVerificacionMinisterial = folioVerificacionMinisterial;
+	}
+
+	public Integer getFolioVerificacionMinisterial() {
+		return folioVerificacionMinisterial;
 	}
 }

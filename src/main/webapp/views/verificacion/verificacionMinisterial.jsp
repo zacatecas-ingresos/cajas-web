@@ -39,6 +39,10 @@
     href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css"
     rel="stylesheet" type="text/css">
 
+<!-- jquery-ui.css -->
+<link
+	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css"
+	rel="stylesheet" type="text/css" />
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -111,6 +115,7 @@
                                      <legend>Datos del Vehiculo</legend>
                                         <div class="row">
                                          <div class="col-md-4">
+                                                    <input id="idVerificacionVehiculo" type="hidden">
                                                     <div class="form-group has-feedback">
                                                         <label for="inputVin" 
                                                                class="control-label">
@@ -283,91 +288,52 @@
                                             <div class="row">
                                             <div class="col-md-6">
                                                     <div class="form-group has-feedback">
-                                                        <label for="folioMinisterial" class="control-label">
+                                                        <label for="folioVerificacionMinisterial" class="control-label">
                                                         Folio Ministerial
                                                         </label>
-                                                        <input id="infolioMinisterial" 
-                                                               name="infolioMinisterial" 
+                                                        <input id="infolioVerificacionMinisterial" 
+                                                               name="infolioVerificacionMinisterial" 
                                                                type="text" class="form-control" 
-                                                               maxlength="8" placeholder="folioMinisterial" 
-                                                               required="" data-fv-field="infolioMinisterial">
+                                                               maxlength="8" placeholder="folioVerificacionMinisterial" 
+                                                               required="" data-fv-field="infolioVerificacionMinisterial">
                                                         <i class="form-control-feedback" 
-                                                           data-fv-icon-for="infolioMinisterial" style="display: none;"></i>                                                   
+                                                           data-fv-icon-for="infolioVerificacionMinisterial" style="display: none;"></i>                                                   
                                                     <small class="help-block" 
                                                            data-fv-validator="stringLength" 
-                                                           data-fv-for="infolioMinisterial" 
+                                                           data-fv-for="infolioVerificacionMinisterial" 
                                                            data-fv-result="NOT_VALIDATED" 
                                                            style="display: none;">Please enter a value with valid length</small>
                                                             <small class="help-block" 
                                                            data-fv-validator="notEmpty" 
-                                                           data-fv-for="infolioMinisterial" 
+                                                           data-fv-for="infolioVerificacionMinisterial" 
                                                            data-fv-result="NOT_VALIDATED" 
                                                            style="display: none;">El Folio es requerido.</small>
                                                     <small class="help-block" 
                                                            data-fv-validator="numeric" 
-                                                           data-fv-for="infolioMinisterial" 
+                                                           data-fv-for="infolioVerificacionMinisterial" 
                                                            data-fv-result="NOT_VALIDATED" 
                                                            style="display: none;">El Folio debe ser numerico</small>
                                                     <small class="help-block" 
                                                            data-fv-validator="stringLength" 
-                                                           data-fv-for="infolioMinisterial" 
+                                                           data-fv-for="infolioVerificacionMinisterial" 
                                                            data-fv-result="NOT_VALIDATED" 
                                                            style="display: none;">Please enter a value with valid length</small></div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group has-feedback">
-                                                        <label for="inputobsMinisterial" 
+                                                        <label for="inputobservacionesMinisterial" 
                                                                class="control-label">
                                                                Observaciones
                                                         </label>
-                                                        <input id="inputobsMinisterial" 
-                                                               name="inputobsMinisterial" 
+                                                        <input id="inputobservacionesMinisterial" 
+                                                               name="inputobservacionesMinisterial" 
                                                                type="text" class="form-control" 
                                                                maxlength="144" placeholder="Observaciones" 
-                                                               required="" data-fv-field="inputobsMinisterial">
+                                                               required="" data-fv-field="inputobservacionesMinisterial">
                                                         <i class="form-control-feedback" 
-                                                           data-fv-icon-for="inputobsMinisterial" style="display: none;"></i>
+                                                           data-fv-icon-for="inputobservacionesMinisterial" style="display: none;"></i>
                                                 </div>
-                                                <!-- estatus verificacion 
-                                                <div class="row">
-                                                <div class="col-md-6">
-                                                <div class="form-group has-feedback">
-                                                    <label for="selectEstatusVerificacion" class="control-label">Estatus Verificacion</label>
-                                                    <select class="form-control" 
-                                                            id="selectEstatusVerificacion" 
-                                                            name="selectEstatusVerificacion" 
-                                                            disabled="" 
-                                                            required="" 
-                                                            data-fv-field="selectEstatusVerificacion">
-                                                        <option value="1">CAPTURADA</option>
-                                                        <option value="2">AUTORIZADA</option>
-                                                        <option value="3">TERMINADA</option>
-                                                        <option value="4">RECHAZADA MINISTERIO</option>
-                                                        <option value="5">RECHAZADA VERIFICACIO</option>
-                                                        <option value="6">PAGADO</option>
-                                                        <option value="7">PAGA DESPUES</option>
-                                                        <option value="8">CONDONADO</option>
-                                                        <option value="9">CANCELADO</option>
-                                                    </select><i class="form-control-feedback" 
-                                                                data-fv-icon-for="selectEstatusVerificacion" 
-                                                                style="display: none;"></i>
-                                                <small class="help-block" 
-                                                       data-fv-validator="notEmpty" 
-                                                       data-fv-for="selectEstatusVerificacion" 
-                                                       data-fv-result="NOT_VALIDATED" 
-                                                       style="display: none;">El Estatus de Verificacion es requerido.</small></div>
-                                                </div>
-                                                </div>
-                                                Estatus verificacion-->
-                                           <!-- Inicio selector de fecha
-                                            <div class="col-md-6">
-                                                    <div class="form-group has-feedback">
-                                                        <label for="selectClase" class="control-label">
-                                                        Fecha de validacion ministerial
-                                                        </label>
-                                                      <input id="fechaverimin" type="date" name="bday">
-                                                        </div>
-                                             Fin del selector de fecha-->
+                                                
 
                                             </div>
                                             </div>
@@ -381,7 +347,7 @@
                                     Cancelar
                                 </button>
                                 <button type="button" id="save-btn" class="btn btn-success btn-lg pull-right">
-                                    <i class="fa fa-credit-card"></i> Guardar
+                                    <i class="fa fa-credit-card">Guardar</i>
                                 </button>
                             </div>
                         </div>
@@ -491,14 +457,14 @@
                                 	$('#selectClase').val(data['idClaseVehiculo']);
                                 	$('#selectTipo').val(data['idTipoVehiculo']);
                                 	$('#inputLinea').val(data['lineaVehiculo']);
-                                	$('#inputobsMinisterial').val(data['estatusVerificacion']);
-                                	$('#infolioMinisterial').val(data['noSeguimientoVerificion']);                               	
-                                
-                                }               
+                                	$('#inputobservacionesMinisterial').val(data['inputobservacionesMinisterial']);
+                                	$('#infolioVerificacionMinisterial').val(data['infolioVerificacionMinisterial']);                               	
+                                	$('#idVerificacionVehiculo').val(data['idVerificacionVehiculo']);
+                                }
                             },
                             error : function(jqXHR,textStatus,errorThrown) {
                                 console.log(textStatus+ " "+ errorThrown);
-                            }           
+                            }
                     });
 
                         //Genera los checkbox de años
@@ -532,21 +498,18 @@
 
                                             if (formValidation.isValid()) {
 
-                                                var datos = {};                                                
-                                                var vinVehiculo = $('#inputVin');
-                                                var numeroMotorVehiculo = $('#inputNumeroMotor');
+                                                var datos = {};
                                                 var idMarcaVehiculo = $('#idMarcaVehiculo');
                                                 var modeloVehiculo = $('#inputModelo');
                                                 var idClaseVehiculo = $('#selectClase');
                                                 var idTipoVehiculo = $('#selectTipo');
                                                 var lineaVehiculo = $('#inputLinea');
-                                                var obsMinisterial = $('#inputobsMinisterial');
-                                                var folioMinisterial = $('#infolioMinisterial');
-                                               
-                                                datos.vinVehiculo = vinVehiculo
-                                                        .val();
-                                                datos.numeroMotorVehiculo = numeroMotorVehiculo
-                                                        .val();
+                                                var observacionesMinisterial = $('#inputobservacionesMinisterial');
+                                                var folioVerificacionMinisterial = $('#infolioVerificacionMinisterial');
+
+                                                datos.idVerificacionVehiculo = $('#idVerificacionVehiculo').val();
+                                                datos.vinVehiculo = $('#inputVin').val();
+                                                datos.numeroMotorVehiculo = $('#inputNumeroMotor').val();
                                                 datos.idMarcaVehiculo = idMarcaVehiculo
                                                         .val();
                                                 datos.modeloVehiculo = modeloVehiculo
@@ -557,9 +520,9 @@
                                                         .val();
                                                 datos.lineaVehiculo = lineaVehiculo
                                                         .val(); 
-                                                datos.obsMinisterial = obsMinisterial
+                                                datos.observacionesMinisterial = observacionesMinisterial
                                                         .val();
-                                                datos.folioMinisterial = folioMinisterial
+                                                datos.folioVerificacionMinisterial = folioVerificacionMinisterial
                                                         .val();
 
                                                 var formData = JSON
@@ -567,12 +530,12 @@
 
                                                 console.log(formData);
 
-                                                var urlPost = "${pageContext.request.contextPath}/cajas/vehicular/verificacion";
+                                                var urlPost = "${pageContext.request.contextPath}/cajas/vehicular/verificacionMinisterial";
                                                 var admin = "${pageContext.request.contextPath}/views/verificacion/verificacionMinisterial.jsp";
 
                                                 $
                                                         .ajax({
-                                                            type : 'POST',
+                                                            type : 'PUT',
                                                             url : urlPost,
                                                             data : formData,
                                                             dataType : "json",
@@ -598,189 +561,227 @@
 
                                         });
 
-                        //Validaciones
-                        $('#form-vehiculos')
-                                .formValidation(
-                                        {
-                                            framework : 'bootstrap', //Indicamos el framework para validar, Bootstrap, Pure,Semantic,etc
-                                            icon : {//Feedback Icons
-                                                valid : 'glyphicon glyphicon-ok',
-                                                invalid : 'glyphicon glyphicon-remove',
-                                                validating : 'glyphicon glyphicon-refresh'
-                                            },
-                                            //live: 'enabled',
-                                            //Lista de campos a validar y las reglas que aplican para cada uno de ellos
-                                            fields : {
-                                                   
-                                                'selectMarca' : { //validación del campo
-                                                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-                                                    validators : { //validaciones
+                      //Validaciones
+						$('#form-vehiculos')
+								.formValidation(
+										{
+											framework : 'bootstrap', //Indicamos el framework para validar, Bootstrap, Pure,Semantic,etc
+											icon : {//Feedback Icons
+												valid : 'glyphicon glyphicon-ok',
+												invalid : 'glyphicon glyphicon-remove',
+												validating : 'glyphicon glyphicon-refresh'
+											},
+											//live: 'enabled',
+											//Lista de campos a validar y las reglas que aplican para cada uno de ellos
+											fields : {
+												
+												'selectMarca' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
 
-                                                        notEmpty : {
-                                                            message : 'La Marca es requerida.'
-                                                        },
-                                                    }
-                                                },
-                                                'inputModelo' : { //validación del campo
-                                                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-                                                    validators : { //validaciones
+														notEmpty : {
+															message : 'La Marca es requerida.'
+														},
+													}
+												},
+												'inputModelo' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
 
-                                                        notEmpty : {
-                                                            message : 'El Modelo es requerido.'
-                                                        },
-                                                        numeric : {
-                                                            message : 'El Modelo debe ser numerico',
-                                                        }
-                                                    }
-                                                },
-                                                'selectOficina' : { //validación del campo
-                                                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-                                                    validators : { //validaciones
+														notEmpty : {
+															message : 'El Modelo es requerido.'
+														},
+														numeric : {
+															message : 'El Modelo debe ser numerico',
+														}
+													}
+												},
+												'selectOficina' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
 
-                                                        notEmpty : {
-                                                            message : 'La Oficina es requerida.'
-                                                        },
-                                                    }
-                                                },
-                                                'selectEstatusVerificacion' : { //validación del campo
-                                                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-                                                    validators : { //validaciones
+														notEmpty : {
+															message : 'La Oficina es requerida.'
+														},
+													}
+												},
+												'selectEstatusVerificacion' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
 
-                                                        notEmpty : {
-                                                            message : 'El Estatus de Verificacion es requerido.'
-                                                        },
-                                                    }
-                                                },
-                                                'inputEjercicio' : { //validación del campo
-                                                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-                                                    validators : { //validaciones
+														notEmpty : {
+															message : 'El Estatus de Verificacion es requerido.'
+														},
+													}
+												},
+												'inputEjercicio' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
 
-                                                        notEmpty : {
-                                                            message : 'El Ejercicio es requerido.'
-                                                        },
-                                                        numeric : {
-                                                            message : 'El Ejercicio debe ser numerico',
-                                                        }
-                                                    }
-                                                },
-                                                'selectClase' : { //validación del campo
-                                                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-                                                    validators : { //validaciones
+														notEmpty : {
+															message : 'El Ejercicio es requerido.'
+														},
+														numeric : {
+															message : 'El Ejercicio debe ser numerico',
+														}
+													}
+												},
+												'selectClase' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
 
-                                                        notEmpty : {
-                                                            message : 'La Clase es requerida.'
-                                                        },
-                                                    }
-                                                },
-                                                'selectTipo' : { //validación del campo
-                                                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-                                                    validators : { //validaciones
+														notEmpty : {
+															message : 'La Clase es requerida.'
+														},
+													}
+												},
+												'selectTipo' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
 
-                                                        notEmpty : {
-                                                            message : 'El Tipo es requerido.'
-                                                        },
-                                                    }
-                                                },
-                                                'selectLinea' : { //validación del campo
-                                                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-                                                    validators : { //validaciones
+														notEmpty : {
+															message : 'El Tipo es requerido.'
+														},
+													}
+												},
+												'selectLinea' : { //validación del campo
+													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+													validators : { //validaciones
 
-                                                        notEmpty : {
-                                                            message : 'La Linea es requerida.'
-                                                        },
-                                                    }
-                                                },
-                                            }
-                                        });
+														notEmpty : {
+															message : 'La Linea es requerida.'
+														},
+													}
+												},
+											}
+										});
+								
 
-                        //Errores
-                        $
-                                .ajaxSetup({
-                                    error : function(x, status, error) {
-                                        if (x.status == 400) {
-                                            var result = x.responseJSON;
-                                            swal({
-                                                title : "Error " + result.code,
-                                                text : result.message,
-                                                type : "error",
-                                                closeOnCancel : false
-                                            });
-                                        } else if (x.status == 500) {
-                                            swal({
-                                                title : "Error 500",
-                                                text : "Disculpe las molestias no podemos procesar su solicitud.",
-                                                type : "error",
-                                                closeOnCancel : false
-                                            });
-                                        }
-                                    }
-                                });
+						//Errores
+						$.ajaxSetup({
+									error : function(x, status, error) {
+										if (x.status == 400) {
+											var result = x.responseJSON;
+											swal({
+												title : "Error " + result.code,
+												text : result.message,
+												type : "error",
+												closeOnCancel : false
+											});
+										} else if (x.status == 500) {
+											swal({
+												title : "Error 500",
+												text : "Disculpe las molestias no podemos procesar su solicitud.",
+												type : "error",
+												closeOnCancel : false
+											});
+										}
+									}
+								});
+					 
 
-                    });
+					});
 
-    function combos() {
-        var d = new Date();
-        var year = d.getFullYear();
+	function combos() {
+		var d = new Date();
+		var year = d.getFullYear();
 
-        var anioActual = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anioActualComprobantePago" type="checkbox" value="'+year+'">'
-                + year + '</label></div>');
-        anioActual.appendTo('#comprobantes');
-        var anioActualMenosUno = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio1ComprobantePago" type="checkbox" value="'
-                + (year - 1) + '">' + (year - 1) + '</label></div>');
-        anioActualMenosUno.appendTo('#comprobantes');
-        var anioActualMenosDos = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio2ComprobantePago" type="checkbox" value="'
-                + (year - 2) + '">' + (year - 2) + '</label></div>');
-        anioActualMenosDos.appendTo('#comprobantes');
-        var anioActualMenosTres = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio3ComprobantePago" type="checkbox" value="'
-                + (year - 3) + '">' + (year - 3) + '</label></div>');
-        anioActualMenosTres.appendTo('#comprobantes');
-        var anioActualMenosCuatro = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio4ComprobantePago" type="checkbox" value="'
-                + (year - 4) + '">' + (year - 4) + '</label></div>');
-        anioActualMenosCuatro.appendTo('#comprobantes');
-        var anioActualMenosCinco = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio5ComprobantePago" type="checkbox" value="'
-                + (year - 5) + '">' + (year - 5) + '</label></div>');
-        anioActualMenosCinco.appendTo('#comprobantes');
-    };
+		var anioActual = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anioActualComprobantePago" type="checkbox" value="'+year+'">'
+				+ year + '</label></div>');
+		anioActual.appendTo('#comprobantes');
+		var anioActualMenosUno = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio1ComprobantePago" type="checkbox" value="'
+				+ (year - 1) + '">' + (year - 1) + '</label></div>');
+		anioActualMenosUno.appendTo('#comprobantes');
+		var anioActualMenosDos = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio2ComprobantePago" type="checkbox" value="'
+				+ (year - 2) + '">' + (year - 2) + '</label></div>');
+		anioActualMenosDos.appendTo('#comprobantes');
+		var anioActualMenosTres = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio3ComprobantePago" type="checkbox" value="'
+				+ (year - 3) + '">' + (year - 3) + '</label></div>');
+		anioActualMenosTres.appendTo('#comprobantes');
+		var anioActualMenosCuatro = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio4ComprobantePago" type="checkbox" value="'
+				+ (year - 4) + '">' + (year - 4) + '</label></div>');
+		anioActualMenosCuatro.appendTo('#comprobantes');
+		var anioActualMenosCinco = $('<div class="col-md-1"><label class="checkbox-inline"><input id="anio5ComprobantePago" type="checkbox" value="'
+				+ (year - 5) + '">' + (year - 5) + '</label></div>');
+		anioActualMenosCinco.appendTo('#comprobantes');
+	};
 
-    $(function() {
-        $("#criterioMarca")
-                .autocomplete(
-                        {
-                            source : function(request, response) {
-                                var criterio = $('#criterioMarca').val();
-                                var urlGet = "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo/buscarPorCriterio/"
-                                        + "?criterio=" + criterio;
-                                $.ajax({
-                                    type : "GET",
-                                    dataType : 'json',
-                                    url : urlGet,
-                                    data : {
-                                        term : request.term
-                                    },
-                                    success : function(data) {
-                                        //console.log("data:: " + data);
-                                        response($.map(data, function(item) {
-                                            return {
-                                                id : item.idMarcaVehiculo,
-                                                label : item.nombre,
-                                                value : item.nombre
-                                            };
-                                        }));
-                                    },
-                                    error : function(jqXHR, textStatus,
-                                            errorThrown) {
-                                        console.log(textStatus + " "
-                                                + errorThrown);
-                                    }
-                                });
-                            },
-                            minLength : 2,
-                            select : function(event, ui) {
-                                $("#idMarcaVehiculo").val(ui.item.id);
-                                /*console.log("Selected: " + ui.item.value + ", "
-                                        + ui.item.label + ", " + ui.item.id);*/
-                            }
-                        });
-    });
+	$(function() {
+
+		var urlGet = "${pageContext.request.contextPath}/cajas/catalogos/clasevehiculo/obtenerListaCompleta";
+		$.ajax({
+			type : "GET",
+			dataType : 'json',
+			url : urlGet,
+			success : function(data) {
+		        $.each(data, function(key, item) {
+		            $('#selectClase').append($('<option>').text(item.nombre).attr('value', item.idClaseVehiculo));
+		        });
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log(textStatus + " " + errorThrown);
+			}
+		});
+
+		$('#selectClase').change(function(){
+			$('#selectTipo').empty();
+			var idClaseVehiculo = $(this).val();
+			console.log(idClaseVehiculo);
+			var urlGet = "${pageContext.request.contextPath}/cajas/catalogos/tipovehiculo/obtenerListaPorIdClaseVehiculo?idClaseVehiculo=" + idClaseVehiculo;
+	        $.ajax({
+				type : "GET",
+				dataType : 'json',
+				url : urlGet,
+				success : function(data) {
+			        $.each(data, function(key, item) {
+			            $('#selectTipo').append($('<option>').text(item.nombre).attr('value', item.idClaseVehiculo));
+			        });
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					console.log(textStatus + " " + errorThrown);
+				}
+	        })
+		});
+
+		$("#criterioMarca")
+				.autocomplete(
+						{
+							source : function(request, response) {
+								var criterio = $('#criterioMarca').val();
+								var urlGet = "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo/buscarPorCriterio/"
+										+ "?criterio=" + criterio;
+								$.ajax({
+									type : "GET",
+									dataType : 'json',
+									url : urlGet,
+									data : {
+										term : request.term
+									},
+									success : function(data) {
+										response($.map(data, function(item) {
+											return {
+												id : item.idMarcaVehiculo,
+												label : item.nombre,
+												value : item.nombre
+											};
+										}));
+									},
+									error : function(jqXHR, textStatus, errorThrown) {
+										console.log(textStatus + " " + errorThrown);
+									}
+								});
+							},
+							minLength : 2,
+							select : function(event, ui) {
+								$("#idMarcaVehiculo").val(ui.item.id);
+							},
+					        change: function(event, ui) {
+					            $("#idMarcaVehiculo").val(ui.item ? ui.item.id : "");
+					            if ($("#idMarcaVehiculo").val() == "" ) {
+					            	$('#criterioMarca').val("");
+						        }
+					        }
+						});
+	});
 </script>
 </html>

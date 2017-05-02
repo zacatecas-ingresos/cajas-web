@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "estatus_verificacion", schema = "vehiculos")
+@Table(name = "estatus_verificaciones", schema = "vehicular")
 public class EstatusVerificacionEntity implements Serializable {
 	private static final long serialVersionUID = 3932729104626046760L;
 
@@ -25,13 +25,16 @@ public class EstatusVerificacionEntity implements Serializable {
 	public Integer getIdEstatusVerificacion() {
 		return idEstatusVerificacion;
 	}
+
 	public void setIdEstatusVerificacion(Integer idEstatusVerificacion) {
 		this.idEstatusVerificacion = idEstatusVerificacion;
 	}
+
 	public String getEstatusverificacion() {
 		return estatusverificacion;
 	}
+
 	public void setEstatusverificacion(String estatusverificacion) {
 		this.estatusverificacion = estatusverificacion;
-	}	
+	}
 }

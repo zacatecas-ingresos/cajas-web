@@ -27,7 +27,7 @@ public class VerificacionVehiculoMinisterialEJB {
 		
 		try {
 			VerificacionVehicularEntity verificacionVehicularEntity = entityManager.find(VerificacionVehicularEntity.class, verificacionVehiculoMinisterial.getIdVerificacionVehiculo());
-			verificacionVehicularEntity.setEstatusVerificacion(verificacionVehiculoMinisterial.getEstatusVerificacion());
+//			verificacionVehicularEntity.setEstatusVerificacion(verificacionVehiculoMinisterial.getEstatusVerificacion());
 			verificacionVehicularEntity.setFechaVerificacion(DateTime.now().toDate());
 			verificacionVehicularEntity.setVinVehiculo(verificacionVehiculoMinisterial.getVinVehiculo());
 			verificacionVehicularEntity.setNumeroMotorVehiculo(verificacionVehiculoMinisterial.getNumeroMotorVehiculo());	

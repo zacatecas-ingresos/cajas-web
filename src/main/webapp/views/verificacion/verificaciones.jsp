@@ -126,9 +126,15 @@
 									<div class="col-xs-2" style="text-align: center;"></div>
 								</div>
 								<br />
-								<div class="col-md-12" style="text-align: right;">										
+								<div class="col-md-12" style="text-align: right;">		
+									<button type="button" class="btn btn-info" id="botonGastos" disabled>
+  										Verificación Adeudo 
+  										<i class="fa fa-money" aria-hidden="true"></i>
+									</button>		
+									&nbsp;&nbsp;						
 									<button type="button" class="btn btn-primary" id="modalBoton" disabled>
-  										Detalle Verificación
+  										Detalle Verificación 
+  										<i class="fa fa-info" aria-hidden="true"></i>  										
 									</button>			
 								</div>
 								<br/><br/>
@@ -141,6 +147,8 @@
 												<th style="display: none;">ID</th>
 												<th>No. Seguimiento</th>
 												<th>VIN</th>
+												<th>No. Motor</th>
+												<th>Persona</th>
 												<th>Estatus</th>
 											</tr>
 										</thead>
@@ -301,6 +309,8 @@ $(document).ready(function(){
 			$(tr).append("<td style=\"display:none;\" class="+"id"+" >" + data[i].idVerificacionVehiculo + "</td>");
 			$(tr).append("<td class="+"noSeguimiento" +" >" + data[i].noSeguimientoVerificion + "</td>");
 			$(tr).append("<td class="+"vin" +" >" + data[i].vinVehiculo + "</td>");
+			$(tr).append("<td class="+"noMotor" +" >" + data[i].numeroMotorVehiculo + "</td>");
+			$(tr).append("<td class="+"persona" +" >" + data[i].nombrePersonaVerificacion + " " + data[i].apellidoPaternoPersonaVerificacion+ "</td>");
 			$(tr).append("<td class="+"estatus" +" >" + estatusVerificaciones(data[i].estatusVerificacion) + "</td>");
 			$('#tablaVerificacion > tbody').append(tr);
 		}
@@ -390,6 +400,7 @@ $(document).ready(function(){
 		idVerificacion = $(this).closest('tr').find('.id').text();	
 		if(idVerificacion>0){
 			$('#modalBoton').prop( "disabled", false );
+			$('#botonGastos').prop( "disabled", false );
 		}
 	});
 
@@ -426,19 +437,10 @@ $(document).ready(function(){
 	
 
 	$('#botonGastos').click(function(){
-		if(idVerificacion == null){
-			swal(
-				{
-					title : "No ha seleccionado Ninguna Verificación.",
-					type : "error",
-					closeOnCancel : false
-				}
-			);
-		}else{
-			//Dirige a la sección para edita un usuario
+		if(idVerificacion >0){
 			var urlAdeudo = "${pageContext.request.contextPath}/views/verificacion/adeudoVerificacion.jsp"+"?id="+idVerificacion;
-			window.location=urlAdeudo;					
-		}	
+			window.location=urlAdeudo;
+		}
 	});
 
 	

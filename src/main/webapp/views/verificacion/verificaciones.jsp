@@ -1,50 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
-<title>Marcas de Vehiculos</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<title>Verificaciones Vehiculares</title>
 
-<!-- Bootstrap -->
-<link
-	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
+	<!-- Bootstrap -->
+	<link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-<!-- Font Awesome -->
-<link
-	href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" />
+	<!-- Font Awesome -->
+	<link href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
-<!-- AdminLTE -->
-<link
-	href="${pageContext.request.contextPath}/resources/admin-lte/css/Fonts.css"
-	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css"
-	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath}/resources/admin-lte/css/skins/_all-skins.min.css"
-	rel="stylesheet" />
+	<!-- AdminLTE -->
+	<link href="${pageContext.request.contextPath}/resources/admin-lte/css/Fonts.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/resources/admin-lte/css/AdminLTE.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/resources/admin-lte/css/skins/_all-skins.min.css" rel="stylesheet" />
 
-<!-- Sweetalert -->
-<link
-	href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css"
-	rel="stylesheet" type="text/css">
+	<!-- Sweetalert -->
+	<link href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
 
-<!-- FormValidation -->
-<link
-	href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css"
-	rel="stylesheet" type="text/css">
-
+	<!-- FormValidation -->
+	<link href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css" rel="stylesheet" type="text/css">
 </head>
-
 <body class="hold-transition skin-blue sidebar-mini">
-
 	<div class="wrapper">
-
 		<!-- Encabezado -->
 		<header class="main-header">
 			<!-- Logo -->
@@ -70,22 +49,20 @@
 		<!-- Menú lateral izquierdo -->
 		<aside class="main-sidebar">
 			<section class="sidebar">
-				<%@ include file="/WEB-INF/jspf/menu.jspf" %><!-- Se llama al al archivo donde se encuentra el menú -->
+				<%@ include file="/WEB-INF/jspf/menu.jspf" %>
 			</section>
 		</aside>
 		<!-- Fin menú lateral izquierdo -->
 
 		<!-- Contenido de la página -->
 		<div class="content-wrapper">
-
 			<!-- Encabezado del contenido de la página -->
 			<section class="content-header">
 				<h1>
-					<span style="color: #798c9c"> </span>Administrar Verificaciones
+					<span style="color: #798c9c">Verificaciones</span>
 				</h1>
 			</section>
 			<!-- Fin del encabezado del contenido de la página -->
-
 
 
 			<!-- Usuarios Registrados -->
@@ -96,30 +73,8 @@
 					<div class="box-body">
 
 						<div class="row">
-
 							<div class="col-md-12">
-
-
-
 								<!-- Contenido -->
-
-								<!-- Botón nuevo marcas -->
-								<div class="col-xs-1 col-md-5"></div>
-								<div class="col-xs-1 col-md-5"></div>
-								<div class="col-xs-10 col-md-2">
-									<div class="dropdown">
-										<button class="btn btn-primary dropdown-toggle" type="button"
-											data-toggle="dropdown">
-											Opciones <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											<li><a class="button" id="crear">Crear Verificación</a></li>
-										</ul>
-									</div>
-								</div>
-								<!--Fin botón nuevo marcas -->
-
-								<br /> <br />
 
 								<div class="row">
 									<div class="col-xs-1" style="text-align: center;"></div>
@@ -191,7 +146,6 @@
 							<legend>Mas Informacion:</legend>
 							<div class="row" id="contenido"></div>
 							</fieldset>
-							
 						</div>
 			</section>
 			<!-- Fin contenido Registrar marca -->
@@ -214,57 +168,28 @@
 		<!-- Add the sidebar's background. This div must be placed
 	           immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
-
 	</div>
-
-
 </body>
 
-
 <!-- Scripts -->
-
 <!-- jQuery -->
-<script
-	src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
 <!-- jQuery UI -->
-<script
-	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
 <!-- jQuery Form -->
-<script
-	src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js" /></script>
-
-<script
-	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js" /></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<script
-	src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-
-<script
-	src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
-
-<script
-	src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
-
-<script
-	src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
-
-<script
-	src="${pageContext.request.contextPath}/resources/formvalidation/js/formValidation.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
+<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/formvalidation/js/formValidation.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
 <!-- Fin scripts -->
 
-
-
 <script>
-
-
 $(document).ready(function(){
 	
 	 

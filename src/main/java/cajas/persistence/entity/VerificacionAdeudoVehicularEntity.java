@@ -14,27 +14,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "verificaciones_adeudos_vehiculos", schema = "vehicular")
 public class VerificacionAdeudoVehicularEntity implements Serializable{
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -695960574215574953L;
+
 	@Id
 	@Column(name = "id_verificacion_adeudo_vehiculo")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idVerificacionAdeudoVehiculo;
 	
-	/*
-	 * LLave foranea hacia Verificaciones Vehiculos
-	 * 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_verificacion_vehiculo")
 	private VerificacionVehicularEntity verificacionVehicular;
-	
-	*/
-	
-	@Column(name = "id_verificacion_vehiculo")
-	private Integer idVerificacionVehicular;
 	
 	@Column( name = "anio0_verificacion_adeudo")
 	private Integer anio0VerificacionAdeudo;
@@ -60,193 +49,153 @@ public class VerificacionAdeudoVehicularEntity implements Serializable{
 	@Column( name = "procedencia" )
 	private Integer procedencia;
 	
-	/*
-	 * Llave foranea Estado
-	 *
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_estado")
-	private EstadoEntity estado;	
-	 */
-	
-	@Column(name = "id_estado")
-	private Integer idEstado;
-	
-	
+	private EstadoEntity estado;
+
 	@Column( name = "folio_calcamonia" )
 	private Integer folioCalcamonia;
 	
 	@Column( name = "fecha_regularizacion" )
 	private Date fechaRegularizacion;
 	
-	@Column( name = "documento" )
-	private Integer documento;
-	
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_documento_pedimento")
+	private DocumentoPedimentoEntity documentoPedimento;
+/*
+ * Crear EstatusVerificacionVehicularEntoty
+ */
 	@Column( name = "estatus" )
 	private Integer estatus;
-	
+
 	@Column( name = "observaciones" )
 	private String observaciones;
-	
+
+	/*
+	 * Cambiar boolean
+	 */
 	@Column( name = "baja" )
 	private Integer baja;
-	
+
 	@Column( name = "baja_placa" )
 	private String bajaPlaca;
-	
+
 	@Column( name = "fecha_verificacion_adeudo" )
 	private Date fechaVerificacionAdeudo;
 
 	public Integer getIdVerificacionAdeudoVehiculo() {
 		return idVerificacionAdeudoVehiculo;
 	}
-
 	public void setIdVerificacionAdeudoVehiculo(Integer idVerificacionAdeudoVehiculo) {
 		this.idVerificacionAdeudoVehiculo = idVerificacionAdeudoVehiculo;
 	}
-	
-
+	public VerificacionVehicularEntity getVerificacionVehicular() {
+		return verificacionVehicular;
+	}
+	public void setVerificacionVehicular(VerificacionVehicularEntity verificacionVehicular) {
+		this.verificacionVehicular = verificacionVehicular;
+	}
 	public Integer getAnio0VerificacionAdeudo() {
 		return anio0VerificacionAdeudo;
 	}
-
 	public void setAnio0VerificacionAdeudo(Integer anio0VerificacionAdeudo) {
 		this.anio0VerificacionAdeudo = anio0VerificacionAdeudo;
 	}
-
 	public Integer getAnio1VerificacionAdeudo() {
 		return anio1VerificacionAdeudo;
 	}
-
 	public void setAnio1VerificacionAdeudo(Integer anio1VerificacionAdeudo) {
 		this.anio1VerificacionAdeudo = anio1VerificacionAdeudo;
 	}
-
 	public Integer getAnio2VerificacionAdeudo() {
 		return anio2VerificacionAdeudo;
 	}
-
 	public void setAnio2VerificacionAdeudo(Integer anio2VerificacionAdeudo) {
 		this.anio2VerificacionAdeudo = anio2VerificacionAdeudo;
 	}
-
 	public Integer getAnio3VerificacionAdeudo() {
 		return anio3VerificacionAdeudo;
 	}
-
 	public void setAnio3VerificacionAdeudo(Integer anio3VerificacionAdeudo) {
 		this.anio3VerificacionAdeudo = anio3VerificacionAdeudo;
 	}
-
 	public Integer getAnio4VerificacionAdeudo() {
 		return anio4VerificacionAdeudo;
 	}
-
 	public void setAnio4VerificacionAdeudo(Integer anio4VerificacionAdeudo) {
 		this.anio4VerificacionAdeudo = anio4VerificacionAdeudo;
 	}
-
 	public Integer getAnio5VerificacionAdeudo() {
 		return anio5VerificacionAdeudo;
 	}
-
 	public void setAnio5VerificacionAdeudo(Integer anio5VerificacionAdeudo) {
 		this.anio5VerificacionAdeudo = anio5VerificacionAdeudo;
 	}
-
 	public Integer getFolioVerificacionAdeudo() {
 		return folioVerificacionAdeudo;
 	}
-
 	public void setFolioVerificacionAdeudo(Integer folioVerificacionAdeudo) {
 		this.folioVerificacionAdeudo = folioVerificacionAdeudo;
 	}
-
 	public Integer getProcedencia() {
 		return procedencia;
 	}
-
 	public void setProcedencia(Integer procedencia) {
 		this.procedencia = procedencia;
 	}
-
-	public Integer getIdVerificacionVehicular() {
-		return idVerificacionVehicular;
+	public EstadoEntity getEstado() {
+		return estado;
 	}
-
-	public void setIdVerificacionVehicular(Integer idVerificacionVehicular) {
-		this.idVerificacionVehicular = idVerificacionVehicular;
+	public void setEstado(EstadoEntity estado) {
+		this.estado = estado;
 	}
-
-	public Integer getIdEstado() {
-		return idEstado;
-	}
-
-	public void setIdEstado(Integer idEstado) {
-		this.idEstado = idEstado;
-	}
-
 	public Integer getFolioCalcamonia() {
 		return folioCalcamonia;
 	}
-
 	public void setFolioCalcamonia(Integer folioCalcamonia) {
 		this.folioCalcamonia = folioCalcamonia;
 	}
-
 	public Date getFechaRegularizacion() {
 		return fechaRegularizacion;
 	}
-
 	public void setFechaRegularizacion(Date fechaRegularizacion) {
 		this.fechaRegularizacion = fechaRegularizacion;
 	}
-
-	public Integer getDocumento() {
-		return documento;
+	public DocumentoPedimentoEntity getDocumentoPedimento() {
+		return documentoPedimento;
 	}
-
-	public void setDocumento(Integer documento) {
-		this.documento = documento;
+	public void setDocumentoPedimento(DocumentoPedimentoEntity documentoPedimento) {
+		this.documentoPedimento = documentoPedimento;
 	}
-
 	public Integer getEstatus() {
 		return estatus;
 	}
-
 	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
-
 	public String getObservaciones() {
 		return observaciones;
 	}
-
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
-
 	public Integer getBaja() {
 		return baja;
 	}
-
 	public void setBaja(Integer baja) {
 		this.baja = baja;
 	}
-
 	public String getBajaPlaca() {
 		return bajaPlaca;
 	}
-
 	public void setBajaPlaca(String bajaPlaca) {
 		this.bajaPlaca = bajaPlaca;
 	}
-
 	public Date getFechaVerificacionAdeudo() {
 		return fechaVerificacionAdeudo;
 	}
-
 	public void setFechaVerificacionAdeudo(Date fechaVerificacionAdeudo) {
 		this.fechaVerificacionAdeudo = fechaVerificacionAdeudo;
-	}	
-	
+	}
 }

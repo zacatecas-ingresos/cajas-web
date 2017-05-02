@@ -27,8 +27,6 @@ public class VerificacionVehiculoMinisterialResource {
 	@Consumes({ "application/json" })
 	public Response guardarVerificacionMinisterialVehiculo(VerificacionVehiculoMinisterial verificacionVehiculoMinisterial) {
 		try {
-			System.out.println(verificacionVehiculoMinisterial.getFolioVerificacionMinisterial());
-
 			verificacionVehiculoMinisterialEJB.guardarVerificacionMinisterialVehiculo(verificacionVehiculoMinisterial);
 			Map<String,String> resultado = new HashMap<>();
 			resultado.put("Status", "OK");

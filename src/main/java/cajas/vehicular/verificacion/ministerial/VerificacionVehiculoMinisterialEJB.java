@@ -24,7 +24,6 @@ public class VerificacionVehiculoMinisterialEJB {
 	private EntityManager entityManager;
 
 	public void guardarVerificacionMinisterialVehiculo(VerificacionVehiculoMinisterial verificacionVehiculoMinisterial) {
-		
 		try {
 			VerificacionVehicularEntity verificacionVehicularEntity = entityManager.find(VerificacionVehicularEntity.class, verificacionVehiculoMinisterial.getIdVerificacionVehiculo());
 //			verificacionVehicularEntity.setEstatusVerificacion(verificacionVehiculoMinisterial.getEstatusVerificacion());
@@ -38,8 +37,10 @@ public class VerificacionVehiculoMinisterialEJB {
 			verificacionVehicularEntity.setModeloVehiculo(verificacionVehiculoMinisterial.getModeloVehiculo());
 			verificacionVehicularEntity.setIdClaseVehiculo(verificacionVehiculoMinisterial.getIdClaseVehiculo());
 			verificacionVehicularEntity.setIdTipoVehiculo(verificacionVehiculoMinisterial.getIdTipoVehiculo());
+			verificacionVehicularEntity.setFolioVerificacionMinisterial(verificacionVehiculoMinisterial.getFolioVerificacionMinisterial());
+			verificacionVehicularEntity.setObservacionesMinisterial(verificacionVehiculoMinisterial.getObservacionesMinisterial());
 			verificacionVehicularEntity.setLineaVehiculo(verificacionVehiculoMinisterial.getLineaVehiculo());
-			entityManager.persist(verificacionVehicularEntity);
+			entityManager.merge(verificacionVehicularEntity);
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();
 			throw new BusinessException("Ocurrio un problema al registrar al registrar la Verificación del Vehiculo.");

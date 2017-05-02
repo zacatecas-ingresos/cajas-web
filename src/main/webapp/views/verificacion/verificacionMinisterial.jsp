@@ -291,47 +291,47 @@
                                                         <label for="folioVerificacionMinisterial" class="control-label">
                                                         Folio Ministerial
                                                         </label>
-                                                        <input id="infolioVerificacionMinisterial" 
-                                                               name="infolioVerificacionMinisterial" 
+                                                        <input id="folioVerificacionMinisterial" 
+                                                               name="folioVerificacionMinisterial" 
                                                                type="text" class="form-control" 
                                                                maxlength="8" placeholder="folioVerificacionMinisterial" 
-                                                               required="" data-fv-field="infolioVerificacionMinisterial">
+                                                               required="" data-fv-field="folioVerificacionMinisterial">
                                                         <i class="form-control-feedback" 
-                                                           data-fv-icon-for="infolioVerificacionMinisterial" style="display: none;"></i>                                                   
+                                                           data-fv-icon-for="folioVerificacionMinisterial" style="display: none;"></i>                                                   
                                                     <small class="help-block" 
                                                            data-fv-validator="stringLength" 
-                                                           data-fv-for="infolioVerificacionMinisterial" 
+                                                           data-fv-for="folioVerificacionMinisterial" 
                                                            data-fv-result="NOT_VALIDATED" 
                                                            style="display: none;">Please enter a value with valid length</small>
                                                             <small class="help-block" 
                                                            data-fv-validator="notEmpty" 
-                                                           data-fv-for="infolioVerificacionMinisterial" 
+                                                           data-fv-for="folioVerificacionMinisterial" 
                                                            data-fv-result="NOT_VALIDATED" 
                                                            style="display: none;">El Folio es requerido.</small>
                                                     <small class="help-block" 
                                                            data-fv-validator="numeric" 
-                                                           data-fv-for="infolioVerificacionMinisterial" 
+                                                           data-fv-for="folioVerificacionMinisterial" 
                                                            data-fv-result="NOT_VALIDATED" 
                                                            style="display: none;">El Folio debe ser numerico</small>
                                                     <small class="help-block" 
                                                            data-fv-validator="stringLength" 
-                                                           data-fv-for="infolioVerificacionMinisterial" 
+                                                           data-fv-for="folioVerificacionMinisterial" 
                                                            data-fv-result="NOT_VALIDATED" 
                                                            style="display: none;">Please enter a value with valid length</small></div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group has-feedback">
-                                                        <label for="inputobservacionesMinisterial" 
+                                                        <label for="observacionesMinisterial" 
                                                                class="control-label">
                                                                Observaciones
                                                         </label>
-                                                        <input id="inputobservacionesMinisterial" 
-                                                               name="inputobservacionesMinisterial" 
+                                                        <input id="observacionesMinisterial" 
+                                                               name="observacionesMinisterial" 
                                                                type="text" class="form-control" 
                                                                maxlength="144" placeholder="Observaciones" 
-                                                               required="" data-fv-field="inputobservacionesMinisterial">
+                                                               required="" data-fv-field="observacionesMinisterial">
                                                         <i class="form-control-feedback" 
-                                                           data-fv-icon-for="inputobservacionesMinisterial" style="display: none;"></i>
+                                                           data-fv-icon-for="observacionesMinisterial" style="display: none;"></i>
                                                 </div>
                                                 
 
@@ -457,8 +457,8 @@
                                 	$('#selectClase').val(data['idClaseVehiculo']);
                                 	$('#selectTipo').val(data['idTipoVehiculo']);
                                 	$('#inputLinea').val(data['lineaVehiculo']);
-                                	$('#inputobservacionesMinisterial').val(data['inputobservacionesMinisterial']);
-                                	$('#infolioVerificacionMinisterial').val(data['infolioVerificacionMinisterial']);                               	
+                                	$('#observacionesMinisterial').val(data['observacionesMinisterial']);
+                                	$('#folioVerificacionMinisterial').val(data['folioVerificacionMinisterial']);                               	
                                 	$('#idVerificacionVehiculo').val(data['idVerificacionVehiculo']);
                                 }
                             },
@@ -504,8 +504,8 @@
                                                 var idClaseVehiculo = $('#selectClase');
                                                 var idTipoVehiculo = $('#selectTipo');
                                                 var lineaVehiculo = $('#inputLinea');
-                                                var observacionesMinisterial = $('#inputobservacionesMinisterial');
-                                                var folioVerificacionMinisterial = $('#infolioVerificacionMinisterial');
+                                                var observacionesMinisterial = $('#observacionesMinisterial');
+                                                var folioVerificacionMinisterial = $('#folioVerificacionMinisterial');
 
                                                 datos.idVerificacionVehiculo = $('#idVerificacionVehiculo').val();
                                                 datos.vinVehiculo = $('#inputVin').val();
@@ -547,8 +547,8 @@
                                                                 swal(
                                                                         {
                                                                             text : "Verificación Vehicular Ministerial registrada correctamente",
-                                                                            title : "Verificación Vehicular Ministerial registrada correctamente: "
-                                                                                    + data.valor,
+                                                                            title : "Verificación Vehicular Ministerial registrada correctamente "
+                                                                                   ,
                                                                             type : "success",
                                                                             closeOnCancel : false
                                                                         },

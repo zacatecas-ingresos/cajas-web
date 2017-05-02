@@ -1,5 +1,7 @@
 package cajas.persistence.query;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -17,10 +19,14 @@ public class IpQuery {
 
 	/******* Obtiene la informaci�n de una ip registrada **************/
 	public IpEntity obtenerIP(String ip) {
-		IpEntity ipEntity = entityManager
+		IpEntity ipE = null;
+		List<IpEntity> ipEntity = entityManager
 				.createQuery("FROM IpEntity a WHERE a.ip=:ip ORDER BY a.horaExpira DESC", IpEntity.class)
-				.setParameter("ip", ip).setMaxResults(1).getSingleResult();
-		return ipEntity;
+				.setParameter("ip", ip).getResultList();
+		if(!ipEntity.isEmpty()){
+			ipE = ipEntity.get(0);
+		}
+		return ipE;
 	}
 
 }

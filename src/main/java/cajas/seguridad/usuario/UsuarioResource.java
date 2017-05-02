@@ -27,12 +27,16 @@ public class UsuarioResource {
 	/********Registra un nuevo usuario*******/
 	@POST
 	@Consumes({ "application/json" })
+	@Produces({"application/json"})
 	public Response altaUsuario(RegistroUsuario usuario) {
+		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			usuarioService.crearUsuario(usuario);
-			return Response.ok(Status.OK,"application/json").tag("Usuario registrado correctamente.").build();
+			return Response.ok(Status.OK).build();
 		} catch (BusinessException ex) {
-			return Response.ok(Status.NOT_IMPLEMENTED,"application/json").tag(ex.getMessage()).build();
+			respuesta.put("code", "400");
+			respuesta.put("message", ex.getMessage());
+			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
 		}
 	}
 	
@@ -133,36 +137,48 @@ public class UsuarioResource {
 	/*****Actualiza un usuario*********/
 	@PUT
 	@Consumes({ "application/json" })
+	@Produces({"application/json"})
 	public Response actualizarUsuario(RegistroUsuario usuario) {
+		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			usuarioService.actualizarUsuario(usuario);
-			return Response.ok(Status.OK,"application/json").build();
+			return Response.ok(Status.OK).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			respuesta.put("code", "400");
+			respuesta.put("message", ex.getMessage());
+			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
 		}
 	}
 
 	/*****Solo desactiva a un usuario*********/
 	@PUT
 	@Path("/desactivarUsuario")
+	@Produces({"application/json"})
 	public Response desactivarUsuario(@QueryParam("idUsuario") Integer idUsuario) {
+		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			usuarioService.desactivarActivarUsuario(idUsuario);
-			return Response.ok(Status.OK,"application/json").build();
+			return Response.ok(Status.OK).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			respuesta.put("code", "400");
+			respuesta.put("message", ex.getMessage());
+			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
 		}
 	}
 	
 	/*****Solo activa a un usuario*********/
 	@PUT
 	@Path("/activarUsuario")
+	@Produces({"application/json"})
 	public Response activarUsuario(@QueryParam("idUsuario") Integer idUsuario) {
+		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			usuarioService.desactivarActivarUsuario(idUsuario);
-			return Response.ok(Status.OK,"application/json").build();
+			return Response.ok(Status.OK).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			respuesta.put("code", "400");
+			respuesta.put("message", ex.getMessage());
+			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
 		}
 	}
 
@@ -171,11 +187,14 @@ public class UsuarioResource {
 	@Path("/usuarioPorCorreo")
 	@Produces({ "application/json" })
 	public Response obtenerUsuarioPorCorreo(@QueryParam("correo") String correo) {
+		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			Usuario usuario = usuarioService.obtenerUsuarioPorCorreo(correo);
 			return Response.ok(usuario).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			respuesta.put("code", "400");
+			respuesta.put("message", ex.getMessage());
+			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
 		}
 	}
 
@@ -184,11 +203,14 @@ public class UsuarioResource {
 	@Path("/usuarioPorNombre")
 	@Produces({ "application/json" })
 	public Response obtenerUsuarioPorNombre(@QueryParam("nombre") String nombre) {
+		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			Usuario usuario = usuarioService.obtenerUsuarioPorNombre(nombre);
 			return Response.ok(usuario).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			respuesta.put("code", "400");
+			respuesta.put("message", ex.getMessage());
+			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
 		}
 	}	
 	
@@ -197,11 +219,14 @@ public class UsuarioResource {
 	@Path("/usuarioPorId")
 	@Produces({ "application/json" })
 	public Response obtenerUsuarioPorId(@QueryParam("idUsuario") Integer idUsuario) {
+		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			Usuario usuario = usuarioService.obtenerUsuarioPorId(idUsuario);
 			return Response.ok(usuario).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			respuesta.put("code", "400");
+			respuesta.put("message", ex.getMessage());
+			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
 		}
 	}
 
@@ -209,11 +234,14 @@ public class UsuarioResource {
 	@GET
 	@Produces({ "application/json" })
 	public Response obtenerUsuarios() {
+		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			List<Usuario> usuarios = usuarioService.obtenerUsuarios();
 			return Response.ok(usuarios).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			respuesta.put("code", "400");
+			respuesta.put("message", ex.getMessage());
+			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
 		}
 	}
 	
@@ -225,11 +253,14 @@ public class UsuarioResource {
 	@Path("/buscarUsuarios")
 	@Produces({"application/json"})
 	public Response obtenerUsuariosFiltro(@QueryParam("parametro")String parametroBusqueda){
+		Map<String, String> respuesta = new HashMap<String, String>();
 		try{
 			List<Usuario> usuarios = usuarioService.obtenerUsuariosFiltro(parametroBusqueda);
 			return Response.ok(usuarios).build();
 		}catch(BusinessException ex){
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			respuesta.put("code", "400");
+			respuesta.put("message", ex.getMessage());
+			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
 		}
 	}
 	
@@ -238,11 +269,14 @@ public class UsuarioResource {
 	@DELETE
 	@Produces({ "application/json" })
 	public Response eliminarUsuario(@QueryParam("idUsuario") Integer idUsuario) {
+		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
 			usuarioService.eliminarUsuario(idUsuario);
 			return Response.ok(Status.OK,"application/json").build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			respuesta.put("code", "400");
+			respuesta.put("message", ex.getMessage());
+			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
 		}
 	}
 

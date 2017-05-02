@@ -97,18 +97,28 @@ public class VerificacionVehicularQuery {
 	@param estatus
 	@return Arreglo de Verificaciones
 	*/
-	public List<VerificacionVehicularEntity> obtenerVerificaconesFiltro(String vin, Integer estatusVerificacion) {
-		
-		if(estatusVerificacion == 0){
-			List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity vV WHERE LOWER(vV.vinVehiculo) LIKE :vin ORDER BY vV.idVerificacionVehiculo DESC", VerificacionVehicularEntity.class)
-					.setParameter("vin","%"+ vin+"%").getResultList();
+	public List<VerificacionVehicularEntity> obtenerVerificaconesFiltro(String criterioBusqueda) {
+		Integer noSeguimiento = 0;
+		try {
+			noSeguimiento = Integer.valueOf(criterioBusqueda);
+		} catch (Exception e) {
+			noSeguimiento = 0;
+		}
+			
+		if(noSeguimiento>0){
+			List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity vV WHERE LOWER(vV.vinVehiculo) LIKE :criterioBusqueda OR vV.noSeguimientoVerificacion = :noSeguimiento ORDER BY vV.idVerificacionVehiculo DESC", VerificacionVehicularEntity.class)
+					.setParameter("criterioBusqueda","%"+ criterioBusqueda+"%")
+					.setParameter("noSeguimiento",noSeguimiento)					
+					.getResultList();
 			return verificaciones;
-		}else{		
-			List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity vV WHERE LOWER(vV.vinVehiculo) LIKE :vin AND vV.estatusVerificacion =:parametroEstatusVerificacion ORDER BY vV.idVerificacionVehiculo DESC", VerificacionVehicularEntity.class)
-					.setParameter("vin", "%"+ vin+"%").setParameter("parametroEstatusVerificacion", estatusVerificacion).getResultList();
+		}else{
+			List<VerificacionVehicularEntity> verificaciones = entityManager.createQuery("FROM VerificacionVehicularEntity vV WHERE LOWER(vV.vinVehiculo) LIKE :criterioBusqueda ORDER BY vV.idVerificacionVehiculo DESC", VerificacionVehicularEntity.class)
+					.setParameter("criterioBusqueda","%"+ criterioBusqueda+"%")				
+					.getResultList();
 			return verificaciones;
 		}
 
+						
 	}
 	
 	

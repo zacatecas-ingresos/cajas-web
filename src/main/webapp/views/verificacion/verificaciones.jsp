@@ -384,7 +384,7 @@ $(document).ready(function(){
 		
 		$('#search').on('keyup',function(){		
 			var search= $('#search').val();		
-			busca(search);		
+			busca(search.toLowerCase());		
 		});
 	
 	function busca(search){

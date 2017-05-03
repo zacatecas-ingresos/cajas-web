@@ -1,9 +1,7 @@
 package cajas.impuestos.presupuesto;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -28,14 +26,14 @@ public class PresupuestoResource {
 	@Produces({ "application/json" })
 	public Response guardarPresupuesto(List<ImpuestoEstatal> impuestoEstatal) {
 		try {
-			Map<String,Integer> respuesta = new HashMap<String,Integer>();
+			Presupuesto presupuestoGenerado = new Presupuesto();
 			List<Integer> presupuesto = new ArrayList<>();
 			for (ImpuestoEstatal im : impuestoEstatal) {
 				presupuesto.add(im.getIdCalculoTemporal());
 			}
 			Integer idPresupuesto = presupuestoEJB.generarPresupuestoEstatal(presupuesto);
-			respuesta.put("idPresupuesto",idPresupuesto);
-			return Response.status(Status.OK).entity(respuesta).build();
+			presupuestoGenerado.setIdPresupuesto(idPresupuesto);
+			return Response.status(Status.OK).entity(presupuestoGenerado).build();
 		} catch (BusinessException ex) {
 			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}

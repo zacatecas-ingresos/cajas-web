@@ -3,7 +3,8 @@ package cajas.impuestos.presupuesto;
 import java.util.List;
 
 public class Presupuesto {
-
+	
+	private Integer idPresupuesto;
 	private List<Integer> calculos;
 	private Integer idContribuyente;
 
@@ -21,6 +22,14 @@ public class Presupuesto {
 
 	public void setIdContribuyente(Integer idContribuyente) {
 		this.idContribuyente = idContribuyente;
+	}
+	
+	public Integer getIdPresupuesto() {
+		return idPresupuesto;
+	}
+	
+	public void setIdPresupuesto(Integer idPresupuesto) {
+		this.idPresupuesto = idPresupuesto;
 	}
 
 }

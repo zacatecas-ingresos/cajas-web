@@ -135,6 +135,10 @@ public class VerificacionVehiculoEJB {
 			    SimpleDateFormat format = new SimpleDateFormat(pattern);
 			   String fechaVerificacion = format.format(verificacionEntity.getFechaVerificacion());
 			   verificacion.setFechaVerificacion(fechaVerificacion);
+			   
+			   String fechaVerificacionMinisterial = format.format(verificacionEntity.getFechaVerificacionMinisterial());
+			   verificacion.setFechaVerificacionMinisterial(fechaVerificacionMinisterial);
+			   
 				verificacion = verificacion.verificacionVehiculoEntity(verificacionEntity);
 				verificaciones.add(verificacion);
 			}

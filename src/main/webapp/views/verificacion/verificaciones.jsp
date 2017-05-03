@@ -200,8 +200,8 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">Detalles
-						Verificacion</h4>
+					<h3 class="modal-title" id="myModalLabel">Detalles
+						Verificación</h3>
 				</div>
 				<div class="modal-body" id="contenido">
 					<table id="tablaVerificacionDetalle"
@@ -210,6 +210,21 @@
 							<tr class="bg-primary">
 								<th>Fecha Creacion:</th>
 								<th>Ejercicio:</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<br>
+					<h3>Verificación Ministerial</h3>
+					<br>
+					<table id="tablaVerificacionDetalleMinisterial"
+						class="tablaVerificacionDetalleMinisterial table table-bordered table-hover">
+						<thead>
+							<tr class="bg-primary">
+								<th>Folio Ministerial:</th>
+								<th>Fecha Verificación:</th>
+								<th>Observaciones:</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -276,8 +291,15 @@ $(document).ready(function(){
 	
 	var idVerificacion;
 	
+	  $('#myModal').on('hidden.bs.modal', function(e)
+		{ 
+		  	$('#tablaVerificacionDetalle > tbody > tr').remove();
+			$('#tablaVerificacionDetalleMinisterial > tbody > tr').remove();
+		}) ;
+	
 	$('#modalBoton').on('click', function (event) {
-		if(idVerificacion > 0){		
+		if(idVerificacion > 0){
+			
 			var urlBusqueda = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/obtenerVerificacioPorID/"+"?id="+idVerificacion;		
 			$.ajax({
 					type: "GET",
@@ -285,22 +307,24 @@ $(document).ready(function(){
 					url: urlBusqueda,
 					success: function(data){
 						$.each( data, function( key, val ) {
-							/*var ejercicio = $('<table><tr>Ejercicio: '+ val.ejercicio + '</label>');
-							ejercicio.appendTo('#contenido');
-							var fecha = $('Fecha Captura: '+val.fechaVerificacion+'</tr></table>');
-							fecha.appendTo('#contenido');*/
-							
+
 							tr = $('<tr/>');
 							$(tr).append("<td class="+"fechaVerificacion" +" >" + val.fechaVerificacion + "</td>");
 							$(tr).append("<td class="+"ejercicio" +" >" + val.ejercicio + "</td>");
 							$('#tablaVerificacionDetalle > tbody').append(tr);
+							
+							tr = $('<tr/>');
+							$(tr).append("<td class="+"folioVerificacionMinisterial" +" >" +  (val.folioVerificacionMinisterial != null ? val.folioVerificacionMinisterial : "N/A")+ "</td>");
+							$(tr).append("<td class="+"fechaVerificacionMinisterial" +" >" + (val.fechaVerificacionMinisterial != null ? val.fechaVerificacionMinisterial  : "N/A")+ "</td>");
+							$(tr).append("<td class="+"observacionesMinisterial" +" >" + (val.observacionesMinisterial != null ? val.observacionesMinisterial : "N/A") + "</td>");
+							$('#tablaVerificacionDetalleMinisterial > tbody').append(tr);
 							
 				  		});
 					},
 					error : function(jqXHR,textStatus,errorThrown) {
 						console.log(textStatus+ " "+ errorThrown);
 					}
-			});						
+			});					
 			$('#myModal').modal('show')
 		}
 	})

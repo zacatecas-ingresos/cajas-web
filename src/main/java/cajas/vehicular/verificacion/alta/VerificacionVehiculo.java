@@ -35,27 +35,25 @@ public class VerificacionVehiculo {
 	private Integer anioActualComprobantePago;
 	private Integer folioVerificacionMinisterial;
 	private String observacionesMinisterial;
-	
-	/*
-	public VerificacionVehiculo()
-	{
-		
-	} */
-	
+	private String fechaVerificacionMinisterial;
+
 	public VerificacionVehiculo verificacionVehiculoEntity(VerificacionVehicularEntity verificacionVehicularEntity) {
 		
 		VerificacionVehiculo verificacionVehiculo = new VerificacionVehiculo();
 		
 		verificacionVehiculo.setIdVerificacionVehiculo(verificacionVehicularEntity.getIdVerificacionVehiculo());
 		verificacionVehiculo.setEjercicio(verificacionVehicularEntity.getEjercicio());
-		verificacionVehiculo.setNoSeguimientoVerificion(verificacionVehicularEntity.getNoSeguimientoVerificacion());
-		
-		
+		verificacionVehiculo.setNoSeguimientoVerificion(verificacionVehicularEntity.getNoSeguimientoVerificacion());				
 		
 		String pattern = "dd-MM-yyyy";
 	    SimpleDateFormat format = new SimpleDateFormat(pattern);
+	    
 	    String fechaVerificacion = format.format(verificacionVehicularEntity.getFechaVerificacion());
-	    verificacionVehiculo.setFechaVerificacion(fechaVerificacion);	
+	    verificacionVehiculo.setFechaVerificacion(fechaVerificacion);
+	    
+	    String fechaVerificacionMinisterial = format.format(verificacionVehicularEntity.getFechaVerificacionMinisterial());
+	    verificacionVehiculo.setFechaVerificacionMinisterial(fechaVerificacionMinisterial);
+	    
 		verificacionVehiculo.setVinVehiculo(verificacionVehicularEntity.getVinVehiculo());
 		if (verificacionVehicularEntity.getMarcaVehiculo() != null) {
 			verificacionVehiculo.setIdMarcaVehiculo(verificacionVehicularEntity.getMarcaVehiculo().getIdMarcaVehiculo());
@@ -83,7 +81,6 @@ public class VerificacionVehiculo {
 		verificacionVehiculo.setAnioActualComprobantePago(verificacionVehicularEntity.getAnioActualComprobantePago());
 		verificacionVehiculo.setFolioVerificacionMinisterial(verificacionVehicularEntity.getFolioVerificacionMinisterial());
 		verificacionVehiculo.setObservacionesMinisterial(verificacionVehicularEntity.getObservacionesMinisterial());
-		
 	
 		return verificacionVehiculo;
 	} 
@@ -283,6 +280,15 @@ public class VerificacionVehiculo {
 	public void setObservacionesMinisterial(String observacionesMinisterial) {
 		this.observacionesMinisterial = observacionesMinisterial;
 	}
+	
+	public String getFechaVerificacionMinisterial() {
+		return fechaVerificacionMinisterial;
+	}
+
+	public void setFechaVerificacionMinisterial(String fechaVerificacionMinisterial) {
+		this.fechaVerificacionMinisterial = fechaVerificacionMinisterial;
+	}
+
 	
 	
 	

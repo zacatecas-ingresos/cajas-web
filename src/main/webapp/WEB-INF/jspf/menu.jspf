@@ -14,29 +14,30 @@
     <li><a> <i class="fa fa-users" aria-hidden="true"></i> <span>Usuarios</span>
         </a>
         <ul class="treeview-menu">
-            <li><ahref="${pageContext.request.contextPath}/views/usuario/usuario.jsp"><span>Administrar</span></a></li>
+            <li><a href="${pageContext.request.contextPath}/views/usuario/usuario.jsp"><span>Administrar</span></a></li>
         </ul>
     </li>
 </ul>
 <ul class="sidebar-menu">
     <li><a> <i class="fa fa-money" aria-hidden="true"></i> <span>Cajas</span></a>
         <ul class="treeview-menu">
-            <li><a href="${pageContext.request.contextPath}/views/cajas/cobroNomina.jsp"><span>Presupuesto Estatal</span></a></li>
+            <li><a href="${pageContext.request.contextPath}/views/cajas/presupuestoEstatal.jsp"><span>Presupuesto Estatal</span></a></li>
         </ul>
     </li>
 </ul>
 <ul class="sidebar-menu">
-    <li><a><i class="fa fa-car" aria-hidden="true"></i> <span>Control Vehicular</span></a>
+    <li><a> <i class="fa fa-car" aria-hidden="true"></i> <span>Control Vehicular</span></a>
         <ul class="treeview-menu">
-            <li><ul class="sidebar-menu">
-                    <li><a><i class="fa fa-search" aria-hidden="true"></i> <span>Verificaciones</span></a>
-                        <ul class="treeview-menu">
-                            <li><a href="${pageContext.request.contextPath}/views/verificacion/verificaciones.jsp"><span>Adminstrar Verificaciones</span> </a></li>
-                            <li><a href="${pageContext.request.contextPath}/views/verificacion/altaVerificacion.jsp"><span>Crear Verificación</span> </a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
+            <li><a href="${pageContext.request.contextPath}/views/verificacion/verificaciones.jsp"><span>Verificaciones</span> </a></li>
+        	<li><a href="${pageContext.request.contextPath}/views/verificacion/altaVerificacion.jsp"><span>Alta Verificación</span> </a></li>
+        </ul>
+    </li>
+</ul>
+<ul class="sidebar-menu">
+    <li><a> <i class="fa fa-user" aria-hidden="true"></i> <span>Contribuyente</span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="${pageContext.request.contextPath}/views/contribuyentes/contribuyente.jsp"><span>Administración</span></a></li>
         </ul>
     </li>
 </ul>

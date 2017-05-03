@@ -1,7 +1,7 @@
 <%-- 
     Document   : modificarEstado
     Created on : Apr 21, 2017, 9:04:00 PM
-    Author     : Freddy Barrera (freddy.barrera@gmail.com)
+    Author     : Freddy Barrera (freddy.barrera.moo@gmail.com)
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -210,7 +210,7 @@ $(document).ready(
 					success : function(data,textStatus,jQxhr) {
 					swal(
 						{
-							title : "Marca Modificada correctamente.",
+							title : "Estado modificado correctamente.",
 							type : "success",
 							closeOnCancel : false
 						},

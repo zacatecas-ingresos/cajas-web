@@ -1,7 +1,7 @@
 <%-- 
     Document   : estado
     Created on : Apr 20, 2017, 11:34:54 AM
-    Author     : Freddy Barrera (freddy.barrera@gmail.com)
+    Author     : Freddy Barrera (freddy.barrera.moo@gmail.com)
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

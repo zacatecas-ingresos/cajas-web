@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response.Status;
 
 import cajas.exception.BusinessException;
 import cajas.impuestos.declaracion.estatal.ImpuestoEstatal;
+import cajas.util.RespuestaResource;
 
 @Path("/presupuestos")
 public class PresupuestoResource {
@@ -26,18 +27,17 @@ public class PresupuestoResource {
 	@Consumes({ "application/json" })
 	@Produces({ "application/json" })
 	public Response guardarPresupuesto(List<ImpuestoEstatal> impuestoEstatal) {
-		Map<String, String> respuesta = new HashMap<String, String>();
 		try {
+			Map<String,Integer> respuesta = new HashMap<String,Integer>();
 			List<Integer> presupuesto = new ArrayList<>();
 			for (ImpuestoEstatal im : impuestoEstatal) {
 				presupuesto.add(im.getIdCalculoTemporal());
 			}
-			presupuestoEJB.generarPresupuestoEstatal(presupuesto);
-			return Response.ok(Status.OK).build();
+			Integer idPresupuesto = presupuestoEJB.generarPresupuestoEstatal(presupuesto);
+			respuesta.put("idPresupuesto",idPresupuesto);
+			return Response.status(Status.OK).entity(respuesta).build();
 		} catch (BusinessException ex) {
-			respuesta.put("code", "400");
-			respuesta.put("message", ex.getMessage());
-			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 

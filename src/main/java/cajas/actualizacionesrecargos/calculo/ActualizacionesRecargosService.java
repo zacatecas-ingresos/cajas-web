@@ -81,7 +81,7 @@ public class ActualizacionesRecargosService {
 			BigDecimal cantidadTotal = BigDecimal.ZERO;
 			cantidadTotal = contribucionFiscal.getCantidadAdeuda().add(contribucionFiscal.getUaz());
 			actualizacion = cantidadTotal.multiply(factorActualizacion).setScale(0,RoundingMode.HALF_EVEN);
-			cantidadAdeudaActualizacion = actualizacion.add(cantidadTotal);
+			cantidadAdeudaActualizacion = actualizacion;
 			actualizacion = actualizacion.subtract(cantidadTotal);
 		}
 		

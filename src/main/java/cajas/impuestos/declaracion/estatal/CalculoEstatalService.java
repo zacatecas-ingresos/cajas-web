@@ -82,13 +82,9 @@ public class CalculoEstatalService {
 					declaracion.getEjercicioFiscal(), declaracion.getPeriodo(), TipoTasa.TASA_HOSPEDAJE);
 		}
 
-		
-		System.out.println("IMPUESTO:::::" + impuesto);
-		
+				
 		 uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(),declaracion.getPeriodo(), TipoTasa.TASA_UAZ);
 		 
-		 System.out.println("UAZ::::::::::" + uaz);
-
 		// Validar si la obligación ha vencido para saber si se aplica
 		// actualización y recargo
 		if (vencimientoObligacion.haVencidoObligacion(declaracion.getIdObligacion(), periodo.getIdMes(),
@@ -111,8 +107,6 @@ public class CalculoEstatalService {
 			actualizacion = actualizacionRecargo.getImporteActualizacion();
 			recargo = actualizacionRecargo.getImporteRecargo();
 		}
-
-		impuesto = impuesto.add(actualizacion);
 
 		BigDecimal total = impuesto.add(uaz).add(actualizacion).add(recargo);
 

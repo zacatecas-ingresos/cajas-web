@@ -126,7 +126,29 @@
 			<groupId> net.sf.jasperreports </groupId>
 			<artifactId>jasperreports </artifactId>
 			<version> 6.3.0 </version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.olap4j</groupId>
+					<artifactId>olap4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
+
+<dependency>
+    <groupId>net.sourceforge.barbecue</groupId>
+    <artifactId>barbecue</artifactId>
+    <version>1.5-beta1</version>
+</dependency>
+
 
 		<!-- Optional, but highly recommended -->
 		<!-- Arquillian allows you to test enterprise code such as EJBs and Transactional(JTA) 

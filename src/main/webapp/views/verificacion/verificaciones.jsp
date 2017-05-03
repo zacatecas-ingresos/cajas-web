@@ -6,7 +6,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Marcas de Vehiculos</title>
+<title>Verificaciones</title>
 
 <!-- Bootstrap -->
 <link
@@ -83,6 +83,10 @@
 				<h1>
 					<span style="color: #798c9c"> </span>Administrar Verificaciones
 				</h1>
+				     <ol class="breadcrumb">
+                        <li><a href="${pageContext.request.contextPath}"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="active">Verificaciciónes</li>
+                    </ol>
 			</section>
 			<!-- Fin del encabezado del contenido de la página -->
 

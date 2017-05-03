@@ -31,7 +31,7 @@ public class PresupuestoEntity implements Serializable {
 	@Column(name = "lcc_bancos")
 	private String lccBancos;
 
-	@Column(name = "lcc_oxxos")
+	@Column(name = "lcc_oxxo")
 	private String lccOxxos;
 
 	@Column(name = "importe_total")
@@ -50,7 +50,7 @@ public class PresupuestoEntity implements Serializable {
 	private Date fechaEmisionPresupuesto;
 
 	@Column(name = "integrado")
-	private boolean integrado;
+	private Integer integrado;
 
 	@Column(name = "anyo_expedicion")
 	private int ejercicioExpedicion;
@@ -75,10 +75,6 @@ public class PresupuestoEntity implements Serializable {
 
 	public void setIdMesExpedicion(int idMesExpedicion) {
 		this.idMesExpedicion = idMesExpedicion;
-	}
-
-	public void setIntegrado(boolean integrado) {
-		this.integrado = integrado;
 	}
 
 	public Integer getIdPresupuesto() {
@@ -109,9 +105,6 @@ public class PresupuestoEntity implements Serializable {
 		this.lccOxxos = lccOxxos;
 	}
 
-	public boolean isIntegrado() {
-		return integrado;
-	}
 
 	public BigDecimal getImporteTotal() {
 		return importeTotal;
@@ -151,6 +144,14 @@ public class PresupuestoEntity implements Serializable {
 
 	public void setFechaEmisionPresupuesto(Date fechaEmisionPresupuesto) {
 		this.fechaEmisionPresupuesto = fechaEmisionPresupuesto;
+	}
+	
+	public Integer getIntegrado() {
+		return integrado;
+	}
+	
+	public void setIntegrado(Integer integrado) {
+		this.integrado = integrado;
 	}
 
 }

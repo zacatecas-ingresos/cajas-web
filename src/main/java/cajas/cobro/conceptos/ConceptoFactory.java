@@ -1,8 +1,6 @@
 package cajas.cobro.conceptos;
 
 
-import java.math.BigDecimal;
-
 import cajas.persistence.entity.ConceptosEntity;
 
 public class ConceptoFactory {
@@ -22,30 +20,8 @@ public class ConceptoFactory {
 		entity.setCobroDerecho(concepto.getCobroDerecho());
 		entity.setEjercicioFiscal(concepto.getEjercicioFiscal());
 		entity.setTipoNivel(concepto.getTipoNivel());
-		//entity.setActivo(Boolean.TRUE);
 		
 		return entity;		
-	}
-	
-	public static Concepto toObtenerConcepto(ConceptosEntity entity){
-		
-		Concepto concepto = new Concepto();
-		
-		concepto.setIdConcepto(entity.getIdConcepto());
-		concepto.setDescripcion(entity.getDescripcion());
-		concepto.setNivel1(entity.getNivel1());
-		concepto.setNivel2(entity.getNivel2());
-		concepto.setNivel3(entity.getNivel3());
-		concepto.setNivel4(entity.getNivel4());
-		concepto.setNivel5(entity.getNivel5());
-		concepto.setNivel6(entity.getNivel6());
-		concepto.setClave(entity.getClave());
-		concepto.setCobroDerecho(entity.getCobroDerecho());
-		concepto.setEjercicioFiscal(entity.getEjercicioFiscal());
-		concepto.setTipoNivel(concepto.getTipoNivel());
-		concepto.setActivo(entity.isActivo());
-		
-		return concepto;
 	}
 	
 	public static ConceptosEntity toConceptoEditar(Concepto concepto, ConceptosEntity entity){
@@ -81,9 +57,8 @@ public class ConceptoFactory {
 			entity.setClave(concepto.getClave());
 		}
 		
-		if(concepto.getCobroDerecho().compareTo(BigDecimal.ZERO)>=0){
-			entity.setCobroDerecho(concepto.getCobroDerecho());
-		}
+		entity.setCobroDerecho(concepto.getCobroDerecho());
+		
 		if(concepto.getEjercicioFiscal()!=entity.getEjercicioFiscal()){
 			entity.setEjercicioFiscal(concepto.getEjercicioFiscal());
 		}

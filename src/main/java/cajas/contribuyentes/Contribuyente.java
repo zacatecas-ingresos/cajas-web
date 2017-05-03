@@ -7,8 +7,9 @@ package cajas.contribuyentes;
 import java.util.Date;
 
 /**
- *
- * @author Freddy Barrera (freddy.barrera@gmail.com)
+ * Esta clase define un DTO con los datos del contribuyente.
+ * 
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class Contribuyente {
 
@@ -16,12 +17,14 @@ public class Contribuyente {
     private String rfc;
     private String curp;
     private TipoPersona tipoPersona;
+    private String nombreCompuesto;
     private String nombre;
     private String primerApellido;
     private String segundoApellido;
     private Sexo sexo;
     private Date fechaNacimiento;
     private String nacionalidad;
+    private String razonSocial;
 
     public Integer getId() {
         return id;
@@ -54,6 +57,25 @@ public class Contribuyente {
     public void setTipoPersona(TipoPersona tipoPersona) {
         this.tipoPersona = tipoPersona;
     }
+
+    /**
+     * Obtiene el valor de nombreCompuesto
+     *
+     * @return the value of nombreCompuesto
+     */
+    public String getNombreCompuesto() {
+        return nombreCompuesto;
+    }
+
+    /**
+     * Pone el valor de nombreCompuesto
+     *
+     * @param nombreCompuesto new value of nombreCompuesto
+     */
+    public void setNombreCompuesto(String nombreCompuesto) {
+        this.nombreCompuesto = nombreCompuesto;
+    }
+
 
     public String getNombre() {
         return nombre;
@@ -103,5 +125,22 @@ public class Contribuyente {
         this.nacionalidad = nacionalidad;
     }
 
+    /**
+     * Obtiene el valor de razonSocial
+     *
+     * @return the value of razonSocial
+     */
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    /**
+     * Pone el valor de razonSocial
+     *
+     * @param razonSocial new value of razonSocial
+     */
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
+    }
     
 }

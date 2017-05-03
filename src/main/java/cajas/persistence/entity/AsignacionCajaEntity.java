@@ -5,9 +5,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,8 +27,9 @@ public class AsignacionCajaEntity implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idAsignacion;
 	
-	@Column(name="id_caja")
-	private Integer idCaja;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_caja")
+	private CajasEntity idCaja;
 	
 	@Column(name="id_usuario")
 	private Integer idUsuario;
@@ -56,17 +60,21 @@ public class AsignacionCajaEntity implements Serializable{
 		this.idAsignacion = idAsignacion;
 	}
 
+	
+
+
+
 	/**
 	 * @return the idCaja
 	 */
-	public Integer getIdCaja() {
+	public CajasEntity getIdCaja() {
 		return idCaja;
 	}
 
 	/**
 	 * @param idCaja the idCaja to set
 	 */
-	public void setIdCaja(Integer idCaja) {
+	public void setIdCaja(CajasEntity idCaja) {
 		this.idCaja = idCaja;
 	}
 

@@ -135,6 +135,10 @@ public class VerificacionVehiculoEJB {
 			    SimpleDateFormat format = new SimpleDateFormat(pattern);
 			   String fechaVerificacion = format.format(verificacionEntity.getFechaVerificacion());
 			   verificacion.setFechaVerificacion(fechaVerificacion);
+			   
+			//   String fechaVerificacionMinisterial = format.format(verificacionEntity.getFechaVerificacionMinisterial());
+			//   verificacion.setFechaVerificacionMinisterial(fechaVerificacionMinisterial);
+			   
 				verificacion = verificacion.verificacionVehiculoEntity(verificacionEntity);
 				verificaciones.add(verificacion);
 			}
@@ -145,9 +149,9 @@ public class VerificacionVehiculoEJB {
 	}
 	
 	/*******Obtiene la lista de aquellos usuarios que coincidan con el parametro recibido********/
-	public List<VerificacionVehiculo> obtenerVerificacionesFiltro(String vin, Integer estatusVerificacion) {
+	public List<VerificacionVehiculo> obtenerVerificacionesFiltro(String criterioBusqueda) {
 		try {
-			List<VerificacionVehicularEntity> verificacionesEntity = vVehicularQuery.obtenerVerificaconesFiltro(vin, estatusVerificacion);
+			List<VerificacionVehicularEntity> verificacionesEntity = vVehicularQuery.obtenerVerificaconesFiltro(criterioBusqueda);
 			List<VerificacionVehiculo> verificaciones = new ArrayList<>();
 			
 			for (VerificacionVehicularEntity verificacionEntity : verificacionesEntity) {

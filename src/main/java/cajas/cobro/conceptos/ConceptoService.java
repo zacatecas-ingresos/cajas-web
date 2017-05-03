@@ -1,8 +1,5 @@
 package cajas.cobro.conceptos;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
@@ -15,36 +12,10 @@ public class ConceptoService {
 
 	@Inject
 	private ConceptoQuery conceptoQuery;
-	
-	public List<Concepto> consultarConceptosPorClave(String clave) {
-		// Validar que no venga vacia la clave y lanzar excepción si está vacía
-		// Consultar todos los conceptos registrados con la clave especificada
-		if(!ValidacionUtil.esCadenaVacia(clave)){
-			throw new BusinessException("La clave de concepto es requerida para realizar busqueda.");
-		}
-		
-		List<ConceptosEntity> listaConceptos = conceptoQuery.obtenerConceptos(clave);
-		
-		if(listaConceptos.size()<=0){
-			throw new BusinessException("No existe conceptos con la clave especificada.");
-		}
-		
-		List<Concepto> conceptos = new ArrayList<Concepto>();
-		
-		for (ConceptosEntity entidad : listaConceptos) {
-			Concepto concepto = ConceptoFactory.toObtenerConcepto(entidad);
-			conceptos.add(concepto);
-		}
-		
-		return conceptos;
-	}
 
-	public void registrarConcepto(Concepto concepto) {
-		
+	protected void registrarConcepto(Concepto concepto) {
 
 		boolean verificarConcepto = conceptoQuery.existeConcepto(concepto.getClave(), concepto.getEjercicioFiscal());
-		
-		System.out.println("obtnenemos resultado: "+verificarConcepto);
 		
 		if(verificarConcepto){
 			throw new BusinessException("Existe un registro con la misma clave y a�o fiscal");

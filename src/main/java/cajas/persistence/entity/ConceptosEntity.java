@@ -22,7 +22,7 @@ public class ConceptosEntity implements Serializable{
 	private Integer IdConcepto;
 	
 	@Column(name = "descripcion")
-	private String descripcion;
+	private String Descripcion;
 	
 	@Column(name = "nivel_1")
 	private String nivel1;
@@ -66,11 +66,11 @@ public class ConceptosEntity implements Serializable{
 	}
 
 	public String getDescripcion() {
-		return descripcion;
+		return Descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+		Descripcion = descripcion;
 	}
 
 	public String getNivel1() {
@@ -160,7 +160,6 @@ public class ConceptosEntity implements Serializable{
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-
-
+	
 
 }

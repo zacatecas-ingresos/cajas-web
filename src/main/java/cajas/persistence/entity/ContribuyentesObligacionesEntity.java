@@ -5,53 +5,50 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "contribuyentes_obligaciones", schema = "obligaciones")
-public class ContribuyentesObligacionesEntity implements Serializable{
+@Table(name = "contribuyentes_obligaciones", schema = "obligaciones")
+public class ContribuyentesObligacionesEntity implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7043979673936517207L;
-	
+
 	@Id
-	@ManyToOne(fetch= FetchType.LAZY)
-	@JoinColumn(name = "id_contribuyente")
-	private ContribuyenteEntity contribuyente;
-	
-	@ManyToOne(fetch= FetchType.LAZY)
-	@JoinColumn(name = "id_obligacion")
-	private ObligacionesEntity obligacion;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_contribuyente_obligacion")
+	private Integer idContribuyenteObligacion;
+
+	@Column(name = "id_contribuyente")
+	private Integer idContribuyente;
+
+	@Column(name = "id_obligacion")
+	private Integer idObligacion;
+
 	@Column(name = "fecha_alta")
 	private Date fechaAlta;
-	
+
 	@Column(name = "fecha_baja")
 	private Date fechaBaja;
-	
+
 	@Column(name = "estatus")
 	private Integer estatus;
 
-	public ContribuyenteEntity getIdContribuyente() {
-		return contribuyente;
+	public Integer getIdContribuyente() {
+		return idContribuyente;
 	}
 
-	public void setIdContribuyente(ContribuyenteEntity idContribuyente) {
-		this.contribuyente = idContribuyente;
+	public void setIdContribuyente(Integer idContribuyente) {
+		this.idContribuyente = idContribuyente;
 	}
 
-	public ObligacionesEntity getIdObligacion() {
-		return obligacion;
-	}
-
-	public void setIdObligacion(ObligacionesEntity idObligacion) {
-		this.obligacion = idObligacion;
+	public Integer getIdContribuyenteObligacion() {
+		return idContribuyenteObligacion;
 	}
 
 	public Date getFechaAlta() {
@@ -77,7 +74,5 @@ public class ContribuyentesObligacionesEntity implements Serializable{
 	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
-	
-	
 
 }

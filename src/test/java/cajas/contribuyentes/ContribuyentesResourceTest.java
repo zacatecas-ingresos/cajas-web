@@ -43,7 +43,6 @@ public class ContribuyentesResourceTest {
     
     private static final String RESOURCE_PREFIX = JaxRsActivator.class.getAnnotation(ApplicationPath.class).value().substring(1);
     private static final String RESOURCE_NAME = ContribuyenteResource.class.getAnnotation(Path.class).value();
-
     
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
@@ -75,14 +74,14 @@ public class ContribuyentesResourceTest {
         return war; 
     }
 
-    @Ignore
+    //@Ignore
     @Test
     public void buscarContribuyente(@ArquillianResource URL deploymentUrl) throws Exception {
         String url = deploymentUrl.toString() + RESOURCE_PREFIX + '/' + RESOURCE_NAME +  "/consulta";
         System.out.println(url);
         Client client = ClientBuilder.newClient();
         String get = client.target(url)
-                .queryParam("porCriterio", "CAMA")
+                .queryParam("porCriterio", "chavez")
                 .request(MediaType.APPLICATION_JSON)
                 .get(String.class);
         System.out.println(get);

@@ -79,19 +79,33 @@
                 
                 <!-- Main content -->
                 <div class="content">
-                    <form id="frmContribuyente">
+                    <form id="frmContribuyente" class="form-horizontal">
                         <fieldset>                            
-                            <label for="rfc" ><abbr title="Registro Federal de Contribuyentes">RFC</abbr></label>
-                            <input id="rfc" name="rfc" type="text" />
-                            
-                            <label for="rec" ><abbr title="Registro Estatal de Contribuyentes">REC</abbr></label>
-                            <input id="rec" name="rec" type="text" />
+                            <div class="form-group">
+                                <label for="rfc" class="col-sm-2 control-label" ><abbr title="Registro Federal de Contribuyentes">RFC</abbr></label>
+                                <div class="col-sm-4">
+                                    <input id="rfc" name="rfc" type="text" class="form-control" />
+                                </div>
+
+                                <label for="rec" class="col-sm-2 control-label"><abbr title="Registro Estatal de Contribuyentes">REC</abbr></label>
+                                <div class="col-sm-4">
+                                    <input id="rec" name="rec" type="text" class="form-control" />
+                                </div>
+                            </div>
                         </fieldset>
                         <fieldset>
-                            <label for="personaFisica" >Persona física</label>
-                            <input id="personaFisica" name="tipoPersona" type="radio" value="FISICA" />
-                            <label for="personaMoral" >Persona moral</label>
-                            <input id="personaMoral" name="tipoPersona" type="radio" value="MORAL" />
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-4">
+                                    <label for="personaFisica" class="radio-inline">
+                                        <input id="personaFisica" name="tipoPersona" type="radio" value="FISICA" /> Persona física
+                                    </label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="personaMoral" class="radio-inline">
+                                        <input id="personaMoral" name="tipoPersona" type="radio" value="MORAL" /> Persona moral
+                                    </label>
+                                </div>
+                            </div>
                         </fieldset>
 
                         <%--
@@ -101,34 +115,68 @@
                         <%--
                             Este campo aplica solo a las persona morales.
                         --%>
-                            <label for="razonSocial" >Razón social</label>
-                            <input id="razonSocial" name="razonSocial" type="text" />
+                            <div class="form-group">
+                                <label for="razonSocial" class="col-sm-2 control-label">Razón social</label>
+                                <div class="col-sm-10">
+                                    <input id="razonSocial" name="razonSocial" type="text" class="form-control" />
+                                </div>
+                            </div>
 
                         <%--
                             Estos campos aplican a la persona física y/o al representante legal.
                         --%>
-                            <label for="nombre" >Nombre(s)</label>
-                            <input id="nombre" name="nombre" type="text" />
+                            <div class="form-group">
+                                <label for="nombre" class="col-sm-2 control-label">Nombre(s)</label>
+                                <div class="col-sm-10">
+                                    <input id="nombre" name="nombre" type="text" class="form-control" />
+                                </div>
+                            </div>
                             
-                            <label for="primerApellido" >Primer apellido</label>
-                            <input id="primerApellido" name="primerApellido" type="text" />
+                            <div class="form-group">
+                                <label for="primerApellido" class="col-sm-2 control-label">Primer apellido</label>
+                                <div class="col-sm-4">
+                                    <input id="primerApellido" name="primerApellido" type="text" class="form-control" />
+                                </div>
                             
-                            <label for="segundoApellido" >Segundo apellido</label>
-                            <input id="segundoApellido" name="segundoApellido" type="text" />
+                                <label for="segundoApellido" class="col-sm-2 control-label">Segundo apellido</label>
+                                <div class="col-sm-4">
+                                    <input id="segundoApellido" name="segundoApellido" type="text" class="form-control" />
+                                </div>
+                            </div>
                             
-                            <label for="curp" ><abbr title="Clave única de registro poblacional">CURP</abbr></label>
-                            <input id="curp" name="curp" type="text" />
+                            <div class="form-group">
+                                <label for="curp" class="col-sm-2 control-label"><abbr title="Clave única de registro poblacional">CURP</abbr></label>
+                                <div class="col-sm-4">
+                                    <input id="curp" name="curp" type="text" class="form-control" />
+                                </div>
+                            </div>
                             
-                            <label for="nacionalidad" >Nacionalidad</label>
-                            <input id="nacionalidad" name="nacionalidad" type="text" />
+                            <div class="form-group">
+                                <label for="nacionalidad" class="col-sm-2 control-label">Nacionalidad</label>
+                                <div class="col-sm-4">
+                                    <input id="nacionalidad" name="nacionalidad" type="text" class="form-control" />
+                                </div>
+                            </div>
                             
-                            <label for="sexoFemenino" >Femenino</label>
-                            <input id="sexoFemenino" name="sexo" type="radio" value="F" />
-                            <label for="sexoMasculino" >Masculino</label>
-                            <input id="sexoMasculino" name="sexo" type="radio" value="M" />
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-4">
+                                    <label for="sexoFemenino" class="radio-inline" >
+                                        <input id="sexoFemenino" name="sexo" type="radio" value="F" /> Femenino
+                                    </label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="sexoMasculino" class="radio-inline" >
+                                        <input id="sexoMasculino" name="sexo" type="radio" value="M" /> Masculino
+                                    </label>
+                                </div>
+                            </div>
                             
-                            <label for="fechaNacimiento" >Fecha de nacimiento</label>
-                            <input id="fechaNacimiento" name="fechaNacimiento" type="date" />
+                            <div class="form-group">
+                                <label for="fechaNacimiento" class="col-sm-2 control-label">Fecha de nacimiento</label>
+                                <div class="col-sm-4">
+                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" />
+                                </div>
+                            </div>
                         </fieldset>
 
                         <%--
@@ -141,16 +189,33 @@
                             Información de contacto.
                         --%>
                         <fieldset>
-                            <label for="correoe">Correo electrónico</label>
-                            <input id="correoe" name="correoe" type="text" />
-                            
-                            <label for="telefono">Teléfono</label>
-                            <input id="telefono" name="telefono" type="text" />
-                            <input id="tipoTelefono" name="tipoTelefono" type="text" />
+                            <div class="form-group">
+                                <label for="correoe" class="col-sm-2 control-label">Correo electrónico</label>
+                                <div class="col-sm-4">
+                                    <input id="correoe" name="correoe" type="text" class="form-control" />
+                                </div>
+                                
+                                <label for="telefono" class="col-sm-2 control-label">Teléfono</label>
+                                <div class="col-sm-2">
+                                    <input id="telefono" name="telefono" type="text" class="form-control" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <select id="tipoTelefono" name="tipoTelefono" class="form-control">
+                                        <option value="CASA">Casa</option>
+                                        <option value="MOVIL">Móvil</option>
+                                        <option value="OFICINA">Oficina</option>
+                                        <option value="OTRO">Otro</option>
+                                    </select>
+                                </div>
+                            </div>
                         </fieldset>
                         
                         <fieldset>
-                            <button id="btn-guardar" name="guardar" type="button"><i class="fa fa-save"></i> Guardar</button>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button id="btn-guardar" name="guardar" type="button" class="btn btn-default"><i class="fa fa-save"></i> Guardar</button>
+                                </div>
+                            </div>
                         </fieldset>
 
                     </form>
@@ -199,12 +264,59 @@
         <script src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
         
         <script type="text/javascript" >
+// TODO: Freddy cambiar el formato de fecha. http://jsfiddle.net/Ajedi32/pgsawnk3/
 $(document).ready(function() {
     
     //Agrega el evento clic al botón guardar
     $('#btn-guardar').click(function() {
         guardar();
     });
+    
+    /*
+    $('#frmContribuyente').formValidation(
+        {
+            framework : 'bootstrap',
+            icon : {
+                valid : 'glyphicon glyphicon-ok',
+                invalid : 'glyphicon glyphicon-remove',
+                validating : 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                correoe : {
+                    validators: {
+                        regexp : {
+                            regexp : /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                            message: 'Por favor ingrese un correo electrónico valido.'
+                        }
+                    }
+                },
+                rfc : {
+                    validators: {
+                        regexp : {
+                            regexp : /^([A-Z,Ñ,&]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$/,
+                            message : 'Por favor verifique el formato del RFC.'
+                        }
+                    }
+                },
+                curp : {
+                    validators: {
+                        regexp : {
+                            regexp : /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9][12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
+                            message : 'Por favor verifique el formato de la CURP.'
+
+                        }
+                    }
+                },
+                'tipoPersona' : {
+                    validators: {
+                        notEmpty: {
+                            message: 'Por favor seleccione el tipo de persona.'
+                        }
+                    }
+                }
+            }
+        }
+    );*/
 });
 
 /**
@@ -251,7 +363,7 @@ function guardar() {
                         }
                     );
                 },
-                error : function(jqXHR,textStatus,errorThrown) {
+                error : function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus+ " "+ errorThrown);
                 }
             }

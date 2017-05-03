@@ -40,8 +40,11 @@ public class ConceptoService {
 	}
 
 	public void registrarConcepto(Concepto concepto) {
+		
 
 		boolean verificarConcepto = conceptoQuery.existeConcepto(concepto.getClave(), concepto.getEjercicioFiscal());
+		
+		System.out.println("obtnenemos resultado: "+verificarConcepto);
 		
 		if(verificarConcepto){
 			throw new BusinessException("Existe un registro con la misma clave y a�o fiscal");

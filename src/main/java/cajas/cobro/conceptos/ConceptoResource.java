@@ -9,6 +9,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -35,13 +36,16 @@ public class ConceptoResource {
 	
 	@POST
 	@Path("/nuevoConcepto")
-	@Consumes({ "application/json" })
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response altaUsuario(Concepto concepto) {
 		try {
+			System.out.println("ver datos que llegan para persist: "+concepto.toString());
+			System.out.println("dato");
 			conceptoEjb.registrarConcepto(concepto);
 			return Response.ok(Status.OK,"application/json").tag("Se registro correctamente el nuevo concepto.").build();
 		} catch (BusinessException ex) {
-			return Response.ok(Status.NOT_IMPLEMENTED,"application/json").tag(ex.getMessage()).build();
+			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
 		}
 	}
 

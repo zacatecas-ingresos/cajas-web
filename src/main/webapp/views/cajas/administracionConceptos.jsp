@@ -59,7 +59,11 @@
 				</a>
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
+<<<<<<< HEAD
                                                 <%@ include file="/WEB-INF/jspf/logout.jspf" %>
+=======
+						<%@ include file="/WEB-INF/jspf/logout.jspf" %>
+>>>>>>> branch 'master' of https://github.com/zacatecas-ingresos/cajas-web
 					</ul>
 				</div>
 			</nav>
@@ -69,7 +73,11 @@
 		<aside class="main-sidebar">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
+<<<<<<< HEAD
                                 <%@ include file="/WEB-INF/jspf/menu.jspf" %>
+=======
+			    <%@ include file="/WEB-INF/jspf/menu.jspf" %>
+>>>>>>> branch 'master' of https://github.com/zacatecas-ingresos/cajas-web
 			</section>
 			<!-- /.sidebar -->
 		</aside>

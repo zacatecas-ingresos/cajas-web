@@ -273,17 +273,17 @@
 			
 			var datos = {};
 
-			datos.descripcion = $('#inputDescripcion');
-			datos.nivel1 = $('#inputN1');
-			datos.nivel2 = $('#inputN2');
-			datos.nivel3 = $('#inputN3');
-			datos.nivel4 = $('#inputN4');
-			datos.nivel5 = $('#inputN5');
-			datos.nivel6 = $('#inputN6');
-			datos.clave = $('#inputClave');
-			datos.cobroDerecho = $('#inputCuota');
-			datos.ejercicioFiscal = $('#selectAnyoFiscal');
-			datos.tipoNivel = $('#selectNivel');
+			datos.descripcion = $('#inputDescripcion').val();
+			datos.nivel1 = $('#inputN1').val();
+			datos.nivel2 = $('#inputN2').val();
+			datos.nivel3 = $('#inputN3').val();
+			datos.nivel4 = $('#inputN4').val();
+			datos.nivel5 = $('#inputN5').val();
+			datos.nivel6 = $('#inputN6').val();
+			datos.clave = $('#inputClave').val();
+			datos.cobroDerecho = $('#inputCuota').val();
+			datos.ejercicioFiscal = $('#selectAnyoFiscal').val();
+			datos.tipoNivel = $('#selectNivel').val();
 
 			var formData = JSON.stringify(datos);
 
@@ -303,8 +303,11 @@
 						closeOnCancel : false
 					});
 			},
-				error : function(jqXHR,textStatus,errorThrown) {
-					console.log(textStatus+ " "+ errorThrown);
+				error : function(status, text, jqXHR) {
+					console.error(status);
+					console.error(text);
+					console.error(jqXHR);
+					
 					}
 				});
 		});

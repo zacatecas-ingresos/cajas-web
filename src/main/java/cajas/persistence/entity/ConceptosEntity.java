@@ -160,6 +160,7 @@ public class ConceptosEntity implements Serializable{
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	
+
+
 
 }

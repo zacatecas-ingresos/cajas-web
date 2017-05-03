@@ -22,7 +22,7 @@ public class ConceptoFactory {
 		entity.setCobroDerecho(concepto.getCobroDerecho());
 		entity.setEjercicioFiscal(concepto.getEjercicioFiscal());
 		entity.setTipoNivel(concepto.getTipoNivel());
-		entity.setActivo(Boolean.TRUE);
+		//entity.setActivo(Boolean.TRUE);
 		
 		return entity;		
 	}

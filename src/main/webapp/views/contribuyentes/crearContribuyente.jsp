@@ -33,6 +33,9 @@
         
         <!-- FormValidation -->
         <link href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css" rel="stylesheet" type="text/css">
+        
+        <!-- jQuery UI -->
+        <link href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css">
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -79,146 +82,149 @@
                 
                 <!-- Main content -->
                 <div class="content">
-                    <form id="frmContribuyente" class="form-horizontal">
-                        <fieldset>                            
-                            <div class="form-group">
-                                <label for="rfc" class="col-sm-2 control-label" ><abbr title="Registro Federal de Contribuyentes">RFC</abbr></label>
-                                <div class="col-sm-4">
-                                    <input id="rfc" name="rfc" type="text" class="form-control" />
-                                </div>
+                    <div class="box">
+                        <div class="box-body">
+                            <form id="frmContribuyente" class="form-horizontal">
+                                <fieldset>                            
+                                    <div class="form-group">
+                                        <label for="rfc" class="col-sm-2 control-label" ><abbr title="Registro Federal de Contribuyentes">RFC</abbr></label>
+                                        <div class="col-sm-4">
+                                            <input id="rfc" name="rfc" type="text" class="form-control" />
+                                        </div>
 
-                                <label for="rec" class="col-sm-2 control-label"><abbr title="Registro Estatal de Contribuyentes">REC</abbr></label>
-                                <div class="col-sm-4">
-                                    <input id="rec" name="rec" type="text" class="form-control" />
-                                </div>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-4">
-                                    <label for="personaFisica" class="radio-inline">
-                                        <input id="personaFisica" name="tipoPersona" type="radio" value="FISICA" /> Persona física
-                                    </label>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label for="personaMoral" class="radio-inline">
-                                        <input id="personaMoral" name="tipoPersona" type="radio" value="MORAL" /> Persona moral
-                                    </label>
-                                </div>
-                            </div>
-                        </fieldset>
+                                        <label for="rec" class="col-sm-2 control-label"><abbr title="Registro Estatal de Contribuyentes">REC</abbr></label>
+                                        <div class="col-sm-4">
+                                            <input id="rec" name="rec" type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-4">
+                                            <label for="personaFisica" class="radio-inline">
+                                                <input id="personaFisica" name="tipoPersona" type="radio" value="FISICA" /> Persona física
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="personaMoral" class="radio-inline">
+                                                <input id="personaMoral" name="tipoPersona" type="radio" value="MORAL" /> Persona moral
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
 
-                        <%--
-                            Información personal.
-                        --%>
-                        <fieldset>
-                        <%--
-                            Este campo aplica solo a las persona morales.
-                        --%>
-                            <div class="form-group">
-                                <label for="razonSocial" class="col-sm-2 control-label">Razón social</label>
-                                <div class="col-sm-10">
-                                    <input id="razonSocial" name="razonSocial" type="text" class="form-control" />
-                                </div>
-                            </div>
+                                <%--
+                                    Información personal.
+                                --%>
+                                <fieldset>
+                                <%--
+                                    Este campo aplica solo a las persona morales.
+                                --%>
+                                    <div class="form-group">
+                                        <label for="razonSocial" class="col-sm-2 control-label">Razón social</label>
+                                        <div class="col-sm-10">
+                                            <input id="razonSocial" name="razonSocial" type="text" class="form-control" />
+                                        </div>
+                                    </div>
 
-                        <%--
-                            Estos campos aplican a la persona física y/o al representante legal.
-                        --%>
-                            <div class="form-group">
-                                <label for="nombre" class="col-sm-2 control-label">Nombre(s)</label>
-                                <div class="col-sm-10">
-                                    <input id="nombre" name="nombre" type="text" class="form-control" />
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="primerApellido" class="col-sm-2 control-label">Primer apellido</label>
-                                <div class="col-sm-4">
-                                    <input id="primerApellido" name="primerApellido" type="text" class="form-control" />
-                                </div>
-                            
-                                <label for="segundoApellido" class="col-sm-2 control-label">Segundo apellido</label>
-                                <div class="col-sm-4">
-                                    <input id="segundoApellido" name="segundoApellido" type="text" class="form-control" />
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="curp" class="col-sm-2 control-label"><abbr title="Clave única de registro poblacional">CURP</abbr></label>
-                                <div class="col-sm-4">
-                                    <input id="curp" name="curp" type="text" class="form-control" />
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="nacionalidad" class="col-sm-2 control-label">Nacionalidad</label>
-                                <div class="col-sm-4">
-                                    <input id="nacionalidad" name="nacionalidad" type="text" class="form-control" />
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-4">
-                                    <label for="sexoFemenino" class="radio-inline" >
-                                        <input id="sexoFemenino" name="sexo" type="radio" value="F" /> Femenino
-                                    </label>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label for="sexoMasculino" class="radio-inline" >
-                                        <input id="sexoMasculino" name="sexo" type="radio" value="M" /> Masculino
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="fechaNacimiento" class="col-sm-2 control-label">Fecha de nacimiento</label>
-                                <div class="col-sm-4">
-                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" />
-                                </div>
-                            </div>
-                        </fieldset>
+                                <%--
+                                    Estos campos aplican a la persona física y/o al representante legal.
+                                --%>
+                                    <div class="form-group">
+                                        <label for="nombre" class="col-sm-2 control-label">Nombre(s)</label>
+                                        <div class="col-sm-10">
+                                            <input id="nombre" name="nombre" type="text" class="form-control" />
+                                        </div>
+                                    </div>
 
-                        <%--
-                            Datos del domicilio.
-                        --%>
-                        <fieldset>
-                        </fieldset>
-                        
-                        <%--
-                            Información de contacto.
-                        --%>
-                        <fieldset>
-                            <div class="form-group">
-                                <label for="correoe" class="col-sm-2 control-label">Correo electrónico</label>
-                                <div class="col-sm-4">
-                                    <input id="correoe" name="correoe" type="text" class="form-control" />
-                                </div>
-                                
-                                <label for="telefono" class="col-sm-2 control-label">Teléfono</label>
-                                <div class="col-sm-2">
-                                    <input id="telefono" name="telefono" type="text" class="form-control" />
-                                </div>
-                                <div class="col-sm-2">
-                                    <select id="tipoTelefono" name="tipoTelefono" class="form-control">
-                                        <option value="CASA">Casa</option>
-                                        <option value="MOVIL">Móvil</option>
-                                        <option value="OFICINA">Oficina</option>
-                                        <option value="OTRO">Otro</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </fieldset>
-                        
-                        <fieldset>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button id="btn-guardar" name="guardar" type="button" class="btn btn-default"><i class="fa fa-save"></i> Guardar</button>
-                                </div>
-                            </div>
-                        </fieldset>
+                                    <div class="form-group">
+                                        <label for="primerApellido" class="col-sm-2 control-label">Primer apellido</label>
+                                        <div class="col-sm-4">
+                                            <input id="primerApellido" name="primerApellido" type="text" class="form-control" />
+                                        </div>
 
-                    </form>
+                                        <label for="segundoApellido" class="col-sm-2 control-label">Segundo apellido</label>
+                                        <div class="col-sm-4">
+                                            <input id="segundoApellido" name="segundoApellido" type="text" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="curp" class="col-sm-2 control-label"><abbr title="Clave única de registro poblacional">CURP</abbr></label>
+                                        <div class="col-sm-4">
+                                            <input id="curp" name="curp" type="text" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="nacionalidad" class="col-sm-2 control-label">Nacionalidad</label>
+                                        <div class="col-sm-4">
+                                            <input id="nacionalidad" name="nacionalidad" type="text" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-4">
+                                            <label for="sexoFemenino" class="radio-inline" >
+                                                <input id="sexoFemenino" name="sexo" type="radio" value="F" /> Femenino
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="sexoMasculino" class="radio-inline" >
+                                                <input id="sexoMasculino" name="sexo" type="radio" value="M" /> Masculino
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="fechaNacimiento" class="col-sm-2 control-label">Fecha de nacimiento</label>
+                                        <div class="col-sm-4">
+                                            <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" placeholder="dd/mm/aaaa" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <%--
+                                    Datos del domicilio.
+                                --%>
+                                <fieldset>
+                                </fieldset>
+
+                                <%--
+                                    Información de contacto.
+                                --%>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="correoe" class="col-sm-2 control-label">Correo electrónico</label>
+                                        <div class="col-sm-4">
+                                            <input id="correoe" name="correoe" type="text" class="form-control" />
+                                        </div>
+
+                                        <label for="telefono" class="col-sm-2 control-label">Teléfono</label>
+                                        <div class="col-sm-2">
+                                            <input id="telefono" name="telefono" type="text" class="form-control" />
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <select id="tipoTelefono" name="tipoTelefono" class="form-control">
+                                                <option value="CASA">Casa</option>
+                                                <option value="CELULAR">Celular</option>
+                                                <option value="OFICINA">Oficina</option>
+                                                <option value="OTRO">Otro</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button id="btn-guardar" name="guardar" type="button" class="btn btn-default"><i class="fa fa-save"></i> Guardar</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -238,6 +244,7 @@
 
         <!-- jQuery UI -->
         <script src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/jquery-ui/i18n/datepicker-es.js"></script>
 
         <!-- jQuery Form -->
         <script src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js"/></script>
@@ -271,6 +278,12 @@ $(document).ready(function() {
     $('#btn-guardar').click(function() {
         guardar();
     });
+    
+    $('#fechaNacimiento').datepicker({
+        dateFormat: 'dd/mm/yy'
+    });
+
+    $('#fechaNacimiento').datepicker($.datepicker.regional['es']);
     
     /*
     $('#frmContribuyente').formValidation(
@@ -332,7 +345,7 @@ function guardar() {
             primerApellido : $('#primerApellido').val(),
             segundoApellido : $('#segundoApellido').val(),
             sexo : $('input[name=sexo]:checked', '#frmContribuyente').val(),
-            fechaNacimiento : $('#fechaNacimiento').val(),
+            fechaNacimiento : $.datepicker.parseDate('dd/mm/yy', $('#fechaNacimiento').val()),
             nacionalidad : $('#nacionalidad').val(),
             razonSocial : $('#razonSocial').val()
         };

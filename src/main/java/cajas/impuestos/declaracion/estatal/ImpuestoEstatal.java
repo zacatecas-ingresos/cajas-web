@@ -3,20 +3,12 @@ package cajas.impuestos.declaracion.estatal;
 import java.math.BigDecimal;
 
 public class ImpuestoEstatal {
-
 	private Integer idCalculoTemporal;
 	private BigDecimal impuesto;
 	private BigDecimal uaz;
 	private BigDecimal actualizaciones;
 	private BigDecimal recargos;
 	private BigDecimal total;
-
-	private Integer periodo;
-	private Integer aFiscal;
-	private Integer obligacion;
-	private String declaracion;
-
-	/*********************** Getters and Setters ***********************/
 
 	public Integer getIdCalculoTemporal() {
 		return idCalculoTemporal;
@@ -61,41 +53,9 @@ public class ImpuestoEstatal {
 	public BigDecimal getTotal() {
 		return total;
 	}
-
+	
 	public void setTotal(BigDecimal total) {
 		this.total = total;
 	}
-
-	public Integer getPeriodo() {
-		return periodo;
-	}
-
-	public void setPeriodo(Integer periodo) {
-		this.periodo = periodo;
-	}
-
-	public Integer getaFiscal() {
-		return aFiscal;
-	}
-
-	public void setaFiscal(Integer aFiscal) {
-		this.aFiscal = aFiscal;
-	}
-
-	public Integer getObligacion() {
-		return obligacion;
-	}
-
-	public void setObligacion(Integer obligacion) {
-		this.obligacion = obligacion;
-	}
-
-	public String getDeclaracion() {
-		return declaracion;
-	}
-
-	public void setDeclaracion(String declaracion) {
-		this.declaracion = declaracion;
-	}
-
+	
 }

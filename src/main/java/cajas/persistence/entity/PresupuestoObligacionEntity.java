@@ -14,7 +14,6 @@ import javax.persistence.Table;
 @Table(name = "presupuesto_obligacion", schema = "presupuestos")
 public class PresupuestoObligacionEntity implements Serializable {
 
-	
 	/**
 	 * 
 	 */
@@ -43,10 +42,10 @@ public class PresupuestoObligacionEntity implements Serializable {
 	@Column(name = "impuesto")
 	private BigDecimal impuesto;
 
-	@Column(name = "actualizacion")
+	@Column(name = "actualizaciones")
 	private BigDecimal actualizaciones;
 
-	@Column(name = "recargo")
+	@Column(name = "recargos")
 	private BigDecimal recargos;
 
 	@Column(name = "uaz")

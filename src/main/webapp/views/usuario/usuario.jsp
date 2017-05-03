@@ -250,6 +250,9 @@ $(document).ready(function(){
 			dataType : 'json',
 			success : function(data) {
 				tabla(data);
+			},
+			error : function(jqXHR,textStatus,errorThrown) {
+				console.log(textStatus+ " "+ errorThrown);
 			}
 		});
 
@@ -302,6 +305,9 @@ $(document).ready(function(){
 				url: urlGet,
 				success: function(data){
 					tabla(data);
+				},
+				error : function(jqXHR,textStatus,errorThrown) {
+					console.log(textStatus+ " "+ errorThrown);
 				}
 		});
 			
@@ -379,7 +385,10 @@ $(document).ready(function(){
 									function() {
 										window.location = urlUsuario;
 								});
-							}
+							},
+							error : function(jqXHR,textStatus,errorThrown) {
+								console.log(textStatus+ " "+ errorThrown);
+								}
 						});			
 					}
 				});
@@ -424,7 +433,10 @@ $(document).ready(function(){
 									function() {
 										window.location = urlUsuario;
 								});
-							}
+							},
+							error : function(jqXHR,textStatus,errorThrown) {
+								console.log(textStatus+ " "+ errorThrown);
+								}
 						});			
 					}
 				});
@@ -470,7 +482,10 @@ $(document).ready(function(){
 									function() {
 										window.location = urlUsuario;
 								});
-							}
+							},
+							error : function(jqXHR,textStatus,errorThrown) {
+								console.log(textStatus+ " "+ errorThrown);
+								}
 						});			
 					}
 				});

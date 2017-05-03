@@ -68,8 +68,6 @@ public class ActualizacionesRecargosService {
 			 */
 			if(factorActualizacion.compareTo(BigDecimal.ZERO) > 0) {
 				contribucionFiscal.setAplicaActualizacion(true);
-			}else{
-				factorActualizacion = BigDecimal.ONE;
 			}
 			
 			/*****

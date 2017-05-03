@@ -103,7 +103,7 @@
                             </button>
                             <button type="button" id="btn-save"
                                     class="btn btn-success btn-lg pull-right">
-                                <i class="fa fa-save"></i> Guardar
+                                <i class="fa fa-credit-card"></i> Guardar
                             </button>
                         </div>
                     </div>
@@ -157,30 +157,11 @@
             src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
 
         <script>
-$(document).ready(function() {
-	
-				var url = window.location.search.substring(1);
-				var fragmento = url.split("=");
-				var id = fragmento[1];
-	
-	
-				 $.ajax({
-						type: "GET",
-						url: "${pageContext.request.contextPath}/cajas/municipios/idMunicipio/?idMunicipio="+parseInt(id),
-						dataType: "json",
-						success : function(data) {
-				
-							$('#inputabrev').val(data['abreviacionMunicipio']);
-							$('#inputnom').val(data['municipio']);						
-								
-			},
-			error : function(jqXHR,textStatus,errorThrown) {
-				console.log(textStatus+ " "+ errorThrown);
-			}			
-	});
+$(document).ready(
+        function() {
 
             // Cancelar y dirige a la vista principal
-            $('#btn-cancel').click(
+            $('#cancel-btn').click(
                 function() {
                     window.location = '${pageContext.request.contextPath}/views/catalogos/municipios/municipio.jsp';
                 }

@@ -3,6 +3,7 @@ package cajas.vehicular.verificacion.alta;
 import cajas.persistence.entity.VerificacionVehicularEntity;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class VerificacionVehiculo {
 	
@@ -33,30 +34,27 @@ public class VerificacionVehiculo {
 	private Integer anio4ComprobantePago;
 	private Integer anio5ComprobantePago;
 	private Integer anioActualComprobantePago;
-	private Integer folioVerificacionMinisterial;
-	private String observacionesMinisterial;
-	private String fechaVerificacionMinisterial;
-
+	
+	/*
+	public VerificacionVehiculo()
+	{
+		
+	} */
+	
 	public VerificacionVehiculo verificacionVehiculoEntity(VerificacionVehicularEntity verificacionVehicularEntity) {
 		
 		VerificacionVehiculo verificacionVehiculo = new VerificacionVehiculo();
 		
 		verificacionVehiculo.setIdVerificacionVehiculo(verificacionVehicularEntity.getIdVerificacionVehiculo());
 		verificacionVehiculo.setEjercicio(verificacionVehicularEntity.getEjercicio());
-		verificacionVehiculo.setNoSeguimientoVerificion(verificacionVehicularEntity.getNoSeguimientoVerificacion());				
+		verificacionVehiculo.setNoSeguimientoVerificion(verificacionVehicularEntity.getNoSeguimientoVerificacion());
+		
+		
 		
 		String pattern = "dd-MM-yyyy";
 	    SimpleDateFormat format = new SimpleDateFormat(pattern);
-	    
 	    String fechaVerificacion = format.format(verificacionVehicularEntity.getFechaVerificacion());
-	    verificacionVehiculo.setFechaVerificacion(fechaVerificacion);
-	    
-	    if(verificacionVehicularEntity.getFechaVerificacionMinisterial() !=null){
-		    String fechaVerificacionMinisterial = format.format(verificacionVehicularEntity.getFechaVerificacionMinisterial());
-		    verificacionVehiculo.setFechaVerificacionMinisterial(fechaVerificacionMinisterial);
-	    }
-
-	    
+	    verificacionVehiculo.setFechaVerificacion(fechaVerificacion);	
 		verificacionVehiculo.setVinVehiculo(verificacionVehicularEntity.getVinVehiculo());
 		if (verificacionVehicularEntity.getMarcaVehiculo() != null) {
 			verificacionVehiculo.setIdMarcaVehiculo(verificacionVehicularEntity.getMarcaVehiculo().getIdMarcaVehiculo());
@@ -82,8 +80,6 @@ public class VerificacionVehiculo {
 		verificacionVehiculo.setAnio4ComprobantePago(verificacionVehicularEntity.getAnio4ComprobantePago());
 		verificacionVehiculo.setAnio5ComprobantePago(verificacionVehicularEntity.getAnio5ComprobantePago());
 		verificacionVehiculo.setAnioActualComprobantePago(verificacionVehicularEntity.getAnioActualComprobantePago());
-		verificacionVehiculo.setFolioVerificacionMinisterial(verificacionVehicularEntity.getFolioVerificacionMinisterial());
-		verificacionVehiculo.setObservacionesMinisterial(verificacionVehicularEntity.getObservacionesMinisterial());
 	
 		return verificacionVehiculo;
 	} 
@@ -267,31 +263,6 @@ public class VerificacionVehiculo {
 	public void setAnioActualComprobantePago(Integer anioActualComprobantePago) {
 		this.anioActualComprobantePago = anioActualComprobantePago;
 	}
-
-	public Integer getFolioVerificacionMinisterial() {
-		return folioVerificacionMinisterial;
-	}
-
-	public void setFolioVerificacionMinisterial(Integer folioVerificacionMinisterial) {
-		this.folioVerificacionMinisterial = folioVerificacionMinisterial;
-	}
-
-	public String getObservacionesMinisterial() {
-		return observacionesMinisterial;
-	}
-
-	public void setObservacionesMinisterial(String observacionesMinisterial) {
-		this.observacionesMinisterial = observacionesMinisterial;
-	}
-	
-	public String getFechaVerificacionMinisterial() {
-		return fechaVerificacionMinisterial;
-	}
-
-	public void setFechaVerificacionMinisterial(String fechaVerificacionMinisterial) {
-		this.fechaVerificacionMinisterial = fechaVerificacionMinisterial;
-	}
-
 	
 	
 	

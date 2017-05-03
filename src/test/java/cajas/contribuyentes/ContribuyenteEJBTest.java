@@ -120,5 +120,12 @@ public class ContribuyenteEJBTest {
         contribuyente.setRfc("MARK870510MCCJXR00");
         contribuyenteEJB.editarContribuyente(contribuyente);
     }
+    
+    @Ignore
+    @Test
+    public void eliminarContribuyente() {
+        LOGGER.infov(PLANTILLA_INICANDO_TEST, "eliminarContribuyente");
+        contribuyenteEJB.eliminarContribuyente(1);
+    }
 
 }

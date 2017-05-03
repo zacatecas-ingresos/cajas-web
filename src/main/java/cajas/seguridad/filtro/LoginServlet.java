@@ -108,22 +108,15 @@ public class LoginServlet extends HttpServlet {
 		if(revisarIP(request)){
 			minutosBloqueoIP(request);
 			String message = ClaveParametro.INTENTOS_SUPERADOS;
-			Gson gson = new Gson();
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			message = "error " +message + minutos + " minutos para intentar ingresar de nueva cuenta.";
-			response.getWriter().write(gson.toJson(ResponseMessage.respuesta("respuesta", message)));
+			request.setAttribute("error",
+					message + minutos + " minutos para intentar ingresar de nueva cuenta.");
+			request.getRequestDispatcher(ClaveParametro.PAGELOGIN).forward(request, response);
 		}else if(intentos>2 && !revisarIP(request)){
 			bloquearIp(request);
 			minutosBloqueoIP(request);
 			String message = ClaveParametro.INTENTOS_SUPERADOS;
-			Gson gson = new Gson();
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			message = "error " +message + minutos + " minutos para intentar ingresar de nueva cuenta.";
-			response.getWriter().write(gson.toJson(ResponseMessage.respuesta("respuesta", message)));
+			request.setAttribute("error",message + minutos + " minutos para intentar ingresar de nueva cuenta.");
+			request.getRequestDispatcher(ClaveParametro.PAGELOGIN).forward(request, response);
 		}else{
 			intentos++;
 			String message =mensaje;

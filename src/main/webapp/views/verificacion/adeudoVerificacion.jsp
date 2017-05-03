@@ -7,7 +7,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Verificación Adeudos</title>
+<title>Alta Vehiculo</title>
 <!-- Bootstrap -->
 <link
 	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
@@ -84,11 +84,6 @@
 				<h1>
 					<span style="color: #798c9c"> </span>Verificación Adeudos
 				</h1>
-				    <ol class="breadcrumb">
-                        <li><a href="${pageContext.request.contextPath}"><i class="fa fa-home"></i> Inicio</a></li>
-                        <li><a href="${pageContext.request.contextPath}/views/verificacion/verificaciones.jsp">Verificaciones</a></li>
-                        <li class="active">Verificación Adeudos</li>
-                    </ol>
 			</section>
 
 			<!-- Main content Verificacion adeudo -->
@@ -117,7 +112,7 @@
 										<br>
 										<fieldset>
 											<legend>Periodos de Adeudo</legend>
-										
+											<div class="form-group">
 												<div class="row">
 													<div id="comprobantes" class="form-group"></div>
 												</div>
@@ -130,10 +125,10 @@
 													<div class="col-md-6">
 														<label for="bajaPlaca" class="control-label">Placa:</label>
 														<input class=" form-control-inlinel" id="bajaPlaca"
-															name="bajaPlaca" placeholder="Placa..." maxlength="10" disabled>
+															name="bajaPlaca" placeholder="Placa..." maxlength="10">
 													</div>
 												</div>
-										
+											</div>
 										</fieldset>
 										<br>
 									</div>
@@ -164,7 +159,8 @@
 													<div class="form-group">
 														<label for="idEstado" class="control-label">Estado:</label>
 														<select class="form-control" id="idEstado" name="idEstado"
-															required>															
+															required>
+															<option value="1" selected>AGUASCALIENTES</option>
 														</select>
 													</div>
 												</div>
@@ -185,6 +181,8 @@
 														<label for="documento" class="control-label">Documento:</label>
 														<select class="form-control" id="documento"
 															name="documento" required>
+															<option value="1" selected>doc 1</option>
+															<option value="2">doc 2</option>
 														</select>
 													</div>
 												</div>
@@ -371,7 +369,6 @@
 									}
 								});
 
-						// MANDA LLAMAR LOS COMBOS QUE SE GENERAN DE MANERA DINAMICA
 						combos();
 
 						//Cancelar y dirige a la vista principal de los vehiculos registrados
@@ -430,17 +427,14 @@
 												var anio3VerificacionAdeudo = 0;
 												var anio4VerificacionAdeudo = 0;
 												var anio5VerificacionAdeudo = 0;
-												var baja = 0;
 
-												if ($("#baja").is(':checked'))
-												{
-													baja = $("#anio0VerificacionAdeudo").val();
+												if ($(
+														"#anio0VerificacionAdeudo")
+														.is(':checked')) {
+													anio0VerificacionAdeudo = $(
+															"#anio0VerificacionAdeudo")
+															.val();
 												}
-												
-												if ($("#anio0VerificacionAdeudo").is(':checked'))
-													{
-														anio0VerificacionAdeudo = $("#anio0VerificacionAdeudo").val();
-													}
 												if ($(
 														"#anio1VerificacionAdeudo")
 														.is(':checked')) {
@@ -540,8 +534,8 @@
 											},
 											//live: 'enabled',
 											//Lista de campos a validar y las reglas que aplican para cada uno de ellos
-											//excluded: ':disabled',
-    										//live: 'enabled',
+											excluded: ':disabled',
+    										live: 'enabled',
 											fields : {
 												'folioVerificacionAdeudo' : { //validación del campo
 													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
@@ -592,6 +586,15 @@
 														},
 													}
 												},
+												'fechaRegularizacion' : { //validación del campo
+													enabled: false,
+													trigger : 'blur',
+													validators : { //validaciones
+														notEmpty : {
+															message : 'Fecha Requerida',
+														},
+													}
+												},
 												'idEstado' : { //validación del campo													
 													enabled: false,
 													validators : { //validaciones
@@ -608,16 +611,8 @@
 														},
 													}
 												},
-												'bajaPlaca' : { //validación del campo													
-													enabled: false,
-													validators : { //validaciones
-														notEmpty : {
-															message : 'Placa Requerida',
-														},
-													}
-												},
 												'fechaRegularizacion': {
-													//enabled: false,
+													enabled: false,
 													validators: {
 								                        notEmpty: {
 								                            message: 'La Fecha es Requerida'
@@ -632,61 +627,15 @@
 										});
 						
 						$('#procedencia').change(function() {
-							if ($(this).val() != 0) {
-								mostrar();	
-							} else {
-								ocultar();
-							}
-						});
+									if ($(this).val() != 0) {
+										mostrar();	
+									} else {
+									ocultar();
+									}
+								});
 						
-						$('#baja').change(function() {
-							 if (this.checked) {
-							    	$('#bajaPlaca').removeAttr("disabled"); 
-							    	$('#form-adeudo')
-					                .formValidation('enableFieldValidators', 'bajaPlaca', true)
-					                .formValidation('revalidateField', 'bajaPlaca');
-							    } else {
-							    	 $('#bajaPlaca').attr("disabled", "disabled"); 
-							    	 $('#bajaPlaca').val('');
-							    	 $('#bajaPlaca').parent().children('i').css('display', 'none');
-							    	 $('#bajaPlaca').parent().children('small').css('display', 'none');
-							    	 $('#form-adeudo')
-					                    .formValidation('enableFieldValidators', 'bajaPlaca', false)
-					                    .formValidation('revalidateField', 'bajaPlaca');
-							    }
-						    });
-						
-						var urlGetEstados = "${pageContext.request.contextPath}/cajas/estados";
-						$.ajax({
-							type : "GET",
-							dataType : 'json',
-							url : urlGetEstados,
-							success : function(data) {
-						        $.each(data, function(key, item) {
-						            $('#idEstado').append($('<option>').text(item.estado).attr('value', item.idEstado));
-						        });
-							},
-							error : function(jqXHR, textStatus, errorThrown) {
-								console.log(textStatus + " " + errorThrown);
-							}
-						});
-						
-						var urlGetDocumentos = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/documentoPedimento/obtenerDocumentos";
-						$.ajax({
-							type : "GET",
-							dataType : 'json',
-							url : urlGetDocumentos,
-							success : function(data) {
-						        $.each(data, function(key, item) {
-						            $('#documento').append($('<option>').text(item.documento).attr('value', item.idDocumentoPedimento));
-						        });
-							},
-							error : function(jqXHR, textStatus, errorThrown) {
-								console.log(textStatus + " " + errorThrown);
-							}
-						});
-						
-						
+	
+
 						//Errores
 						$
 								.ajaxSetup({
@@ -710,7 +659,6 @@
 									}
 								});
 
-					//documentReady
 					});
 
 	function mostrar(){

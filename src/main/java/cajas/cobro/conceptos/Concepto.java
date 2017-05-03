@@ -1,12 +1,18 @@
 package cajas.cobro.conceptos;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Concepto {
+public class Concepto implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8439477087762803145L;
+
 	private Integer IdConcepto;
 
-	private String Descripcion;
+	private String descripcion;
 
 	private String nivel1;
 	
@@ -28,6 +34,24 @@ public class Concepto {
 	
 	private Integer tipoNivel;
 
+	private boolean activo;
+		
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
+	@Override
+	public String toString() {
+		return "Concepto [IdConcepto=" + IdConcepto + ", descripcion=" + descripcion + ", nivel1=" + nivel1
+				+ ", nivel2=" + nivel2 + ", nivel3=" + nivel3 + ", nivel4=" + nivel4 + ", nivel5=" + nivel5
+				+ ", nivel6=" + nivel6 + ", clave=" + clave + ", cobroDerecho=" + cobroDerecho + ", ejercicioFiscal="
+				+ ejercicioFiscal + ", tipoNivel=" + tipoNivel + ", activo=" + activo + "]";
+	}
+
 	public Integer getIdConcepto() {
 		return IdConcepto;
 	}
@@ -37,11 +61,11 @@ public class Concepto {
 	}
 
 	public String getDescripcion() {
-		return Descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
-		Descripcion = descripcion;
+		this.descripcion = descripcion;
 	}
 
 	public String getNivel1() {
@@ -123,6 +147,5 @@ public class Concepto {
 	public void setTipoNivel(Integer tipoNivel) {
 		this.tipoNivel = tipoNivel;
 	}
-
 
 }

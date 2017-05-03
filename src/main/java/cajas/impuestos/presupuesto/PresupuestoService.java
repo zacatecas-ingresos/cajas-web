@@ -57,14 +57,14 @@ public class PresupuestoService {
 		presupuesto.setIdFormaPago(null);
 		presupuesto.setIdMesExpedicion(FechaUtil.mesActual());
 		presupuesto.setImporteTotal(importeTotal);
-		presupuesto.setIntegrado(0);
+		presupuesto.setIntegrado(false);
 		presupuesto.setLccBancos(" ");
 		presupuesto.setLccOxxos(" ");
 
 		presupuestoQuery.registrarActualizarPresupuesto(presupuesto);
 
 		for (Integer idCalculo : calculos) {
-						
+
 			CalculoTemporalEstatalEntity c = calculoTemporalEstatalQuery.obtenerCalculoPorId(idCalculo);
 			if (c == null) {
 				throw new BusinessException(

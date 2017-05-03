@@ -83,11 +83,6 @@
 				<h1>
 					<span style="color: #798c9c"> </span>Alta Vehiculo
 				</h1>
-				    <ol class="breadcrumb">
-                        <li><a href="${pageContext.request.contextPath}"><i class="fa fa-home"></i>Inicio</a></li>
-                        <li><a href="${pageContext.request.contextPath}/views/verificacion/verificaciones.jsp">Verificaciones</a></li>
-                        <li class="active">Alta Verificación</li>
-                    </ol>				
 			</section>
 
 			<!-- Main content Alta Vehiculo -->

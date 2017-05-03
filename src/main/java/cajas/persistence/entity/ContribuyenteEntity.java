@@ -33,11 +33,8 @@ public class ContribuyenteEntity implements Serializable {
     private String curp;
     
     @Column(name = "tipo_persona")
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private TipoPersona tipoPersona;
-    
-    @Column(name = "nombre_compuesto")
-    private String nombreCompuesto;
     
     @Column(name = "nombres")
     private String nombre;
@@ -62,14 +59,6 @@ public class ContribuyenteEntity implements Serializable {
 //    @Column(name = "correo_electronico")
 //    private String correoElectronico;
 
-    @Column(name = "razon_social")
-    private String razonSocial;
-    
-    @Column(name ="estatus")
-    private Integer idEstatus;
-    
-    
-    
     public Integer getIdContribuyente() {
         return idContribuyente;
     }
@@ -122,25 +111,6 @@ public class ContribuyenteEntity implements Serializable {
         this.tipoPersona = tipoPersona;
     }
 
-    /**
-     * Get the value of nombreCompuesto
-     *
-     * @return the value of nombreCompuesto
-     */
-    public String getNombreCompuesto() {
-        return nombreCompuesto;
-    }
-
-    /**
-     * Set the value of nombreCompuesto
-     *
-     * @param nombreCompuesto new value of nombreCompuesto
-     */
-    public void setNombreCompuesto(String nombreCompuesto) {
-        this.nombreCompuesto = nombreCompuesto;
-    }
-
-    
     /**
      * Get the value of nombre
      *
@@ -266,23 +236,5 @@ public class ContribuyenteEntity implements Serializable {
 //    public void setCorreoElectronico(String correoElectronico) {
 //        this.correoElectronico = correoElectronico;
 //    }
-
-    /**
-     * Get the value of razonSocial
-     *
-     * @return the value of razonSocial
-     */
-    public String getRazonSocial() {
-        return razonSocial;
-    }
-
-    /**
-     * Set the value of razonSocial
-     *
-     * @param razonSocial new value of razonSocial
-     */
-    public void setRazonSocial(String razonSocial) {
-        this.razonSocial = razonSocial;
-    }
 
 }

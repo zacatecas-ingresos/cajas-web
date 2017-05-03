@@ -3,40 +3,32 @@ package cajas.persistence.query;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
+import javax.persistence.PersistenceContext;
 
 import cajas.exception.BusinessException;
 import cajas.persistence.entity.ContribuyentesObligacionesEntity;
 
 public class ContribuyentesObligacionesQuery {
 
-	private final EntityManager entityManager;
+	@PersistenceContext(name = "sitDS")
+	private EntityManager entityManager;
 
-	private static final String CONSULTA_OBLIGACION_ASIGNADA = "SELECT c FROM ContribuyentesObligacionesEntity AS c "
-			+ "WHERE c.idObligacion=:idObligacion AND c.idContribuyente =:idContribuyente";
-
-	public ContribuyentesObligacionesQuery(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
-
-	/**
-	 * Consulta que el contribuyente tenga asignada la obligacion
-	 * 
-	 * @param idObligacion
-	 * @param idContribuyente
-	 */
-	public ContribuyentesObligacionesEntity obtenerAsignacion(Integer idObligacion, Integer idContribuyente) {
+	public ContribuyentesObligacionesEntity obtenerAsignacioActiva(Integer idObligacion, String rfc) {
 		try {
 
-			return entityManager.createQuery(CONSULTA_OBLIGACION_ASIGNADA, ContribuyentesObligacionesEntity.class)
-					.setParameter("idObligacion", idObligacion).setParameter("idContribuyente", idContribuyente)
+			 return entityManager
+					.createQuery("SELECT c FROM ContribuyentesObligacionesEntity AS c WHERE c.obligacion.idObligacion=:idObligacion AND WHERE c.contribuyente.rfc =:rfc AND c.estatus=1",
+							ContribuyentesObligacionesEntity.class)
+					.setParameter("idObligacion", idObligacion)
+					.setParameter("rfc", rfc)
 					.getSingleResult();
-
+			
 		} catch (NoResultException ex) {
 			return null;
-		} catch (NonUniqueResultException ex) {
+		}catch (NonUniqueResultException ex){
 			throw new BusinessException("Asignacion duplicada");
 		}
-
+		
 	}
 
 }

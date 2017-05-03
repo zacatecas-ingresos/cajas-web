@@ -1,14 +1,14 @@
 /**
  * @version 1.0
- * Clase que contiene los m茅todos encrypt y descrypt, cuyos objetivos son
- * encriptar y desencriptar respectivamente, utilizando los algoritmos y codificaci贸n
- * definidas en las variables est谩ticas alg y cI.
- * Requiere las bibliotecas Apache Commons Codec
+ * Clase que contiene los m閠odos encrypt y descrypt, cuyos objetivos son
+ * encriptar y desencriptar respectivamente, utilizando los algoritmos y codificaci髇
+ * definidas en las variables est醫icas alg y cI.
+ * Requiere la librer韆 Apache Commons Codec
  * @see <a href="http://commons.apache.org/proper/commons-codec/">Apache Commons Codec</a>
  * @see <a href="http://docs.oracle.com/javase/8/docs/api/javax/crypto/Cipher.html">javax.crypto Class Cipher</a>
  * @see <a href="http://es.wikipedia.org/wiki/Advanced_Encryption_Standard">WikiES: Advanced Encryption Standard</a>
- * @see <a href="http://es.wikipedia.org/wiki/Criptograf%C3%ADa">WikiES: Criptograf铆a</a>
- * @see <a href="http://es.wikipedia.org/wiki/Vector_de_inicializaci%C3%B3n">WikiES: Vector de inicializaci贸n</a>
+ * @see <a href="http://es.wikipedia.org/wiki/Criptograf%C3%ADa">WikiES: Criptograf韆</a>
+ * @see <a href="http://es.wikipedia.org/wiki/Vector_de_inicializaci%C3%B3n">WikiES: Vector de inicializaci髇</a>
  * @see <a href="http://es.wikipedia.org/wiki/Cifrado_por_bloques">WikiES: Cifrado por bloques</a>
  * @see <a href="http://www.linkedin.com/in/jchinchilla">Julio Chinchilla</a>
  * @author Julio Chinchilla
@@ -23,28 +23,30 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class StringEncrypt {
-    // Definici贸n del tipo de algoritmo a utilizar (AES, DES, RSA)
+    // Definici髇 del tipo de algoritmo a utilizar (AES, DES, RSA)
     private final static String alg = "AES";
-    // Definici贸n del modo de cifrado a utilizar
+    // Definici髇 del modo de cifrado a utilizar
     private final static String cI = "AES/CBC/PKCS5Padding";
 
     public static void main(String[] args) {
 		String key = "92AE31A79FEEB2A3"; //llave
-		String iv = "0123456789ABCDEF"; // vector de inicializaci贸n
+		String iv = "0123456789ABCDEF"; // vector de inicializaci髇
 
 		try {
 			System.out.println("Texto encriptado: " + encrypt(key, iv, 1));
 			System.out.println("Texto desencriptado: " + decrypt(key, iv, encrypt(key, iv, 1)));
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
    /**
-    * Funci贸n de tipo String que recibe una llave (key), un vector de inicializaci贸n (iv)
+    * Funci髇 de tipo String que recibe una llave (key), un vector de inicializaci髇 (iv)
     * y el texto que se desea cifrar
     * @param key la llave en tipo String a utilizar
-    * @param iv el vector de inicializaci贸n a utilizar
+    * @param iv el vector de inicializaci髇 a utilizar
+    * @param cleartext el texto sin cifrar a encriptar
     * @return el texto cifrado en modo String
     * @throws Exception puede devolver excepciones de los siguientes tipos: NoSuchAlgorithmException, InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, NoSuchPaddingException
     */
@@ -60,10 +62,10 @@ public class StringEncrypt {
    }
 
    /**
-    * Funci贸n de tipo String que recibe una llave (key), un vector de inicializaci贸n (iv)
+    * Funci髇 de tipo String que recibe una llave (key), un vector de inicializaci髇 (iv)
     * y el texto que se desea descifrar
     * @param key la llave en tipo String a utilizar
-    * @param iv el vector de inicializaci贸n a utilizar
+    * @param iv el vector de inicializaci髇 a utilizar
     * @param encrypted el texto cifrado en modo String
     * @return el texto desencriptado en modo String
     * @throws Exception puede devolver excepciones de los siguientes tipos: NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException

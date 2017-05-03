@@ -103,7 +103,7 @@
                             </button>
                             <button type="button" id="btn-save"
                                     class="btn btn-success btn-lg pull-right">
-                                <i class="fa fa-save"></i> Guardar
+                                <i class="fa fa-credit-card"></i> Guardar
                             </button>
                         </div>
                     </div>
@@ -157,33 +157,13 @@
             src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
 
         <script>
-$(document).ready(function() {
+$(document).ready(
+        function() {
 
-
-        	var url = window.location.search.substring(1);
-			var fragmento = url.split("=");
-			var id = fragmento[1];
-			
-			
-			 $.ajax({
-					type: "GET",
-					url: "${pageContext.request.contextPath}/cajas/localidades/idLocalidad/?idLocalidad="+parseInt(id),
-					dataType: "json",
-					success : function(data) {
-						
-						$('#inputabrev').val(data['abreviacionLocalidad']);
-						$('#inputnom').val(data['localidad']);						
-							
-					},
-					error : function(jqXHR,textStatus,errorThrown) {
-						console.log(textStatus+ " "+ errorThrown);
-					}			
-			});
-			
-        	// Cancelar y dirige a la vista principal
-            $('#btn-cancel').click(function() {
-        var urlUsuario = "${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp";
-        window.location = urlUsuario;
+            // Cancelar y dirige a la vista principal
+            $('#cancel-btn').click(
+                function() {
+                    window.location = '${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp';
                 }
             );
 
@@ -211,7 +191,7 @@ $(document).ready(function() {
 			
 				console.log(formData);
 			
-				var urlPost = "${pageContext.request.contextPath}/cajas/catalogos/localidades";
+				var urlPost = "${pageContext.request.contextPath}/cajas/catalogos/localidad";
 				var urlLocalidades = "${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp";
 				                                  
 
@@ -249,17 +229,7 @@ $(document).ready(function() {
 	$('#home').click(function(){
 			var urlEditarLocalidad = "${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp";
 			window.location=urlEditarLocalidad;
-			
-			$.ajax({
-			        type : "GET",
-			        url : "${pageContext.request.contextPath}/cajas/localidades",
-			        dataType : 'json',
-			        success : function(data) {
-			            console.log(data)
-			        	// llenarTablaLocalidades(data);
-			        	$('#inputabrev').val(data.idLocalidad);
-			        },
-	});
+		
 	});
 	
 
@@ -284,9 +254,8 @@ $(document).ready(function() {
 				}
 		}
 	});
-	
-});
 
+	});
         </script>
     </body>
 </html>

@@ -255,8 +255,11 @@ $(document).ready(function() {
 							function() {
 							window.location = urlUsuario;
 							});
-					}
-				});
+				},
+					error : function(jqXHR,textStatus,errorThrown) {
+						console.log(textStatus+ " "+ errorThrown);
+						}
+					});
 			}
 
 	});

@@ -234,7 +234,7 @@ $(document).ready(function() {
                     validators : { //validaciones
                         notEmpty : {
                             message : 'La abreviacion del estado es requerida.'
-                        }
+                        },
                     }
                 },
                 'inputnom' : { //validación del campo

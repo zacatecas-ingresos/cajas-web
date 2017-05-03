@@ -1,6 +1,8 @@
 package cajas.config.periodos;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
@@ -11,7 +13,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import cajas.exception.BusinessException;
-import cajas.util.RespuestaResource;
 
 @Path("/periodos")
 public class PeriodoResource {
@@ -22,11 +23,14 @@ public class PeriodoResource {
 	@GET
 	@Produces({ "application/json" })
 	public Response periodos(@QueryParam("aFiscal")Integer aFiscal) {
+		Map<String,String> respuesta = new HashMap<String,String>();
 		try {
 			List<Periodo> periodos = periodoEJB.periodos(aFiscal);
 			return Response.ok(periodos).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
+			respuesta.put("code","400");
+			respuesta.put("message",ex.getMessage());
+			return Response.status(Status.BAD_REQUEST).entity(respuesta).build();
 		}
 	}
 

@@ -6,12 +6,10 @@
 package cajas.contribuyentes;
 
 /**
- * Define el sexo del contribuyente.
- * 
+ *
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public enum Sexo {
-
     /**
      * Femenino.
      */
@@ -25,10 +23,6 @@ public enum Sexo {
         this.valor = valor;
     }
 
-    /**
-     * Devuelve la descripción completa del sexo.
-     * @return 
-     */
     public String getValor() {
         return valor;
     }

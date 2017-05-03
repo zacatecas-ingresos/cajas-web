@@ -51,8 +51,11 @@ public class VerificacionVehiculo {
 	    String fechaVerificacion = format.format(verificacionVehicularEntity.getFechaVerificacion());
 	    verificacionVehiculo.setFechaVerificacion(fechaVerificacion);
 	    
-	    String fechaVerificacionMinisterial = format.format(verificacionVehicularEntity.getFechaVerificacionMinisterial());
-	    verificacionVehiculo.setFechaVerificacionMinisterial(fechaVerificacionMinisterial);
+	    if(verificacionVehicularEntity.getFechaVerificacionMinisterial() !=null){
+		    String fechaVerificacionMinisterial = format.format(verificacionVehicularEntity.getFechaVerificacionMinisterial());
+		    verificacionVehiculo.setFechaVerificacionMinisterial(fechaVerificacionMinisterial);
+	    }
+
 	    
 		verificacionVehiculo.setVinVehiculo(verificacionVehicularEntity.getVinVehiculo());
 		if (verificacionVehicularEntity.getMarcaVehiculo() != null) {

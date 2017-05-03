@@ -327,6 +327,7 @@ public class VerificacionVehicularEntity implements Serializable {
 		this.anioActualComprobantePago = anioActualComprobantePago;
 	}
 
+	
 	public Date getFechaVerificacionMinisterial() {
 		return fechaVerificacionMinisterial;
 	}
@@ -335,6 +336,7 @@ public class VerificacionVehicularEntity implements Serializable {
 		this.fechaVerificacionMinisterial = fechaVerificacionMinisterial;
 	}
 
+	
 	public Integer getFolioVerificacionMinisterial() {
 		return folioVerificacionMinisterial;
 	}
@@ -349,5 +351,5 @@ public class VerificacionVehicularEntity implements Serializable {
 
 	public void setObservacionesMinisterial(String observacionesMinisterial) {
 		this.observacionesMinisterial = observacionesMinisterial;
-	}
+	} 
 }

@@ -6,7 +6,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Marcas de Vehiculos</title>
+<title>Verificaciones</title>
 
 <!-- Bootstrap -->
 <link
@@ -83,6 +83,10 @@
 				<h1>
 					<span style="color: #798c9c"> </span>Administrar Verificaciones
 				</h1>
+				     <ol class="breadcrumb">
+                        <li><a href="${pageContext.request.contextPath}"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="active">Verificaciciónes</li>
+                    </ol>
 			</section>
 			<!-- Fin del encabezado del contenido de la página -->
 
@@ -106,52 +110,38 @@
 								<!-- Botón nuevo marcas -->
 								<div class="col-xs-1 col-md-5"></div>
 								<div class="col-xs-1 col-md-5"></div>
-								<div class="col-xs-10 col-md-2">
-									<div class="dropdown">
-										<button class="btn btn-primary dropdown-toggle" type="button"
-											data-toggle="dropdown">
-											Opciones <span class="caret"></span>
+								<div class="col-xs-10 col-md-2">									
+										<button class="btn btn-primary" type="button" id="crear">
+											Alta Verificación <span ></span>
 										</button>
-										<ul class="dropdown-menu">
-											<li><a class="button" id="crear">Crear Verificación</a></li>
-										</ul>
-									</div>
-								</div>
+						</div>
 								<!--Fin botón nuevo marcas -->
 
 								<br /> <br />
 
 								<div class="row">
-									<div class="col-xs-1" style="text-align: center;"></div>
-									<div class="col-xs-3 " style="text-align: center;">
-										<label for="search" class="control-label"> VIN:</label> <input
+									<div class="col-xs-2" style="text-align: center;"></div>
+									<div class="col-xs-4" style="text-align: center;">
+										<label for="search" class="control-label"> Buscar:</label> <input
 											type="text" class="form-control" data-toggle="tooltip"
-											data-placement="top" title="Ingrese VIN" id="search"
-											name="search" placeholder="VIN...">
+											data-placement="top" title="Buscar" id="search"
+											name="search" placeholder="Buscar...">
 									</div>
-									<div class="col-xs-4">
-										<div class="form-group">
-											<label for="selectEstatusVerificacion" class="control-label">Estatus
-												Verificacion:</label> <select class="form-control"
-												id="selectEstatusVerificacion"
-												name="selectEstatusVerificacion">
-												<option value="0" selected>TODOS</option>
-												<option value="1">CAPTURADA</option>
-												<option value="2">AUTORIZADA</option>
-												<option value="3">TERMINADA</option>
-												<option value="4">RECHAZADA MINISTERIO</option>
-												<option value="5">RECHAZADA VERIFICACIO</option>
-												<option value="6">PAGADO</option>
-												<option value="7">PAGA DESPUES</option>
-												<option value="8">CONDONADO</option>
-												<option value="9">CANCELADO</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-xs-1" style="text-align: center;"></div>
+									<div class="col-xs-2" style="text-align: center;"></div>
 								</div>
-								<br /> <br />
-
+								<br />
+								<div class="col-md-12" style="text-align: right;">		
+									<button type="button" class="btn btn-info" id="botonGastos" disabled>
+  										Verificación Adeudo 
+  										<i class="fa fa-money" aria-hidden="true"></i>
+									</button>		
+									&nbsp;&nbsp;						
+									<button type="button" class="btn btn-primary" id="modalBoton" disabled>
+  										Detalle Verificación 
+  										<i class="fa fa-info" aria-hidden="true"></i>  										
+									</button>			
+								</div>
+								<br/><br/>
 								<!-- Tabla Marcas -->
 								<div class="col-md-12">
 									<table id="tablaVerificacion"
@@ -161,6 +151,8 @@
 												<th style="display: none;">ID</th>
 												<th>No. Seguimiento</th>
 												<th>VIN</th>
+												<th>No. Motor</th>
+												<th>Persona</th>
 												<th>Estatus</th>
 											</tr>
 										</thead>
@@ -172,27 +164,7 @@
 
 								<!-- Fin contenido -->
 							</div>
-						</div>
-
-						<!-- DIV INFORMACION DE LA VERIFICACION SELECIONADA -->
-						<div id="divInfo" style="display: none" class="well">
-							<button id="botonGastos" type="button"
-								class="btn btn-warning btn-md">
-								<i class="fa fa-money" aria-hidden="true"></i> VALIDAR GASTOS
-							</button>
-							&nbsp;&nbsp;
-							<button id="botonOcultar" type="button"
-								class="btn btn-info btn-md pull-right">
-								<i class="fa fa-eye-slash" aria-hidden="true"></i> OCULTAR
-							</button>
-							<br>
-							<br>							
-							<fieldset>
-							<legend>Mas Informacion:</legend>
-							<div class="row" id="contenido"></div>
-							</fieldset>
-							
-						</div>
+						</div>					
 			</section>
 			<!-- Fin contenido Registrar marca -->
 
@@ -215,6 +187,41 @@
 	           immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
 
+	</div>
+
+
+<!-- Modal -->
+	<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Detalles
+						Verificacion</h4>
+				</div>
+				<div class="modal-body" id="contenido">
+					<table id="tablaVerificacionDetalle"
+						class="tablaVerificacionDetalle table table-bordered table-hover">
+						<thead>
+							<tr class="bg-primary">
+								<th>Fecha Creacion:</th>
+								<th>Ejercicio:</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<br> <br>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
 
@@ -267,13 +274,38 @@
 
 $(document).ready(function(){
 	
-	 
-	$( "#botonOcultar" ).click(function() {
-	  $( "#divInfo" ).hide( "slow" );
-	});
-
 	var idVerificacion;
-
+	
+	$('#modalBoton').on('click', function (event) {
+		if(idVerificacion > 0){		
+			var urlBusqueda = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/obtenerVerificacioPorID/"+"?id="+idVerificacion;		
+			$.ajax({
+					type: "GET",
+					dataType : 'json',
+					url: urlBusqueda,
+					success: function(data){
+						$.each( data, function( key, val ) {
+							/*var ejercicio = $('<table><tr>Ejercicio: '+ val.ejercicio + '</label>');
+							ejercicio.appendTo('#contenido');
+							var fecha = $('Fecha Captura: '+val.fechaVerificacion+'</tr></table>');
+							fecha.appendTo('#contenido');*/
+							
+							tr = $('<tr/>');
+							$(tr).append("<td class="+"fechaVerificacion" +" >" + val.fechaVerificacion + "</td>");
+							$(tr).append("<td class="+"ejercicio" +" >" + val.ejercicio + "</td>");
+							$('#tablaVerificacionDetalle > tbody').append(tr);
+							
+				  		});
+					},
+					error : function(jqXHR,textStatus,errorThrown) {
+						console.log(textStatus+ " "+ errorThrown);
+					}
+			});						
+			$('#myModal').modal('show')
+		}
+	})
+	
+	 
 	function tabla(data){
 		$('tbody').find('td').remove();
 		for (var i = 0; i < data.length; i++) {
@@ -281,6 +313,8 @@ $(document).ready(function(){
 			$(tr).append("<td style=\"display:none;\" class="+"id"+" >" + data[i].idVerificacionVehiculo + "</td>");
 			$(tr).append("<td class="+"noSeguimiento" +" >" + data[i].noSeguimientoVerificion + "</td>");
 			$(tr).append("<td class="+"vin" +" >" + data[i].vinVehiculo + "</td>");
+			$(tr).append("<td class="+"noMotor" +" >" + data[i].numeroMotorVehiculo + "</td>");
+			$(tr).append("<td class="+"persona" +" >" + data[i].nombrePersonaVerificacion + " " + data[i].apellidoPaternoPersonaVerificacion+ "</td>");
 			$(tr).append("<td class="+"estatus" +" >" + estatusVerificaciones(data[i].estatusVerificacion) + "</td>");
 			$('#tablaVerificacion > tbody').append(tr);
 		}
@@ -323,27 +357,18 @@ $(document).ready(function(){
 		}	
 		
 
-
-	//Filtro de búsqueda
-		
-		$( "#selectEstatusVerificacion" ).change(function() {
-			var estatusVerificacion = $('#selectEstatusVerificacion').val();
-			var search= $('#search').val();
-			busca(search,estatusVerificacion);
-		});
 		
 		$('#search').on('keyup',function(){		
-			var estatusVerificacion = $('#selectEstatusVerificacion').val();
 			var search= $('#search').val();		
-			busca(search,estatusVerificacion);		
+			busca(search);		
 		});
 	
-	function busca(search,estatusVerificacion){
+	function busca(search){
 		var table = $('#tablaVerificacion').find('tbody').find('tr');
 
 		var urlGet;
 		var urlBusqueda = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/buscarPorCriterio/";
-		var urlBusqueda = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/buscarPorCriterio/"+"?vin="+search+"&estatusVerificacion="+estatusVerificacion;
+		var urlBusqueda = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/buscarPorCriterio/"+"?criterioBusqueda="+search;
 				
 		if(search === null){
 			var urlGet = urlBusqueda
@@ -376,29 +401,11 @@ $(document).ready(function(){
 
 	//Obtiene un valor del id de la fila seleccionada
 	$('tbody').on("click", "td", function() {
-		idVerificacion = $(this).closest('tr').find('.id').text();
-		$( "#divInfo" ).hide( "slow" );
-		$( "#divInfo" ).show( "slow" );
-		
-		var urlBusqueda = "${pageContext.request.contextPath}/cajas/vehicular/verificacion/obtenerVerificacioPorID/"+"?id="+idVerificacion;
-		
-		$.ajax({
-				type: "GET",
-				dataType : 'json',
-				url: urlBusqueda,
-				success: function(data){
-					$('#contenido').html(""); 
-					$.each( data, function( key, val ) {
-						var ejercicio = $('<div class="col-xs-2"><label><strong>EJERCICIO: </strong>'+ val.ejercicio + '</label></div>');
-						ejercicio.appendTo('#contenido');
-						var fecha = $('<div class="col-xs-3"><label><strong>FECHA CAPTURA: </strong>'+val.fechaVerificacion+'</label></div>');
-						fecha.appendTo('#contenido');
-			  		});
-				},
-				error : function(jqXHR,textStatus,errorThrown) {
-					console.log(textStatus+ " "+ errorThrown);
-				}
-		});				
+		idVerificacion = $(this).closest('tr').find('.id').text();	
+		if(idVerificacion>0){
+			$('#modalBoton').prop( "disabled", false );
+			$('#botonGastos').prop( "disabled", false );
+		}
 	});
 
 	
@@ -432,21 +439,12 @@ $(document).ready(function(){
         }
     });
 	
-  //Editar Usuario
+
 	$('#botonGastos').click(function(){
-		if(idVerificacion == null){
-			swal(
-				{
-					title : "No ha seleccionado Ninguna Verificación.",
-					type : "error",
-					closeOnCancel : false
-				}
-			);
-		}else{
-			//Dirige a la sección para edita un usuario
+		if(idVerificacion >0){
 			var urlAdeudo = "${pageContext.request.contextPath}/views/verificacion/adeudoVerificacion.jsp"+"?id="+idVerificacion;
-			window.location=urlAdeudo;					
-		}	
+			window.location=urlAdeudo;
+		}
 	});
 
 	

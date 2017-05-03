@@ -16,7 +16,7 @@ public class VerificacionAdeudoVehicular {
 	private Integer idEstado;
 	private Integer folioCalcamonia;
 	private String fechaRegularizacion;
-	private Integer documento;
+	private Integer idDocumento;
 	private Integer estatus;
 	private String observaciones;
 	private Integer baja;
@@ -26,7 +26,7 @@ public class VerificacionAdeudoVehicular {
 	public VerificacionAdeudoVehicular verificacionAdeudoVehiculoEntity(VerificacionAdeudoVehicularEntity verificacionAdeudoVehiculoEntity){
 			
 		VerificacionAdeudoVehicular verificacionAdeudoVehiculo = new VerificacionAdeudoVehicular();
-		verificacionAdeudoVehiculo.setIdVerificacionVehiculo(verificacionAdeudoVehiculoEntity.getIdVerificacionVehicular());
+		verificacionAdeudoVehiculo.setIdVerificacionVehiculo(verificacionAdeudoVehiculoEntity.getVerificacionVehicular().getIdVerificacionVehiculo());
 		verificacionAdeudoVehiculo.setAnio0VerificacionAdeudo(verificacionAdeudoVehiculoEntity.getAnio0VerificacionAdeudo());
 		verificacionAdeudoVehiculo.setAnio1VerificacionAdeudo(verificacionAdeudoVehiculoEntity.getAnio1VerificacionAdeudo());
 		verificacionAdeudoVehiculo.setAnio2VerificacionAdeudo(verificacionAdeudoVehiculoEntity.getAnio2VerificacionAdeudo());
@@ -35,9 +35,9 @@ public class VerificacionAdeudoVehicular {
 		verificacionAdeudoVehiculo.setAnio5VerificacionAdeudo(verificacionAdeudoVehiculoEntity.getAnio5VerificacionAdeudo());
 		verificacionAdeudoVehiculo.setFolioVerificacionAdeudo(verificacionAdeudoVehiculoEntity.getFolioVerificacionAdeudo());
 		verificacionAdeudoVehiculo.setProcedencia(verificacionAdeudoVehiculoEntity.getProcedencia());
-		verificacionAdeudoVehiculo.setIdEstado(verificacionAdeudoVehiculoEntity.getIdEstado());
+		verificacionAdeudoVehiculo.setIdEstado(verificacionAdeudoVehiculoEntity.getEstado().getIdEstado());
 		verificacionAdeudoVehiculo.setFolioCalcamonia(verificacionAdeudoVehiculoEntity.getFolioCalcamonia());	
-		verificacionAdeudoVehiculo.setDocumento(verificacionAdeudoVehiculoEntity.getDocumento());
+		verificacionAdeudoVehiculo.setIdDocumento(verificacionAdeudoVehiculoEntity.getDocumentoPedimento().getIdDocumentoPedimento());
 		verificacionAdeudoVehiculo.setEstatus(verificacionAdeudoVehiculoEntity.getEstatus());
 		verificacionAdeudoVehiculo.setObservaciones(verificacionAdeudoVehiculoEntity.getObservaciones());
 		verificacionAdeudoVehiculo.setBaja(verificacionAdeudoVehiculoEntity.getBaja());
@@ -136,11 +136,11 @@ public class VerificacionAdeudoVehicular {
 	public void setFechaRegularizacion(String fechaRegularizacion) {
 		this.fechaRegularizacion = fechaRegularizacion;
 	}
-	public Integer getDocumento() {
-		return documento;
+	public Integer getIdDocumento() {
+		return idDocumento;
 	}
-	public void setDocumento(Integer documento) {
-		this.documento = documento;
+	public void setIdDocumento(Integer idDocumento) {
+		this.idDocumento = idDocumento;
 	}
 	public Integer getEstatus() {
 		return estatus;

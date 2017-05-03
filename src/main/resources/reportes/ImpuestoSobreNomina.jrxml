@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
-<!-- 2017-04-27T14:41:27 -->
+<!-- 2017-05-02T13:39:53 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ImpuestoSobreNomina" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8588b010-bf1b-48ef-b725-338d9de080fb">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="zacatecas"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
@@ -423,7 +423,7 @@
 				<textElement>
 					<font size="11" isBold="true"/>
 				</textElement>
-				<text><![CDATA[IMPUESTO SOBRE NÓMINA]]></text>
+				<text><![CDATA[IMPUESTOS ESTATALES]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="101" width="550" height="1" forecolor="#C41610" uuid="403f0925-1252-4897-8896-7d02c4654cef"/>
@@ -479,7 +479,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{id_contribuyente}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="288" y="41" width="144" height="20" uuid="dec21d79-9def-4ecb-b6f2-11a64658f823">

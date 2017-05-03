@@ -99,17 +99,7 @@
 
 									<div class="col-md-12">
 
-										<div class="row">
-											<div class="col-md-4">
-												<div class="form-group">
-													<label for="selectOficina" class="control-label">Oficina
-														</label> <select class="form-control"
-														id="selectOficina" name="selectOficina" disabled required>
-														<option value="1" selected>ZACATECAS</option>
-													</select>
-												</div>
-											</div>
-										</div>
+										
 										<fieldset>
 											<legend>Direccion</legend>
 											<div class="row">
@@ -219,7 +209,7 @@
 								</button>
 								<button type="button" id="save-btn"
 									class="btn btn-success btn-lg pull-right">
-									<i class="fa fa-credit-card"></i> Guardar
+									<i class="fa fa-save"></i> Guardar
 								</button>
 							</div>
 
@@ -285,84 +275,49 @@
 
 
 <script>
-	$(document)
-			.ready(
-					function() {
 
-						
+	$(document).ready(function() {
 
 						//Cancelar y dirige a la vista principal
-						$('#cancel-btn')
-								.click(
-										function() {
+						$('#cancel-btn').click(function() {
 											var urlBack = "${pageContext.request.contextPath}/views/index.jsp";
 											window.location = urlBack;
 										});
-
-						//Registra 
-						$('#save-btn').click(function() {
+						
 							
-											var anio = new Date().toISOString()
-													.slice(0, 4);
+						
+						//Registra 
+						$('#save-btn').click(function() 
+							guardar();
+	             });
+			});
+	
+	
+	function guardar() {
+										var domicilio = {
 
-											//Validaciones
-											var formValidation = $(
-													'#form-domicilio').data(
-													'formValidation');
-
-											formValidation.validate();
-
-											console.log(formValidation
-													.isValid());
-
-											if (formValidation.isValid()) {
-
-												var datos = {};
-												var idOficina = $('#selectOficina');
-												var calle = $('#inputCalle');
-												var numExt = $('#inputNum');
-												var numInt = $('#inputNumInt');
-												var colonia = $('#inputColonia');
-												var entreCalle1 = $('#inputEntreCalle1');
-												var entreCalle2 = $('#inputEntreCalle2');
-												var cp = $('#inputCP');
-												var idEstado = $('#selectEdo');
-												var idMunicipio = $('#selectMunicipio');
-												var idLocalidad = $('#selectLocalidad');
+												 calle : $('#inputCalle').val(),
+												 numExt : $('#inputNum').val(),
+												 numInt : $('#inputNumInt').val(),
+												 colonia : $('#inputColonia').val(),
+												 entreCalle1 : $('#inputEntreCalle1').val(),
+												 entreCalle2 : $('#inputEntreCalle2').val(),
+												 cp : $('#inputCP').val(),
+												 idEstado : $('#selectEdo').val(),
+												 idMunicipio : $('#selectMunicipio').val(),
+												 idLocalidad : $('#selectLocalidad').val(),
+												 
+	};
 												
 
+						
 												
-
-												datos.idOficina = idOficina
-														.val();
-												datos.calle = calle
-														.val();
-												datos.numExt = numExt
-														.val();
-												datos.numInt = numInt
-														.val();
-												datos.colonia = colonia
-														.val();
-												datos.entreCalle1 = entreCalle1
-														.val();
-												datos.entreCalle2 = entreCalle2
-														.val();
-												datos.cp = cp
-														.val();
-												datos.idEstado = idEstado
-														.val();
-												datos.idMunicipio = idMunicipio
-														.val();
-												datos.idLocalidad = idLocalidad
-														.val();
-												
-												var formData = JSON
-														.stringify(datos);
+												var formData = JSON.stringify(datos);
 
 												console.log(formData);
 
-												var urlPost = "${pageContext.request.contextPath}/cajas/vehicular/verificacion";
-												var admin = "${pageContext.request.contextPath}/views/verificacion/verificaciones.jsp";
+												var urlPost = "${pageContext.request.contextPath}/cajas/catalogos/domicilio";
+												var admin = "${pageContext.request.contextPath}/views/cajas/catalogos/domicilio/domicilio.jsp";
 
 												$
 														.ajax({
@@ -372,19 +327,16 @@
 															dataType : "json",
 															contentType : 'application/json',
 															success : function(
-																	data,
-																	textStatus,
-																	jQxhr) {
+																	data, textStatus, jQxhr) {
 																swal(
 																		{
-																			text : "Direccion registrada correctamente",
-																			title : "No Seguimiento: "
-																					+ data.valor,
+																			title : "Direccion registrada correctamente",
+																			
 																			type : "success",
 																			closeOnCancel : false
 																		},
 																		function() {
-																			window.location = admin;
+																			window.location = urlDestino;
 																		});
 															}
 														});
@@ -392,95 +344,7 @@
 
 										});
 
-						//Validaciones
-						$('#form-domicilio')
-								.formValidation(
-										{
-											framework : 'bootstrap', //Indicamos el framework para validar, Bootstrap, Pure,Semantic,etc
-											icon : {//Feedback Icons
-												valid : 'glyphicon glyphicon-ok',
-												invalid : 'glyphicon glyphicon-remove',
-												validating : 'glyphicon glyphicon-refresh'
-											},
-											//live: 'enabled',
-											//Lista de campos a validar y las reglas que aplican para cada uno de ellos
-											fields : {
-												'inputCalle' : { //validación del campo
-													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-													validators : { //validaciones
-
-														notEmpty : {
-															message : 'Ingrese la calle'
-														},			
-													},
-												},
-												'inputNum' : { //validación del campo
-													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-													validators : { //validaciones
-
-														notEmpty : {
-															message : 'El Numero es requerido.'
-														},
-														
-													}
-												},
-												'inputColonia' : { //validación del campo
-													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-													validators : { //validaciones
-
-														notEmpty : {
-															message : 'Ingrese una Colonia.'
-														},
-													}
-												},
-												'inputCP' : { //validación del campo
-													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-													validators : { //validaciones
-
-														notEmpty : {
-															message : 'Ingrese Codigo Postal.'
-														},
-														numeric : {
-															message : 'El Codigo Postal debe ser numerico',
-														}
-													}
-												},
-												'selectEdo' : { //validación del campo
-													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-													validators : { //validaciones
-
-														notEmpty : {
-															message : 'Seleccione un estado.'
-														},
-													}
-												},
-												'selectMunicipio' : { //validación del campo
-													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-													validators : { //validaciones
-
-														notEmpty : {
-															message : 'Seleccione un municipio.'
-														},
-													}
-												},
-												'selectMunicipio' : { //validación del campo
-													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-													validators : { //validaciones
-
-														notEmpty : {
-															message : 'Seleccione un municipio.'
-														},
-													}
-												},
-												'selectLocalidad' : { //validación del campo
-													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-													validators : { //validaciones
-
-														notEmpty : {
-															message : 'Seleccione una localidad.'
-														},
-													}
-												},
+						
 												
 						//Errores
 						$

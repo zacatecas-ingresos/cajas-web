@@ -7,7 +7,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Alta Vehiculo</title>
+<title>Verificación Adeudos</title>
 <!-- Bootstrap -->
 <link
 	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
@@ -84,6 +84,11 @@
 				<h1>
 					<span style="color: #798c9c"> </span>Verificación Adeudos
 				</h1>
+				    <ol class="breadcrumb">
+                        <li><a href="${pageContext.request.contextPath}"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li><a href="${pageContext.request.contextPath}/views/verificacion/verificaciones.jsp">Verificaciones</a></li>
+                        <li class="active">Verificación Adeudos</li>
+                    </ol>
 			</section>
 
 			<!-- Main content Verificacion adeudo -->

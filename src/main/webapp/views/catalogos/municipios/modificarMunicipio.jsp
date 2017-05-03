@@ -103,7 +103,7 @@
                             </button>
                             <button type="button" id="btn-save"
                                     class="btn btn-success btn-lg pull-right">
-                                <i class="fa fa-credit-card"></i> Guardar
+                                <i class="fa fa-save"></i> Guardar
                             </button>
                         </div>
                     </div>

@@ -6,19 +6,31 @@ package cajas.contribuyentes;
 
 import cajas.persistence.entity.ContribuyenteEntity;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
- *
+ * Esta clase ayuda en la conversión de una entidad a un DTO y viceversa.
+ * 
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class ContribuyenteFactory {
 
+    /**
+     * Este convierte un DTO a una entidad.
+     * @param dto el DTO a convertir.
+     * @return una entidad.
+     */
     public ContribuyenteEntity dtoAEntity(Contribuyente dto) {
         return dtoAEntity(dto, null);
     }
 
+    /**
+     * Este convierte un DTO a una entidad.
+     * 
+     * @param dto el DTO a convertir.
+     * @param entidad la entidad que se tomará como base para la conversión.
+     * @return la entidad con la información actulizada del DTO.
+     */
     public ContribuyenteEntity dtoAEntity(Contribuyente dto, ContribuyenteEntity entidad) {
         if (entidad == null) {
             entidad = new ContribuyenteEntity();
@@ -39,7 +51,12 @@ public class ContribuyenteFactory {
 
         return entidad;
     }
-    
+
+    /**
+     * Permite convertir una entidad a una DTO.
+     * @param entidad la entidad que será convertida.
+     * @return el DTO ya con la información que estaba en la entidad.
+     */
     public Contribuyente entityADto(ContribuyenteEntity entidad) {
         Contribuyente dto = new Contribuyente();
         dto.setId(entidad.getIdContribuyente());
@@ -58,15 +75,20 @@ public class ContribuyenteFactory {
         return dto;
     }
 
-    public List<Contribuyente> entitiesADtos(List<ContribuyenteEntity> entities) {
+    /**
+     * Permite convertir una lista de entidades a una lista de DTOs.
+     * @param entidades las entidades que serán convertidas.
+     * @return la lista de DTOs que se convirtio.
+     */
+    public List<Contribuyente> entitiesADtos(List<ContribuyenteEntity> entidades) {
         List<Contribuyente> dtos = new ArrayList<>();
         
-        for (ContribuyenteEntity entity : entities) {
+        for (ContribuyenteEntity entity : entidades) {
             Contribuyente dto = entityADto(entity);
             dtos.add(dto);
         }
         
-        return Collections.unmodifiableList(dtos);
+        return dtos;
     }
 
 }

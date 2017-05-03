@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import cajas.exception.BusinessException;
+import cajas.util.RespuestaResource;
 
 @Path("/usuario")
 public class UsuarioResource {
@@ -27,12 +28,13 @@ public class UsuarioResource {
 	/********Registra un nuevo usuario*******/
 	@POST
 	@Consumes({ "application/json" })
+	@Produces({"application/json"})
 	public Response altaUsuario(RegistroUsuario usuario) {
 		try {
 			usuarioService.crearUsuario(usuario);
-			return Response.ok(Status.OK,"application/json").tag("Usuario registrado correctamente.").build();
+			return Response.ok(Status.OK).build();
 		} catch (BusinessException ex) {
-			return Response.ok(Status.NOT_IMPLEMENTED,"application/json").tag(ex.getMessage()).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 	
@@ -133,36 +135,39 @@ public class UsuarioResource {
 	/*****Actualiza un usuario*********/
 	@PUT
 	@Consumes({ "application/json" })
+	@Produces({"application/json"})
 	public Response actualizarUsuario(RegistroUsuario usuario) {
 		try {
 			usuarioService.actualizarUsuario(usuario);
-			return Response.ok(Status.OK,"application/json").build();
+			return Response.ok(Status.OK).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 
 	/*****Solo desactiva a un usuario*********/
 	@PUT
 	@Path("/desactivarUsuario")
+	@Produces({"application/json"})
 	public Response desactivarUsuario(@QueryParam("idUsuario") Integer idUsuario) {
 		try {
 			usuarioService.desactivarActivarUsuario(idUsuario);
-			return Response.ok(Status.OK,"application/json").build();
+			return Response.ok(Status.OK).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 	
 	/*****Solo activa a un usuario*********/
 	@PUT
 	@Path("/activarUsuario")
+	@Produces({"application/json"})
 	public Response activarUsuario(@QueryParam("idUsuario") Integer idUsuario) {
 		try {
 			usuarioService.desactivarActivarUsuario(idUsuario);
-			return Response.ok(Status.OK,"application/json").build();
+			return Response.ok(Status.OK).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 
@@ -175,7 +180,7 @@ public class UsuarioResource {
 			Usuario usuario = usuarioService.obtenerUsuarioPorCorreo(correo);
 			return Response.ok(usuario).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 
@@ -188,7 +193,7 @@ public class UsuarioResource {
 			Usuario usuario = usuarioService.obtenerUsuarioPorNombre(nombre);
 			return Response.ok(usuario).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}	
 	
@@ -201,7 +206,7 @@ public class UsuarioResource {
 			Usuario usuario = usuarioService.obtenerUsuarioPorId(idUsuario);
 			return Response.ok(usuario).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 
@@ -213,7 +218,7 @@ public class UsuarioResource {
 			List<Usuario> usuarios = usuarioService.obtenerUsuarios();
 			return Response.ok(usuarios).build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 	
@@ -229,7 +234,7 @@ public class UsuarioResource {
 			List<Usuario> usuarios = usuarioService.obtenerUsuariosFiltro(parametroBusqueda);
 			return Response.ok(usuarios).build();
 		}catch(BusinessException ex){
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 	
@@ -242,7 +247,7 @@ public class UsuarioResource {
 			usuarioService.eliminarUsuario(idUsuario);
 			return Response.ok(Status.OK,"application/json").build();
 		} catch (BusinessException ex) {
-			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
 		}
 	}
 

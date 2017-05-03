@@ -3,7 +3,6 @@ package cajas.vehicular.verificacion.alta;
 import cajas.persistence.entity.VerificacionVehicularEntity;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class VerificacionVehiculo {
 	
@@ -34,6 +33,8 @@ public class VerificacionVehiculo {
 	private Integer anio4ComprobantePago;
 	private Integer anio5ComprobantePago;
 	private Integer anioActualComprobantePago;
+	private Integer folioVerificacionMinisterial;
+	private String observacionesMinisterial;
 	
 	/*
 	public VerificacionVehiculo()
@@ -80,6 +81,9 @@ public class VerificacionVehiculo {
 		verificacionVehiculo.setAnio4ComprobantePago(verificacionVehicularEntity.getAnio4ComprobantePago());
 		verificacionVehiculo.setAnio5ComprobantePago(verificacionVehicularEntity.getAnio5ComprobantePago());
 		verificacionVehiculo.setAnioActualComprobantePago(verificacionVehicularEntity.getAnioActualComprobantePago());
+		verificacionVehiculo.setFolioVerificacionMinisterial(verificacionVehicularEntity.getFolioVerificacionMinisterial());
+		verificacionVehiculo.setObservacionesMinisterial(verificacionVehicularEntity.getObservacionesMinisterial());
+		
 	
 		return verificacionVehiculo;
 	} 
@@ -262,6 +266,22 @@ public class VerificacionVehiculo {
 
 	public void setAnioActualComprobantePago(Integer anioActualComprobantePago) {
 		this.anioActualComprobantePago = anioActualComprobantePago;
+	}
+
+	public Integer getFolioVerificacionMinisterial() {
+		return folioVerificacionMinisterial;
+	}
+
+	public void setFolioVerificacionMinisterial(Integer folioVerificacionMinisterial) {
+		this.folioVerificacionMinisterial = folioVerificacionMinisterial;
+	}
+
+	public String getObservacionesMinisterial() {
+		return observacionesMinisterial;
+	}
+
+	public void setObservacionesMinisterial(String observacionesMinisterial) {
+		this.observacionesMinisterial = observacionesMinisterial;
 	}
 	
 	

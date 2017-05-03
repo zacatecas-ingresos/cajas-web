@@ -7,7 +7,8 @@ package cajas.contribuyentes;
 import java.util.Date;
 
 /**
- *
+ * Esta clase define un DTO con los datos del contribuyente.
+ * 
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class Contribuyente {
@@ -58,7 +59,7 @@ public class Contribuyente {
     }
 
     /**
-     * Get the value of nombreCompuesto
+     * Obtiene el valor de nombreCompuesto
      *
      * @return the value of nombreCompuesto
      */
@@ -67,7 +68,7 @@ public class Contribuyente {
     }
 
     /**
-     * Set the value of nombreCompuesto
+     * Pone el valor de nombreCompuesto
      *
      * @param nombreCompuesto new value of nombreCompuesto
      */
@@ -125,7 +126,7 @@ public class Contribuyente {
     }
 
     /**
-     * Get the value of razonSocial
+     * Obtiene el valor de razonSocial
      *
      * @return the value of razonSocial
      */
@@ -134,7 +135,7 @@ public class Contribuyente {
     }
 
     /**
-     * Set the value of razonSocial
+     * Pone el valor de razonSocial
      *
      * @param razonSocial new value of razonSocial
      */

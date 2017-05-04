@@ -30,8 +30,8 @@ public class ObligacionesEntity implements Serializable {
 	@Column(name = "DiaVencimiento")
 	private Integer diaVencimiento;
 	
-//	@Column(name = "DiasTiempoProrroga")
-//	private Integer diasProrroga;
+	@Column(name = "DiasTiempoProrroga")
+	private Integer diasProrroga;
 	
 //	@Column(name = "Estatus")
 //	private Integer estatus;
@@ -59,14 +59,13 @@ public class ObligacionesEntity implements Serializable {
 		this.obligacion = obligacion;
 	}
 
-//	public Integer getDiasProrroga() {
-//		return diasProrroga;
-//	}
-
+	public Integer getDiasProrroga() {
+		return diasProrroga;
+	}
 	
-//	public void setDiasProrroga(Integer diasProrroga) {
-//		this.diasProrroga = diasProrroga;
-//	}
+	public void setDiasProrroga(Integer diasProrroga) {
+		this.diasProrroga = diasProrroga;
+	}
 	
 	public Integer getDiaVencimiento() {
 		return diaVencimiento;

@@ -29,7 +29,14 @@ public class ObligacionesEntity implements Serializable {
 	@Column(name = "DiasTiempoProrroga")
 	private Integer diasProrroga;
 	
-	/****************************************************************/
+	@Column(name = "Estatus")
+	private Integer estatus;
+	
+	@Column(name = "UsuarioAlta")
+	private String usuarioAlta;
+	
+	@Column(name = "TipoObligacion")
+	private Integer tipoObligacion;
 
 	public Integer getIdObligacion() {
 		return idObligacion;

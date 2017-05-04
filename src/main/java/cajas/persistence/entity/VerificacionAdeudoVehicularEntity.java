@@ -12,76 +12,76 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "verificaciones_adeudos_vehiculos", schema = "vehicular")
+@Table(name = "VerificacionesAdeudosVehiculos", schema = "vehicular")
 public class VerificacionAdeudoVehicularEntity implements Serializable{
 	private static final long serialVersionUID = -695960574215574953L;
 
 	@Id
-	@Column(name = "id_verificacion_adeudo_vehiculo")
+	@Column(name = "IdVerificacionAdeudoVehiculo")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idVerificacionAdeudoVehiculo;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_verificacion_vehiculo")
+	@JoinColumn(name = "IdVerificacionVehiculo")
 	private VerificacionVehicularEntity verificacionVehicular;
 	
-	@Column( name = "anio0_verificacion_adeudo")
+	@Column( name = "Anio0VerificacionAdeudo")
 	private Integer anio0VerificacionAdeudo;
 	
-	@Column( name = "anio1_verificacion_adeudo")
+	@Column( name = "Anio1VerificacionAdeudo")
 	private Integer anio1VerificacionAdeudo;
 	
-	@Column( name = "anio2_verificacion_adeudo")
+	@Column( name = "Anio2VerificacionAdeudo")
 	private Integer anio2VerificacionAdeudo;
 	
-	@Column( name = "anio3_verificacion_adeudo")
+	@Column( name = "Anio3VerificacionAdeudo")
 	private Integer anio3VerificacionAdeudo;
 	
-	@Column( name = "anio4_verificacion_adeudo")
+	@Column( name = "Anio4VerificacionAdeudo")
 	private Integer anio4VerificacionAdeudo;
 	
-	@Column( name = "anio5_verificacion_adeudo")
+	@Column( name = "Anio5VerificacionAdeudo")
 	private Integer anio5VerificacionAdeudo;
 	
-	@Column( name = "folio_verificacion_adeudo")
+	@Column( name = "FolioVerificacionAdeudo")
 	private Integer folioVerificacionAdeudo;
 	
-	@Column( name = "procedencia" )
+	@Column( name = "Procedencia" )
 	private Integer procedencia;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_estado")
+	@JoinColumn(name = "IdEstado")
 	private EstadoEntity estado;
 
-	@Column( name = "folio_calcamonia" )
+	@Column( name = "FolioCalcamonia" )
 	private Integer folioCalcamonia;
 	
-	@Column( name = "fecha_regularizacion" )
+	@Column( name = "FechaRegularizacion" )
 	private Date fechaRegularizacion;
 	
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_documento_pedimento")
+	@JoinColumn(name = "IdDocumentoPedimento")
 	private DocumentoPedimentoEntity documentoPedimento;
 /*
  * Crear EstatusVerificacionVehicularEntoty
  */
-	@Column( name = "estatus" )
+	@Column( name = "Estatus" )
 	private Integer estatus;
 
-	@Column( name = "observaciones" )
+	@Column( name = "Observaciones" )
 	private String observaciones;
 
 	/*
 	 * Cambiar boolean
 	 */
-	@Column( name = "baja" )
+	@Column( name = "Baja" )
 	private Integer baja;
 
-	@Column( name = "baja_placa" )
+	@Column( name = "BajaPlaca" )
 	private String bajaPlaca;
 
-	@Column( name = "fecha_verificacion_adeudo" )
+	@Column( name = "FechaVerificacionAdeudo" )
 	private Date fechaVerificacionAdeudo;
 
 	public Integer getIdVerificacionAdeudoVehiculo() {

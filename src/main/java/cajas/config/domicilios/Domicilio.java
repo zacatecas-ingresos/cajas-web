@@ -1,4 +1,4 @@
-package cajas.domicilios;
+package cajas.config.domicilios;
 
 public class Domicilio {
 

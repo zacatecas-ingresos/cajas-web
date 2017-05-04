@@ -1,4 +1,4 @@
-package cajas.domicilios;
+package cajas.config.domicilios;
 
 import java.util.ArrayList;
 import java.util.List;

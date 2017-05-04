@@ -1,4 +1,4 @@
-package cajas.catalogos.municipios;
+package cajas.config.municipios;
 
 public class Municipio {
 

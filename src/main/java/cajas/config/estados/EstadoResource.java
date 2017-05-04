@@ -1,4 +1,4 @@
-package cajas.catalogos.estados;
+package cajas.config.estados;
 
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;

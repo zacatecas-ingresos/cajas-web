@@ -1,4 +1,4 @@
-package cajas.catalogos.estados;
+package cajas.config.estados;
 
 public class Estado {
 

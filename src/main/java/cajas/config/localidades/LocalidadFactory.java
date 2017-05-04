@@ -1,4 +1,4 @@
-package cajas.catalogos.localidades;
+package cajas.config.localidades;
 
 import java.util.ArrayList;
 import java.util.List;

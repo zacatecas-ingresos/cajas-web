@@ -483,7 +483,7 @@
 												datos.idEstado = idEstado;
 												datos.folioCalcamonia = folioCalcamonia;
 												datos.fechaRegularizacion = fechaRegularizacion;
-												datos.documento = documento;
+												datos.idDocumento = documento;
 												datos.estatus = estatus;
 												datos.observaciones = observacion;
 												datos.baja = baja;

@@ -16,17 +16,17 @@ public class OficinaEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IdOficina")
-	private Integer ifOficina;
+	private Integer idOficina;
 	
 	@Column(name = "Oficina")
 	private String oficina;
 
-	public Integer getIfOficina() {
-		return ifOficina;
+	public Integer getIdOficina() {
+		return idOficina;
 	}
 
-	public void setIfOficina(Integer ifOficina) {
-		this.ifOficina = ifOficina;
+	public void setIdOficina(Integer ifOficina) {
+		this.idOficina = ifOficina;
 	}
 
 	public String getOficina() {

@@ -468,7 +468,7 @@
 														.val();
 												datos.ejercicio = ejercicio
 														.val();
-												datos.estatusVerificacion = estatusVerificacion
+												datos.idEstatusVerificacion = estatusVerificacion
 														.val();
 												datos.vinVehiculo = vinVehiculo
 														.val();
@@ -614,7 +614,7 @@
 														}
 													}
 												},
-												'selectMarca' : { //validación del campo
+												'criterioMarca' : { //validación del campo
 													trigger : 'blur', //Se especifica cuando se acciona la validación del campo
 													validators : { //validaciones
 

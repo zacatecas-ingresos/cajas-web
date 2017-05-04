@@ -339,7 +339,7 @@ $(document).ready(function(){
 			$(tr).append("<td class="+"vin" +" >" + data[i].vinVehiculo + "</td>");
 			$(tr).append("<td class="+"noMotor" +" >" + data[i].numeroMotorVehiculo + "</td>");
 			$(tr).append("<td class="+"persona" +" >" + data[i].nombrePersonaVerificacion + " " + data[i].apellidoPaternoPersonaVerificacion+ "</td>");
-			$(tr).append("<td class="+"estatus" +" >" + estatusVerificaciones(data[i].estatusVerificacion) + "</td>");
+			$(tr).append("<td class="+"estatus" +" >" + estatusVerificaciones(data[i].idEstatusVerificacion) + "</td>");
 			$('#tablaVerificacion > tbody').append(tr);
 		}
 	};		

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import cajas.persistence.entity.OficinaEntity;
 import cajas.persistence.entity.UsuarioEntity;
 import cajas.persistence.entity.VerificacionVehicularEntity;
 
@@ -42,10 +43,9 @@ public class VerificacionVehicularQuery {
 	@return numero de seguimiento formado
 	*/
 	public Integer generarNumeroSeguimiento(Integer idOficina, Integer ejercicio) {
-		
-				
-		Integer num  =	entityManager.createQuery("select max(u.noSeguimientoVerificacion) FROM VerificacionVehicularEntity u WHERE u.idOficinaVerificacion=:idOficina AND u.ejercicio=:ejercicio", Integer.class)
-				.setParameter("idOficina", idOficina).setParameter("ejercicio", ejercicio).getSingleResult();		
+		OficinaEntity oficina = entityManager.find(OficinaEntity.class, idOficina);
+		Integer num  =	entityManager.createQuery("select max(u.noSeguimientoVerificacion) FROM VerificacionVehicularEntity u WHERE u.oficina =:oficina AND u.ejercicio=:ejercicio", Integer.class)
+				.setParameter("oficina", oficina).setParameter("ejercicio", ejercicio).getSingleResult();		
 		
 		if(num != null){
 			num= num + 1; 

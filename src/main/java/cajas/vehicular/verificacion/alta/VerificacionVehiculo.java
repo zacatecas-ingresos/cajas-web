@@ -55,7 +55,6 @@ public class VerificacionVehiculo {
 		    String fechaVerificacionMinisterial = format.format(verificacionVehicularEntity.getFechaVerificacionMinisterial());
 		    verificacionVehiculo.setFechaVerificacionMinisterial(fechaVerificacionMinisterial);
 	    }
-
 	    
 		verificacionVehiculo.setVinVehiculo(verificacionVehicularEntity.getVinVehiculo());
 		if (verificacionVehicularEntity.getMarcaVehiculo() != null) {
@@ -69,10 +68,14 @@ public class VerificacionVehiculo {
 			verificacionVehiculo.setIdTipoVehiculo(verificacionVehicularEntity.getTipoVehiculo().getIdTipoVehiculo());
 		}
 		
+		if(verificacionVehicularEntity.getOficina() != null){
+			verificacionVehiculo.setIdOficinaVerificacion(verificacionVehicularEntity.getOficina().getIdOficina());
+		}
+		
 		verificacionVehiculo.setLineaVehiculo(verificacionVehicularEntity.getLineaVehiculo());
+		
 		if (verificacionVehicularEntity.getEstatusVerificacion() != null) {
-			verificacionVehiculo.setIdEstatusVerificacion(
-					verificacionVehicularEntity.getEstatusVerificacion().getIdEstatusVerificacion());
+			verificacionVehiculo.setIdEstatusVerificacion(verificacionVehicularEntity.getEstatusVerificacion().getIdEstatusVerificacion());
 		}
 		verificacionVehiculo.setFacturaVehiculoDocumentacion(verificacionVehicularEntity.getFacturaVehiculoDocumentacion());
 		verificacionVehiculo.setIdentificacionOficialDocumentacion(verificacionVehicularEntity.getIdentificacionOficialDocumentacion());
@@ -83,7 +86,6 @@ public class VerificacionVehiculo {
 		verificacionVehiculo.setApellidoPaternoPersonaVerificacion(verificacionVehicularEntity.getApellidoPaternoPersonaVerificacion());
 		verificacionVehiculo.setApellidoMaternoPersonaVerificacion(verificacionVehicularEntity.getApellidoMaternoPersonaVerificacion());
 		verificacionVehiculo.setNumeroMotorVehiculo(verificacionVehicularEntity.getNumeroMotorVehiculo());
-		verificacionVehiculo.setIdOficinaVerificacion(verificacionVehicularEntity.getIdOficinaVerificacion());
 		verificacionVehiculo.setAnio1ComprobantePago(verificacionVehicularEntity.getAnio1ComprobantePago());
 		verificacionVehiculo.setAnio2ComprobantePago(verificacionVehicularEntity.getAnio2ComprobantePago());
 		verificacionVehiculo.setAnio3ComprobantePago(verificacionVehicularEntity.getAnio3ComprobantePago());

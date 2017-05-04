@@ -16,7 +16,7 @@ public class MarcaVehiculoEntity implements Serializable {
 	private static final long serialVersionUID = 6737516490015922078L;
 
 	@Id
-	@Column(name = "IdEstatusVerificacion")
+	@Column(name = "IdMarcaVehiculo")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idMarcaVehiculo;
 

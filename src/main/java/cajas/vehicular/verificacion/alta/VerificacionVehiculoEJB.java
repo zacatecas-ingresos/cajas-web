@@ -20,6 +20,7 @@ import cajas.persistence.entity.MarcaVehiculoEntity;
 import cajas.persistence.entity.TipoVehiculoEntity;
 import cajas.persistence.entity.VerificacionVehicularEntity;
 import cajas.persistence.query.VerificacionVehicularQuery;
+import cajas.persistence.entity.OficinaEntity;
 
 @Stateless
 public class VerificacionVehiculoEJB {
@@ -34,17 +35,26 @@ public class VerificacionVehiculoEJB {
 		
 		try {
 			
-			VerificacionVehicularEntity verificacionVehiculoEntity = new VerificacionVehicularEntity();
-			verificacionVehiculoEntity.setIdOficinaVerificacion(verificacionVehiculo.getIdOficinaVerificacion());
+			VerificacionVehicularEntity verificacionVehiculoEntity = new VerificacionVehicularEntity();			
 			verificacionVehiculoEntity.setEjercicio(verificacionVehiculo.getEjercicio());
+			
 			if (verificacionVehiculo.getIdEstatusVerificacion() != null) {
 				EstatusVerificacionEntity estatusVerificacionEntity = entityManager
 						.find(EstatusVerificacionEntity.class, verificacionVehiculo.getIdEstatusVerificacion());
 				verificacionVehiculoEntity.setEstatusVerificacion(estatusVerificacionEntity);
 			}
+			
+			System.out.print("****************************************"+verificacionVehiculo.getIdOficinaVerificacion());
+			
+			if(verificacionVehiculo.getIdOficinaVerificacion() != null){
+				OficinaEntity oficinaVerificacion = entityManager.find(OficinaEntity.class, verificacionVehiculo.getIdOficinaVerificacion());
+				verificacionVehiculoEntity.setOficina(oficinaVerificacion);
+			}
+			
 			verificacionVehiculoEntity.setFechaVerificacion(DateTime.now().toDate());
 			verificacionVehiculoEntity.setVinVehiculo(verificacionVehiculo.getVinVehiculo());
-			verificacionVehiculoEntity.setNumeroMotorVehiculo(verificacionVehiculo.getNumeroMotorVehiculo());	
+			verificacionVehiculoEntity.setNumeroMotorVehiculo(verificacionVehiculo.getNumeroMotorVehiculo());
+			
 			if (verificacionVehiculo.getIdMarcaVehiculo() != null && verificacionVehiculo.getIdMarcaVehiculo() > 0) {
 				MarcaVehiculoEntity marcaVehiculo = entityManager.find(MarcaVehiculoEntity.class,verificacionVehiculo.getIdMarcaVehiculo());
 				verificacionVehiculoEntity.setMarcaVehiculo(marcaVehiculo);

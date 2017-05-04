@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "VerificacionesVehiculo", schema = "vehicular")
+@Table(name = "VerificacionesVehiculos", schema = "vehicular")
 public class VerificacionVehicularEntity implements Serializable {
 
 	private static final long serialVersionUID = 4520026756457631203L;
@@ -55,7 +55,7 @@ public class VerificacionVehicularEntity implements Serializable {
 	private String lineaVehiculo;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IdEstatusVerificacion")
+	@JoinColumn(name = "IdEstatusVerificacionVehicular")
 	private EstatusVerificacionEntity estatusVerificacion;
 
 	@Column(name = "FacturaVehiculoDocumentacion")
@@ -84,9 +84,6 @@ public class VerificacionVehicularEntity implements Serializable {
 
 	@Column(name = "NumeroMotorVehiculo")
 	private String numeroMotorVehiculo;
-
-	@Column(name = "IdOficinaVerificacion")
-	private Integer idOficinaVerificacion;
 
 	@Column(name = "Anio1ComprobantePago")
 	private Integer anio1ComprobantePago;
@@ -247,12 +244,7 @@ public class VerificacionVehicularEntity implements Serializable {
 	public void setNumeroMotorVehiculo(String numeroMotorVehiculo) {
 		this.numeroMotorVehiculo = numeroMotorVehiculo;
 	}
-	public Integer getIdOficinaVerificacion() {
-		return idOficinaVerificacion;
-	}
-	public void setIdOficinaVerificacion(Integer idOficinaVerificacion) {
-		this.idOficinaVerificacion = idOficinaVerificacion;
-	}
+
 	public Integer getAnio1ComprobantePago() {
 		return anio1ComprobantePago;
 	}

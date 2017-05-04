@@ -13,24 +13,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tipos_vehiculos", schema = "catalogos")
+@Table(name = "TiposVehiculos", schema = "vehicular")
 public class TipoVehiculoEntity implements Serializable {
 	private static final long serialVersionUID = 3829415048369577327L;
 	@Id
-	@Column(name = "id_tipo_vehiculo")
+	@Column(name = "IdTipoVehiculo")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idTipoVehiculo;
 
-	@Column(name = "tipo_vehiculo")
+	@Column(name = "TipoVehiculo")
 	private Integer tipoVehiculo;
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_clase_vehiculo")
+    @JoinColumn(name = "IdClaseVehiculo")
     private ClaseVehiculoEntity claseVehiculo;
-	@Column(name = "abreviatura")
+	@Column(name = "Abreviatura")
 	private String abreviatura;
-	@Column(name = "nombre")
+	@Column(name = "Nombre")
 	private String nombre;
-	@Column(name = "estatus")
+	@Column(name = "Estatus")
 	private Boolean estatus;
 
 	public Integer getIdTipoVehiculo() {

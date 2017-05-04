@@ -10,17 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "estatus_verificaciones", schema = "vehicular")
+@Table(name = "EstatusVerificaciones", schema = "vehicular")
 public class EstatusVerificacionEntity implements Serializable {
 	private static final long serialVersionUID = 3932729104626046760L;
-
 	@Id
-	@Column(name = "id_estatus_verificacion")
+	@Column(name = "IdEstatusVerificacion")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idEstatusVerificacion;
 
-	@Column(name = "estatus_verificacion")
-	private String estatusVerificacion;
+	@Column(name = "EstatusVerificacion")
+	private String estatusverificacion;
 
 	public Integer getIdEstatusVerificacion() {
 		return idEstatusVerificacion;
@@ -30,11 +29,11 @@ public class EstatusVerificacionEntity implements Serializable {
 		this.idEstatusVerificacion = idEstatusVerificacion;
 	}
 
-	public String getEstatusVerificacion() {
-		return estatusVerificacion;
+	public String getEstatusverificacion() {
+		return estatusverificacion;
 	}
 
-	public void setEstatusVerificacion(String estatusVerificacion) {
-		this.estatusVerificacion = estatusVerificacion;
+	public void setEstatusverificacion(String estatusverificacion) {
+		this.estatusverificacion = estatusverificacion;
 	}
 }

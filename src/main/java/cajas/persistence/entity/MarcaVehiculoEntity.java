@@ -10,23 +10,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "marcas_vehiculos", schema = "catalogos")
+@Table(name = "MarcasVehiculos", schema = "vehicular")
 public class MarcaVehiculoEntity implements Serializable {
 
 	private static final long serialVersionUID = 6737516490015922078L;
 
 	@Id
-	@Column(name = "id_marca_vehiculo")
+	@Column(name = "IdEstatusVerificacion")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idMarcaVehiculo;
 
-	@Column(name = "nombre")
+	@Column(name = "Nombre")
 	private String nombre;
 
-	@Column(name = "abreviatura")
+	@Column(name = "Abreviatura")
 	private String abreviatura;
 
-	@Column(name = "estatus")
+	@Column(name = "Estatus")
 	private Boolean estatus;
 
 	public Integer getIdMarcaVehiculo() {

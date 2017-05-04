@@ -10,18 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "clases_vehiculos", schema = "catalogos")
+@Table(name = "ClasesVehiculos", schema = "vehicular")
 public class ClaseVehiculoEntity implements Serializable {
 	private static final long serialVersionUID = 3010915041069578627L;
 	@Id
-	@Column(name = "id_clase_vehiculo")
+	@Column(name = "IdClaseVehiculo")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idClaseVehiculo;
-	@Column(name = "nombre")
+	@Column(name = "Nombre")
 	private String nombre;
-	@Column(name = "abreviacion")
+	@Column(name = "Abreviacion")
 	private String abreviacion;
-	@Column(name = "estatus")
+	@Column(name = "Estatus")
 	private Boolean estatus;
 
 	public Integer getIdClaseVehiculo() {

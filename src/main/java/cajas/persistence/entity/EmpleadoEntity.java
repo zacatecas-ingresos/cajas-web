@@ -10,48 +10,48 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "empleados", schema = "seguridad")
+@Table(name = "Empleados", schema = "seguridad")
 public class EmpleadoEntity implements Serializable {
 	private static final long serialVersionUID = 1301384922683817336L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_empleado")
+	@Column(name = "IdEmpleado")
 	private Integer idEmpleado;
 	
-	@Column(name = "num_empleado")
+	@Column(name = "NumeroEmpleado")
 	private String numEmpleado;
 	
-	@Column(name ="rfc")
+	@Column(name ="Rfc")
 	private String rfc;
 	
-	@Column(name ="curp")
+	@Column(name ="Curp")
 	private String curp;
 	
-	@Column(name ="apellido_paterno")
+	@Column(name ="ApellidoPaterno")
 	private String apellidoPaterno;
 	
-	@Column(name ="apellido_materno")
+	@Column(name ="ApellidoMaterno")
 	private String apellidoMaterno;
 	
-	@Column(name ="nombres")
+	@Column(name ="Nombres")
 	private String nombres;
 	
-	@Column(name ="calles")
+	@Column(name ="Calles")
 	private String calles;
 	
-	@Column(name ="numero_exterior")
+	@Column(name ="NumeroExterior")
 	private String numeroExterior;
 	
-	@Column(name ="numero_interior")
+	@Column(name ="NumeroInterior")
 	private String numeroInterior;
 	
 	@Column(name ="colonia")
 	private String colonia;
 	
-	@Column(name ="codigo_postal")
+	@Column(name ="CodigoPostal")
 	private String codigoPostal;
 	
-	@Column(name ="activo")
+	@Column(name ="Activo")
 	private Boolean activo;
 
 	public Integer getIdEmpleado() {

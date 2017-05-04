@@ -10,15 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "oficina", schema = "seguridad" )
+@Table(name = "Oficina", schema = "seguridad" )
 public class OficinaEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_oficina")
+	@Column(name = "IdOficina")
 	private Integer ifOficina;
 	
-	@Column(name = "oficina")
+	@Column(name = "Oficina")
 	private String oficina;
 
 	public Integer getIfOficina() {

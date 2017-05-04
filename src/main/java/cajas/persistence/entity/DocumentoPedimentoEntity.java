@@ -1,36 +1,34 @@
 package cajas.persistence.entity;
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "documentos_pedimento", schema = "vehicular")
+@Table(name = "DocumentosPedimento", schema = "vehicular")
 public class DocumentoPedimentoEntity implements Serializable{
 
 	private static final long serialVersionUID = -6759892518656940196L;
 	
 	@Id
-	@Column(name = "id_documento_pedimento")
+	@Column(name = "IdDocumentoPedimento")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idDocumentoPedimento;
 	
-	@Column( name = "documento")
+	@Column( name = "Documento")
 	private String documento;
 	
-	@Column( name = "modelo_a")
+	@Column( name = "ModeloA")
 	private Integer modeloA;
 	
-	@Column ( name = "modelo_c")
+	@Column ( name = "ModeloC")
 	private Integer modeloC;
 	
-	@Column ( name = "estatus" )
+	@Column ( name = "Estatus" )
 	private Integer estatus;
 
 	

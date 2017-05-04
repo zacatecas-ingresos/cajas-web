@@ -53,7 +53,7 @@ public class PresupuestoService {
 		presupuesto.setFechaEmisionPresupuesto(FechaUtil.fechaActual());
 		presupuesto.setFechaRecepcionOperacion(null);
 		presupuesto.setIdContribuyente(null);
-		presupuesto.setIdEstatus(EstatusPresupuesto.GENERADO);
+		presupuesto.setIdEstatus(EstatusPresupuesto.ESPERA_CONFIRMACION_PAGO);
 		presupuesto.setIdFormaPago(null);
 		presupuesto.setIdMesExpedicion(FechaUtil.mesActual());
 		presupuesto.setImporteTotal(importeTotal);

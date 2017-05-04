@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "contribuyentes_obligaciones", schema = "obligaciones")
+@Table(name = "ContribuyentesObligaciones", schema = "contribuyente")
 public class ContribuyentesObligacionesEntity implements Serializable {
 
 	/**
@@ -21,23 +21,29 @@ public class ContribuyentesObligacionesEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_contribuyente_obligacion")
+	@Column(name = "IdContribuyenteObligacion")
 	private Integer idContribuyenteObligacion;
 
-	@Column(name = "id_contribuyente")
+	@Column(name = "IdContribuyente")
 	private Integer idContribuyente;
 
-	@Column(name = "id_obligacion")
+	@Column(name = "IdObligacion")
 	private Integer idObligacion;
 
-	@Column(name = "fecha_alta")
+	@Column(name = "FechaAlta")
 	private Date fechaAlta;
 
-	@Column(name = "fecha_baja")
+	@Column(name = "FechaBaja")
 	private Date fechaBaja;
 
-	@Column(name = "estatus")
+	@Column(name = "Estatus")
 	private Integer estatus;
+	
+	@Column(name = "NumeroControl")
+	private String numeroControl;
+	
+	@Column(name = "IdTemporal")
+	private Integer idTemporal;
 
 	public Integer getIdContribuyente() {
 		return idContribuyente;

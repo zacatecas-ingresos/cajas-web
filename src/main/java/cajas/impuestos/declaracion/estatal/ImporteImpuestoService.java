@@ -73,6 +73,25 @@ public class ImporteImpuestoService {
 		tasa = tasaImpuestoEntity.getTasa();
 		return tasa;
 	}
+	
+	/*****
+	 * Obtiene la tasa de acuerdo al impuesto recibido
+	 * 
+	 * @throws ParseException
+	 */
+	public BigDecimal tasaPorImpuestoConcurso(int tipoTasa, Date fechaInicio, Date fechaFin) {
+
+		BigDecimal tasa = BigDecimal.ZERO;
+
+		TasaImpuestoEntity tasaImpuestoEntity = tasaImpuestoQuery.obtenerTasaPorImpuesto(tipoTasa, fechaInicio,
+				fechaFin);
+		if(tipoTasa==TipoTasa.TASA_ENAJENANTE){
+			tasa = tasaImpuestoEntity.getTasaConcursoEnajenacion();	
+		}else if(tipoTasa == TipoTasa.TASA_BENEFICIARIO){
+			tasa = tasaImpuestoEntity.getTasaConcursoBeneficiario();
+		}
+		return tasa;
+	}
 
 	/*************
 	 * CALCULO IMPUESTO SOBRE LOTERÍAS, RIFAS, SORTEOS, APUESTAS, JUEGOS
@@ -92,9 +111,8 @@ public class ImporteImpuestoService {
 			fechaInicio.withYear(aFiscal);
 			DateTime fechaFin = new DateTime(periodo.getFechaFin());
 			fechaFin.withYear(aFiscal);
-
-			tasa = tasaPorImpuesto(tipoIngreso, fechaInicio.toDate(), fechaFin.toDate());
-
+			
+			tasa = tasaPorImpuestoConcurso(tipoIngreso, fechaInicio.toDate(), fechaFin.toDate());
 			impuesto = baseGravable.multiply(tasa);
 			impuesto = impuesto.divide(new BigDecimal(100)).setScale(0, RoundingMode.HALF_EVEN);
 

@@ -37,6 +37,12 @@ public class TasaImpuestoEntity implements Serializable {
 	@Column(name = "Tasa")
 	private BigDecimal tasa;
 
+	@Column(name = "TasaConcursoEnajenacion")
+	private BigDecimal tasaConcursoEnajenacion;
+
+	@Column(name = "TasaConcursoBeneficiario")
+	private BigDecimal tasaConcursoBeneficiario;
+
 	@Column(name = "TipoTasa")
 	private Integer tipoTasa;
 
@@ -88,6 +94,22 @@ public class TasaImpuestoEntity implements Serializable {
 
 	public void setTipoTasa(Integer tipoTasa) {
 		this.tipoTasa = tipoTasa;
+	}
+
+	public BigDecimal getTasaConcursoEnajenacion() {
+		return tasaConcursoEnajenacion;
+	}
+
+	public void setTasaConcursoEnajenacion(BigDecimal tasaConcursoEnajenacion) {
+		this.tasaConcursoEnajenacion = tasaConcursoEnajenacion;
+	}
+
+	public BigDecimal getTasaConcursoBeneficiario() {
+		return tasaConcursoBeneficiario;
+	}
+
+	public void setTasaConcursoBeneficiario(BigDecimal tasaConcursoBeneficiario) {
+		this.tasaConcursoBeneficiario = tasaConcursoBeneficiario;
 	}
 
 }

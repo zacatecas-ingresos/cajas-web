@@ -2,19 +2,23 @@ package cajas.actualizacionesrecargos.calculos;
 
 import java.math.BigDecimal;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
 
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.Assert;
 
-import cajas.impuestos.declaracion.estatal.ImporteImpuestoService;
+import cajas.impuestos.declaracion.estatal.ImpuestoConcurso;
+import cajas.impuestos.declaracion.estatal.ImpuestoConcursoEJB;
 
+@RunWith(Arquillian.class)
 public class TestCalculoSorteos {
 
-	@Inject
-	ImporteImpuestoService importeImpuestoService;
+	@EJB
+	ImpuestoConcursoEJB impuestoSorteoEJB;
 
 	@Deployment
 	public static WebArchive createDeployment() {
@@ -24,15 +28,14 @@ public class TestCalculoSorteos {
 	@Test
 	public void calculoSorteos() {
 
-		BigDecimal impuestoGravable = new BigDecimal("1686");
 		BigDecimal resultado = new BigDecimal("101");
+		ImpuestoConcurso impuestoConcurso = new ImpuestoConcurso();
+		impuestoConcurso.setBaseGravableEnajenacion(new BigDecimal("1686"));
+		impuestoConcurso.setaFiscal(2017);
+		impuestoConcurso.setIdPeriodo(41);
+		impuestoConcurso.setTipoIngreso(4);
 
-		Integer aFiscal = 2017;
-		Integer idPeriodo = 1;
-		Integer tipoIngreso = 3;
-
-		BigDecimal importe = importeImpuestoService.impuestoConcursos(impuestoGravable, aFiscal, idPeriodo,
-				tipoIngreso);
+		BigDecimal importe = impuestoSorteoEJB.impuestoConcurso(impuestoConcurso);
 
 		Assert.assertEquals(resultado, importe);
 

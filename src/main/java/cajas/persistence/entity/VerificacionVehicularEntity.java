@@ -43,17 +43,20 @@ public class VerificacionVehicularEntity implements Serializable {
 	@Column(name = "ModeloVehiculo")
 	private Integer modeloVehiculo;
 
-	@Column(name = "IdClaseVehiculo")
-	private Integer idClaseVehiculo;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "IdClaseVehiculo")
+	private ClaseVehiculoEntity claseVehiculo;
 
-	@Column(name = "IdTipoVehiculo")
-	private Integer idTipoVehiculo;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "IdTipoVehiculo")
+	private TipoVehiculoEntity tipoVehiculo;
 
 	@Column(name = "LineaVehiculo")
 	private String lineaVehiculo;
 
-	@Column(name = "EstatusVerificacion")
-	private Integer estatusVerificacion;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "IdEstatusVerificacion")
+	private EstatusVerificacionEntity estatusVerificacion;
 
 	@Column(name = "FacturaVehiculoDocumentacion")
 	private Boolean facturaVehiculoDocumentacion;
@@ -112,42 +115,45 @@ public class VerificacionVehicularEntity implements Serializable {
 	@Column(name = "ObservacionesMinisterial")
 	private String observacionesMinisterial;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_oficina")
+	private OficinaEntity oficina;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_estatus_verificacion")
+	private EmpleadoEntity empleadoValidaMinisterial;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_estatus_verificacion")
+	private EmpleadoEntity empleadoValidaVerificacion;
+
 	public Integer getIdVerificacionVehiculo() {
 		return idVerificacionVehiculo;
 	}
-
 	public void setIdVerificacionVehiculo(Integer idVerificacionVehiculo) {
 		this.idVerificacionVehiculo = idVerificacionVehiculo;
 	}
-
 	public Integer getEjercicio() {
 		return ejercicio;
 	}
-
 	public void setEjercicio(Integer ejercicio) {
 		this.ejercicio = ejercicio;
 	}
-
 	public Integer getNoSeguimientoVerificacion() {
 		return noSeguimientoVerificacion;
 	}
-
 	public void setNoSeguimientoVerificacion(Integer noSeguimientoVerificacion) {
 		this.noSeguimientoVerificacion = noSeguimientoVerificacion;
 	}
-
 	public Date getFechaVerificacion() {
 		return fechaVerificacion;
 	}
-
 	public void setFechaVerificacion(Date fechaVerificacion) {
 		this.fechaVerificacion = fechaVerificacion;
 	}
-
 	public String getVinVehiculo() {
 		return vinVehiculo;
 	}
-
 	public void setVinVehiculo(String vinVehiculo) {
 		this.vinVehiculo = vinVehiculo;
 	}
@@ -157,199 +163,166 @@ public class VerificacionVehicularEntity implements Serializable {
 	public void setMarcaVehiculo(MarcaVehiculoEntity marcaVehiculo) {
 		this.marcaVehiculo = marcaVehiculo;
 	}
-
 	public Integer getModeloVehiculo() {
 		return modeloVehiculo;
 	}
-
 	public void setModeloVehiculo(Integer modeloVehiculo) {
 		this.modeloVehiculo = modeloVehiculo;
 	}
-
-	public Integer getIdClaseVehiculo() {
-		return idClaseVehiculo;
+	public ClaseVehiculoEntity getClaseVehiculo() {
+		return claseVehiculo;
 	}
-
-	public void setIdClaseVehiculo(Integer idClaseVehiculo) {
-		this.idClaseVehiculo = idClaseVehiculo;
+	public void setClaseVehiculo(ClaseVehiculoEntity claseVehiculo) {
+		this.claseVehiculo = claseVehiculo;
 	}
-
-	public Integer getIdTipoVehiculo() {
-		return idTipoVehiculo;
+	public TipoVehiculoEntity getTipoVehiculo() {
+		return tipoVehiculo;
 	}
-
-	public void setIdTipoVehiculo(Integer idTipoVehiculo) {
-		this.idTipoVehiculo = idTipoVehiculo;
+	public void setTipoVehiculo(TipoVehiculoEntity tipoVehiculo) {
+		this.tipoVehiculo = tipoVehiculo;
 	}
-
 	public String getLineaVehiculo() {
 		return lineaVehiculo;
 	}
-
 	public void setLineaVehiculo(String lineaVehiculo) {
 		this.lineaVehiculo = lineaVehiculo;
 	}
-
-	public Integer getEstatusVerificacion() {
+	public EstatusVerificacionEntity getEstatusVerificacion() {
 		return estatusVerificacion;
 	}
-
-	public void setEstatusVerificacion(Integer estatusVerificacion) {
+	public void setEstatusVerificacion(EstatusVerificacionEntity estatusVerificacion) {
 		this.estatusVerificacion = estatusVerificacion;
 	}
-
 	public Boolean getFacturaVehiculoDocumentacion() {
 		return facturaVehiculoDocumentacion;
 	}
-
 	public void setFacturaVehiculoDocumentacion(Boolean facturaVehiculoDocumentacion) {
 		this.facturaVehiculoDocumentacion = facturaVehiculoDocumentacion;
 	}
-
 	public Boolean getIdentificacionOficialDocumentacion() {
 		return identificacionOficialDocumentacion;
 	}
-
 	public void setIdentificacionOficialDocumentacion(Boolean identificacionOficialDocumentacion) {
 		this.identificacionOficialDocumentacion = identificacionOficialDocumentacion;
 	}
-
 	public Boolean getComprobanteDomicilioDocumentacion() {
 		return comprobanteDomicilioDocumentacion;
 	}
-
 	public void setComprobanteDomicilioDocumentacion(Boolean comprobanteDomicilioDocumentacion) {
 		this.comprobanteDomicilioDocumentacion = comprobanteDomicilioDocumentacion;
 	}
-
 	public Boolean getRfcPersonaMoralDocumentacion() {
 		return rfcPersonaMoralDocumentacion;
 	}
-
 	public void setRfcPersonaMoralDocumentacion(Boolean rfcPersonaMoralDocumentacion) {
 		this.rfcPersonaMoralDocumentacion = rfcPersonaMoralDocumentacion;
 	}
-
 	public Boolean getIdentificacionRepresentanteLegalDocumentacion() {
 		return identificacionRepresentanteLegalDocumentacion;
 	}
-
-	public void setIdentificacionRepresentanteLegalDocumentacion(
-			Boolean identificacionRepresentanteLegalDocumentacion) {
+	public void setIdentificacionRepresentanteLegalDocumentacion(Boolean identificacionRepresentanteLegalDocumentacion) {
 		this.identificacionRepresentanteLegalDocumentacion = identificacionRepresentanteLegalDocumentacion;
 	}
-
 	public String getNombrePersonaVerificacion() {
 		return nombrePersonaVerificacion;
 	}
-
 	public void setNombrePersonaVerificacion(String nombrePersonaVerificacion) {
 		this.nombrePersonaVerificacion = nombrePersonaVerificacion;
 	}
-
 	public String getApellidoPaternoPersonaVerificacion() {
 		return apellidoPaternoPersonaVerificacion;
 	}
-
 	public void setApellidoPaternoPersonaVerificacion(String apellidoPaternoPersonaVerificacion) {
 		this.apellidoPaternoPersonaVerificacion = apellidoPaternoPersonaVerificacion;
 	}
-
 	public String getApellidoMaternoPersonaVerificacion() {
 		return apellidoMaternoPersonaVerificacion;
 	}
-
 	public void setApellidoMaternoPersonaVerificacion(String apellidoMaternoPersonaVerificacion) {
 		this.apellidoMaternoPersonaVerificacion = apellidoMaternoPersonaVerificacion;
 	}
-
 	public String getNumeroMotorVehiculo() {
 		return numeroMotorVehiculo;
 	}
-
 	public void setNumeroMotorVehiculo(String numeroMotorVehiculo) {
 		this.numeroMotorVehiculo = numeroMotorVehiculo;
 	}
-
 	public Integer getIdOficinaVerificacion() {
 		return idOficinaVerificacion;
 	}
-
 	public void setIdOficinaVerificacion(Integer idOficinaVerificacion) {
 		this.idOficinaVerificacion = idOficinaVerificacion;
 	}
-
 	public Integer getAnio1ComprobantePago() {
 		return anio1ComprobantePago;
 	}
-
 	public void setAnio1ComprobantePago(Integer anio1ComprobantePago) {
 		this.anio1ComprobantePago = anio1ComprobantePago;
 	}
-
 	public Integer getAnio2ComprobantePago() {
 		return anio2ComprobantePago;
 	}
-
 	public void setAnio2ComprobantePago(Integer anio2ComprobantePago) {
 		this.anio2ComprobantePago = anio2ComprobantePago;
 	}
-
 	public Integer getAnio3ComprobantePago() {
 		return anio3ComprobantePago;
 	}
-
 	public void setAnio3ComprobantePago(Integer anio3ComprobantePago) {
 		this.anio3ComprobantePago = anio3ComprobantePago;
 	}
-
 	public Integer getAnio4ComprobantePago() {
 		return anio4ComprobantePago;
 	}
-
 	public void setAnio4ComprobantePago(Integer anio4ComprobantePago) {
 		this.anio4ComprobantePago = anio4ComprobantePago;
 	}
-
 	public Integer getAnio5ComprobantePago() {
 		return anio5ComprobantePago;
 	}
-
 	public void setAnio5ComprobantePago(Integer anio5ComprobantePago) {
 		this.anio5ComprobantePago = anio5ComprobantePago;
 	}
-
 	public Integer getAnioActualComprobantePago() {
 		return anioActualComprobantePago;
 	}
-
 	public void setAnioActualComprobantePago(Integer anioActualComprobantePago) {
 		this.anioActualComprobantePago = anioActualComprobantePago;
 	}
-
-	
 	public Date getFechaVerificacionMinisterial() {
 		return fechaVerificacionMinisterial;
 	}
-
 	public void setFechaVerificacionMinisterial(Date fechaVerificacionMinisterial) {
 		this.fechaVerificacionMinisterial = fechaVerificacionMinisterial;
 	}
-
-	
 	public Integer getFolioVerificacionMinisterial() {
 		return folioVerificacionMinisterial;
 	}
-
 	public void setFolioVerificacionMinisterial(Integer folioVerificacionMinisterial) {
 		this.folioVerificacionMinisterial = folioVerificacionMinisterial;
 	}
-
 	public String getObservacionesMinisterial() {
 		return observacionesMinisterial;
 	}
-
 	public void setObservacionesMinisterial(String observacionesMinisterial) {
 		this.observacionesMinisterial = observacionesMinisterial;
-	} 
+	}
+	public OficinaEntity getOficina() {
+		return oficina;
+	}
+	public void setOficina(OficinaEntity oficina) {
+		this.oficina = oficina;
+	}
+	public EmpleadoEntity getEmpleadoValidaMinisterial() {
+		return empleadoValidaMinisterial;
+	}
+	public void setEmpleadoValidaMinisterial(EmpleadoEntity empleadoValidaMinisterial) {
+		this.empleadoValidaMinisterial = empleadoValidaMinisterial;
+	}
+	public EmpleadoEntity getEmpleadoValidaVerificacion() {
+		return empleadoValidaVerificacion;
+	}
+	public void setEmpleadoValidaVerificacion(EmpleadoEntity empleadoValidaVerificacion) {
+		this.empleadoValidaVerificacion = empleadoValidaVerificacion;
+	}
 }

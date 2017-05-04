@@ -10,7 +10,9 @@ import javax.persistence.PersistenceException;
 import org.joda.time.DateTime;
 
 import cajas.exception.BusinessException;
+import cajas.persistence.entity.ClaseVehiculoEntity;
 import cajas.persistence.entity.MarcaVehiculoEntity;
+import cajas.persistence.entity.TipoVehiculoEntity;
 import cajas.persistence.entity.VerificacionVehicularEntity;
 import cajas.persistence.query.VerificacionVehicularQuery;
 
@@ -35,8 +37,16 @@ public class VerificacionVehiculoMinisterialEJB {
 				verificacionVehicularEntity.setMarcaVehiculo(marcaVehiculo);
 			}
 			verificacionVehicularEntity.setModeloVehiculo(verificacionVehiculoMinisterial.getModeloVehiculo());
-			verificacionVehicularEntity.setIdClaseVehiculo(verificacionVehiculoMinisterial.getIdClaseVehiculo());
-			verificacionVehicularEntity.setIdTipoVehiculo(verificacionVehiculoMinisterial.getIdTipoVehiculo());
+			if (verificacionVehiculoMinisterial.getIdClaseVehiculo() != null) {
+				ClaseVehiculoEntity claseVehiculoEntity = entityManager.find(ClaseVehiculoEntity.class,
+						verificacionVehiculoMinisterial.getIdClaseVehiculo());
+				verificacionVehicularEntity.setClaseVehiculo(claseVehiculoEntity);
+			}
+			if (verificacionVehiculoMinisterial.getIdTipoVehiculo() != null) {
+				TipoVehiculoEntity tipoVehiculoEntity = entityManager.find(TipoVehiculoEntity.class,
+						verificacionVehiculoMinisterial.getIdTipoVehiculo());
+				verificacionVehicularEntity.setTipoVehiculo(tipoVehiculoEntity);
+			}
 			verificacionVehicularEntity.setFolioVerificacionMinisterial(verificacionVehiculoMinisterial.getFolioVerificacionMinisterial());
 			verificacionVehicularEntity.setObservacionesMinisterial(verificacionVehiculoMinisterial.getObservacionesMinisterial());
 			verificacionVehicularEntity.setLineaVehiculo(verificacionVehiculoMinisterial.getLineaVehiculo());

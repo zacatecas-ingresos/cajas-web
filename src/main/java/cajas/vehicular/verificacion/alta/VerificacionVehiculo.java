@@ -16,7 +16,7 @@ public class VerificacionVehiculo {
 	private Integer idClaseVehiculo;
 	private Integer idTipoVehiculo;
 	private String lineaVehiculo;
-	private Integer estatusVerificacion;
+	private Integer idEstatusVerificacion;
 	private Boolean facturaVehiculoDocumentacion;
 	private Boolean identificacionOficialDocumentacion;
 	private Boolean comprobanteDomicilioDocumentacion;
@@ -61,11 +61,21 @@ public class VerificacionVehiculo {
 		if (verificacionVehicularEntity.getMarcaVehiculo() != null) {
 			verificacionVehiculo.setIdMarcaVehiculo(verificacionVehicularEntity.getMarcaVehiculo().getIdMarcaVehiculo());
 		}
-		verificacionVehiculo.setModeloVehiculo(verificacionVehicularEntity.getModeloVehiculo());
-		verificacionVehiculo.setIdClaseVehiculo(verificacionVehicularEntity.getIdClaseVehiculo());
-		verificacionVehiculo.setIdTipoVehiculo(verificacionVehicularEntity.getIdTipoVehiculo());
+		if (verificacionVehicularEntity.getModeloVehiculo() != null) {
+			verificacionVehiculo.setModeloVehiculo(verificacionVehicularEntity.getModeloVehiculo());
+		}
+		if (verificacionVehicularEntity.getClaseVehiculo() != null) {
+			verificacionVehiculo.setIdClaseVehiculo(verificacionVehicularEntity.getClaseVehiculo().getIdClaseVehiculo());
+		}
+		if (verificacionVehicularEntity.getTipoVehiculo() != null) {
+			verificacionVehiculo.setIdTipoVehiculo(verificacionVehicularEntity.getTipoVehiculo().getIdTipoVehiculo());
+		}
+		
 		verificacionVehiculo.setLineaVehiculo(verificacionVehicularEntity.getLineaVehiculo());
-		verificacionVehiculo.setEstatusVerificacion(verificacionVehicularEntity.getEstatusVerificacion());
+		if (verificacionVehicularEntity.getEstatusVerificacion() != null) {
+			verificacionVehiculo.setIdEstatusVerificacion(
+					verificacionVehicularEntity.getEstatusVerificacion().getIdEstatusVerificacion());
+		}
 		verificacionVehiculo.setFacturaVehiculoDocumentacion(verificacionVehicularEntity.getFacturaVehiculoDocumentacion());
 		verificacionVehiculo.setIdentificacionOficialDocumentacion(verificacionVehicularEntity.getIdentificacionOficialDocumentacion());
 		verificacionVehiculo.setComprobanteDomicilioDocumentacion(verificacionVehicularEntity.getComprobanteDomicilioDocumentacion());
@@ -151,11 +161,11 @@ public class VerificacionVehiculo {
 	public void setLineaVehiculo(String lineaVehiculo) {
 		this.lineaVehiculo = lineaVehiculo;
 	}
-	public Integer getEstatusVerificacion() {
-		return estatusVerificacion;
+	public Integer getIdEstatusVerificacion() {
+		return idEstatusVerificacion;
 	}
-	public void setEstatusVerificacion(Integer estatusVerificacion) {
-		this.estatusVerificacion = estatusVerificacion;
+	public void setIdEstatusVerificacion(Integer idEstatusVerificacion) {
+		this.idEstatusVerificacion = idEstatusVerificacion;
 	}
 	public Boolean getFacturaVehiculoDocumentacion() {
 		return facturaVehiculoDocumentacion;

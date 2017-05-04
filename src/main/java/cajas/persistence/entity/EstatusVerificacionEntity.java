@@ -20,7 +20,7 @@ public class EstatusVerificacionEntity implements Serializable {
 	private Integer idEstatusVerificacion;
 
 	@Column(name = "estatus_verificacion")
-	private String estatusverificacion;
+	private String estatusVerificacion;
 
 	public Integer getIdEstatusVerificacion() {
 		return idEstatusVerificacion;
@@ -30,11 +30,11 @@ public class EstatusVerificacionEntity implements Serializable {
 		this.idEstatusVerificacion = idEstatusVerificacion;
 	}
 
-	public String getEstatusverificacion() {
-		return estatusverificacion;
+	public String getEstatusVerificacion() {
+		return estatusVerificacion;
 	}
 
-	public void setEstatusverificacion(String estatusverificacion) {
-		this.estatusverificacion = estatusverificacion;
+	public void setEstatusVerificacion(String estatusVerificacion) {
+		this.estatusVerificacion = estatusVerificacion;
 	}
 }

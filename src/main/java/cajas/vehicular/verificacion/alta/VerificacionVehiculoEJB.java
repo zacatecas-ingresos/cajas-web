@@ -14,7 +14,10 @@ import javax.persistence.PersistenceException;
 import org.joda.time.DateTime;
 
 import cajas.exception.BusinessException;
+import cajas.persistence.entity.ClaseVehiculoEntity;
+import cajas.persistence.entity.EstatusVerificacionEntity;
 import cajas.persistence.entity.MarcaVehiculoEntity;
+import cajas.persistence.entity.TipoVehiculoEntity;
 import cajas.persistence.entity.VerificacionVehicularEntity;
 import cajas.persistence.query.VerificacionVehicularQuery;
 
@@ -34,7 +37,11 @@ public class VerificacionVehiculoEJB {
 			VerificacionVehicularEntity verificacionVehiculoEntity = new VerificacionVehicularEntity();
 			verificacionVehiculoEntity.setIdOficinaVerificacion(verificacionVehiculo.getIdOficinaVerificacion());
 			verificacionVehiculoEntity.setEjercicio(verificacionVehiculo.getEjercicio());
-			verificacionVehiculoEntity.setEstatusVerificacion(verificacionVehiculo.getEstatusVerificacion());
+			if (verificacionVehiculo.getIdEstatusVerificacion() != null) {
+				EstatusVerificacionEntity estatusVerificacionEntity = entityManager
+						.find(EstatusVerificacionEntity.class, verificacionVehiculo.getIdEstatusVerificacion());
+				verificacionVehiculoEntity.setEstatusVerificacion(estatusVerificacionEntity);
+			}
 			verificacionVehiculoEntity.setFechaVerificacion(DateTime.now().toDate());
 			verificacionVehiculoEntity.setVinVehiculo(verificacionVehiculo.getVinVehiculo());
 			verificacionVehiculoEntity.setNumeroMotorVehiculo(verificacionVehiculo.getNumeroMotorVehiculo());	
@@ -43,8 +50,16 @@ public class VerificacionVehiculoEJB {
 				verificacionVehiculoEntity.setMarcaVehiculo(marcaVehiculo);
 			}
 			verificacionVehiculoEntity.setModeloVehiculo(verificacionVehiculo.getModeloVehiculo());
-			verificacionVehiculoEntity.setIdClaseVehiculo(verificacionVehiculo.getIdClaseVehiculo());
-			verificacionVehiculoEntity.setIdTipoVehiculo(verificacionVehiculo.getIdTipoVehiculo());
+			if (verificacionVehiculo.getIdClaseVehiculo() != null) {
+				ClaseVehiculoEntity claseVehiculoEntity = entityManager.find(ClaseVehiculoEntity.class,
+						verificacionVehiculo.getIdClaseVehiculo());
+				verificacionVehiculoEntity.setClaseVehiculo(claseVehiculoEntity);
+			}
+			if (verificacionVehiculo.getIdTipoVehiculo() != null) {
+				TipoVehiculoEntity tipoVehiculoEntity = entityManager.find(TipoVehiculoEntity.class,
+						verificacionVehiculo.getIdTipoVehiculo());
+				verificacionVehiculoEntity.setTipoVehiculo(tipoVehiculoEntity);
+			}
 			verificacionVehiculoEntity.setLineaVehiculo(verificacionVehiculo.getLineaVehiculo());
 			verificacionVehiculoEntity.setNombrePersonaVerificacion(verificacionVehiculo.getNombrePersonaVerificacion());
 			verificacionVehiculoEntity.setApellidoPaternoPersonaVerificacion(verificacionVehiculo.getApellidoPaternoPersonaVerificacion());

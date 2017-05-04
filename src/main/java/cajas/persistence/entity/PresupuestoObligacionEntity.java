@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "presupuesto_obligacion", schema = "presupuestos")
+@Table(name = "PresupuestosObligaciones", schema = "recaudaciones")
 public class PresupuestoObligacionEntity implements Serializable {
 
 	
@@ -21,65 +21,70 @@ public class PresupuestoObligacionEntity implements Serializable {
 	private static final long serialVersionUID = -7535560829211502363L;
 
 	@Id
-	@Column(name = "id_presupuesto_obligacion")
+	@Column(name = "IdPresupuestoObligacion")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idPresupuestoObligacion;
 
-	@Column(name = "id_presupuesto")
+	@Column(name = "IdPresupuesto")
 	private Integer idPresupuesto;
-
-	@Column(name = "id_contribuyente")
-	private Integer idContribuyente;
-
-	@Column(name = "id_periodo")
-	private Integer idPeriodo;
-
-	@Column(name = "id_obligacion")
+	
+	@Column(name = "IdDetallePresupuesto")
+	private Integer idDetallePresupuesto;
+	
+	@Column(name = "IdObligacion")
 	private Integer idObligacion;
 
-	@Column(name = "ejercicio_fiscal")
-	private Integer ejercicioFiscal;
+	@Column(name = "IdPeriodo")
+	private Integer idPeriodo;
 
-	@Column(name = "impuesto")
+	@Column(name = "Impuesto")
 	private BigDecimal impuesto;
 
-	@Column(name = "actualizacion")
-	private BigDecimal actualizaciones;
-
-	@Column(name = "recargo")
-	private BigDecimal recargos;
-
-	@Column(name = "uaz")
+	@Column(name = "UAZ")
 	private BigDecimal uaz;
 
-	@Column(name = "multa")
+	@Column(name = "Actualizacion")
+	private BigDecimal actualizacion;
+
+	@Column(name = "Recargo")
+	private BigDecimal recargo;
+
+	@Column(name = "Multa")
 	private BigDecimal multa;
 
-	@Column(name = "total")
+	@Column(name = "Total")
 	private BigDecimal total;
+
+	@Column(name = "EjercicioFiscal")
+	private Integer ejercicioFiscal;
+
+	@Column(name = "IdContribuyente")
+	private Integer idContribuyente;
+	
+	/************ Getters and Setters ************/
 
 	public Integer getIdPresupuestoObligacion() {
 		return idPresupuestoObligacion;
+	}
+
+	public void setIdPresupuestoObligacion(Integer idPresupuestoObligacion) {
+		this.idPresupuestoObligacion = idPresupuestoObligacion;
+	}
+
+	public Integer getIdPresupuesto() {
+		return idPresupuesto;
 	}
 
 	public void setIdPresupuesto(Integer idPresupuesto) {
 		this.idPresupuesto = idPresupuesto;
 	}
 
-	public Integer getIdContribuyente() {
-		return idContribuyente;
+	public Integer getIdDetallePresupuesto() {
+		return idDetallePresupuesto;
 	}
 
-	public void setIdContribuyente(Integer idContribuyente) {
-		this.idContribuyente = idContribuyente;
-	}
-
-	public Integer getIdPeriodo() {
-		return idPeriodo;
-	}
-
-	public void setIdPeriodo(Integer idPeriodo) {
-		this.idPeriodo = idPeriodo;
+	public void setIdDetallePresupuesto(Integer idDetallePresupuesto) {
+		this.idDetallePresupuesto = idDetallePresupuesto;
 	}
 
 	public Integer getIdObligacion() {
@@ -90,12 +95,12 @@ public class PresupuestoObligacionEntity implements Serializable {
 		this.idObligacion = idObligacion;
 	}
 
-	public Integer getEjercicioFiscal() {
-		return ejercicioFiscal;
+	public Integer getIdPeriodo() {
+		return idPeriodo;
 	}
 
-	public void setEjercicioFiscal(Integer ejercicioFiscal) {
-		this.ejercicioFiscal = ejercicioFiscal;
+	public void setIdPeriodo(Integer idPeriodo) {
+		this.idPeriodo = idPeriodo;
 	}
 
 	public BigDecimal getImpuesto() {
@@ -106,28 +111,28 @@ public class PresupuestoObligacionEntity implements Serializable {
 		this.impuesto = impuesto;
 	}
 
-	public BigDecimal getActualizaciones() {
-		return actualizaciones;
-	}
-
-	public void setActualizaciones(BigDecimal actualizaciones) {
-		this.actualizaciones = actualizaciones;
-	}
-
-	public BigDecimal getRecargos() {
-		return recargos;
-	}
-
-	public void setRecargos(BigDecimal recargos) {
-		this.recargos = recargos;
-	}
-
 	public BigDecimal getUaz() {
 		return uaz;
 	}
 
 	public void setUaz(BigDecimal uaz) {
 		this.uaz = uaz;
+	}
+
+	public BigDecimal getActualizacion() {
+		return actualizacion;
+	}
+
+	public void setActualizacion(BigDecimal actualizacion) {
+		this.actualizacion = actualizacion;
+	}
+
+	public BigDecimal getRecargo() {
+		return recargo;
+	}
+
+	public void setRecargo(BigDecimal recargo) {
+		this.recargo = recargo;
 	}
 
 	public BigDecimal getMulta() {
@@ -146,8 +151,21 @@ public class PresupuestoObligacionEntity implements Serializable {
 		this.total = total;
 	}
 
-	public Integer getIdPresupuesto() {
-		return idPresupuesto;
+	public Integer getEjercicioFiscal() {
+		return ejercicioFiscal;
 	}
 
+	public void setEjercicioFiscal(Integer ejercicioFiscal) {
+		this.ejercicioFiscal = ejercicioFiscal;
+	}
+
+	public Integer getIdContribuyente() {
+		return idContribuyente;
+	}
+
+	public void setIdContribuyente(Integer idContribuyente) {
+		this.idContribuyente = idContribuyente;
+	}
+
+	
 }

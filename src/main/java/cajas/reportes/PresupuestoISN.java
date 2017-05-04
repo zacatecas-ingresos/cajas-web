@@ -18,7 +18,7 @@ public class PresupuestoISN extends ReporteJasper {
 	
 	@Override
 	public String path() {
-		return "/reportes/ImpuestoSobreNomina.jasper";
+		return "/reportes/ImpuestosEstatales.jasper";
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class PresupuestoISN extends ReporteJasper {
 
 	@Override
 	public String nombreReporte() {
-		return "PresupuestoNomina.pdf";
+		return "ImpuestosEstatales.pdf";
 	}
 	
 

@@ -21,51 +21,64 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name = "detalle_presupuesto_isn", schema = "presupuestos")
+@Table(name = "DetallesPresupuestosISAN", schema = "recaudacion")
 public class DetallePresupuestoIsnEntity {
 	@Id
-	@Column(name = "id_detalle_presupuesto_isn")
+	@Column(name = "DdDetallePresupuestoIsan")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idDetallePresupuestoIsn;
 
-	@Column(name = "id_presupuesto_obligacion")
+	@Column(name = "IdPresupuestoObligacion")
 	private Integer idPresupuestoObligacion;
+	
+	@Column(name = "IdCobro")
+	private Integer idCobro;
 
-	@Column(name = "id_contribuyente")
+	@Column(name = "IdContribuyente")
 	private Integer idContribuyente;
 
-	@Column(name = "id_sucursal")
+	@Column(name = "IdSucursal")
 	private Integer idSucursal;
 
-	@Column(name = "tipo_declaracion")
+	@Column(name = "TipoDeclaracion")
 	private String tipoDeclaracion;
 
-	@Column(name = "id_periodo")
+	@Column(name = "IdPeriodo")
 	private Integer idPeriodo;
 
-	@Column(name = "ejercicio_fiscal")
+	@Column(name = "EjercicioFiscal")
 	private Integer ejercicioFiscal;
 
-	@Column(name = "base_gravable")
+	@Column(name = "BaseGravable")
 	private BigDecimal baseGravable;
 
-	@Column(name = "numero_empleados")
+	@Column(name = "NumeroEmpleados")
 	private Integer numeroEmpleados;
 
-	@Column(name = "impuesto")
+	@Column(name = "Impuesto")
 	private BigDecimal impuesto;
 
-	@Column(name = "actualizaciones")
+	@Column(name = "Actualizaciones")
 	private BigDecimal actualizaciones;
 
-	@Column(name = "recargos")
+	@Column(name = "Recargos")
 	private BigDecimal recargos;
 
-	@Column(name = "uaz")
+	@Column(name = "UAZ")
 	private BigDecimal uaz;
 
-	@Column(name = "total")
+	@Column(name = "Total")
 	private BigDecimal total;
+	
+	/************ Getters and Setters ************/
+
+	public Integer getIdDetallePresupuestoIsn() {
+		return idDetallePresupuestoIsn;
+	}
+
+	public void setIdDetallePresupuestoIsn(Integer idDetallePresupuestoIsn) {
+		this.idDetallePresupuestoIsn = idDetallePresupuestoIsn;
+	}
 
 	public Integer getIdPresupuestoObligacion() {
 		return idPresupuestoObligacion;
@@ -73,6 +86,14 @@ public class DetallePresupuestoIsnEntity {
 
 	public void setIdPresupuestoObligacion(Integer idPresupuestoObligacion) {
 		this.idPresupuestoObligacion = idPresupuestoObligacion;
+	}
+
+	public Integer getIdCobro() {
+		return idCobro;
+	}
+
+	public void setIdCobro(Integer idCobro) {
+		this.idCobro = idCobro;
 	}
 
 	public Integer getIdContribuyente() {
@@ -171,8 +192,5 @@ public class DetallePresupuestoIsnEntity {
 		this.total = total;
 	}
 
-	public Integer getIdDetallePresupuestoIsn() {
-		return idDetallePresupuestoIsn;
-	}
-
+	
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
-<!-- 2017-05-03T11:08:25 -->
+<!-- 2017-05-04T11:02:05 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ImpuestoSobreNomina" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8588b010-bf1b-48ef-b725-338d9de080fb">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Zacatecas"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
@@ -370,7 +370,7 @@
 		<parameterDescription><![CDATA[]]></parameterDescription>
 	</parameter>
 	<queryString>
-		<![CDATA[ reportes.usp_consultar_presupuesto_estatal $P{id_presupuesto_consultar}]]>
+		<![CDATA[reportes.usp_consultar_presupuesto_estatal $P{id_presupuesto_consultar}]]>
 	</queryString>
 	<field name="id_contribuyente" class="java.lang.Long"/>
 	<field name="id_domicilio" class="java.lang.Integer"/>
@@ -771,20 +771,11 @@
 				<text><![CDATA[EMISORA: 5727]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement x="340" y="126" width="203" height="35" uuid="64771f65-0ba1-4029-8dc3-4d240540d7c3">
+				<reportElement x="340" y="262" width="203" height="44" uuid="de7a559a-a511-4fa9-abc1-edeb37d6661d">
 					<property name="com.jaspersoft.studio.unit.barWidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.barHeight" value="pixel"/>
 				</reportElement>
-				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="true">
-					<jr:codeExpression><![CDATA[$F{lcc_bancos}]]></jr:codeExpression>
-				</jr:barbecue>
-			</componentElement>
-			<componentElement>
-				<reportElement x="340" y="267" width="203" height="35" uuid="de7a559a-a511-4fa9-abc1-edeb37d6661d">
-					<property name="com.jaspersoft.studio.unit.barWidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.barHeight" value="pixel"/>
-				</reportElement>
-				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="true">
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="false">
 					<jr:codeExpression><![CDATA[$F{lcc_oxxo}]]></jr:codeExpression>
 				</jr:barbecue>
 			</componentElement>
@@ -1135,6 +1126,15 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id_periodo}]]></textFieldExpression>
 			</textField>
+			<componentElement>
+				<reportElement x="340" y="127" width="203" height="44" uuid="3de702e8-f9fe-4fdc-b65a-54f539d448c4">
+					<property name="com.jaspersoft.studio.unit.barWidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.barHeight" value="pixel"/>
+				</reportElement>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{lcc_bancos}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
 		</band>
 	</columnHeader>
 </jasperReport>

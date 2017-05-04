@@ -2,6 +2,7 @@ package cajas.persistence.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "inpc", schema = "cajas")
+@Table(name = "Inpc", schema = "configuracion")
 public class INPCEntity implements Serializable {
 
 	/**
@@ -21,24 +22,27 @@ public class INPCEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_inpc")
+	@Column(name = "IdInpc")
 	private Integer idINPC;
 
-	@Column(name = "afiscal")
+	@Column(name = "Afiscal")
 	private Integer aFiscal;
 
-	@Column(name = "mes_fiscal")
+	@Column(name = "MesFiscal")
 	private Integer mesFiscal;
 
-	@Column(name = "inpc")
+	@Column(name = "INPC")
 	private BigDecimal inpc;
 
-	@Column(name = "recargo")
+	@Column(name = "Recargo")
 	private BigDecimal recargo;
+	
+	@Column(name = "Periodo")
+	private Date periodo;
 
-	@Column(name = "recargo_estatal")
+	@Column(name = "RecargoEstatal")
 	private BigDecimal recargoEstatal;
-
+	
 	/***************** Getters and Setters *****************/
 
 	public Integer getIdINPC() {
@@ -81,6 +85,14 @@ public class INPCEntity implements Serializable {
 		this.recargo = recargo;
 	}
 
+	public Date getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(Date periodo) {
+		this.periodo = periodo;
+	}
+
 	public BigDecimal getRecargoEstatal() {
 		return recargoEstatal;
 	}
@@ -88,5 +100,4 @@ public class INPCEntity implements Serializable {
 	public void setRecargoEstatal(BigDecimal recargoEstatal) {
 		this.recargoEstatal = recargoEstatal;
 	}
-
 }

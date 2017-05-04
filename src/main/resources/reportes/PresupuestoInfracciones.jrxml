@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
+<!-- 2017-05-03T16:22:32 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PresupuestoInfracciones" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c7438a2f-938c-4030-b548-84be322ff708">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Zacatecas"/>
+	<parameter name="id_presupuesto_consultar" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[ reportes.usp_consultar_presupuesto_estatal $P{id_presupuesto_consultar}]]>
+	</queryString>
+	<field name="id_contribuyente" class="java.lang.Long"/>
+	<field name="id_domicilio" class="java.lang.Integer"/>
+	<field name="rfc" class="java.lang.String"/>
+	<field name="nombre_compuesto" class="java.lang.String"/>
+	<field name="lcc_bancos" class="java.lang.String"/>
+	<field name="lcc_oxxo" class="java.lang.String"/>
+	<field name="id_presupuesto_obligacion" class="java.lang.Long"/>
+	<field name="id_detalle_presupuesto" class="java.lang.Long"/>
+	<field name="obligacion" class="java.lang.String"/>
+	<field name="id_periodo" class="java.lang.Integer"/>
+	<field name="impuesto" class="java.math.BigDecimal"/>
+	<field name="uaz" class="java.math.BigDecimal"/>
+	<field name="actualizacion" class="java.math.BigDecimal"/>
+	<field name="recargo" class="java.math.BigDecimal"/>
+	<field name="multa" class="java.math.BigDecimal"/>
+	<field name="total" class="java.math.BigDecimal"/>
+	<field name="ejercicio_fiscal" class="java.lang.Integer"/>
+	<field name="codigo_postal" class="java.lang.Integer"/>
+	<field name="localidad" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="111" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="209" height="60" uuid="61e622c4-c675-47f7-b15f-d0a23c75d08d"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/sefin_logo_20162021_web.jpg"]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy HH:mm:ss" isBlankWhenNull="true">
+				<reportElement x="2" y="87" width="108" height="12" uuid="a7f756b6-127d-446d-8611-76f387766498"/>
+				<textElement>
+					<font size="8"/>
+					<paragraph lineSpacing="Fixed"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date ()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="310" y="0" width="235" height="20" uuid="b378fceb-2d2d-4909-9fd0-7801f64c4126"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GOBIERNO DEL ESTADO DE ZACATECAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="20" width="155" height="20" uuid="98dbb0cc-9b5d-4188-9fec-90071b6505a8"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SECRETARÍA DE FINANZAS ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="40" width="194" height="20" uuid="9c3e3880-1069-4f16-8b37-e46ebd8b1afb"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUBSECRETARÍA DE INGRESOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="60" width="165" height="20" uuid="db187163-8d2a-4087-8b42-caf772f85f6b"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPUESTOS ESTATALES]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="430" y="87" width="113" height="12" uuid="c11470fa-0367-4596-8447-432bfa03375f"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="87" width="50" height="12" uuid="519d3bd9-cf4e-4a3e-bfbe-b045a586d9b5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Generó:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="105" width="550" height="1" forecolor="#C41610" uuid="ec996ac0-af56-438d-9841-a3653abb5886"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="9" width="89" height="20" uuid="5ee0491a-9923-4b44-b45a-1e62dcf3056e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FOLIO:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="90" y="9" width="129" height="20" uuid="95718547-cd99-46bc-828d-a5195265db5a"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="288" y="9" width="82" height="20" uuid="2a001b7d-c961-4d26-be96-1ccfc9ad56a7">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRIBUYENTE:]]></text>
+			</staticText>
+			<textField pattern="yy/M/dd" isBlankWhenNull="true">
+				<reportElement x="370" y="9" width="158" height="20" uuid="fba07772-915c-4f37-a573-fe001ecf7e64">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="40" width="550" height="1" forecolor="#C41610" uuid="3d826841-0e4f-4bca-af6e-57283d4db521"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="539" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="1" width="198" height="18" uuid="1b939f4c-cfa7-43bb-a8a6-526a755811b0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DETALLE DEL PRESUPUESTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="20" width="328" height="18" forecolor="#FFFFFF" backcolor="#DE2723" uuid="4585d114-e7f6-41fb-9152-ed8510ef895a"/>
+				<box>
+					<topPen lineWidth="1.5" lineColor="#BF100A"/>
+					<leftPen lineWidth="1.5" lineColor="#BF100A"/>
+					<bottomPen lineWidth="1.5" lineColor="#BF100A"/>
+					<rightPen lineWidth="1.5" lineColor="#BF100A"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENTIDAD RECEPTORA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="329" y="20" width="221" height="18" forecolor="#FFFFFF" backcolor="#DE2723" uuid="948277e2-412f-4f00-af6d-097a73c474fa"/>
+				<box>
+					<topPen lineWidth="1.5" lineColor="#BF100A"/>
+					<leftPen lineWidth="1.5" lineColor="#BF100A"/>
+					<bottomPen lineWidth="1.5" lineColor="#BF100A"/>
+					<rightPen lineWidth="1.5" lineColor="#BF100A"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[REFERENCIA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="38" width="1" height="273" forecolor="#C41610" uuid="c3707f16-5146-4507-8e51-77f3a32cc484"/>
+			</line>
+			<image scaleImage="FillFrame">
+				<reportElement x="3" y="49" width="90" height="26" uuid="b212a563-1bd3-416d-bda1-c84e23bad62e"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/LOGO_SANTANDER.JPG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="8" y="77" width="84" height="12" uuid="df53efad-ae41-41d2-8018-3e6f3751d420"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CONVENIO: 2787]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="3" y="101" width="90" height="26" uuid="4ea6deb8-e449-4c28-86e9-8167e3a5b9e1"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/LOGO_SCOTIABANK.JPG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="3" y="130" width="89" height="11" uuid="c6e027ba-9b90-49aa-b512-65634dfb545d"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[SERVICIO: 1784]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="108" y="49" width="88" height="26" uuid="218d95cd-6b29-4f77-a7aa-82f87f14ee0f"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/LOGO_BANAMEX.JPG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="106" y="77" width="88" height="23" uuid="e3fbcf29-7175-476b-b7dc-db7f8009c4a4"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Linea de Captura: PA GOB ZAC]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="108" y="101" width="88" height="26" uuid="0acb5444-1a70-4220-8e82-2300a208a47d"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/LOGO_HSBC.JPG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="109" y="130" width="86" height="20" uuid="5d45a48e-338f-43cc-be18-7a8672590ee6"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CLAVE: RAP 8259]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="212" y="101" width="91" height="26" uuid="045cdd53-f05f-4607-aef9-1a512c2fcdb1"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/LOGO_BANORTE.JPG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="213" y="130" width="89" height="19" uuid="beeed1d0-929b-4130-ab64-376dccc929ce"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[EMISORA: 5727]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="213" y="77" width="89" height="11" uuid="717addf8-8b4c-402b-ab6e-c9ac17830d29"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CONVENIO: 1141864]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="213" y="49" width="90" height="26" uuid="161593a2-6d08-4f4f-b8b6-924d63a88395"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/LOGO_BANCOMER.JPG"]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame">
+				<reportElement x="211" y="150" width="91" height="26" uuid="69683790-c86c-47db-87e7-d42fd3c81316"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/LOGO_SORIANA.JPG"]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame">
+				<reportElement x="211" y="188" width="91" height="24" uuid="76f70405-b404-4088-b314-60bc1b5f11af"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/LOGO_BANCOAZTECA.JPG"]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame">
+				<reportElement x="108" y="150" width="88" height="26" uuid="602b4a71-8989-48e5-823a-81b763e678ac"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/LOGO_EXTRA.JPG"]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame">
+				<reportElement x="106" y="188" width="90" height="24" uuid="92d0643c-fbbc-4d06-b1b2-b6b7a1db59a9"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/LOGO_ELEKTRA.JPG"]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame">
+				<reportElement x="3" y="186" width="90" height="26" uuid="e00e34cf-4df9-455c-8581-37c9c05693c6"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/LOGO_FARMACIASBENAV.JPG"]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame">
+				<reportElement x="3" y="150" width="90" height="26" uuid="9773ba01-1ef5-4fd6-a9b9-b044baa84f85"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/LOGO_FARMACIASGDL.JPG"]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame">
+				<reportElement x="3" y="217" width="89" height="24" uuid="53675d3f-2755-4173-9feb-fda2171499e4"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/LOGO_TELECOMM.JPG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="3" y="242" width="88" height="14" uuid="be7cb230-288c-4e84-aaa8-471180f416ea"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CLAVE: RAP 8259]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="340" y="126" width="203" height="35" uuid="eb655393-5fb6-4580-9c68-26cc7eada05b">
+					<property name="com.jaspersoft.studio.unit.barWidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.barHeight" value="pixel"/>
+				</reportElement>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="true">
+					<jr:codeExpression><![CDATA["123456789"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<line>
+				<reportElement x="328" y="38" width="1" height="273" forecolor="#C41610" uuid="67b37e95-605f-4265-b1f9-d0e7838161f3"/>
+			</line>
+			<line>
+				<reportElement x="550" y="38" width="1" height="273" forecolor="#C41610" uuid="b73adef3-e63b-4757-a16d-d3c0f2dc2039"/>
+			</line>
+			<componentElement>
+				<reportElement x="340" y="267" width="203" height="35" uuid="f61834ae-712c-4711-ac0f-52fd4efcd503">
+					<property name="com.jaspersoft.studio.unit.barWidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.barHeight" value="pixel"/>
+				</reportElement>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="false">
+					<jr:codeExpression><![CDATA["123456789"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<line>
+				<reportElement x="3" y="256" width="548" height="1" forecolor="#C41610" uuid="e3349b01-ee58-439e-9607-1b3f64dfb69a"/>
+			</line>
+			<image scaleImage="FillFrame">
+				<reportElement x="13" y="271" width="90" height="26" uuid="85274fa1-9264-4250-b182-80c8eaa26365"/>
+				<imageExpression><![CDATA["C:/Gob_Zac_SIT/Proyectos/Cajas/CodigoFuente/cajas-web/src/main/resources/imagenes/LOGO_OXXO.JPG"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="1" y="311" width="551" height="1" forecolor="#C41610" uuid="c720ef06-9775-4f81-9d81-1fc5ce77d2af"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="132" y="361" width="60" height="11" uuid="d1512d2a-e20a-48c4-b3fd-d8fe1928fb66"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="132" y="372" width="160" height="12" uuid="39e82d9f-525e-495a-8084-5d329f7f2b4b"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="350" width="128" height="11" uuid="bc83d862-f6aa-4fb3-9d64-87aeae0fce45"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CLABE INTERBANCARIA  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="361" width="128" height="11" uuid="1419b157-7b53-409f-a686-8abde7e88c99"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[REFERENCIA NUMÉRICA:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="72" y="384" width="80" height="13" uuid="86096409-e5d0-4319-9f83-51a05560308a"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="384" width="68" height="13" uuid="f21b2ad4-e61d-4ec2-9701-c1ae35989576"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[IMPORTE:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="132" y="350" width="86" height="11" uuid="4015ccae-58e4-42c2-a95d-292cfc090817"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="416" width="549" height="39" uuid="7694a826-8b26-4ced-89c8-deff6c75a9f1"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ESTE DOCUMENTO NO ES UN COMPROBANTE DE PAGO A MENOS DE QUE ESTÉ SELLADO POR LA INSTITUCIÓN BANCARIA O CADENA COMERCIAL DONDE SE HAYA REALIZADO EL PAGO, EL CUAL DEBERÁ COINCIDIR CON EL IMPORTE Y LA REFERENCIA  DE CUALQUIERA DE LAS INSTITUCIONES FINANCIERAS O CADENA COMERCIAL ENLISTADA ANTERIORMENTE.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="361" width="100" height="11" uuid="b192f680-8626-402c-b99b-f0a01fc09f8b"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[(OPCIONAL)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="350" width="100" height="11" uuid="ac10c0f4-f259-4d22-87c7-8982b30309de"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[DE HSBC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="332" width="541" height="18" uuid="0539eec0-d446-4323-bc6f-6f43db0a4164"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ESTA BOLETA TAMBIÉN LA PODRÁ PAGAR DESDE EL PORTAL DE SU BANCA ELECTRÓNICA CON LA SIGUIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="312" width="169" height="20" uuid="33db65c2-8156-4539-8e62-d3bcb5621d46"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[PAGO VIA SPEI(INTERBANCARIO)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="372" width="128" height="12" uuid="c759f7bc-fa80-4635-9d52-547d017c1333"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CONCEPTO DE PAGO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="400" width="308" height="14" uuid="34ab054a-0693-478a-ab14-b6557f4d3520"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[El manual del usuario lo puede encontrar en www.finanzas.gob.mx]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="251" y="455" width="60" height="16" forecolor="#FFFFFF" backcolor="#DE2723" uuid="0822bdd0-d3ea-41c8-b344-febd165d49f6"/>
+				<box>
+					<topPen lineWidth="1.5" lineColor="#BF100A"/>
+					<leftPen lineWidth="0.0" lineColor="#BF100A"/>
+					<bottomPen lineWidth="1.5" lineColor="#BF100A"/>
+					<rightPen lineWidth="1.5" lineColor="#BF100A"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="81" y="471" width="118" height="14" uuid="4611cf3a-de97-4b2a-9400-e0f347636389"/>
+				<box>
+					<topPen lineWidth="0.0" lineColor="#BF100A"/>
+					<leftPen lineWidth="0.0" lineColor="#BF100A"/>
+					<bottomPen lineWidth="0.0" lineColor="#BF100A"/>
+					<rightPen lineWidth="0.0" lineColor="#BF100A"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###" isBlankWhenNull="true">
+				<reportElement x="251" y="471" width="60" height="14" uuid="cbf1e433-fa9b-4a60-9bab-c5bd01006aa8"/>
+				<box rightPadding="3">
+					<topPen lineWidth="0.0" lineColor="#BF100A"/>
+					<leftPen lineWidth="1.5" lineColor="#BF100A"/>
+					<bottomPen lineWidth="1.5" lineColor="#BF100A"/>
+					<rightPen lineWidth="1.5" lineColor="#BF100A"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="455" width="78" height="16" forecolor="#FFFFFF" backcolor="#DE2723" uuid="44039723-4c47-46f0-a8ac-0003a91e31ff"/>
+				<box>
+					<topPen lineWidth="1.5" lineColor="#BF100A"/>
+					<leftPen lineWidth="1.5" lineColor="#BF100A"/>
+					<bottomPen lineWidth="1.5" lineColor="#BF100A"/>
+					<rightPen lineWidth="0.0" lineColor="#BF100A"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="485" width="249" height="14" uuid="4b8875da-f31a-4fe5-b104-fd34fc72c8aa"/>
+				<box rightPadding="2">
+					<topPen lineWidth="1.5" lineColor="#BF100A"/>
+					<leftPen lineWidth="1.5" lineColor="#BF100A"/>
+					<bottomPen lineWidth="1.5" lineColor="#BF100A"/>
+					<rightPen lineWidth="0.0" lineColor="#BF100A"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[TOTAL A PAGAR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="199" y="455" width="52" height="16" forecolor="#FFFFFF" backcolor="#DE2723" uuid="538ba48f-8d5b-4ceb-b9e0-f06c4cddc00d"/>
+				<box>
+					<topPen lineWidth="1.5" lineColor="#BF100A"/>
+					<leftPen lineWidth="1.5" lineColor="#BF100A"/>
+					<bottomPen lineWidth="1.5" lineColor="#BF100A"/>
+					<rightPen lineWidth="1.5" lineColor="#BF100A"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PLACA]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2" y="471" width="79" height="14" uuid="686c9c62-29be-4deb-9f45-2c28d9a66578"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.0" lineColor="#BF100A"/>
+					<leftPen lineWidth="1.5" lineColor="#BF100A"/>
+					<bottomPen lineWidth="0.0" lineColor="#BF100A"/>
+					<rightPen lineWidth="0.0" lineColor="#BF100A"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="504" width="549" height="22" uuid="a2f33c54-73f7-4749-8c8e-07b6ffc404b8"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[RECIBIRÁS TU COMPROBANTE DE PAGO Y TARJETA DE CIRCULACIÓN EN TU DOMICILIO DENTRO DE LOS 10 DÍAS HÁBILES DESPUÉS DE EFECTUADO TU PAGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="80" y="455" width="119" height="16" forecolor="#FFFFFF" backcolor="#DE2723" uuid="97b9bf12-7d0b-40ce-97ff-0e2695db2e01"/>
+				<box>
+					<topPen lineWidth="1.5" lineColor="#BF100A"/>
+					<leftPen lineWidth="1.5" lineColor="#BF100A"/>
+					<bottomPen lineWidth="1.5" lineColor="#BF100A"/>
+					<rightPen lineWidth="0.0" lineColor="#BF100A"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. INFRACCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="527" width="549" height="12" uuid="50c78d8a-5452-4ea2-aae6-0fa7d193dbf9"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[*Si tu Boleta de Pago ha vencido, puedes generar una nueva en: www.finanzas.gob.mx]]></text>
+			</staticText>
+			<textField pattern="#,##0.###" isBlankWhenNull="true">
+				<reportElement x="251" y="485" width="60" height="14" uuid="9a6c81d7-ee75-496c-94b2-95fd02d1862a"/>
+				<box rightPadding="3">
+					<topPen lineWidth="0.0" lineColor="#BF100A"/>
+					<leftPen lineWidth="1.5" lineColor="#BF100A"/>
+					<bottomPen lineWidth="1.5" lineColor="#BF100A"/>
+					<rightPen lineWidth="1.5" lineColor="#BF100A"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###" isBlankWhenNull="true">
+				<reportElement x="199" y="471" width="52" height="14" uuid="8a73eeff-b022-4947-94d8-07cbff9794fd"/>
+				<box rightPadding="3">
+					<topPen lineWidth="0.0" lineColor="#BF100A"/>
+					<leftPen lineWidth="1.5" lineColor="#BF100A"/>
+					<bottomPen lineWidth="0.0" lineColor="#BF100A"/>
+					<rightPen lineWidth="0.0" lineColor="#BF100A"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+</jasperReport>

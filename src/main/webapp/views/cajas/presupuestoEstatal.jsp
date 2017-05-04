@@ -841,7 +841,11 @@ $(document).ready(function() {
 							type : "success",
 						},
 							function() {
-							window.location = presupuestoEstatal;
+							var idPresupuesto = data.idPresupuesto;
+							var urlReporte = "${pageContext.request.contextPath}/reportes?rpt=presupuestoISN&idPresupuesto=" + idPresupuesto;
+							var win = window.open(urlReporte, '_blank');
+                            win.focus();
+                            window.location = presupuestoEstatal;
 				});
 			}
 		});

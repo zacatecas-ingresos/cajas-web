@@ -1,6 +1,7 @@
 package cajas.persistence.entity;
 
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,63 +12,71 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "calculo_temporal_estatal", schema = "presupuestos")
+@Table(name = "CalculoTemporalEstatal", schema = "recaudacion")
 public class CalculoTemporalEstatalEntity {
 
 	@Id
-	@Column(name = "id_calculo_temporal")
+	@Column(name = "IdCalculoTemporal")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idCalculoTemporal;
 
-	@Column(name = "id_contribuyente")
+	@Column(name = "IdContribuyente")
 	private Integer idContribuyente;
 
-	@Column(name = "id_sucursal")
+	@Column(name = "IdSucursal")
 	private Integer idSucursal;
 
-	@Column(name = "id_obligacion")
+	@Column(name = "IdObligacion")
 	private Integer idObligacion;
 
-	@Column(name = "tipo_declaracion")
+	@Column(name = "TipoDeclaracion")
 	private String tipoDeclaracion;
 
-	@Column(name = "id_periodo")
+	@Column(name = "IdPeriodo")
 	private Integer idPeriodo;
 
-	@Column(name = "ejercicio_fiscal")
+	@Column(name = "EjercicioFiscal")
 	private Integer ejercicioFiscal;
 
-	@Column(name = "base_gravable")
+	@Column(name = "BaseGravable")
 	private BigDecimal baseGravable;
 
-	@Column(name = "numero_empleados")
+	@Column(name = "NumeroEmpleados")
 	private Integer numeroEmpleados;
 
-	@Column(name = "impuesto")
+	@Column(name = "Impuesto")
 	private BigDecimal impuesto;
 
-	@Column(name = "actualizaciones")
+	@Column(name = "Actualizaciones")
 	private BigDecimal actualizaciones;
 
-	@Column(name = "recargos")
+	@Column(name = "Recargos")
 	private BigDecimal recargos;
 
-	@Column(name = "uaz")
+	@Column(name = "UAZ")
 	private BigDecimal uaz;
 
-	@Column(name = "total")
+	@Column(name = "Total")
 	private BigDecimal total;
 
-	@Column(name = "id_usuario")
+	@Column(name = "IdUsuario")
 	private Integer idUsuario;
 
-	@Column(name = "fecha_calculo")
+	@Column(name = "FechaCalculo")
 	private Date fechaCalculo;
 
-	@Column(name = "hora_calculo")
-	private Date horaCalculo;
-
+	@Column(name = "HoraCalculo")
+	private Time horaCalculo;
+	
 	/**************** Getters and Setters ****************/
+
+	public Integer getIdCalculoTemporal() {
+		return idCalculoTemporal;
+	}
+
+	public void setIdCalculoTemporal(Integer idCalculoTemporal) {
+		this.idCalculoTemporal = idCalculoTemporal;
+	}
 
 	public Integer getIdContribuyente() {
 		return idContribuyente;
@@ -137,8 +146,8 @@ public class CalculoTemporalEstatalEntity {
 		return impuesto;
 	}
 
-	public void setImpuesto(BigDecimal impuestos) {
-		this.impuesto = impuestos;
+	public void setImpuesto(BigDecimal impuesto) {
+		this.impuesto = impuesto;
 	}
 
 	public BigDecimal getActualizaciones() {
@@ -189,16 +198,11 @@ public class CalculoTemporalEstatalEntity {
 		this.fechaCalculo = fechaCalculo;
 	}
 
-	public Date getHoraCalculo() {
+	public Time getHoraCalculo() {
 		return horaCalculo;
 	}
 
-	public void setHoraCalculo(Date horaCalculo) {
+	public void setHoraCalculo(Time horaCalculo) {
 		this.horaCalculo = horaCalculo;
 	}
-
-	public Integer getIdCalculoTemporal() {
-		return idCalculoTemporal;
-	}
-
 }

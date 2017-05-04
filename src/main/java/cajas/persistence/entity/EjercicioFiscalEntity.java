@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ejercicios_fiscales", schema = "catalogos")
+@Table(name = "EjerciciosFiscales", schema = "configuracion")
 public class EjercicioFiscalEntity implements Serializable {
 
 	/**
@@ -19,11 +19,11 @@ public class EjercicioFiscalEntity implements Serializable {
 	private static final long serialVersionUID = 4864280056252738036L;
 
 	@Id
-	@Column(name = "id_ejercicio_fiscal")
+	@Column(name = "IdEjercicioFiscal")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idEjercicioFiscal;
 
-	@Column(name = "ejercicio_fiscal")
+	@Column(name = "EjercicioFiscal")
 	private Integer ejercicioFiscal;
 
 	/************ Getters and Setters ************/
@@ -43,5 +43,4 @@ public class EjercicioFiscalEntity implements Serializable {
 	public void setEjercicioFiscal(Integer ejercicioFiscal) {
 		this.ejercicioFiscal = ejercicioFiscal;
 	}
-
 }

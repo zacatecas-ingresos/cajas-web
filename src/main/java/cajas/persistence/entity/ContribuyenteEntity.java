@@ -16,57 +16,57 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "Contribuyentes", schema = "contribuyente")
+@Table(name = "contribuyentes", schema = "contribuyentes")
 public class ContribuyenteEntity implements Serializable {
 
     private static final long serialVersionUID = -5318651937091329981L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Idcontribuyente")
+    @Column(name = "id_contribuyente")
     private Integer idContribuyente;
 
-    @Column(name = "RFC")
+    @Column(name = "rfc")
     private String rfc;
     
-    @Column(name = "CURP")
+    @Column(name = "curp")
     private String curp;
     
-    @Column(name = "TipoPersona")
+    @Column(name = "tipo_persona")
     @Enumerated(EnumType.STRING)
     private TipoPersona tipoPersona;
     
-    @Column(name = "NombreCompuesto")
+    @Column(name = "nombre_compuesto")
     private String nombreCompuesto;
     
-    @Column(name = "Nombres")
+    @Column(name = "nombres")
     private String nombre;
     
-    @Column(name = "PrimerApellido")
+    @Column(name = "primer_apellido")
     private String primerApellido;
     
-    @Column(name = "SegundoApellido")
+    @Column(name = "segundo_apellido")
     private String segundoApellido;
 
-    @Column(name = "Sexo")
+    @Column(name = "sexo")
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
     
-    @Column(name = "FechaNacimiento")
+    @Column(name = "fecha_nacimiento")
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
 
-    @Column(name = "Nacionalidad")
+    @Column(name = "nacionalidad")
     private String nacionalidad;
 
-    @Column(name = "CorreoElectronico")
-    private String correoElectronico;
+//    @Column(name = "correo_electronico")
+//    private String correoElectronico;
 
-    @Column(name = "RazonSocial")
+    @Column(name = "razon_social")
     private String razonSocial;
     
-    // @Column(name ="Estatus")
-    // private Integer estatus;
+    @Column(name ="estatus")
+    private Integer idEstatus;
     
     
     
@@ -254,18 +254,18 @@ public class ContribuyenteEntity implements Serializable {
      *
      * @return the value of correoElectronico
      */
-    public String getCorreoElectronico() {
-        return correoElectronico;
-    }
+//    public String getCorreoElectronico() {
+//        return correoElectronico;
+//    }
 
     /**
      * Set the value of correoElectronico
      *
      * @param correoElectronico new value of correoElectronico
      */
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
-    }
+//    public void setCorreoElectronico(String correoElectronico) {
+//        this.correoElectronico = correoElectronico;
+//    }
 
     /**
      * Get the value of razonSocial

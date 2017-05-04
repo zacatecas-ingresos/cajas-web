@@ -4,8 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import cajas.contribuyentes.TipoObligacion;
 
 @Entity
 @Table(name = "Obligaciones", schema = "contribuyente")
@@ -26,17 +30,18 @@ public class ObligacionesEntity implements Serializable {
 	@Column(name = "DiaVencimiento")
 	private Integer diaVencimiento;
 	
-	@Column(name = "DiasTiempoProrroga")
-	private Integer diasProrroga;
+//	@Column(name = "DiasTiempoProrroga")
+//	private Integer diasProrroga;
 	
-	@Column(name = "Estatus")
-	private Integer estatus;
+//	@Column(name = "Estatus")
+//	private Integer estatus;
 	
 	@Column(name = "UsuarioAlta")
 	private String usuarioAlta;
 	
 	@Column(name = "TipoObligacion")
-	private Integer tipoObligacion;
+	@Enumerated(EnumType.STRING)
+	private TipoObligacion tipoObligacion;
 
 	public Integer getIdObligacion() {
 		return idObligacion;
@@ -54,13 +59,14 @@ public class ObligacionesEntity implements Serializable {
 		this.obligacion = obligacion;
 	}
 
-	public Integer getDiasProrroga() {
-		return diasProrroga;
-	}
+//	public Integer getDiasProrroga() {
+//		return diasProrroga;
+//	}
 
-	public void setDiasProrroga(Integer diasProrroga) {
-		this.diasProrroga = diasProrroga;
-	}
+	
+//	public void setDiasProrroga(Integer diasProrroga) {
+//		this.diasProrroga = diasProrroga;
+//	}
 	
 	public Integer getDiaVencimiento() {
 		return diaVencimiento;
@@ -69,5 +75,14 @@ public class ObligacionesEntity implements Serializable {
 	public void setDiaVencimiento(Integer diaVencimiento) {
 		this.diaVencimiento = diaVencimiento;
 	}
+
+	public TipoObligacion getTipoObligacion() {
+		return tipoObligacion;
+	}
+
+	public void setTipoObligacion(TipoObligacion tipoObligacion) {
+		this.tipoObligacion = tipoObligacion;
+	}
+	
 	
 }

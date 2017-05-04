@@ -14,102 +14,102 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "verificaciones_vehiculo", schema = "vehicular")
+@Table(name = "VerificacionesVehiculo", schema = "vehicular")
 public class VerificacionVehicularEntity implements Serializable {
 
 	private static final long serialVersionUID = 4520026756457631203L;
 
 	@Id
-	@Column(name = "id_verificacion_vehiculo")
+	@Column(name = "IdVerificacionVehiculo")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idVerificacionVehiculo;
 
-	@Column(name = "ejercicio")
+	@Column(name = "Ejercicio")
 	private Integer ejercicio;
 
-	@Column(name = "no_seguimiento_verificacion")
+	@Column(name = "NoSeguimientoVerificacion")
 	private Integer noSeguimientoVerificacion;
 
-	@Column(name = "fecha_verificacion")
+	@Column(name = "FechaVerificacion")
 	private Date fechaVerificacion;
 
-	@Column(name = "vin_vehiculo")
+	@Column(name = "VinVehiculo")
 	private String vinVehiculo;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_marca_vehiculo")
+	@JoinColumn(name = "IdMarcaVehiculo")
 	private MarcaVehiculoEntity marcaVehiculo;
 	
-	@Column(name = "modelo_vehiculo")
+	@Column(name = "ModeloVehiculo")
 	private Integer modeloVehiculo;
 
-	@Column(name = "id_clase_vehiculo")
+	@Column(name = "IdClaseVehiculo")
 	private Integer idClaseVehiculo;
 
-	@Column(name = "id_tipo_vehiculo")
+	@Column(name = "IdTipoVehiculo")
 	private Integer idTipoVehiculo;
 
-	@Column(name = "linea_vehiculo")
+	@Column(name = "LineaVehiculo")
 	private String lineaVehiculo;
 
-	@Column(name = "estatus_verificacion")
+	@Column(name = "EstatusVerificacion")
 	private Integer estatusVerificacion;
 
-	@Column(name = "factura_vehiculo_documentacion")
+	@Column(name = "FacturaVehiculoDocumentacion")
 	private Boolean facturaVehiculoDocumentacion;
 
-	@Column(name = "identificacion_oficial_documentacion")
+	@Column(name = "IdentificacionOficialDocumentacion")
 	private Boolean identificacionOficialDocumentacion;
 
-	@Column(name = "comprobante_domicilio_documentacion")
+	@Column(name = "ComprobanteDomicilioDocumentacion")
 	private Boolean comprobanteDomicilioDocumentacion;
 
-	@Column(name = "rfc_persona_moral_documentacion")
+	@Column(name = "RFCpersonaMoralDocumentacion")
 	private Boolean rfcPersonaMoralDocumentacion;
 
-	@Column(name = "identificacion_representante_legal_documentacion")
+	@Column(name = "IdentificacionRepresentanteLegalDocumentacion")
 	private Boolean identificacionRepresentanteLegalDocumentacion;
 
-	@Column(name = "nombre_persona_verificacion")
+	@Column(name = "NombrePersonaVerificacion")
 	private String nombrePersonaVerificacion;
 
-	@Column(name = "apellido_paterno_persona_verificacion")
+	@Column(name = "ApellidoPaternoPersonaVerificacion")
 	private String apellidoPaternoPersonaVerificacion;
 
-	@Column(name = "apellido_materno_persona_verificacion")
+	@Column(name = "ApellidoMaternoPersonaVerificacion")
 	private String apellidoMaternoPersonaVerificacion;
 
-	@Column(name = "numero_motor_vehiculo")
+	@Column(name = "NumeroMotorVehiculo")
 	private String numeroMotorVehiculo;
 
-	@Column(name = "id_oficina_verificacion")
+	@Column(name = "IdOficinaVerificacion")
 	private Integer idOficinaVerificacion;
 
-	@Column(name = "anio1_comprobante_pago")
+	@Column(name = "Anio1ComprobantePago")
 	private Integer anio1ComprobantePago;
 
-	@Column(name = "anio2_comprobante_pago")
+	@Column(name = "Anio2ComprobantePago")
 	private Integer anio2ComprobantePago;
 
-	@Column(name = "anio3_comprobante_pago")
+	@Column(name = "Anio3ComprobantePago")
 	private Integer anio3ComprobantePago;
 
-	@Column(name = "anio4_comprobante_pago")
+	@Column(name = "Anio4ComprobantePago")
 	private Integer anio4ComprobantePago;
 
-	@Column(name = "anio5_comprobante_pago")
+	@Column(name = "Anio5ComprobantePago")
 	private Integer anio5ComprobantePago;
 
-	@Column(name = "anio_actual_comprobante_pago")
+	@Column(name = "AnioActualComprobantePago")
 	private Integer anioActualComprobantePago;
 
-	@Column(name = "fecha_verificacion_ministerial")
+	@Column(name = "FechaVerificacionMinisterial")
 	private Date fechaVerificacionMinisterial;
 
-	@Column(name = "folio_verificacion_ministerial")
+	@Column(name = "FolioVerificacionMinisterial")
 	private Integer folioVerificacionMinisterial;
 
-	@Column(name = "observaciones_ministerial")
+	@Column(name = "ObservacionesMinisterial")
 	private String observacionesMinisterial;
 
 	public Integer getIdVerificacionVehiculo() {

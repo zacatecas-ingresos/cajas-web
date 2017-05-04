@@ -8,9 +8,9 @@ package cajas.contribuyentes;
  *
  * @since 11/04/2017
  */
-public class TipoObligacion {
+public class Obligacion {
 
-	private TipoObligacion() {
+	private Obligacion() {
 	}
 
 	public static final int NOMINA = 3;

@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import cajas.contribuyentes.TipoObligacion;
+import cajas.contribuyentes.Obligacion;
 import cajas.exception.BusinessException;
 import cajas.persistence.entity.CalculoTemporalEstatalEntity;
 import cajas.persistence.entity.DetallePresupuestoIsnEntity;
@@ -86,7 +86,7 @@ public class PresupuestoService {
 
 			importeTotal = importeTotal.add(po.getTotal());
 
-			if (c.getIdObligacion() == TipoObligacion.NOMINA) {
+			if (c.getIdObligacion() == Obligacion.NOMINA) {
 				DetallePresupuestoIsnEntity d = new DetallePresupuestoIsnEntity();
 				d.setActualizaciones(c.getActualizaciones());
 				d.setBaseGravable(c.getBaseGravable());

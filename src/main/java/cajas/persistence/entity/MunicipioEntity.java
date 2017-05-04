@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 /** Entity implementation class for Entity: Municipios */
 @Entity
-@Table(name = "municipios", schema = "catalogos")
+@Table(name = "Municipios", schema = "configuracion")
 public class MunicipioEntity implements Serializable {
 
     /**
@@ -15,42 +15,66 @@ public class MunicipioEntity implements Serializable {
     */
     private static final long serialVersionUID = 7466571805450936423L;
     @Id
-    @Column(name = "id_municipio")
+    @Column(name = "IdMunicipio")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMunicipio;
     
-    @Column(name = "abreviacion_municipio")
+    @Column(name = "AbreviacionMunicipio")
     private String abreviacionMunicipio;
     
-    @Column(name = "municipio")
+    @Column(name = "Municipio")
     private String municipio;
     
-    @JoinColumn(name = "id_estado")
+    @JoinColumn(name = "IdEstado")
     @ManyToOne(fetch = FetchType.LAZY)
     private EstadoEntity estado;
 
-    public Integer getIdMunicipio() {
-        return this.idMunicipio;
-    }
+    @Column(name = "IdMunicipioTemporal")
+    private Integer idMunicipioTemporal;
 
-    public void setIdMunicipio(Integer idMunicipio) {
-        this.idMunicipio = idMunicipio;
-    }
+	public Integer getIdMunicipio() {
+		return idMunicipio;
+	}
 
-    public String getAbreviacionMunicipio() {
-        return abreviacionMunicipio;
-    }
+	public void setIdMunicipio(Integer idMunicipio) {
+		this.idMunicipio = idMunicipio;
+	}
 
-    public void setAbreviacionMunicipio(String abreviacionMunicipio) {
-        this.abreviacionMunicipio = abreviacionMunicipio;
-    }
+	public String getAbreviacionMunicipio() {
+		return abreviacionMunicipio;
+	}
 
-    public String getMunicipio() {
-        return municipio;
-    }
+	public void setAbreviacionMunicipio(String abreviacionMunicipio) {
+		this.abreviacionMunicipio = abreviacionMunicipio;
+	}
 
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
-    }
+	public String getMunicipio() {
+		return municipio;
+	}
+
+	public void setMunicipio(String municipio) {
+		this.municipio = municipio;
+	}
+
+	public EstadoEntity getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoEntity estado) {
+		this.estado = estado;
+	}
+
+	public Integer getIdMunicipioTemporal() {
+		return idMunicipioTemporal;
+	}
+
+	public void setIdMunicipioTemporal(Integer idMunicipioTemporal) {
+		this.idMunicipioTemporal = idMunicipioTemporal;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 
 }

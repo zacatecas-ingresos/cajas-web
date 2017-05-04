@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 	@Entity
-	@Table(name = "direcciones", schema = "finanzas")
+	@Table(name = "Direcciones", schema = "contribuyente")
 	public class DomicilioEntity implements Serializable {
 
 		
@@ -24,80 +24,89 @@ import javax.persistence.Table;
 		private static final long serialVersionUID = -3237900983695423992L;
 
 		@Id
-		@Column(name = "id_direccion")
+		@Column(name = "idDireccion")
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Integer idDireccion;
 
-		@Column(name = "ciudad")
+		@Column(name = "Ciudad")
 		private String ciudad;
+		
+		@Column(name = "IdColonia")
+		private Integer idColonia;
 
-		@Column(name = "colonia")
-		private String Colonia;
+		@Column(name = "Colonia")
+		private String colonia;
 
-		@Column(name = "numero_exterior")
+		@Column(name = "NumeroExterior")
 		private String numeroExterior;
 
-		@Column(name = "numero_interior")
+		@Column(name = "NumeroInterior")
 		private String numeroInterior;
 		
 		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name = "id_estado")
+		@JoinColumn(name = "idEstado")
 		private EstadoEntity idEstado;
 		
 		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name = "id_municipio")
+		@JoinColumn(name = "IdMunicipio")
 		private MunicipioEntity idMunicipio;
 		
 		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name = "id_localidad")
+		@JoinColumn(name = "IdLocalidad")
 		private LocalidadEntity idLocalidad;
 		
-		@Column(name = "codigo_postal")
+		@Column(name = "CodigoPostal")
 		private Integer codigoPostal;
 
-		@Column(name = "lada")
+		@Column(name = "Lada")
 		private String lada;
 
-		@Column(name = "telefono")
+		@Column(name = "Telefono")
 		private String telefono;
 
-		@Column(name = "cruzamiento1")
+		@Column(name = "Cruzamiento1")
 		private String cruzamiento1;
 
-		@Column(name = "cruzamiento2")
+		@Column(name = "Cruzamiento2")
 		private String cruzamiento2;
 
-		@Column(name = "referencia")
+		@Column(name = "Referencia")
 		private String referencia;
+		
+		@Column(name = "IdVialidad")
+		private Integer idVialidad;
+		
+		@Column(name = "IdInmueble")
+		private Integer idInmueble;
 
-		@Column(name = "estatus")
+		@Column(name = "Estatus")
 		private Integer estatus;
 
-		@Column(name = "usuario_registra")
+		@Column(name = "UsuarioRegistra")
 		private String usuarioRegistra;
 
-		@Column(name = "fecha_alta")
+		@Column(name = "FechaAlta")
 		private Date fechaAlta;
 
-		@Column(name = "usuario_modifica")
+		@Column(name = "UsuarioModifica")
 		private String usuarioModifica;
 
-		@Column(name = "fecha_ultima_modificacion")
+		@Column(name = "FechaUltimaModificacion")
 		private Date fechaUltimaModificacion;
 
-		@Column(name = "direccion_compuesta")
+		@Column(name = "DireccionDompuesta")
 		private String direccionCompuesta;
 
-		@Column(name = "calle")
+		@Column(name = "Calle")
 		private String calle;
 
-		@Column(name = "domicilio_homologado")
+		@Column(name = "DomicilioHomologado")
 		private String domicilioHomologado;
 
-		@Column(name = "caracteristica_inmueble")
+		@Column(name = "CaracteristicaInmueble")
 		private String caracteristicaInmueble;
 		
-		@Column(name = "id_situacion_domicilio")
+		@Column(name = "IdSituacionDomicilio")
 		private Integer idSituacionDomicilio;
 
 		public Integer getIdDireccion() {
@@ -117,11 +126,11 @@ import javax.persistence.Table;
 		}
 
 		public String getColonia() {
-			return Colonia;
+			return colonia;
 		}
 
 		public void setColonia(String colonia) {
-			Colonia = colonia;
+			this.colonia = colonia;
 		}
 
 		public String getNumeroExterior() {
@@ -284,10 +293,6 @@ import javax.persistence.Table;
 			this.caracteristicaInmueble = caracteristicaInmueble;
 		}
 
-		public static long getSerialversionuid() {
-			return serialVersionUID;
-		}
-
 		public Integer getIdSituacionDomicilio() {
 			return idSituacionDomicilio;
 		}
@@ -295,7 +300,35 @@ import javax.persistence.Table;
 		public void setIdSituacionDomicilio(Integer idSituacionDomicilio) {
 			this.idSituacionDomicilio = idSituacionDomicilio;
 		}
-		
+
+		public static long getSerialversionuid() {
+			return serialVersionUID;
+		}
+
+		public Integer getIdColonia() {
+			return idColonia;
+		}
+
+		public void setIdColonia(Integer idColonia) {
+			this.idColonia = idColonia;
+		}
+
+		public Integer getIdVialidad() {
+			return idVialidad;
+		}
+
+		public void setIdVialidad(Integer idVialidad) {
+			this.idVialidad = idVialidad;
+		}
+
+		public Integer getIdInmueble() {
+			return idInmueble;
+		}
+
+		public void setIdInmueble(Integer idInmueble) {
+			this.idInmueble = idInmueble;
+		}
+
 		
 
 		}

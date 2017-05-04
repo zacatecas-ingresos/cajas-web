@@ -17,7 +17,7 @@ import javax.ws.rs.core.MediaType;
 
 
 
-@Path("/localidades")
+@Path("/Localidades")
 public class LocalidadResource {
 
     @EJB

@@ -40,11 +40,11 @@ public class DomicilioEJB {
 	            throw new NullPointerException("No se puede guardar en el almacen de dato un valor vacio");
 
 	        }
-
-	        if (domicilio.getDomicilio().isEmpty()) {
-	            throw new BusinessException("No se puede guardar en el almacen de dato un estado en blanco");
-
-	        }
+//
+//	        if (domicilio.getDomicilio() == null || domicilio.getDomicilio().isEmpty()) {
+//	            throw new BusinessException("No se puede guardar en el almacen de dato un Domicilio en blanco");
+//	            	
+//	        }
 
 	        DomicilioEntity domicilioEntity = domicilioFactory.dtoAEntidad(domicilio);
 	        domicilioEntity = domicilioQuery.crearDomicilio(domicilioEntity);

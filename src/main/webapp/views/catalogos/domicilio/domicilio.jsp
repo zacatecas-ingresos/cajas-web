@@ -86,7 +86,7 @@
 			</section>
 
 			<!-- Main content Alta Vehiculo -->
-			<section class="content">
+				<section class="content">
 				<div class="row">
 					<!-- Main row -->
 					<div class="col-md-12" id="div2">
@@ -170,7 +170,6 @@
 														<select class="form-control" id="selectEdo"
 															name="selectEdo" required>
 															<option value="1">ZACATECAS</option>
-															
 														</select>
 													</div>
 												</div>
@@ -217,7 +216,7 @@
 
 					</div>
 				</div>
-			</section>
+				</section>
 			<!-- Fin contenido Alta Vehiculo -->
 		</div>
 
@@ -225,8 +224,8 @@
                         <div class="pull-right hidden-xs">
                                 <b>Version</b> 2.3.0
                         </div>
-                        <strong>Derechos de autor &copy; 2016 <a href="------">--------------</a>.
-                        </strong> Todos los derechos reservados.
+                         <strong>Derechos de autor &copy; 2016 <a href="http://finanzas.gob.mx">Secretaría de finanzas de Zacatecas</a>.
+                </strong>Todos los derechos reservados.
                 </footer>
 	
 	<!-- ./wrapper -->
@@ -269,7 +268,7 @@
 	src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
-
+<script type="text/javascript" >
 <!-- Fin scripts -->
 
 
@@ -287,92 +286,63 @@
 							
 						
 						//Registra 
-						$('#save-btn').click(function() 
+						$('#save-btn').click(function(){
 							guardar();
-	             });
-			});
+						});
+				});
+		
 	
 	
-	function guardar() {
-										var domicilio = {
+	function guardar(){
+		var domicilio = {
 
-												 calle : $('#inputCalle').val(),
-												 numExt : $('#inputNum').val(),
-												 numInt : $('#inputNumInt').val(),
-												 colonia : $('#inputColonia').val(),
-												 entreCalle1 : $('#inputEntreCalle1').val(),
-												 entreCalle2 : $('#inputEntreCalle2').val(),
-												 cp : $('#inputCP').val(),
-												 idEstado : $('#selectEdo').val(),
-												 idMunicipio : $('#selectMunicipio').val(),
-												 idLocalidad : $('#selectLocalidad').val(),
-												 
-	};
-												
+				 calle : $('#inputCalle').val(),
+				 numExt : $('#inputNum').val(),
+				 numInt : $('#inputNumInt').val(),
+				 colonia : $('#inputColonia').val(),
+				 entreCalle1 : $('#inputEntreCalle1').val(),
+				 entreCalle2 : $('#inputEntreCalle2').val(),
+				 cp : $('#inputCP').val(),
+				 idEstado : $('#selectEdo').val(),
+				 idMunicipio : $('#selectMunicipio').val(),
+				 idLocalida : $('#selectLocalidad').val(),
+				 
+		};
+            
+		var formData = JSON.stringify(domicilio);
 
-						
-												
-												var formData = JSON.stringify(datos);
+		console.log(formData);
 
-												console.log(formData);
+		var urlPost = "${pageContext.request.contextPath}/domicilios";
+		var admin = "${pageContext.request.contextPath}/views/cajas/catalogos/domicilio/domicilio.jsp";
+            
+            $.ajax(
+                {
+                    type : 'POST',
+                    url : urlPost,
+                    data : formData,
+                    dataType : "json",
+                    contentType : 'application/json',
+                    success : function(data, textStatus, jQxhr) {
+                        swal(
+                            {
+                                title : "Direccion registrada correctamente.",
+                                type : "success",
+                                closeOnCancel : false
+                            },
+                            function() {
+                                window.location = urlDestino;
+                            }
+                        );
+                    },
+                    error : function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus+ " "+ errorThrown);
+                    }
+                }
+            );
 
-												var urlPost = "${pageContext.request.contextPath}/cajas/catalogos/domicilio";
-												var admin = "${pageContext.request.contextPath}/views/cajas/catalogos/domicilio/domicilio.jsp";
 
-												$
-														.ajax({
-															type : 'POST',
-															url : urlPost,
-															data : formData,
-															dataType : "json",
-															contentType : 'application/json',
-															success : function(
-																	data, textStatus, jQxhr) {
-																swal(
-																		{
-																			title : "Direccion registrada correctamente",
-																			
-																			type : "success",
-																			closeOnCancel : false
-																		},
-																		function() {
-																			window.location = urlDestino;
-																		});
-															}
-														});
-											}
-
-										});
-
-						
-												
-						//Errores
-						$
-								.ajaxSetup({
-									error : function(x, status, error) {
-										if (x.status == 400) {
-											var result = x.responseJSON;
-											swal({
-												title : "Error " + result.code,
-												text : result.message,
-												type : "error",
-												closeOnCancel : false
-											});
-										} else if (x.status == 500) {
-											swal({
-												title : "Error 500",
-												text : "Disculpe las molestias no podemos procesar su solicitud.",
-												type : "error",
-												closeOnCancel : false
-											});
-										}
-									}
-								});
-
-					
-
-	
-
-	
+    }
+										
 </script>
 </html>

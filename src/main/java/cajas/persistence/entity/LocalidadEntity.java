@@ -8,68 +8,35 @@ import javax.persistence.*;
  *
  */
 @Entity
-@Table(name = "localidades", schema = "catalogos")
+@Table(name = "Localidades", schema = "configuracion")
 public class LocalidadEntity implements Serializable {
 
     private static final long serialVersionUID = 1034382473824926620L;
     
     @Id
-    @Column(name = "id_localidad")
+    @Column(name = "IdLocalidad")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idLocalidad;
 
-    @JoinColumn(name = "id_municipio")
+    @JoinColumn(name = "IdMunicipio")
     @ManyToOne(fetch = FetchType.LAZY)
     private MunicipioEntity municipio;
 
-    @JoinColumn(name = "id_estado")
+    @JoinColumn(name = "IdEstado")
     @ManyToOne(fetch = FetchType.LAZY)
     private EstadoEntity estado;
 
-    @Column(name = "abreviacion_localidad")
+    @Column(name = "AbreviacionLocalidad")
     private String abreviacionLocalidad;
 
-    @Column(name = "localidad")
+    @Column(name = "Localidad")
     private String localidad;
-
-    public Integer getIdLocalidad() {
-        return this.idLocalidad;
-    }
-
-    public void setIdLocalidad(Integer idLocalidad) {
-        this.idLocalidad = idLocalidad;
-    }
-
-    public String getAbreviacionLocalidad() {
-        return this.abreviacionLocalidad;
-    }
-
-    public void setAbreviacionLocalidad(String abreviacionLocalidad) {
-        this.abreviacionLocalidad = abreviacionLocalidad;
-    }
-
-    public String getLocalidad() {
-        return this.localidad;
-    }
-
-    public void setLocalidad(String localidad) {
-        this.localidad = localidad;
-    }
-
-    public MunicipioEntity getMunicipio() {
-        return municipio;
-    }
-
-    public void setMunicipio(MunicipioEntity municipio) {
-        this.municipio = municipio;
-    }
-
-    public EstadoEntity getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoEntity estado) {
-        this.estado = estado;
-    }
     
+    @Column(name = "IdLocalidadTemporal")
+    private Integer idLocalidadTemporal;
+    
+    @JoinColumn(name = "IdMunicipioTemporal")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private MunicipioEntity idMunicipioTemporal;
+
 }

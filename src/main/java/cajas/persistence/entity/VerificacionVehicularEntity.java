@@ -116,15 +116,15 @@ public class VerificacionVehicularEntity implements Serializable {
 	private String observacionesMinisterial;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_oficina")
+	@JoinColumn(name = "IdOficina")
 	private OficinaEntity oficina;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_estatus_verificacion")
+	@JoinColumn(name = "IdEmpleadoValidaMinisterial")
 	private EmpleadoEntity empleadoValidaMinisterial;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_estatus_verificacion")
+	@JoinColumn(name = "IdEmpleadoValidaVerificacion")
 	private EmpleadoEntity empleadoValidaVerificacion;
 
 	public Integer getIdVerificacionVehiculo() {

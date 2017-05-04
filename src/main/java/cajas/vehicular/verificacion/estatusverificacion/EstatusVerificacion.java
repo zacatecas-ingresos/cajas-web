@@ -5,9 +5,11 @@ import cajas.persistence.entity.EstatusVerificacionEntity;
 public class EstatusVerificacion {
 	private Integer idEstatusVerificacion;
 	private String estatusverificacion;
+	public EstatusVerificacion() {
+	}
 	public EstatusVerificacion(EstatusVerificacionEntity estatusVerificacionEntity) {
 		this.idEstatusVerificacion = estatusVerificacionEntity.getIdEstatusVerificacion();
-		this.estatusverificacion = estatusVerificacionEntity.getEstatusverificacion();
+		this.estatusverificacion = estatusVerificacionEntity.getEstatusVerificacion();
 	}
 	public Integer getIdEstatusVerificacion() {
 		return idEstatusVerificacion;

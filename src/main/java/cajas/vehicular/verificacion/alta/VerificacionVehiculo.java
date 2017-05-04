@@ -61,9 +61,7 @@ public class VerificacionVehiculo {
 		if (verificacionVehicularEntity.getMarcaVehiculo() != null) {
 			verificacionVehiculo.setIdMarcaVehiculo(verificacionVehicularEntity.getMarcaVehiculo().getIdMarcaVehiculo());
 		}
-		if (verificacionVehicularEntity.getModeloVehiculo() != null) {
-			verificacionVehiculo.setModeloVehiculo(verificacionVehicularEntity.getModeloVehiculo());
-		}
+		verificacionVehiculo.setModeloVehiculo(verificacionVehicularEntity.getModeloVehiculo());
 		if (verificacionVehicularEntity.getClaseVehiculo() != null) {
 			verificacionVehiculo.setIdClaseVehiculo(verificacionVehicularEntity.getClaseVehiculo().getIdClaseVehiculo());
 		}

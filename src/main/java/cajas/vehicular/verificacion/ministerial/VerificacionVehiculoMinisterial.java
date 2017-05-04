@@ -14,7 +14,7 @@ public class VerificacionVehiculoMinisterial {
 	private Integer idClaseVehiculo;
 	private Integer idTipoVehiculo;
 	private String lineaVehiculo;
-	private Integer estatusVerificacion;
+	private Integer IdEstatusVerificacion;
 	private String numeroMotorVehiculo;
 	private Integer folioVerificacionMinisterial;
 	private String observacionesMinisterial;
@@ -36,10 +36,24 @@ public class VerificacionVehiculoMinisterial {
 			this.setIdMarcaVehiculo(verificacionVehicularEntity.getMarcaVehiculo().getIdMarcaVehiculo());
 		}
 		this.setModeloVehiculo(verificacionVehicularEntity.getModeloVehiculo());
-		this.setIdClaseVehiculo(verificacionVehicularEntity.getIdClaseVehiculo());
-		this.setIdTipoVehiculo(verificacionVehicularEntity.getIdTipoVehiculo());
+		this.setVinVehiculo(verificacionVehicularEntity.getVinVehiculo());
+		if (verificacionVehicularEntity.getMarcaVehiculo() != null) {
+			this.setIdMarcaVehiculo(verificacionVehicularEntity.getMarcaVehiculo().getIdMarcaVehiculo());
+		}
+		this.setModeloVehiculo(verificacionVehicularEntity.getModeloVehiculo());
+		if (verificacionVehicularEntity.getClaseVehiculo() != null) {
+			this.setIdClaseVehiculo(verificacionVehicularEntity.getClaseVehiculo().getIdClaseVehiculo());
+		}
+		if (verificacionVehicularEntity.getTipoVehiculo() != null) {
+			this.setIdTipoVehiculo(verificacionVehicularEntity.getTipoVehiculo().getIdTipoVehiculo());
+		}
+		
 		this.setLineaVehiculo(verificacionVehicularEntity.getLineaVehiculo());
-		this.setEstatusVerificacion(verificacionVehicularEntity.getEstatusVerificacion());
+		if (verificacionVehicularEntity.getEstatusVerificacion() != null) {
+			this.setIdEstatusVerificacion(
+					verificacionVehicularEntity.getEstatusVerificacion().getIdEstatusVerificacion());
+		}
+
 		this.setNumeroMotorVehiculo(verificacionVehicularEntity.getNumeroMotorVehiculo());
 		this.setFolioVerificacionMinisterial(verificacionVehicularEntity.getFolioVerificacionMinisterial());
 		this.setObservacionesMinisterial(verificacionVehicularEntity.getObservacionesMinisterial());
@@ -110,13 +124,12 @@ public class VerificacionVehiculoMinisterial {
 	public void setLineaVehiculo(String lineaVehiculo) {
 		this.lineaVehiculo = lineaVehiculo;
 	}
-
-	public Integer getEstatusVerificacion() {
-		return estatusVerificacion;
+	public Integer getIdEstatusVerificacion() {
+		return IdEstatusVerificacion;
 	}
 
-	public void setEstatusVerificacion(Integer estatusVerificacion) {
-		this.estatusVerificacion = estatusVerificacion;
+	public void setIdEstatusVerificacion(Integer idEstatusVerificacion) {
+		IdEstatusVerificacion = idEstatusVerificacion;
 	}
 
 	public String getNumeroMotorVehiculo() {

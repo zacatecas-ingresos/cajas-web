@@ -11,6 +11,7 @@ import org.joda.time.DateTime;
 
 import cajas.persistence.entity.DocumentoPedimentoEntity;
 import cajas.persistence.entity.EstadoEntity;
+import cajas.persistence.entity.EstatusVerificacionEntity;
 import cajas.persistence.entity.VerificacionAdeudoVehicularEntity;
 import cajas.persistence.entity.VerificacionVehicularEntity;
 
@@ -27,7 +28,8 @@ public class VerificacionAdeudoVehicularEJB {
 		VerificacionAdeudoVehicularEntity verificacionAdeudoVehicularEntity = new VerificacionAdeudoVehicularEntity();
 		VerificacionVehicularEntity verificacionVehicular = entityManager.find(VerificacionVehicularEntity.class, verificacionAdeudoVehicular.getIdVerificacionVehiculo());
 		if (verificacionAdeudoVehicular.getEstatus() == 0) {
-			verificacionVehicular.setEstatusVerificacion(1);
+			EstatusVerificacionEntity estatusVerificacion = entityManager.find(EstatusVerificacionEntity.class, 1);
+			verificacionVehicular.setEstatusVerificacion(estatusVerificacion);
 		}
 		
 		verificacionAdeudoVehicularEntity.setVerificacionVehicular(verificacionVehicular);

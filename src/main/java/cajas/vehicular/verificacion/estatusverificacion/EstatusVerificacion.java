@@ -4,12 +4,12 @@ import cajas.persistence.entity.EstatusVerificacionEntity;
 
 public class EstatusVerificacion {
 	private Integer idEstatusVerificacion;
-	private String estatusverificacion;
+	private String estatusVerificacion;
 	public EstatusVerificacion() {
 	}
 	public EstatusVerificacion(EstatusVerificacionEntity estatusVerificacionEntity) {
 		this.idEstatusVerificacion = estatusVerificacionEntity.getIdEstatusVerificacion();
-		this.estatusverificacion = estatusVerificacionEntity.getEstatusVerificacion();
+		this.estatusVerificacion = estatusVerificacionEntity.getEstatusVerificacion();
 	}
 	public Integer getIdEstatusVerificacion() {
 		return idEstatusVerificacion;
@@ -17,10 +17,10 @@ public class EstatusVerificacion {
 	public void setIdEstatusVerificacion(Integer idEstatusVerificacion) {
 		this.idEstatusVerificacion = idEstatusVerificacion;
 	}
-	public String getEstatusverificacion() {
-		return estatusverificacion;
+	public String getEstatusVerificacion() {
+		return estatusVerificacion;
 	}
-	public void setEstatusverificacion(String estatusverificacion) {
-		this.estatusverificacion = estatusverificacion;
+	public void setEstatusVerificacion(String estatusVerificacion) {
+		this.estatusVerificacion = estatusVerificacion;
 	}
 }

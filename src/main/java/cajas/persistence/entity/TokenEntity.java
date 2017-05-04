@@ -13,34 +13,34 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tokens", schema = "seguridad")
+@Table(name = "Tokens", schema = "seguridad")
 public class TokenEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_token")
+	@Column(name = "IdToken")
 	private Integer idToken;
 
-	@Column(name = "token")
+	@Column(name = "Token")
 	private String token;
 
-	@Column(name = "fecha_creacion")
+	@Column(name = "FechaCreacion")
 	private Date fechaCreacion;
 
-	@Column(name = "hora_creacion")
+	@Column(name = "HoraCreacion")
 	private Date horaCreacion;
 
-	@Column(name = "fecha_expiracion")
+	@Column(name = "FechaExpiracion")
 	private Date fechaExpiracion;
 
-	@Column(name = "hora_expira")
+	@Column(name = "HoraExpira")
 	private Date horaExpira;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_usuario")
+	@JoinColumn(name = "IdUsuario")
 	private UsuarioEntity usuario;
 
-	@Column(name = "activo")
+	@Column(name = "Activo")
 	private Integer activo;
 	
 	/**************************************************/

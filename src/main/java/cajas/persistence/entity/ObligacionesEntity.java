@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "obligaciones", schema = "catalogos")
+@Table(name = "Obligaciones", schema = "contribuyente")
 public class ObligacionesEntity implements Serializable {
 
 	/**
@@ -17,16 +17,16 @@ public class ObligacionesEntity implements Serializable {
 	private static final long serialVersionUID = -5958182331794817692L;
 
 	@Id
-	@Column(name = "id_obligacion")
+	@Column(name = "IdObligacion")
 	private Integer idObligacion; 
 
-	@Column(name = "obligacion")
+	@Column(name = "Obligacion")
 	private String obligacion;
 	
-	@Column(name = "dia_vencimiento")
+	@Column(name = "DiaVencimiento")
 	private Integer diaVencimiento;
 	
-	@Column(name = "dias_tiempo_prorroga")
+	@Column(name = "DiasTiempoProrroga")
 	private Integer diasProrroga;
 	
 	/****************************************************************/

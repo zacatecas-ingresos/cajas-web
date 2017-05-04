@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "dias_no_laborales", schema = "catalogos")
+@Table(name = "DiasNoLaborales", schema = "configuracion")
 public class DiasNoLaboralesEntity implements Serializable {
 
 	/**
@@ -18,13 +18,13 @@ public class DiasNoLaboralesEntity implements Serializable {
 	private static final long serialVersionUID = 4939760472535915722L;
  
 	@Id
-	@Column(name = "id_dia")
+	@Column(name = "IdDia")
 	private Integer idDia;
 
-	@Column(name = "dia_no_laboral")
+	@Column(name = "DiaNoLaboral")
 	private Date diaNoLaboral;
 	
-	@Column(name = "motivo")
+	@Column(name = "Motivo")
 	private String motivo;
 
 	public Integer getIdDia() {

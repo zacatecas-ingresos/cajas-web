@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tasa_impuesto", schema = "catalogos")
+@Table(name = "TasasImpuestos", schema = "configuracion")
 public class TasaImpuestoEntity implements Serializable {
 
 	/**
@@ -21,23 +21,23 @@ public class TasaImpuestoEntity implements Serializable {
 	private static final long serialVersionUID = 6128425945175618929L;
 
 	@Id
-	@Column(name = "id_tasa_impuesto")
+	@Column(name = "IdTasaImpuesto")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idTasaImpuesto;
 
-	@Column(name = "impuesto")
+	@Column(name = "Impuesto")
 	private String impuesto;
 
-	@Column(name = "fecha_inicio")
+	@Column(name = "FechaInicio")
 	private Date fechaInicio;
 
-	@Column(name = "fecha_fin")
+	@Column(name = "FechaFin")
 	private Date fechaFin;
 
-	@Column(name = "tasa")
+	@Column(name = "Tasa")
 	private BigDecimal tasa;
-	
-	@Column(name = "tipo_tasa")
+
+	@Column(name = "TipoTasa")
 	private Integer tipoTasa;
 
 	/************** Getters and Setters **************/
@@ -81,11 +81,11 @@ public class TasaImpuestoEntity implements Serializable {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-	
+
 	public Integer getTipoTasa() {
 		return tipoTasa;
 	}
-	
+
 	public void setTipoTasa(Integer tipoTasa) {
 		this.tipoTasa = tipoTasa;
 	}

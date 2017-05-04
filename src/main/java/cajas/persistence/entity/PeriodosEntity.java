@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "periodos", schema = "catalogos")
+@Table(name = "Periodos", schema = "configuracion")
 public class PeriodosEntity implements Serializable {
 
 	/**
@@ -18,25 +18,25 @@ public class PeriodosEntity implements Serializable {
 	private static final long serialVersionUID = 7606189452168892189L;
 
 	@Id
-	@Column(name = "id_periodo")
+	@Column(name = "IdPeriodo")
 	private Integer idPeriodo;
 
-	@Column(name = "mes")
+	@Column(name = "Mes")
 	private String mes;
 
-	@Column(name = "afiscal")
+	@Column(name = "Afiscal")
 	private Integer aFiscal;
 
-	@Column(name = "fecha_inicio")
+	@Column(name = "FechaInicio")
 	private Date fechaInicio;
 
-	@Column(name = "fecha_fin")
+	@Column(name = "FechaFin")
 	private Date fechaFin;
 
-	@Column(name = "tipo_periodo")
+	@Column(name = "TipoPeriodo")
 	private Integer tipoPeriodo;
 
-	@Column(name = "id_mes")
+	@Column(name = "IdMes")
 	private Integer idMes;
 
 	/************* Getters and Setters *************/

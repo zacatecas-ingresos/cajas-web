@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuarios", schema = "seguridad")
+@Table(name = "Usuarios", schema = "seguridad")
 public class UsuarioEntity implements Serializable {
 
 	/**
@@ -21,22 +21,22 @@ public class UsuarioEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_usuario")
+	@Column(name = "IdUsuario")
 	private Integer idUsuario;
 
-	@Column(name = "nombre")
+	@Column(name = "Nombre")
 	private String nombre;
 
-	@Column(name = "email")
+	@Column(name = "Email")
 	private String email;
 
-	@Column(name = "contrasenia")
+	@Column(name = "Contrasenia")
 	private String password;
 
-	@Column(name = "activo")
+	@Column(name = "Activo")
 	private Integer activo;
 
-	@Column(name = "fecha_alta")
+	@Column(name = "FechaAlta")
 	private Date fechaAlta;
 
 	/***********************************************************************/

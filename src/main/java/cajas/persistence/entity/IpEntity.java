@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ips", schema = "seguridad")
+@Table(name = "Ips", schema = "seguridad")
 public class IpEntity implements Serializable {
 
 	/**
@@ -20,17 +20,17 @@ public class IpEntity implements Serializable {
 	private static final long serialVersionUID = -6639491609997777677L;
 
 	@Id
-	@Column(name = "id_ip")
+	@Column(name = "IdIp")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idIp;
 
-	@Column(name = "ip")
+	@Column(name = "Ip")
 	private String ip;
 
-	@Column(name = "fecha_expira")
+	@Column(name = "FechaExpira")
 	private Date fechaExpira;
 
-	@Column(name = "hora_expira")
+	@Column(name = "HoraExpira")
 	private Date horaExpira;
 
 	/********* Getters and Setters *********/

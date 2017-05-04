@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PresupuestosObligaciones", schema = "recaudaciones")
+@Table(name = "PresupuestosObligaciones", schema = "recaudacion")
 public class PresupuestoObligacionEntity implements Serializable {
 
 	

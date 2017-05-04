@@ -187,12 +187,13 @@ $(document).ready(function() {
             );
 
 	//Registra un Municipio
-	$('#save-btn').click(function() {
+	$('#btn-save').click(function() {
 
 		//Validaciones
-		var formValidation = $('#form-municipios').data('formValidation');
+		var formValidation = $('#frm-municipio').data('formValidation');
 		
 			formValidation.validate();
+			
 
 			console.log(formValidation.isValid());
 			

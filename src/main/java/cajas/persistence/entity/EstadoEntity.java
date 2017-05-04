@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 /** Entity implementation class for Entity: Estado */
 @Entity
-@Table(name = "estados", schema = "catalogos")
+@Table(name = "Estados", schema = "configuracion")
 public class EstadoEntity implements Serializable {
 
     /**

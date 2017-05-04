@@ -48,14 +48,14 @@ public class ImporteImpuestoService {
 			fechaFin.withYear(aFiscal);
 
 			tasa = tasaPorImpuesto(tipoTasa, fechaInicio.toDate(), fechaFin.toDate());
-			
+
 			impuesto = baseGravable.multiply(tasa);
-			impuesto = impuesto.divide(new BigDecimal(100)).setScale(0,RoundingMode.HALF_UP);
+			impuesto = impuesto.divide(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP);
 
 			return impuesto;
 		} catch (NoResultException ex) {
 			ex.printStackTrace();
-			throw new BusinessException("No existe ninguna tasa configurada en el periodo solicitado ");
+			throw new BusinessException("No existe ninguna tasa configurada en el periodo solicitado.");
 		}
 	}
 
@@ -72,6 +72,37 @@ public class ImporteImpuestoService {
 				fechaFin);
 		tasa = tasaImpuestoEntity.getTasa();
 		return tasa;
+	}
+
+	/*************
+	 * CALCULO IMPUESTO SOBRE LOTERÍAS, RIFAS, SORTEOS, APUESTAS, JUEGOS
+	 * PERMITIDOS Y CONCURSOS
+	 *************/
+
+	public BigDecimal impuestoConcursos(BigDecimal baseGravable, Integer aFiscal, int idPeriodo, int tipoIngreso) {
+		try {
+
+			PeriodosEntity periodo = entityManager.find(PeriodosEntity.class, idPeriodo);
+
+			BigDecimal impuesto = BigDecimal.ZERO;
+			BigDecimal tasa = BigDecimal.ZERO;
+
+			// Consultar la tasa vigente del periodo declarado
+			DateTime fechaInicio = new DateTime(periodo.getFechaInicio());
+			fechaInicio.withYear(aFiscal);
+			DateTime fechaFin = new DateTime(periodo.getFechaFin());
+			fechaFin.withYear(aFiscal);
+
+			tasa = tasaPorImpuesto(tipoIngreso, fechaInicio.toDate(), fechaFin.toDate());
+
+			impuesto = baseGravable.multiply(tasa);
+			impuesto = impuesto.divide(new BigDecimal(100)).setScale(0, RoundingMode.HALF_EVEN);
+
+			return impuesto;
+		} catch (NoResultException ex) {
+			ex.printStackTrace();
+			throw new BusinessException("No existe ninguna tipo de ingreso configurado en el periodo solicitado.");
+		}
 	}
 
 }

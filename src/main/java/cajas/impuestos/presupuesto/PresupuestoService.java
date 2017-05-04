@@ -45,11 +45,11 @@ public class PresupuestoService {
 		if (calculos.isEmpty()) {
 			throw new BusinessException("Los conceptos del presupuesto son requeridos.");
 		}
-
+		
 		BigDecimal importeTotal = BigDecimal.ZERO;
 
 		PresupuestoEntity presupuesto = new PresupuestoEntity();
-		presupuesto.setEjercicioExpedicion(FechaUtil.ejercicioActual());
+		presupuesto.setAnyoExpedicion(FechaUtil.ejercicioActual());
 		presupuesto.setFechaEmisionPresupuesto(FechaUtil.fechaActual());
 		presupuesto.setFechaRecepcionOperacion(null);
 		presupuesto.setIdContribuyente(null);
@@ -59,7 +59,7 @@ public class PresupuestoService {
 		presupuesto.setImporteTotal(importeTotal);
 		presupuesto.setIntegrado(0);
 		presupuesto.setLccBancos(" ");
-		presupuesto.setLccOxxos(" ");
+		presupuesto.setLccOxxo(" ");
 
 		presupuestoQuery.registrarActualizarPresupuesto(presupuesto);
 
@@ -71,7 +71,7 @@ public class PresupuestoService {
 						"El cálculo con identificador " + idCalculo + " no está registrado en el sistema.");
 			}
 			PresupuestoObligacionEntity po = new PresupuestoObligacionEntity();
-			po.setActualizaciones(c.getActualizaciones());
+			po.setActualizacion(c.getActualizaciones());
 			po.setEjercicioFiscal(c.getEjercicioFiscal());
 			po.setIdContribuyente(c.getIdContribuyente());
 			po.setIdObligacion(c.getIdObligacion());
@@ -79,7 +79,7 @@ public class PresupuestoService {
 			po.setIdPresupuesto(presupuesto.getIdPresupuesto());
 			po.setImpuesto(c.getImpuesto());
 			po.setMulta(null);
-			po.setRecargos(c.getRecargos());
+			po.setRecargo(c.getRecargos());
 			po.setTotal(c.getTotal());
 			po.setUaz(c.getUaz());
 			presupuestoObligacionQuery.registrarActualizarPresupuestoObligacion(po);
@@ -115,7 +115,7 @@ public class PresupuestoService {
 				presupuesto.getIdPresupuesto().toString(), FechaUtil.fechaActual(),
 				presupuesto.getImporteTotal().toString());
 		presupuesto.setLccBancos(lccBancos);
-		presupuesto.setLccOxxos(lccOxxo);
+		presupuesto.setLccOxxo(lccOxxo);
 		presupuestoQuery.registrarActualizarPresupuesto(presupuesto);
 
 		return presupuesto.getIdPresupuesto();

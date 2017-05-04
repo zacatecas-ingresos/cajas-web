@@ -23,7 +23,7 @@ public class ContribuyenteEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Idcontribuyente")
+    @Column(name = "IdContribuyente")
     private Integer idContribuyente;
 
     @Column(name = "RFC")

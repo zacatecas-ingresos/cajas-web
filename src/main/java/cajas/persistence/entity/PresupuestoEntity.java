@@ -30,7 +30,7 @@ public class PresupuestoEntity implements Serializable {
 	private Integer idContribuyente;
 
 	@Column(name = "LCCBancos")
-	private String lccBancos;
+	private String lccBanco;
 	
 	@Column(name = "ImporteTotal")
 	private BigDecimal importeTotal;
@@ -67,10 +67,9 @@ public class PresupuestoEntity implements Serializable {
 	
 	@Column(name = "Integrado")
 	private Integer integrado;
-
+	
 	/************ Getters and Setters ************/
 
-	
 	public Integer getIdPresupuesto() {
 		return idPresupuesto;
 	}
@@ -87,12 +86,12 @@ public class PresupuestoEntity implements Serializable {
 		this.idContribuyente = idContribuyente;
 	}
 
-	public String getLccBancos() {
-		return lccBancos;
+	public String getLccBanco() {
+		return lccBanco;
 	}
 
-	public void setLccBancos(String lccBancos) {
-		this.lccBancos = lccBancos;
+	public void setLccBanco(String lccBanco) {
+		this.lccBanco = lccBanco;
 	}
 
 	public BigDecimal getImporteTotal() {
@@ -190,5 +189,4 @@ public class PresupuestoEntity implements Serializable {
 	public void setIntegrado(Integer integrado) {
 		this.integrado = integrado;
 	}
-	
 }

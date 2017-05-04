@@ -45,7 +45,7 @@ public class PresupuestoService {
 		if (calculos.isEmpty()) {
 			throw new BusinessException("Los conceptos del presupuesto son requeridos.");
 		}
-		
+
 		BigDecimal importeTotal = BigDecimal.ZERO;
 
 		PresupuestoEntity presupuesto = new PresupuestoEntity();
@@ -58,7 +58,7 @@ public class PresupuestoService {
 		presupuesto.setIdMesExpedicion(FechaUtil.mesActual());
 		presupuesto.setImporteTotal(importeTotal);
 		presupuesto.setIntegrado(0);
-		presupuesto.setLccBancos(" ");
+		presupuesto.setLccBanco(" ");
 		presupuesto.setLccOxxo(" ");
 
 		presupuestoQuery.registrarActualizarPresupuesto(presupuesto);
@@ -114,7 +114,7 @@ public class PresupuestoService {
 		String lccOxxo = LineaDeCapturaCerradaUtileria.obtenerLineaCapturaOxxo(
 				presupuesto.getIdPresupuesto().toString(), FechaUtil.fechaActual(),
 				presupuesto.getImporteTotal().toString());
-		presupuesto.setLccBancos(lccBancos);
+		presupuesto.setLccBanco(lccBancos);
 		presupuesto.setLccOxxo(lccOxxo);
 		presupuestoQuery.registrarActualizarPresupuesto(presupuesto);
 

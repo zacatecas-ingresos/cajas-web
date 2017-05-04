@@ -39,4 +39,63 @@ public class LocalidadEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private MunicipioEntity idMunicipioTemporal;
 
+	public Integer getIdLocalidad() {
+		return idLocalidad;
+	}
+
+	public void setIdLocalidad(Integer idLocalidad) {
+		this.idLocalidad = idLocalidad;
+	}
+
+	public MunicipioEntity getMunicipio() {
+		return municipio;
+	}
+
+	public void setMunicipio(MunicipioEntity municipio) {
+		this.municipio = municipio;
+	}
+
+	public EstadoEntity getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoEntity estado) {
+		this.estado = estado;
+	}
+
+	public String getAbreviacionLocalidad() {
+		return abreviacionLocalidad;
+	}
+
+	public void setAbreviacionLocalidad(String abreviacionLocalidad) {
+		this.abreviacionLocalidad = abreviacionLocalidad;
+	}
+
+	public String getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
+
+	public Integer getIdLocalidadTemporal() {
+		return idLocalidadTemporal;
+	}
+
+	public void setIdLocalidadTemporal(Integer idLocalidadTemporal) {
+		this.idLocalidadTemporal = idLocalidadTemporal;
+	}
+
+	public MunicipioEntity getIdMunicipioTemporal() {
+		return idMunicipioTemporal;
+	}
+
+	public void setIdMunicipioTemporal(MunicipioEntity idMunicipioTemporal) {
+		this.idMunicipioTemporal = idMunicipioTemporal;
+	}
+
+    
+    
+    
 }

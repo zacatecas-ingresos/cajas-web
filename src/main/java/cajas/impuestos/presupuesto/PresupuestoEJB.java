@@ -28,4 +28,13 @@ public class PresupuestoEJB {
 		return presupuestoService.generarPresupuestoEstatal(calculos);
 	}
 
+	public void cambiarEstatusPresupuestoPorId(Integer idPresupuesto, Integer estatus){
+		presupuestoService.cambiarEstatusPresupuesto(idPresupuesto, estatus);
+	}
+	
+	public void cambiarEstatusPresupuestoPorlcc(String lcc, Integer estatus){
+		presupuestoService.cambiarEstatusPresupuestoPorLcc(lcc, estatus);
+	}
+	
+	
 }

@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 
 import cajas.contribuyentes.Obligacion;
 import cajas.exception.BusinessException;
@@ -121,4 +123,48 @@ public class PresupuestoService {
 		return presupuesto.getIdPresupuesto();
 	}
 
+
+	/**
+	 * Actualiza el estatus de un presupuesto 
+	 * @param lcc
+	 * @param estatus
+	 */
+
+	protected void cambiarEstatusPresupuesto(Integer idPresupuesto, Integer estatus){
+		PresupuestoEntity presEntity =null;
+		try{
+		presEntity = presupuestoQuery.obtenerPresupuestoPorId(idPresupuesto);
+		}catch(NoResultException ex){
+			throw new BusinessException("No se encontraron resultados con el identificador del presupuesto utilizado.");
+		}
+		try{
+		presEntity.setIdEstatus(estatus);
+		presupuestoQuery.registrarActualizarPresupuesto(presEntity);
+		}catch(PersistenceException ex){
+			throw new BusinessException("Se presentaron problemas al actualizar el presupuesto");
+		}
+	}
+	
+	
+	/**
+	 * Actualiza el estatus de un presupuesto 
+	 * @param lcc
+	 * @param estatus
+	 */
+	protected void cambiarEstatusPresupuestoPorLcc(String lcc, Integer estatus){
+		PresupuestoEntity presEntity =null;
+		try{
+		presEntity = presupuestoQuery.obtenerPresupuestoPorLcc(lcc);
+		}catch(NoResultException ex){
+			throw new BusinessException("No se encontraron resultados con el identificador del presupuesto utilizado.");
+		}
+		
+		try{
+		presEntity.setIdEstatus(estatus);
+		presupuestoQuery.registrarActualizarPresupuesto(presEntity);
+		}catch(PersistenceException ex){
+			throw new BusinessException("Se presentaron problemas al actualizar el presupuesto");
+		}
+	}
+	
 }

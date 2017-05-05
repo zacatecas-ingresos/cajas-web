@@ -8,6 +8,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -39,4 +40,28 @@ public class PresupuestoResource {
 		}
 	}
 
+	@POST
+	@Consumes({ "application/json" })
+	@Produces({ "application/json" })
+	public Response cambiarEstatusPresupuestoPorId(@QueryParam("idPresupuesto")Integer idPresupuesto, @QueryParam("estatus")Integer estatus){
+		try{
+			presupuestoEJB.cambiarEstatusPresupuestoPorId(idPresupuesto, estatus);
+			return Response.status(Status.OK).build();
+		}catch (BusinessException ex) {
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
+		}
+	}
+	
+	@POST
+	@Consumes({ "application/json" })
+	@Produces({ "application/json" })
+	public Response cambiarEstatusPresupuestoPorLCC(@QueryParam("lcc")String lcc,@QueryParam("estatus")Integer estatus){
+		try{
+			presupuestoEJB.cambiarEstatusPresupuestoPorlcc(lcc, estatus);
+			return Response.status(Status.OK).build();
+		}catch (BusinessException ex) {
+			return Response.status(Status.BAD_REQUEST).entity(RespuestaResource.respuesta("400",ex.getMessage())).build();
+		}
+	}
+	
 }

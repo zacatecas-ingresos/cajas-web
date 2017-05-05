@@ -15,9 +15,6 @@ import javax.persistence.Table;
 @Table(name = "TasasImpuestos", schema = "configuracion")
 public class TasaImpuestoEntity implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6128425945175618929L;
 
 	@Id

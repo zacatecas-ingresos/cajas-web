@@ -87,7 +87,8 @@ public class ImporteImpuestoService {
 		tasa = tasaImpuestoEntity.getTasa();	
 		return tasa;
 	}
-
+	
+	
 	/*************
 	 * CALCULO IMPUESTO SOBRE LOTERÍAS, RIFAS, SORTEOS, APUESTAS, JUEGOS
 	 * PERMITIDOS Y CONCURSOS

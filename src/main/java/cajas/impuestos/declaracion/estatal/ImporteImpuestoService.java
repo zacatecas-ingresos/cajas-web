@@ -83,13 +83,8 @@ public class ImporteImpuestoService {
 
 		BigDecimal tasa = BigDecimal.ZERO;
 
-		TasaImpuestoEntity tasaImpuestoEntity = tasaImpuestoQuery.obtenerTasaPorImpuesto(tipoTasa, fechaInicio,
-				fechaFin);
-		if(tipoTasa==TipoTasa.TASA_ENAJENANTE){
-			tasa = tasaImpuestoEntity.getTasaConcursoEnajenacion();	
-		}else if(tipoTasa == TipoTasa.TASA_BENEFICIARIO){
-			tasa = tasaImpuestoEntity.getTasaConcursoBeneficiario();
-		}
+		TasaImpuestoEntity tasaImpuestoEntity = tasaImpuestoQuery.obtenerTasaPorImpuesto(tipoTasa, fechaInicio,fechaFin);
+		tasa = tasaImpuestoEntity.getTasa();	
 		return tasa;
 	}
 

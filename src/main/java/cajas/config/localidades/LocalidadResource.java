@@ -27,7 +27,6 @@ public class LocalidadResource {
         @Path ("{idLocalidad}")
         @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
         public Localidad obtenerLocalidad(@QueryParam("idLocalidad") Integer idLocalidad) {
-        	System.out.println("aquiiiiiifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffgsfsdfgdsfgdf");
             return localidadEjb.obtenerLocalidad(idLocalidad);
             
         }
@@ -40,6 +39,7 @@ public class LocalidadResource {
             
         }
         @PUT
+        //@Path ("{idLocalidad}")
         @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
         @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
         public void editarLocalidad(Localidad localidad){

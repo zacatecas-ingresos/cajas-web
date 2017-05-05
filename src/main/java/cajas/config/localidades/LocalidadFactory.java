@@ -31,13 +31,6 @@ public class LocalidadFactory {
     public Localidad entidadADto(LocalidadEntity entidad) {
         Localidad dto = new Localidad();
                 
-        // Set
-        // carro.color = "azul";
-        // carro.setColor("azul");
-        
-        // Get
-        // colorCarro = carro.color;
-        // colorCarro = carro.getColor();
         
         
     dto.setIdLocalidad(entidad.getIdLocalidad());

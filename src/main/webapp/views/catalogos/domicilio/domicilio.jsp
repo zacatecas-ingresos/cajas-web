@@ -85,21 +85,16 @@
 				</h1>
 			</section>
 
-			<!-- Main content Alta Vehiculo -->
+			<!-- Main content  -->
 				<section class="content">
 				<div class="row">
 					<!-- Main row -->
 					<div class="col-md-12" id="div2">
-
 						<div class="box box-primary">
-
 							<div class="box-body">
-
-								<form id="form-domicilio">
-
+								
+								<form id="frm-domicilio">
 									<div class="col-md-12">
-
-										
 										<fieldset>
 											<legend>Direccion</legend>
 											<div class="row">
@@ -144,7 +139,6 @@
 															name="inputEntreCalles1" >
 													</div>
 												</div>
-													
 													<div class="col-md-4">
 													<div class="form-group">
 														<label for="inputEntreCalle2" class="control-label">        </label>
@@ -162,7 +156,6 @@
 													</div>
 												</div>
 												</div> 
-											
 											<div class="row">
 												<div class="col-md-3">
 													<div class="form-group">
@@ -192,13 +185,9 @@
 													</div>
 												</div> 
 											</div>
-										
 											</div>
-
 									</div>
-
 								</form>
-
 							</div>
 							<div class="box-footer">
 								<button id="cancel-btn" type="button"
@@ -268,81 +257,199 @@
 	src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
-<script type="text/javascript" >
 <!-- Fin scripts -->
-
-
-
 <script>
 
-	$(document).ready(function() {
 
-						//Cancelar y dirige a la vista principal
-						$('#cancel-btn').click(function() {
-											var urlBack = "${pageContext.request.contextPath}/views/index.jsp";
-											window.location = urlBack;
-										});
+
+$(document).ready(function() {
+
+					//Cancelar y dirige a la vista principal
+			$('#cancel-btn').click(function() {
+							var urlBack = "${pageContext.request.contextPath}/views/index.jsp";
+							window.location = urlBack;
+			});
+					
 						
-							
-						
-						//Registra 
-						$('#save-btn').click(function(){
-							guardar();
-						});
-				});
-		
+					
+					//Registra 
+					$('#save-btn').click(function(){
+						guardar();
+						 // Validaciones
+				        var formValidation = $('#frm-domicilio').data('formValidation');
+
+				        formValidation.validate();
+
+				        console.log(formValidation.isValid());
+
+				        if (formValidation.isValid()) {
+
+				            var datos = {};
+				            var calle = $('#inputCalle');
+				            var numExt = $('#inputNum');
+				            var numInt = $('#inputNumInt');
+				            var colonia = $('#inputColonia');
+				            var entreCalle1 = $('#inputEntreCalle1');
+				            var entreCalle2 = $('#inputEntreCalle2');
+				            var cp = $('#inputCP');
+				            var idEstado = $('#selectEdo');
+				            var idMunicipio = $('#selectMunicipio');
+				            var idLocalidad = $('#selectLocalidad');
+				            
+
+				            datos.calle = calle.val();
+							datos.numExt = numExt.val();
+							datos.numInt = numInt.val();
+							datos.colonia = colonia.val();
+							datos.entreCalle1 = entreCalle1.val();
+				            datos.entreCalle2 = entreCalle2.val();
+				            datos.cp = cp.val();
+				            datos.idEstado = idEstado.val();
+				            datos.idMunicipio = idMunicipio.val();
+				            datos.idLocalidad = idLocalidad.val()
+
+				            var formData = JSON.stringify(datos);
+
+				            console.log(formData);
+
+				            var urlPost = "${pageContext.request.contextPath}/cajas/domicilio";
+				            var urlDomicilio = "${pageContext.request.contextPath}/views/catalogos/domicilio/domicilio.jsp";
+
+				            $.ajax({
+				                type : 'POST',
+				                url : urlPost,
+				                data : formData,
+				                dataType : "json",
+				                contentType : 'application/json',
+				                success : function(data, textStatus, jQxhr) {
+				                swal(
+				                    {
+				                        title : "Domicilio registrado correctamente.",
+				                        type : "success",
+				                        closeOnCancel : false
+				                    },
+				                        function() {
+				                        window.location = urlDomicilio;
+				                        });
+				                },
+				                error : function(jqXHR,textStatus,errorThrown) {
+				                    console.log(textStatus+ " "+ errorThrown);
+				                }
+				            });
+				        }
+					});
+					
+					
+					 //Validaciones
+				    $('#frm-domicilio').formValidation(
+				        {
+				            framework : 'bootstrap', 
+				            icon : {
+				                valid : 'glyphicon glyphicon-ok',
+				                invalid : 'glyphicon glyphicon-remove',
+				                validating : 'glyphicon glyphicon-refresh'
+				            },
+				           
+				            fields : {
+				                'inputCalle' : { //validación del campo
+				                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+				                    validators : { //validaciones
+				                        notEmpty : {
+				                            message : 'Ingrese una Calle.'
+				                        },
+				                    }
+				                },
+				                'inputNum' : { //validación del campo
+				                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+				                    validators : { //validaciones
+				                        notEmpty : {
+				                            message : 'Ingrese Numero del Domicilio'
+				                        },
+				                       
+				                    }
+				                }
+				                'inputColonia' : { //validación del campo
+				                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+				                    validators : { //validaciones
+				                        notEmpty : {
+				                            message : 'Ingrese Colonia'
+				                        },
+				                       
+				                    }
+				                }
+				                'inputCP' : { //validación del campo
+				                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+				                    validators : { //validaciones
+				                        notEmpty : {
+				                            message : 'Ingrese Codigo Postal'
+				                        },
+				                       
+				                    }
+				                }
+				                'selectEdo' : { //validación del campo
+				                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+				                    validators : { //validaciones
+				                        notEmpty : {
+				                            message : 'Seleccione un Estado'
+				                        },
+				                       
+				                    }
+				                }
+				                'selectMunicipio' : { //validación del campo
+				                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+				                    validators : { //validaciones
+				                        notEmpty : {
+				                            message : 'Seleccione un Municipio'
+				                        },
+				                       
+				                    }
+				                }
+				                'selectLocalidad' : { //validación del campo
+				                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
+				                    validators : { //validaciones
+				                        notEmpty : {
+				                            message : 'Seleccione una Localidad'
+				                        },
+				                       
+				                    }
+				                }
+				            }
+				        });
+					
+					 
+				    // Errores
+			        $.ajaxSetup(
+			            {
+			                error : function(x, status, error) {
+			                    if (x.status === 400) {
+			                        var result = x.responseJSON;
+			                        swal({
+			                            title : "Error " + result.code,
+			                            text : result.message,
+			                            type : "error",
+			                            closeOnCancel : false
+			                        });
+			                    } else if (x.status === 500) {
+			                            swal({
+			                            title : "Error 500",
+			                            text : "Disculpe las molestias no podemos procesar su solicitud.",
+			                            type : "error",
+			                            closeOnCancel : false
+			                            });
+			                    }
+			                }
+			            });
+					
+					
+					
+					
+					
+			});
+	
+
+
 	
 	
-	function guardar(){
-		var domicilio = {
-
-				 calle : $('#inputCalle').val(),
-				 numExt : $('#inputNum').val(),
-				 numInt : $('#inputNumInt').val(),
-				 colonia : $('#inputColonia').val(),
-				 entreCalle1 : $('#inputEntreCalle1').val(),
-				 entreCalle2 : $('#inputEntreCalle2').val(),
-				 cp : $('#inputCP').val(),
-				 idEstado : $('#selectEdo').val(),
-				 idMunicipio : $('#selectMunicipio').val(),
-				 idLocalida : $('#selectLocalidad').val(),
-				 
-		};
-            
-		var formData = JSON.stringify(domicilio);
-
-		console.log(formData);
-
-		var urlPost = "${pageContext.request.contextPath}/domicilios";
-		var admin = "${pageContext.request.contextPath}/views/cajas/catalogos/domicilio/domicilio.jsp";
-            
-            $.ajax(
-                {
-                    type : 'POST',
-                    url : urlPost,
-                    data : formData,
-                    dataType : "json",
-                    contentType : 'application/json',
-                    success : function(data, textStatus, jQxhr) {
-                        swal(
-                            {
-                                title : "Direccion registrada correctamente.",
-                                type : "success",
-                                closeOnCancel : false
-                            },
-                            function() {
-                                window.location = urlDestino;
-                            }
-                        );
-                    },
-                    error : function(jqXHR, textStatus, errorThrown) {
-                        console.log(textStatus+ " "+ errorThrown);
-                    }
-                }
-            );
-
-
-    }
 										
 </script>
 </html>

@@ -10,26 +10,22 @@ import cajas.persistence.entity.LocalidadEntity;
 
 public class LocalidadQuery {
 
-private EntityManager entityManager;
-    
-    // Consulta JPA
+	private EntityManager entityManager;
     private final static String BUSCAR_LOCALIDAD = 
-            "select Localidad"
-            + " from LocalidadEntity as localidad"
-            + " where localidad.localidad = :nombreLocalidad";
+    				"select localidad"
+    	            + " from LocalidadEntity as localidad"
+    	            + " where localidad.localidad = :nombreLocalidad";
     private final static String OBTENER_LOCALIDADES =
     		"select localidad"
             + " from LocalidadEntity as localidad"
             + " order by localidad.idLocalidad";
-    //Consula con SQL nativo
-    private final static String ACTUALIZAR_CON_PROCEDIMIENTO_ALMACENADO =
-            "CALL usp_procrecimiento_almacenado(?)";
+    
 
     public LocalidadQuery(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
     
-        
+    
     public LocalidadEntity crearLocalidad(LocalidadEntity localidadEntity) {
         entityManager.persist(localidadEntity);
         return localidadEntity;
@@ -40,7 +36,7 @@ private EntityManager entityManager;
         return localidadEntity;
     }
     
-    public void editarLocalidad(LocalidadEntity localidadEntity) {
+    public void editarLocalidad (LocalidadEntity localidadEntity) {
         entityManager.merge(localidadEntity);
     }
     
@@ -55,11 +51,7 @@ private EntityManager entityManager;
         return consulta.getResultList();
     }
 
-    public void ejecutarProcedimientoAlmacenadoLocalidad(String nombre) {
-        Query consulta = entityManager.createNativeQuery(ACTUALIZAR_CON_PROCEDIMIENTO_ALMACENADO);
-        consulta.setParameter(1, nombre);
-        consulta.executeUpdate();
-    }
+   
     public List<LocalidadEntity> obtenerLocalidad() {
 		TypedQuery<LocalidadEntity> consulta = entityManager.createQuery(OBTENER_LOCALIDADES, LocalidadEntity.class);
 		return consulta.getResultList();

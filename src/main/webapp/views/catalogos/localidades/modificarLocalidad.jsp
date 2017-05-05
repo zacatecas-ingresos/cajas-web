@@ -23,8 +23,9 @@
               rel="stylesheet" type="text/css" />
     
         <!-- Sweetalert -->
-        <link href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css"
-              rel="stylesheet" type="text/css">
+        	<link
+		href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css"
+		rel="stylesheet" type="text/css">
     
         <!-- FormValidation -->
         <link href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css"
@@ -101,7 +102,7 @@
                                 <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                                 Cancelar
                             </button>
-                            <button type="button" id="btn-save"
+                            <button type="button" id="btn-edit"
                                     class="btn btn-success btn-lg pull-right">
                                 <i class="fa fa-save"></i> Guardar
                             </button>
@@ -122,44 +123,45 @@
 
         <!-- Bibliotecas JavaScript -->
         <!-- jQuery -->
-        <script
-            src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
-
-        <!-- jQuery UI -->
-        <script
-            src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-
-        <!-- jQuery Form -->
-        <script
-            src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js" /></script>
-
-        <script
-            src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
-
-        <!-- Bootstrap WYSIHTML5 -->
-        <script
-            src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-
-        <script
-            src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
-
-        <script
-            src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
-
-        <script
-            src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
-
-        <script
-            src="${pageContext.request.contextPath}/resources/formvalidation/js/formValidation.min.js"></script>
-        <script
-            src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
-        <script
-            src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
+      <script
+		src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
+	
+	<!-- jQuery UI -->
+	<script
+		src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
+	
+	<!-- jQuery Form -->
+	<script
+		src="${pageContext.request.contextPath}/resources/jquery-form/jquery.form.min.js" /></script>
+	
+	<script
+		src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+	
+	<!-- Bootstrap WYSIHTML5 -->
+	<script
+		src="${pageContext.request.contextPath}/resources/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+		
+	<script
+		src="${pageContext.request.contextPath}/resources/admin-lte/js/app.min.js"></script>
+		
+	<script
+		src="${pageContext.request.contextPath}/resources/admin-lte/js/demo.js"></script>
+		
+	<script
+		src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
+		
+	<script
+		src="${pageContext.request.contextPath}/resources/formvalidation/js/formValidation.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/formvalidation/js/framework/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/formvalidation/js/language/es_ES.min.js"></script>
 
         <script>
-$(document).ready(function() {
+        $(document).ready(function() {
 
-
+        	
+       
         	var url = window.location.search.substring(1);
 			var fragmento = url.split("=");
 			var id = fragmento[1];
@@ -167,7 +169,7 @@ $(document).ready(function() {
 			
 			 $.ajax({
 					type: "GET",
-					url: "${pageContext.request.contextPath}/cajas/localidades/idLocalidad/?idLocalidad="+parseInt(id),
+					url: "${pageContext.request.contextPath}/cajas/localidades/idLocalidad/?idLocalidad="+id,
 					dataType: "json",
 					success : function(data) {
 						
@@ -175,117 +177,133 @@ $(document).ready(function() {
 						$('#inputnom').val(data['localidad']);						
 							
 					},
-					error : function(jqXHR,textStatus,errorThrown) {
-						console.log(textStatus+ " "+ errorThrown);
-					}			
+								
 			});
-			
-        	// Cancelar y dirige a la vista principal
-            $('#btn-cancel').click(function() {
-        var urlUsuario = "${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp";
-        window.location = urlUsuario;
-                }
-            );
 
-	//Registra una localidad
-	$('#save-btn').click(function() {
 
-		//Validaciones
-		var formValidation = $('#form-localidades').data('formValidation');
-		
-			formValidation.validate();
+        	//Cancelar y dirige a la vista principal 
+        	$('#btn-cancel').click(function() {
+        		var urlLocalidades = "${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp";
+        		window.location = urlLocalidades;
+        	});
 
-			console.log(formValidation.isValid());
-			
-			if (formValidation.isValid()) {
+        	//Edita 
+        	$('#btn-edit').click(function() {
 
-				var datos = {};
-				var Abreviatura = $('#inputAbreviatura');
-				var Nombre = $('#inputNombre');
-				
-				datos.Abreviatura = Abreviatura.val();
-				datos.Nombre = Nombre.val();
-				datos.activo = 1;
+        		//Validaciones
+        		var formValidation = $('#frm-localidad').data('formValidation');
+        			formValidation.validate();
+        		
+        			if (formValidation.isValid()) {
 
-				var formData = JSON.stringify(datos);
-			
-				console.log(formData);
-			
-				var urlPost = "${pageContext.request.contextPath}/cajas/catalogos/localidades";
-				var urlLocalidades = "${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp";
-				                                  
+        				var datos = {};
+        				var nombre = $('#inputnom');
+        				var abreviacion = $('#inputabrev');
+        				
+        				datos.idLocalidad = id;
+        				datos.localidad = nombre.val();
+        				datos.abreviacionLocalidad = abreviacion.val();
+        				
 
-				$.ajax({
-					type : 'POST',
-					url : urlPost,
-					data : formData,
-					dataType : "json",
-					contentType : 'application/json',
-					success : function(data,textStatus,jQxhr) {
-					swal(
-						{
-							title : "Localidad Modificada correctamente.",
-							type : "success",
-							closeOnCancel : false
-						},
-							function() {
-							window.location = urlLocalidades;
-							});
-				},
-					error : function(jqXHR,textStatus,errorThrown) {
-						console.log(textStatus+ " "+ errorThrown);
-						}
-					});
-			}
+        				var formData = JSON.stringify(datos);
+        			
+        				console.log(formData);
+        			
+        				var urlPut = "${pageContext.request.contextPath}/cajas/localidades";
+        				var urlLocalidad= "${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp";
 
-	});
+        				$.ajax({
+        					type : 'PUT',
+        					url : urlPut,
+        					data : formData,
+        					dataType : "json",
+        					contentType : 'application/json',
+        					success : function(data,textStatus,jQxhr) {
+        					swal(
+        						{
+        							title : "Localidad Actualizada.",
+        							type : "success",
+        							closeOnCancel : false
+        						},
+        							function() {
+        							window.location = urlLocalidad;
+        							});
+        					}
+        				});
+        			}
 
-	//Dirige a la sección para
-	$('#crear').click(function() {
-		var urlCrearLocalidades = "${pageContext.request.contextPath}/views/catalogos/localidades/crearLocalidad.jsp";
-		window.location = urlCrearLocalidad;
-	});
-	//Editar Localidad
-	$('#home').click(function(){
-			var urlEditarLocalidad = "${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp";
-			window.location=urlEditarLocalidad;
-			
-			$.ajax({
-			        type : "GET",
-			        url : "${pageContext.request.contextPath}/cajas/localidades",
-			        dataType : 'json',
-			        success : function(data) {
-			            console.log(data)
-			        	// llenarTablaLocalidades(data);
-			        	$('#inputabrev').val(data.idLocalidad);
-			        },
-	});
-	});
-	
+        	});
+        	
 
-	//Errores
-	$.ajaxSetup({
-			error : function(x, status, error) {
-				if (x.status == 400) {
-					var result = x.responseJSON;
-						swal({
-							title : "Error " + result.code,
-							text : result.message,
-							type : "error",
-							closeOnCancel : false
-						});
-				} else if (x.status == 500) {
-						swal({
-						title : "Error 500",
-						text : "Disculpe las molestias no podemos procesar su solicitud.",
-						type : "error",
-						closeOnCancel : false
-					});
-				}
-		}
-	});
-	
-});
+        	//Validaciones
+        	$('#frm-localidad').formValidation(
+        		{
+        			framework : 'bootstrap', 
+        			icon : {//Feedback Icons
+        			valid : 'glyphicon glyphicon-ok',
+        			invalid : 'glyphicon glyphicon-remove',
+        			validating : 'glyphicon glyphicon-refresh'
+        			},
+
+        	
+        			fields : {
+        				'inputnom' : { //validación del campo
+        								trigger : 'blur', 
+        								validators : { 
+        						notEmpty : {
+        									message : 'Ingrese nombre de la localidad.'
+        								},
+        						
+        							}
+        						},
+        				'inputabrev' : {
+        							trigger : 'blur',
+        							validators : {
+        						notEmpty : {
+        							message : 'Ingrese abreviacion de la localidad.'
+        						  },
+        						
+
+        						}
+        					}
+        				}
+        	});
+
+        	
+        	$('#crear').click(function() {
+        		var urlCrearLocalidad = "${pageContext.request.contextPath}/views/catalogos/localidades/crearLocalidad.jsp";
+        		window.location = urlCrearLocalidad;
+        	});
+        	//Editar Localidad
+        	$('#home').click(function(){
+        			var urlEditarLocalidad = "${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp";
+        			window.location=urlEditarLocalidad;
+        		
+        	});
+
+        	//Errores
+        	$.ajaxSetup({
+    			error : function(x, status, error) {				
+    				if (x.status == 400) {
+    					var result = x.responseJSON;
+    						swal({
+    							title : "Error " + result.code,
+    							text : result.message,
+    							type : "error",
+    							closeOnCancel : false
+    						});
+    				} else if (x.status == 500) {
+    						swal({
+    						title : "Error 500",
+    						text : "Disculpe las molestias no podemos procesar su solicitud.",
+    						type : "error",
+    						closeOnCancel : false
+    					});
+    				}
+    		}
+    	});
+
+        });
 
         </script>
     </body>

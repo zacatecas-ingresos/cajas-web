@@ -166,78 +166,103 @@ $(document).ready(function() {
 	
 				 $.ajax({
 						type: "GET",
-						url: "${pageContext.request.contextPath}/cajas/municipios/idMunicipio/?idMunicipio="+parseInt(id),
+						url: "${pageContext.request.contextPath}/cajas/municipios/idMunicipio/?idMunicipio="+id,
 						dataType: "json",
 						success : function(data) {
 				
 							$('#inputabrev').val(data['abreviacionMunicipio']);
 							$('#inputnom').val(data['municipio']);						
 								
-			},
-			error : function(jqXHR,textStatus,errorThrown) {
-				console.log(textStatus+ " "+ errorThrown);
-			}			
-	});
+						},
+						
+					});
 
-            // Cancelar y dirige a la vista principal
-            $('#btn-cancel').click(
-                function() {
-                    window.location = '${pageContext.request.contextPath}/views/catalogos/municipios/municipio.jsp';
-                }
-            );
-
-	//Registra un Municipio
+            //Cancelar y dirige a la vista principal 
+        	$('#btn-cancel').click(function() {
+        		var urlMunicipios = "${pageContext.request.contextPath}/views/catalogos/municipios/municipio.jsp";
+        		window.location = urlmunicipios;
+        	});
+            
+	//edita un Municipio
 	$('#btn-save').click(function() {
 
 		//Validaciones
 		var formValidation = $('#frm-municipio').data('formValidation');
-		
 			formValidation.validate();
-			
 
-			console.log(formValidation.isValid());
-			
 			if (formValidation.isValid()) {
 
 				var datos = {};
-				var Abreviatura = $('#inputAbreviatura');
-				var Nombre = $('#inputNombre');
+				var nombre = $('#inputnom');
+				var abreviacion = $('#inputabrev');
 				
-				datos.Abreviatura = Abreviatura.val();
-				datos.Nombre = Nombre.val();
-				datos.activo = 1;
+				datos.idMunicipio = id;
+				datos.municipio = nombre.val();
+				datos.abreviacionMunicipio = abreviacion.val();
 
 				var formData = JSON.stringify(datos);
 			
 				console.log(formData);
 			
-				var urlPost = "${pageContext.request.contextPath}/cajas/catalogos/municipio";
-				var urlMunicipios = "${pageContext.request.contextPath}/views/catalogos/municipios/municipio.jsp";
+				var urlPut = "${pageContext.request.contextPath}/cajas/municipios";
+				var urlMunicipio = "${pageContext.request.contextPath}/views/catalogos/municipios/municipio.jsp";
 				                                  
 
 				$.ajax({
-					type : 'POST',
-					url : urlPost,
+					type : 'PUT',
+					url : urlPut,
 					data : formData,
 					dataType : "json",
 					contentType : 'application/json',
 					success : function(data,textStatus,jQxhr) {
 					swal(
 						{
-							title : "Municipio Modificada correctamente.",
+							title : "Municipio Actualizado.",
 							type : "success",
 							closeOnCancel : false
 						},
 							function() {
-							window.location = urlMunicipios;
+							window.location = urlMunicipio;
 							});
-				},
-					error : function(jqXHR,textStatus,errorThrown) {
-						console.log(textStatus+ " "+ errorThrown);
-						}
-					});
+					}
+				});
 			}
 
+	});
+	
+	
+	//Validaciones
+	$('#frm-municipio').formValidation(
+		{
+			framework : 'bootstrap', 
+			icon : {//Feedback Icons
+			valid : 'glyphicon glyphicon-ok',
+			invalid : 'glyphicon glyphicon-remove',
+			validating : 'glyphicon glyphicon-refresh'
+			},
+
+	
+			fields : {
+				'inputnom' : { //validación del campo
+								trigger : 'blur', 
+								validators : { 
+						notEmpty : {
+									message : 'Ingrese nombre del Municipio.'
+								},
+						
+							}
+						},
+				'inputabrev' : {
+							trigger : 'blur',
+							validators : {
+						notEmpty : {
+							message : 'Ingrese abreviacion del Municipio.'
+						  },
+						
+
+						}
+					}
+				}
 	});
 
 	//Dirige a la sección para 

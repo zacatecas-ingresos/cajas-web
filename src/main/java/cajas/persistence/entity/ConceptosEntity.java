@@ -5,56 +5,58 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "conceptos", schema = "cobros")
+@Table(name = "Conceptos", schema = "configuracion")
 public class ConceptosEntity implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7029374644978562533L;
-	
 	@Id
-	@Column(name = "id_concepto")
+	@Column(name = "IdConcepto")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer IdConcepto;
 	
-	@Column(name = "descripcion")
-	private String Descripcion;
+	@Column(name = "Descripcion")
+	private String descripcion;
 	
-	@Column(name = "nivel_1")
+	@Column(name = "Nivel1")
 	private String nivel1;
 	
-	@Column(name = "nivel_2")
+	@Column(name = "Nivel2")
 	private String nivel2;
 	
-	@Column(name = "nivel_3")
+	@Column(name = "Nivel3")
 	private String nivel3;
 	
-	@Column(name = "nivel_4")
+	@Column(name = "Nivel4")
 	private String nivel4;
 	
-	@Column(name = "nivel_5")
+	@Column(name = "Nivel5")
 	private String nivel5;
 	
-	@Column(name = "nivel_6")
+	@Column(name = "Nivel6")
 	private String nivel6;
 	
-	@Column(name = "clave")
+	@Column(name = "Clave")
 	private String clave;
 	
-	@Column(name = "cobro_derecho")
+	@Column(name = "CobroDerecho")
 	private BigDecimal cobroDerecho;
 	
-	@Column(name = "ejercicio_fiscal")
+	@Column(name = "EjercicioFiscal")
 	private Integer ejercicioFiscal;
 	
-	@Column(name = "tipo_nivel")
+	@Column(name = "TipoNivel")
 	private Integer tipoNivel;
 	
-	@Column(name = "activo")
+	@Column(name = "Activo")
 	private boolean activo;
 
 	public Integer getIdConcepto() {
@@ -66,11 +68,11 @@ public class ConceptosEntity implements Serializable{
 	}
 
 	public String getDescripcion() {
-		return Descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
-		Descripcion = descripcion;
+		this.descripcion = descripcion;
 	}
 
 	public String getNivel1() {

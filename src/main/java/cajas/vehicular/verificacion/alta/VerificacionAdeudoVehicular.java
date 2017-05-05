@@ -35,22 +35,33 @@ public class VerificacionAdeudoVehicular {
 		verificacionAdeudoVehiculo.setAnio5VerificacionAdeudo(verificacionAdeudoVehiculoEntity.getAnio5VerificacionAdeudo());
 		verificacionAdeudoVehiculo.setFolioVerificacionAdeudo(verificacionAdeudoVehiculoEntity.getFolioVerificacionAdeudo());
 		verificacionAdeudoVehiculo.setProcedencia(verificacionAdeudoVehiculoEntity.getProcedencia());
-		verificacionAdeudoVehiculo.setIdEstado(verificacionAdeudoVehiculoEntity.getEstado().getIdEstado());
-		verificacionAdeudoVehiculo.setFolioCalcamonia(verificacionAdeudoVehiculoEntity.getFolioCalcamonia());	
-		verificacionAdeudoVehiculo.setIdDocumento(verificacionAdeudoVehiculoEntity.getDocumentoPedimento().getIdDocumentoPedimento());
+		
+		if (verificacionAdeudoVehiculoEntity.getEstado() != null) {
+			verificacionAdeudoVehiculo.setIdEstado(verificacionAdeudoVehiculoEntity.getEstado().getIdEstado());
+		}
+
+		verificacionAdeudoVehiculo.setFolioCalcamonia(verificacionAdeudoVehiculoEntity.getFolioCalcamonia());
+		
+		if(verificacionAdeudoVehiculoEntity.getDocumentoPedimento() != null){
+			verificacionAdeudoVehiculo.setIdDocumento(verificacionAdeudoVehiculoEntity.getDocumentoPedimento().getIdDocumentoPedimento());
+		}
 		verificacionAdeudoVehiculo.setEstatus(verificacionAdeudoVehiculoEntity.getEstatus());
 		verificacionAdeudoVehiculo.setObservaciones(verificacionAdeudoVehiculoEntity.getObservaciones());
 		verificacionAdeudoVehiculo.setBaja(verificacionAdeudoVehiculoEntity.getBaja());
 		verificacionAdeudoVehiculo.setBajaPlaca(verificacionAdeudoVehiculoEntity.getBajaPlaca());
 				
 		String pattern = "dd-MM-yyyy";
-	    SimpleDateFormat format = new SimpleDateFormat(pattern);
+	    SimpleDateFormat format = new SimpleDateFormat(pattern);	    
 	    
-	    String fechaVerificacionAdeudo = format.format(verificacionAdeudoVehiculoEntity.getFechaVerificacionAdeudo());
-	    verificacionAdeudoVehiculo.setFechaVerificacion(fechaVerificacionAdeudo);
+	    if(verificacionAdeudoVehiculoEntity.getFechaRegularizacion() != null){
+		    String fechaRegularizacion= format.format(verificacionAdeudoVehiculoEntity.getFechaRegularizacion());
+			verificacionAdeudoVehiculo.setFechaRegularizacion(fechaRegularizacion);
+	    }
 	    
-	    String fechaRegularizacion= format.format(verificacionAdeudoVehiculoEntity.getFechaRegularizacion());
-		verificacionAdeudoVehiculo.setFechaRegularizacion(fechaRegularizacion);
+	    if(verificacionAdeudoVehiculoEntity.getFechaVerificacionAdeudo() != null ){
+		    String fechaVerificacionAdeudo = format.format(verificacionAdeudoVehiculoEntity.getFechaVerificacionAdeudo());
+		    verificacionAdeudoVehiculo.setFechaVerificacion(fechaVerificacionAdeudo);
+	    }	    
 				
 		return verificacionAdeudoVehiculo;
 	}

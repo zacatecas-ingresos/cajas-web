@@ -34,6 +34,27 @@ public class VerificacionAdeudoVehiculoResource {
 		} catch (BusinessException ex) {
 			return Response.ok(Status.NOT_IMPLEMENTED,"application/json").tag(ex.getMessage()).build();
 		}
-	}	
+	}
+	
+	/*****Comprueba si ya existe una verificacion con ese VIN *********/
+	@GET
+	@Path("/existeFolioVerificacion")
+	@Produces({"application/json"})
+	public Response existeFolioVerificacion(@QueryParam("folioVerificacionAdeudo")Integer noFolio){
+		
+		Map<String,String> resultado = new HashMap<>();
+		try{
+			VerificacionAdeudoVehicular vAdedudoVehiculo = verificacionVehiculoEjb.obtenerFolioVerificacion(noFolio);
+			if(vAdedudoVehiculo.getFolioVerificacionAdeudo() > 0){
+				resultado.put("valid", "false");//ya existe el folio
+				return Response.ok(resultado).build();	
+			}
+			resultado.put("valid", "true");//No existe el folio
+			return Response.ok(resultado).build();
+		}catch(BusinessException ex){
+			resultado.put("valid", "true");
+			return Response.ok(resultado).build();
+		}
+	}
 	
 }

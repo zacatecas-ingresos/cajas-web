@@ -4,16 +4,20 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import org.joda.time.DateTime;
 
+import cajas.exception.BusinessException;
 import cajas.persistence.entity.DocumentoPedimentoEntity;
 import cajas.persistence.entity.EstadoEntity;
 import cajas.persistence.entity.EstatusVerificacionEntity;
 import cajas.persistence.entity.VerificacionAdeudoVehicularEntity;
 import cajas.persistence.entity.VerificacionVehicularEntity;
+import cajas.persistence.query.VerificacionAdeudoVehicularQuery;
 
 
 
@@ -22,6 +26,9 @@ public class VerificacionAdeudoVehicularEJB {
 
 	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
+	
+	@Inject
+	VerificacionAdeudoVehicularQuery vAdeudoVehicularQuery; 
 	
 	public void creaVerificacionAdeudoVehicular(VerificacionAdeudoVehicular verificacionAdeudoVehicular ){
 		
@@ -67,4 +74,18 @@ public class VerificacionAdeudoVehicularEJB {
 		verificacionAdeudoVehicularEntity.setFechaVerificacionAdeudo(DateTime.now().toDate());
 		entityManager.persist(verificacionAdeudoVehicularEntity);
 	}
+	
+	
+	/********Obtener No Folio Verificacion *********/
+	public VerificacionAdeudoVehicular obtenerFolioVerificacion(Integer noFolio) {
+		try {
+			VerificacionAdeudoVehicularEntity vAdeudoVehiculoEntity = vAdeudoVehicularQuery.consultar(noFolio);
+			VerificacionAdeudoVehicular vAdeudoVehiculo = new VerificacionAdeudoVehicular();
+			vAdeudoVehiculo = vAdeudoVehiculo.verificacionAdeudoVehiculoEntity(vAdeudoVehiculoEntity);
+			return vAdeudoVehiculo;
+		} catch (NoResultException ex) {
+			throw new BusinessException("El Folio Verificacion No Existe.");
+		}
+	}
+
 }

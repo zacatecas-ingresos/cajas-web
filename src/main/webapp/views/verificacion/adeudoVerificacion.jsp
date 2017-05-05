@@ -558,6 +558,21 @@
 															max : 7,
 															message : 'Excede valor'
 														},
+														remote : {
+															url : '${pageContext.request.contextPath}/cajas/vehicular/verificacion/adeudo/existeFolioVerificacion?'+ $('#folioVerificacionAdeudo').val(),														
+															message : "¡El Folio que ingreso ya existe!",
+															data : function(
+																	validator,
+																	$field,
+																	value) {
+																return {
+																	folioVerificacionAdeudo : validator
+																			.getFieldElements(
+																					'folioVerificacionAdeudo')
+																			.val()
+																};
+															}
+														}
 													}
 												},
 												'estatus' : { //validación del campo

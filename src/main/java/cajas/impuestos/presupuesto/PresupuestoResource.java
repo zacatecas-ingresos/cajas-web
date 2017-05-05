@@ -55,7 +55,7 @@ public class PresupuestoResource {
 	
 	@POST
 	@Path("/actualizaPresupuestoLCC")
-	@Consumes({ "application/json" })
+	@Consumes({ "application/json" }) 
 	@Produces({ "application/json" })
 	public Response cambiarEstatusPresupuestoPorLCC(@QueryParam("lcc")String lcc,@QueryParam("estatus")Integer estatus){
 		try{

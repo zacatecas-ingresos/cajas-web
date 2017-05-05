@@ -41,6 +41,7 @@ public class PresupuestoResource {
 	}
 
 	@POST
+	@Path("/actualizaPresupuesto")
 	@Consumes({ "application/json" })
 	@Produces({ "application/json" })
 	public Response cambiarEstatusPresupuestoPorId(@QueryParam("idPresupuesto")Integer idPresupuesto, @QueryParam("estatus")Integer estatus){
@@ -53,6 +54,7 @@ public class PresupuestoResource {
 	}
 	
 	@POST
+	@Path("/actualizaPresupuestoLCC")
 	@Consumes({ "application/json" })
 	@Produces({ "application/json" })
 	public Response cambiarEstatusPresupuestoPorLCC(@QueryParam("lcc")String lcc,@QueryParam("estatus")Integer estatus){

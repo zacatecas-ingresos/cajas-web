@@ -1,15 +1,12 @@
 package cajas.persistence.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import cajas.contribuyentes.TipoObligacion;
 
 @Entity
 @Table(name = "Obligaciones", schema = "contribuyente")
@@ -24,11 +21,14 @@ public class ObligacionEntity implements Serializable {
 	@Column(name = "IdObligacion")
 	private Integer idObligacion; 
 
-	@Column(name = "Obligacion")
-	private String obligacion;
+//	@Column(name = "Obligacion")
+//	private String obligacion;
 	
 	@Column(name = "DiaVencimiento")
 	private Integer diaVencimiento;
+	
+	@Column(name = "FechaInicio")
+	private Date fechaInicio;
 	
 	@Column(name = "DiasTiempoProrroga")
 	private Integer diasProrroga;
@@ -40,8 +40,7 @@ public class ObligacionEntity implements Serializable {
 	private String usuarioAlta;
 	
 	@Column(name = "TipoObligacion")
-	@Enumerated(EnumType.STRING)
-	private TipoObligacion tipoObligacion;
+	private String tipoObligacion;
 
 	public Integer getIdObligacion() {
 		return idObligacion;
@@ -51,13 +50,13 @@ public class ObligacionEntity implements Serializable {
 		this.idObligacion = idObligacion;
 	}
 
-	public String getObligacion() {
-		return obligacion;
-	}
-
-	public void setObligacion(String obligacion) {
-		this.obligacion = obligacion;
-	}
+//	public String getObligacion() {
+//		return obligacion;
+//	}
+//
+//	public void setObligacion(String obligacion) {
+//		this.obligacion = obligacion;
+//	}
 
 	public Integer getDiasProrroga() {
 		return diasProrroga;
@@ -75,13 +74,36 @@ public class ObligacionEntity implements Serializable {
 		this.diaVencimiento = diaVencimiento;
 	}
 
-	public TipoObligacion getTipoObligacion() {
+	
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public String getUsuarioAlta() {
+		return usuarioAlta;
+	}
+
+	public void setUsuarioAlta(String usuarioAlta) {
+		this.usuarioAlta = usuarioAlta;
+	}
+
+	
+	public String getTipoObligacion() {
 		return tipoObligacion;
 	}
 
-	public void setTipoObligacion(TipoObligacion tipoObligacion) {
+	public void setTipoObligacion(String tipoObligacion) {
 		this.tipoObligacion = tipoObligacion;
 	}
-	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+		
 	
 }

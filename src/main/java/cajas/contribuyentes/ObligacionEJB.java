@@ -6,41 +6,48 @@ package cajas.contribuyentes;
 
 	
 
-	import javax.annotation.PostConstruct;
-	import javax.ejb.Stateless;
-	import javax.persistence.EntityManager;
+	import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
 	
-	import javax.persistence.PersistenceContext;
-	
+import javax.persistence.PersistenceContext;
+
 
 import cajas.persistence.entity.ObligacionEntity;
 import cajas.persistence.query.ObligacionQuery;
-//import cajas.persistence.query.ObtenerObligacionQuery;
-	
+
 	
 	@Stateless
 	public class ObligacionEJB {
-
 		@PersistenceContext(name = "sitDS")
 		private EntityManager entityManager;
 		private ObligacionQuery obligacionQuery;
 		
-		@PostConstruct
-	
-		public void init(){
-	
-			obligacionQuery = new ObligacionQuery(entityManager);
+	    private ObligacionFactory obligacionFactory = new ObligacionFactory();
 		
+		 @PostConstruct	
+		public void init(){
+		obligacionQuery = new ObligacionQuery(entityManager);		
 			
 		}
 		
-	
 		public Obligacion obtenerObligacionPorIdObligacion(Integer idObligacion) {
 			Obligacion obligacion = new Obligacion();			
-			    ObligacionEntity obligacionesEntity = obligacionQuery.obtenerObligacion(idObligacion);				
+			    ///ObligacionEntity obligacionesEntity = obligacionQuery.obtenerObligacion(idObligacion);				
 			return obligacion;
 		}
+		
+		 public List<Obligacion> obtenerTodaslasObligaciones() {
+			 
+		        List<ObligacionEntity> obligacionesEntities = obligacionQuery.obtenerTodaslasObligaciones();		        		       
+		        
+		        return obligacionFactory.obligacionesADtos(obligacionesEntities);
+		        
+		    }
 
+	
 	}
 
 

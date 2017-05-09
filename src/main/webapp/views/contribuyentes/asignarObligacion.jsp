@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -24,10 +23,11 @@
 		<link href="${pageContext.request.contextPath}/resources/formvalidation/css/formValidation.min.css" rel="stylesheet" type="text/css">
 
 		<!-- jquery-ui.css -->
+		
 		<link href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css" />		
 
 		<link href="${pageContext.request.contextPath}/resources/sit/css/sit.css" rel="stylesheet" type="text/css">
-		<link href="path/to/multiselect.css" media="screen" rel="stylesheet" type="text/css">
+		
 	</head>
 
 	<body class="hold-transition skin-blue sidebar-mini">
@@ -73,6 +73,8 @@
 					<div id="panelBusqueda" class="box box-primary">
 						<div class="box-header">
 							<h3 class="box-title">Datos Generales</h3>
+													
+						
 						</div>
 						<div class="box-body">
 							<div class="row">
@@ -145,26 +147,20 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="selectObligacion">Seleccione la Obligación</label>
-									<div class="selectContainer">
-											<dl class="dropdown">   										
-											 <SELECT id="selectObligacion">
-											    <option value=" IESP"> IESP</option>
-												<option value=" ISAN"> ISAN</option>
-											    <option value="NOMINA">NOMINA</option>
-											    <option value="HOSPEDAJE">HOSPEDAJE</option>											   												
-												<option value="JUEGOS DE AZAR">JUEGOS DE AZAR</option>
-												<option value="REGIMEN INTERMEDIO">REGIMEN INTERMEDIO</option>
-												<option value="REMEDIACIÓN AMBIENTAL EN LA EXTRACCIÓN DE MATERIALES"> REMEDIACIÓN AMBIENTAL EN LA EXTRACCIÓN DE MATERIALES </option>
-												<option value=" DE LA EMISIÓN DE GASES A LA ATMÓSFERA"> DE LA EMISIÓN DE GASES A LA ATMÓSFERA</option>
-												<option value="DE LA EMISIÓN DE CONTAMINANTES AL SUELO, SUBSUELO Y AGUA">DE LA EMISIÓN DE CONTAMINANTES AL SUELO, SUBSUELO Y AGUA</option>
-												<option value=" DEPÓSITO O ALMACENAMIENTO DE RESIDUOS"> DEPÓSITO O ALMACENAMIENTO DE RESIDUOS</option>
-									  		  </SELECT>		
-											  </dl>	 																	    										
-									</div>
+									
+											
+													<div class="form-group">		
+														<label for="selectOblig" class="control-label">Obligacion</label>
+														<select 
+														id="selectOblig" class="form-control" name="selectOblig" >
+														</select>				
+											
+													</div>
+																									    										
+									
 								</div>
 							</div>
-						</div>
-						
+						</div>						
 					<div class="box-body">
 						<form id="formContribuyente" class="form-horizontal">
 								<div class="form-group">
@@ -214,6 +210,7 @@
 							</button>
 							<button id="agregar" type="button" class="btn btn-primary btn-lg pull-right">
 								<i class="fa fa-plus"></i> Agregar
+								
 							</button>
 						</div>
 					</div>
@@ -264,6 +261,7 @@
 		<script>
 
 $(document).ready(function() {
+	
 	var rfcContribuyente;
 	$(function() {
 		$.datepicker.regional['es-MX'] = {
@@ -297,7 +295,7 @@ $(document).ready(function() {
 		
 
 	});
-	
+			
 	$('#busqueda').keyup(function() {
 			buscar();		
 		}
@@ -328,7 +326,7 @@ $(document).ready(function() {
     });
 	
 	$('#seleccionarContribuyente').click(function() {
-		
+		console.log("iniciarseleccion");
 		
 			mostrarContribuyente(rfcContribuyente);	
 			
@@ -336,10 +334,30 @@ $(document).ready(function() {
 		}
 	);
 	
+
+	
 	$('#agregar').click(function() {
 		addObligacion();
 		
 	});
+	//Muestra TODAS las Obligaciones
+	var urlGetObligaciones = "${pageContext.request.contextPath}/cajas/obligaciones";
+	$.ajax({
+		type : "GET",
+		dataType : 'json',
+		url : urlGetObligaciones,
+		success : function(data) {
+	        $.each(data, function(key, item) {
+	            $('#selectOblig').append($('<option>').text(item.obligacion).attr('value', item.idObligacion));
+	           
+	        });
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(textStatus + " " + errorThrown);
+		}
+	});
+	
+	
 });
 
 
@@ -401,7 +419,8 @@ function mostrarContribuyente(contribuyente) {
 	
 function addObligacion(){ 
 	
-	   var Obligacion=$("#selectObligacion").val();
+	   var Obligacion=$("#selectOblig").val();
+	   
 	   var Dias=$("#vencimiento").val();
 	   var Fecha=$("#fechaAlta").val(); 
 	   var Estatus=$("#estatus").val(); 
@@ -421,9 +440,7 @@ function addObligacion(){
 						+ '</tr>';
 						tableDatos.append(row);
 						borrar();
-						deleteRow();   	
-
-}
+						}
 		}
 	   	
 	function borrar(){
@@ -433,9 +450,8 @@ function addObligacion(){
 		$("#estatus").val('');
 		$("#TipoObliagcion").val('');
 	}
-	function deleteRow(i){
-	    document.getElementById('#tblObligaciones').deleteRow(i)
-	}
+	
+	
 
 	</script>
 	</body>

@@ -15,6 +15,7 @@ import cajas.actualizacionesrecargos.calculo.ActualizacionesRecargosService;
 import cajas.actualizacionesrecargos.calculo.ContribucionFiscal;
 import cajas.actualizacionesrecargos.calculo.Periodo;
 import cajas.contribuyentes.Obligacion;
+import cajas.contribuyentes.TipoObligacion;
 import cajas.exception.BusinessException;
 import cajas.persistence.entity.CalculoTemporalEstatalEntity;
 import cajas.persistence.entity.PeriodosEntity;
@@ -74,13 +75,7 @@ public class CalculoEstatalService {
 		BigDecimal actualizacion = BigDecimal.ZERO;
 		BigDecimal recargo = BigDecimal.ZERO;
 
-		if (declaracion.getIdObligacion() == Obligacion.NOMINA) {
-			impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(),
-					declaracion.getEjercicioFiscal(), declaracion.getPeriodo(), TipoTasa.TASA_NOMINA);
-		} else if (declaracion.getIdObligacion() == Obligacion.HOSPEDAJE) {
-			impuesto = calculoImpuestoService.impuestoEstatal(declaracion.getTotalErogaciones(),
-					declaracion.getEjercicioFiscal(), declaracion.getPeriodo(), TipoTasa.TASA_HOSPEDAJE);
-		}
+
 
 				
 		 uaz = calculoImpuestoService.impuestoEstatal(impuesto, declaracion.getEjercicioFiscal(),declaracion.getPeriodo(), TipoTasa.TASA_UAZ);

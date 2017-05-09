@@ -66,7 +66,7 @@ public class PresupuestoService {
 		presupuestoQuery.registrarActualizarPresupuesto(presupuesto);
 
 		for (Integer idCalculo : calculos) {
-						
+
 			CalculoTemporalEstatalEntity c = calculoTemporalEstatalQuery.obtenerCalculoPorId(idCalculo);
 			if (c == null) {
 				throw new BusinessException(
@@ -88,24 +88,6 @@ public class PresupuestoService {
 
 			importeTotal = importeTotal.add(po.getTotal());
 
-			if (c.getIdObligacion() == Obligacion.NOMINA) {
-				DetallePresupuestoIsnEntity d = new DetallePresupuestoIsnEntity();
-				d.setActualizaciones(c.getActualizaciones());
-				d.setBaseGravable(c.getBaseGravable());
-				d.setEjercicioFiscal(c.getEjercicioFiscal());
-				d.setIdContribuyente(c.getIdContribuyente());
-				d.setIdPeriodo(c.getIdPeriodo());
-				d.setIdPresupuestoObligacion(po.getIdPresupuestoObligacion());
-				d.setIdSucursal(c.getIdSucursal());
-				d.setImpuesto(c.getImpuesto());
-				d.setNumeroEmpleados(c.getNumeroEmpleados());
-				d.setRecargos(c.getRecargos());
-				d.setTipoDeclaracion(c.getTipoDeclaracion());
-				d.setTotal(c.getTotal());
-				d.setUaz(c.getUaz());
-				detallePresupuestoIsnQuery.actualizarRegistrarDetalle(d);
-			}
-
 		}
 
 		presupuesto.setImporteTotal(importeTotal);
@@ -123,48 +105,48 @@ public class PresupuestoService {
 		return presupuesto.getIdPresupuesto();
 	}
 
-
 	/**
-	 * Actualiza el estatus de un presupuesto 
+	 * Actualiza el estatus de un presupuesto
+	 * 
 	 * @param lcc
 	 * @param estatus
 	 */
 
-	protected void cambiarEstatusPresupuesto(Integer idPresupuesto, Integer estatus){
-		PresupuestoEntity presEntity =null;
-		try{
-		presEntity = presupuestoQuery.obtenerPresupuestoPorId(idPresupuesto);
-		}catch(NoResultException ex){
+	protected void cambiarEstatusPresupuesto(Integer idPresupuesto, Integer estatus) {
+		PresupuestoEntity presEntity = null;
+		try {
+			presEntity = presupuestoQuery.obtenerPresupuestoPorId(idPresupuesto);
+		} catch (NoResultException ex) {
 			throw new BusinessException("No se encontraron resultados con el identificador del presupuesto utilizado.");
 		}
-		try{
-		presEntity.setIdEstatus(estatus);
-		presupuestoQuery.registrarActualizarPresupuesto(presEntity);
-		}catch(PersistenceException ex){
+		try {
+			presEntity.setIdEstatus(estatus);
+			presupuestoQuery.registrarActualizarPresupuesto(presEntity);
+		} catch (PersistenceException ex) {
 			throw new BusinessException("Se presentaron problemas al actualizar el presupuesto");
 		}
 	}
-	
-	
+
 	/**
-	 * Actualiza el estatus de un presupuesto 
+	 * Actualiza el estatus de un presupuesto
+	 * 
 	 * @param lcc
 	 * @param estatus
 	 */
-	protected void cambiarEstatusPresupuestoPorLcc(String lcc, Integer estatus){
-		PresupuestoEntity presEntity =null;
-		try{
-		presEntity = presupuestoQuery.obtenerPresupuestoPorLcc(lcc);
-		}catch(NoResultException ex){
+	protected void cambiarEstatusPresupuestoPorLcc(String lcc, Integer estatus) {
+		PresupuestoEntity presEntity = null;
+		try {
+			presEntity = presupuestoQuery.obtenerPresupuestoPorLcc(lcc);
+		} catch (NoResultException ex) {
 			throw new BusinessException("No se encontraron resultados con el identificador del presupuesto utilizado.");
 		}
-		
-		try{
-		presEntity.setIdEstatus(estatus);
-		presupuestoQuery.registrarActualizarPresupuesto(presEntity);
-		}catch(PersistenceException ex){
+
+		try {
+			presEntity.setIdEstatus(estatus);
+			presupuestoQuery.registrarActualizarPresupuesto(presEntity);
+		} catch (PersistenceException ex) {
 			throw new BusinessException("Se presentaron problemas al actualizar el presupuesto");
 		}
 	}
-	
+
 }

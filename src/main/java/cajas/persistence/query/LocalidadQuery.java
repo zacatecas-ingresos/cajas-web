@@ -7,6 +7,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import cajas.persistence.entity.LocalidadEntity;
+import cajas.persistence.entity.MunicipioEntity;
 
 public class LocalidadQuery {
 
@@ -20,7 +21,17 @@ public class LocalidadQuery {
             + " from LocalidadEntity as localidad"
             + " order by localidad.idLocalidad";
     
+    public final static String BUSCAR_LOCALIDADES_POR_UN_MUNICIPIO =  "from LocalidadEntity m where municipio = : municipio";
 
+    
+    public List<LocalidadEntity> obterLocalidadPorMunicipio(MunicipioEntity municipio){
+    	TypedQuery<LocalidadEntity> consulta = entityManager.createQuery(BUSCAR_LOCALIDADES_POR_UN_MUNICIPIO, LocalidadEntity.class );
+    	consulta.setParameter("municipio", municipio);
+    	return consulta.getResultList();
+    }
+    
+    
+    
     public LocalidadQuery(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

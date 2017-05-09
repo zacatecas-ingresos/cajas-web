@@ -1,9 +1,3 @@
-<%-- 
-    Document   : localidad
-    Created on : 2017
-    Author     : Santiago Gonzalez (oocamilobo@gmail.com)
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -75,7 +69,7 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>Localidaes</h1>
+                    <h1>Direcciones</h1>
                 </section>
 
                 <!-- Main content Localidades -->
@@ -86,14 +80,14 @@
                                 <input id="search" name="search" type="text"
                                        class="form-control input-sm" 
                                        placeholder="Buscar..." data-toggle="tooltip" 
-                                       data-placement="top" title="Buscar por nombre de la localidad">
+                                       data-placement="top" title="Buscar ">
                                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
                             </div>
                         </div>
                     </div>
                     <div class="box voffset3">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Lista de localidades</h3>
+                            <h3 class="box-title">Lista de Direcciones</h3>
                             <div class="box-tools pull-right">
                                 <div class="dropdown">
                                     <button class="btn btn-primary dropdown-toggle" type="button"
@@ -109,13 +103,17 @@
                             </div>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <table id="tblLocalidad" class="table table-hover">
+                            <table id="tbldireccion" class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th class="hidden">Id</th>
-                                        <th>No.</th>
-                                        <th>Abrevación</th>
-                                        <th>Nombre</th>
+                                        <th>Calle</th>
+                                        <th>Numero</th>
+                                        <th>Colonia</th>
+                                        <th>Codigo Postal</th>
+                                        <th>Estado</th>
+                                        <th>Municipio</th>
+                                        <th>localidad</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -175,14 +173,14 @@
     <!-- Fin scripts -->
     <script>
 $(document).ready(function() {
-	var idLocalidad;
+	var idDireccion;
     
     $.ajax({
         type : "GET",
-        url : "${pageContext.request.contextPath}/cajas/localidades",
+        url : "${pageContext.request.contextPath}/cajas/direcciones",
         dataType : 'json',
         success : function(data) {
-            llenarTablaLocalidades(data);
+            llenarTablaDirecciones(data);
         },
         error : function(jqXHR,textStatus,errorThrown) {
             console.log(textStatus+ " "+ errorThrown);
@@ -192,14 +190,14 @@ $(document).ready(function() {
     //Filtro de búsqueda
     $('#search').keyup(function() {
         var input= $('#search').val();
-        var urlGet = '${pageContext.request.contextPath}/cajas/localidades/consulta?porNombreLocalidad=' + input;
+        var urlGet = '${pageContext.request.contextPath}/cajas/direcciones/consulta?porDomicilioHomologado=' + input;
 
         $.ajax({
             type: "GET",
             dataType : 'json',
             url: urlGet,
             success: function(data) {
-                llenarTablaLocalidades(data);
+                llenarTablaDirecciones(data);
             },
             error : function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus + " " + errorThrown);
@@ -220,33 +218,33 @@ $(document).ready(function() {
     //Obtiene el ID de la fila seleccionada
     $('tbody').on("click", "td", function() {
         idLocalidad = $(this).closest('tr').find('.id').text();
-        console.log(idLocalidad);
+        console.log(idDireccion);
     });
     
-    // Editar localidad
+    // Editar direccion
     $('#editar').click(function() {
-        if (idLocalidad == null) {
+        if (idDirecciones === null) {
                 swal(
                         {
-                            title : 'No ha seleccionado ninguna Localidad.',
+                            title : 'No ha seleccionado ninguna Direccion.',
                             type : "error",
                             closeOnCancel : false
                         }
                 );
         } else {
             // Redirececciona a la edición del elemento selecionado.
-            var urlEditarLocalidad = '${pageContext.request.contextPath}/views/catalogos/localidades/modificarLocalidad.jsp?id=' + idLocalidad;
-            window.location = urlEditarLocalidad;					
+            var urlEditarDireccion = '${pageContext.request.contextPath}/views/catalogos/direcciones/modificarDireccion.jsp?id=' + idDireccion;
+            window.location = urlEditarDireccion;					
         }
     });
     
     //Elimina localidad
     $('#eliminar').click(
         function() {
-            if (idLocalidad === null) {
+            if (idDireccion === null) {
                 swal(
                     {
-                        title : "No ha seleccionado ninguna Localidad.",
+                        title : "No ha seleccionado ninguna Direccion.",
                         type : "error",
                         type: "warning",
                         closeOnCancel : false
@@ -265,8 +263,8 @@ $(document).ready(function() {
                     },
                     function(isConfirm) {
                         if (isConfirm) {
-                            var urlDelete = "${pageContext.request.contextPath}/cajas/localidades/" + idLocalidad;
-                            var urlLocalidad = "${pageContext.request.contextPath}/views/catalogos/localidades/localidad.jsp";
+                            var urlDelete = "${pageContext.request.contextPath}/cajas/direcciones/" + idDireccion;
+                            var urlDireccion = "${pageContext.request.contextPath}/views/catalogos/direcciones/direccion.jsp";
 
                             $.ajax(
                                 {
@@ -275,12 +273,12 @@ $(document).ready(function() {
                                     success: function() {
                                         swal(
                                             {
-                                                title : "La localidad se ha eliminado correctamente.",
+                                                title : "La Direccion se ha eliminado correctamente.",
                                                 type : "success",
                                                 closeOnCancel : false
                                             },
                                             function() {
-                                                window.location = urlLocalidad;
+                                                window.location = urlDireccion;
                                             });
                                     },
                                     error : function(jqXHR, textStatus, errorThrown) {
@@ -296,23 +294,24 @@ $(document).ready(function() {
     );
 });
 
-function llenarTablaLocalidades(data) {
-    $('#tblLocalidad > tbody').find('tr').remove();
-    var tableBody = $('#tblLocalidad > tbody');
+function llenarTablaDirecciones(data) {
+    $('#tbldireccion > tbody').find('tr').remove();
+    var tableBody = $('#tbldireccion > tbody');
     for (var i = 0; i < data.length; i++) {
         var row = 
                 '<tr>'
-                + '<td class=\"hidden id\">' + data[i].idLocalidad + '</td>'
+                + '<td class=\"hidden id\">' + data[i].calle + '</td>'
                 + '<td>' + (i + 1) + '</td>'
-                + '<td>' + data[i].abreviacionLocalidad + '</td>'
-                + '<td>' + data[i].localidad + '</td>'
+                + '<td>' + data[i].numeroExterior + '</td>'
+                + '<td>' + data[i].colonia + '</td>'
+                + '<td>' + data[i].codigoPostal + '</td>'
                 + '</tr>';
         $(tableBody).append(row);
     }
 };
 $('#crear').click(function() {
-	var urlCrearLocalidad = "${pageContext.request.contextPath}/views/catalogos/localidades/crearLocalidad.jsp";
-	window.location = urlCrearLocalidad;
+	var urlCrearDireccion = "${pageContext.request.contextPath}/views/catalogos/direcciones/crearDireccion.jsp";
+	window.location = urlCrearDireccion;
 });
 
 

@@ -1,204 +1,200 @@
-package cajas.config.domicilios;
+package cajas.config.direcciones;
 
-public class Domicilio {
+public class Direccion {
 
 	
-    private Integer IdDireccion;
-    private Integer IdColonia;
-	private String Ciudad;
-	private String Colonia;
-	private String NumeroExterior;
-	private String NumeroInterior;
-	private String Cruzamiento1;
-	private String Cruzamiento2;
-	private Integer CodigoPostal;
-	private Integer IdEstado;
-	private Integer IdMunicipio;
-	private Integer IdLocalidad;
-	private String Lada;
-	private String Telefono;
-	private String Referencia;
-	private Integer IdVialidad;
-	private Integer IdInmueble;
-	private Integer Estatus;
-	private String UsuarioRegistra;
-	private Integer FechaAlta;
-	private String UsuarioModifica;
-	private String FechaUltimaModificacion;
-	private String DireccionCompuesta;
-	private String Calle;
-	private String DomicilioHomologado;
-	private String CaracteristicaInmueble;
-	private Integer IdSituacionDomicilio;
+    private Integer idDireccion;
+    private Integer idColonia;
+	private String ciudad;
+	private String colonia;
+	private String numeroExterior;
+	private String numeroInterior;
+	private String cruzamiento1;
+	private String cruzamiento2;
+	private Integer codigoPostal;
+	private Integer idEstado;
+	private Integer idMunicipio;
+	private Integer idLocalidad;
+	private String lada;
+	private String telefono;
+	private String referencia;
+	private Integer idVialidad;
+	private Integer idInmueble;
+	private Integer estatus;
+	private String usuarioRegistra;
+	private Integer fechaAlta;
+	private String usuarioModifica;
+	private String fechaUltimaModificacion;
+	private String direccionCompuesta;
+	private String calle;
+	private String domicilioHomologado;
+	private String caracteristicaInmueble;
+	private Integer idSituacionDomicilio;
+	
+	
 	public Integer getIdDireccion() {
-		return IdDireccion;
+		return idDireccion;
 	}
 	public void setIdDireccion(Integer idDireccion) {
-		IdDireccion = idDireccion;
+		this.idDireccion = idDireccion;
 	}
 	public Integer getIdColonia() {
-		return IdColonia;
+		return idColonia;
 	}
 	public void setIdColonia(Integer idColonia) {
-		IdColonia = idColonia;
+		this.idColonia = idColonia;
 	}
 	public String getCiudad() {
-		return Ciudad;
+		return ciudad;
 	}
 	public void setCiudad(String ciudad) {
-		Ciudad = ciudad;
+		this.ciudad = ciudad;
 	}
 	public String getColonia() {
-		return Colonia;
+		return colonia;
 	}
 	public void setColonia(String colonia) {
-		Colonia = colonia;
+		this.colonia = colonia;
 	}
 	public String getNumeroExterior() {
-		return NumeroExterior;
+		return numeroExterior;
 	}
 	public void setNumeroExterior(String numeroExterior) {
-		NumeroExterior = numeroExterior;
+		this.numeroExterior = numeroExterior;
 	}
 	public String getNumeroInterior() {
-		return NumeroInterior;
+		return numeroInterior;
 	}
 	public void setNumeroInterior(String numeroInterior) {
-		NumeroInterior = numeroInterior;
+		this.numeroInterior = numeroInterior;
 	}
 	public String getCruzamiento1() {
-		return Cruzamiento1;
+		return cruzamiento1;
 	}
 	public void setCruzamiento1(String cruzamiento1) {
-		Cruzamiento1 = cruzamiento1;
+		this.cruzamiento1 = cruzamiento1;
 	}
 	public String getCruzamiento2() {
-		return Cruzamiento2;
+		return cruzamiento2;
 	}
 	public void setCruzamiento2(String cruzamiento2) {
-		Cruzamiento2 = cruzamiento2;
+		this.cruzamiento2 = cruzamiento2;
 	}
 	public Integer getCodigoPostal() {
-		return CodigoPostal;
+		return codigoPostal;
 	}
 	public void setCodigoPostal(Integer codigoPostal) {
-		CodigoPostal = codigoPostal;
+		this.codigoPostal = codigoPostal;
 	}
 	public Integer getIdEstado() {
-		return IdEstado;
+		return idEstado;
 	}
 	public void setIdEstado(Integer idEstado) {
-		IdEstado = idEstado;
+		this.idEstado = idEstado;
 	}
 	public Integer getIdMunicipio() {
-		return IdMunicipio;
+		return idMunicipio;
 	}
 	public void setIdMunicipio(Integer idMunicipio) {
-		IdMunicipio = idMunicipio;
+		this.idMunicipio = idMunicipio;
 	}
 	public Integer getIdLocalidad() {
-		return IdLocalidad;
+		return idLocalidad;
 	}
 	public void setIdLocalidad(Integer idLocalidad) {
-		IdLocalidad = idLocalidad;
+		this.idLocalidad = idLocalidad;
 	}
 	public String getLada() {
-		return Lada;
+		return lada;
 	}
 	public void setLada(String lada) {
-		Lada = lada;
+		this.lada = lada;
 	}
 	public String getTelefono() {
-		return Telefono;
+		return telefono;
 	}
 	public void setTelefono(String telefono) {
-		Telefono = telefono;
+		this.telefono = telefono;
 	}
 	public String getReferencia() {
-		return Referencia;
+		return referencia;
 	}
 	public void setReferencia(String referencia) {
-		Referencia = referencia;
+		this.referencia = referencia;
 	}
 	public Integer getIdVialidad() {
-		return IdVialidad;
+		return idVialidad;
 	}
 	public void setIdVialidad(Integer idVialidad) {
-		IdVialidad = idVialidad;
+		this.idVialidad = idVialidad;
 	}
 	public Integer getIdInmueble() {
-		return IdInmueble;
+		return idInmueble;
 	}
 	public void setIdInmueble(Integer idInmueble) {
-		IdInmueble = idInmueble;
+		this.idInmueble = idInmueble;
 	}
 	public Integer getEstatus() {
-		return Estatus;
+		return estatus;
 	}
 	public void setEstatus(Integer estatus) {
-		Estatus = estatus;
+		this.estatus = estatus;
 	}
 	public String getUsuarioRegistra() {
-		return UsuarioRegistra;
+		return usuarioRegistra;
 	}
 	public void setUsuarioRegistra(String usuarioRegistra) {
-		UsuarioRegistra = usuarioRegistra;
+		this.usuarioRegistra = usuarioRegistra;
 	}
 	public Integer getFechaAlta() {
-		return FechaAlta;
+		return fechaAlta;
 	}
 	public void setFechaAlta(Integer fechaAlta) {
-		FechaAlta = fechaAlta;
+		this.fechaAlta = fechaAlta;
 	}
 	public String getUsuarioModifica() {
-		return UsuarioModifica;
+		return usuarioModifica;
 	}
 	public void setUsuarioModifica(String usuarioModifica) {
-		UsuarioModifica = usuarioModifica;
+		this.usuarioModifica = usuarioModifica;
 	}
 	public String getFechaUltimaModificacion() {
-		return FechaUltimaModificacion;
+		return fechaUltimaModificacion;
 	}
 	public void setFechaUltimaModificacion(String fechaUltimaModificacion) {
-		FechaUltimaModificacion = fechaUltimaModificacion;
+		this.fechaUltimaModificacion = fechaUltimaModificacion;
 	}
 	public String getDireccionCompuesta() {
-		return DireccionCompuesta;
+		return direccionCompuesta;
 	}
 	public void setDireccionCompuesta(String direccionCompuesta) {
-		DireccionCompuesta = direccionCompuesta;
+		this.direccionCompuesta = direccionCompuesta;
 	}
 	public String getCalle() {
-		return Calle;
+		return calle;
 	}
 	public void setCalle(String calle) {
-		Calle = calle;
+		this.calle = calle;
 	}
 	public String getDomicilioHomologado() {
-		return DomicilioHomologado;
+		return domicilioHomologado;
 	}
 	public void setDomicilioHomologado(String domicilioHomologado) {
-		DomicilioHomologado = domicilioHomologado;
+		this.domicilioHomologado = domicilioHomologado;
 	}
 	public String getCaracteristicaInmueble() {
-		return CaracteristicaInmueble;
+		return caracteristicaInmueble;
 	}
 	public void setCaracteristicaInmueble(String caracteristicaInmueble) {
-		CaracteristicaInmueble = caracteristicaInmueble;
+		this.caracteristicaInmueble = caracteristicaInmueble;
 	}
 	public Integer getIdSituacionDomicilio() {
-		return IdSituacionDomicilio;
+		return idSituacionDomicilio;
 	}
 	public void setIdSituacionDomicilio(Integer idSituacionDomicilio) {
-		IdSituacionDomicilio = idSituacionDomicilio;
+		this.idSituacionDomicilio = idSituacionDomicilio;
 	}
 	
 	
-	
-	
-	
-
-
-
-	
+		
 }

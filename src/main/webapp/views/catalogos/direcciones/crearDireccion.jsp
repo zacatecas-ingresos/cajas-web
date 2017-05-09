@@ -87,12 +87,12 @@
 
 			<!-- Main content  -->
 				<section class="content">
-				<div class="row">
-					<!-- Main row -->
-					<div class="col-md-12" id="div2">
-						<div class="box box-primary">
-							<div class="box-body">
-								
+					<div class="row">
+						<!-- Main row -->
+						<div class="col-md-12" id="div2">
+							<div class="box box-primary">
+								<div class="box-body">
+									
 								<form id="frm-domicilio">
 									<div class="col-md-12">
 										<fieldset>
@@ -162,7 +162,7 @@
 														<label for="selectEdo" class="control-label">Estado</label>
 														<select class="form-control" id="selectEdo"
 															name="selectEdo" required>
-															<option value="1">ZACATECAS</option>
+															
 														</select>
 													</div>
 												</div>
@@ -171,7 +171,7 @@
 														<label for="selectMunicipio" class="control-label">Municipio</label>
 														<select class="form-control" id="selectMunicipio"
 															name="selectMunicipio" required>
-															<option value="1">ZACATECAS</option>
+															
 														</select>
 													</div>
 												</div>
@@ -180,7 +180,7 @@
 														<label for="selectLocalidad" class="control-label">Localidad</label>
 														<select class="form-control" id="selectLocalidad"
 															name="selectLocalidad"  required>
-															<option value="1">BUENAVISTA</option>
+															
 														</select>
 													</div>
 												</div> 
@@ -190,21 +190,21 @@
 								</form>
 							</div>
 							<div class="box-footer">
-								<button id="cancel-btn" type="button"
-									class="btn btn-default btn-lg pull-left">
-									<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-									Cancelar
-								</button>
-								<button type="button" id="save-btn"
-									class="btn btn-success btn-lg pull-right">
-									<i class="fa fa-save"></i> Guardar
-								</button>
+									<button id="cancel-btn" type="button"
+										class="btn btn-default btn-lg pull-left">
+										<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+										Cancelar
+									</button>
+									<button type="button" id="save-btn"
+										class="btn btn-success btn-lg pull-right">
+										<i class="fa fa-save"></i> Guardar
+									</button>
+								</div>
+
 							</div>
 
 						</div>
-
 					</div>
-				</div>
 				</section>
 			<!-- Fin contenido Alta Vehiculo -->
 		</div>
@@ -264,46 +264,109 @@
 
 $(document).ready(function() {
 
+		
+	
 					//Cancelar y dirige a la vista principal
 			$('#cancel-btn').click(function() {
-							var urlBack = "${pageContext.request.contextPath}/views/index.jsp";
+							var urlBack = "${pageContext.request.contextPath}/views/catalogos/direcciones/direccion.jsp";
 							window.location = urlBack;
 			});
 					
-						
+			$('#agregar').click(function() {
+				  addEstado();
+				  
+				 });
+				 
+				 var urlGetEstado = "${pageContext.request.contextPath}/cajas/estados";
+				 $.ajax({
+				  type : "GET",
+				  dataType : 'json',
+				  url : urlGetEstado,
+				  success : function(data) {
+				         $.each(data, function(key, item) {
+				             $('#selectEdo').append($('<option>').text(item.estado).attr('value', item.idEstado));
+				         });
+				  },
+				  error : function(jqXHR, textStatus, errorThrown) {
+				   console.log(textStatus + " " + errorThrown);
+				  }
+				 });	
 					
+				 
+				 
+				 $('#add').click(function() {
+					  addMunicipio();
+					  
+					 });
+					 
+					 var urlGetMunicipio = "${pageContext.request.contextPath}/cajas/municipios";
+					 $.ajax({
+					  type : "GET",
+					  dataType : 'json',
+					  url : urlGetMunicipio,
+					  success : function(data) {
+					         $.each(data, function(key, item) {
+					             $('#selectMunicipio').append($('<option>').text(item.municipio).attr('value', item.idMunicipio));
+					         });
+					  },
+					  error : function(jqXHR, textStatus, errorThrown) {
+					   console.log(textStatus + " " + errorThrown);
+					  }
+					 });
+					 
+					 
+					 
+					 $('#agregar').click(function() {
+						  addLocalidad();
+						  
+						 });
+						 
+						 var urlGetLocalidad = "${pageContext.request.contextPath}/cajas/localidades";
+						 $.ajax({
+						  type : "GET",
+						  dataType : 'json',
+						  url : urlGetLocalidad,
+						  success : function(data) {
+						         $.each(data, function(key, item) {
+						             $('#selectLocalidad').append($('<option>').text(item.localidad).attr('value', item.idLocalidad));
+						         });
+						  },
+						  error : function(jqXHR, textStatus, errorThrown) {
+						   console.log(textStatus + " " + errorThrown);
+						  }
+						 });
+					 
+					 
+				 
 					//Registra 
 					$('#save-btn').click(function(){
-						guardar();
 						 // Validaciones
 				        var formValidation = $('#frm-domicilio').data('formValidation');
 
 				        formValidation.validate();
 
-				        console.log(formValidation.isValid());
-
 				        if (formValidation.isValid()) {
 
 				            var datos = {};
 				            var calle = $('#inputCalle');
-				            var numExt = $('#inputNum');
-				            var numInt = $('#inputNumInt');
+				            var numeroExterior = $('#inputNum');
+				            var numeroInterior = $('#inputNumInt');
 				            var colonia = $('#inputColonia');
-				            var entreCalle1 = $('#inputEntreCalle1');
-				            var entreCalle2 = $('#inputEntreCalle2');
-				            var cp = $('#inputCP');
+				            var cruzamiento1 = $('#inputEntreCalle1');
+				            var cruzamiento2 = $('#inputEntreCalle2');
+				            var codigoPostal = $('#inputCP');
 				            var idEstado = $('#selectEdo');
 				            var idMunicipio = $('#selectMunicipio');
 				            var idLocalidad = $('#selectLocalidad');
 				            
 
 				            datos.calle = calle.val();
-							datos.numExt = numExt.val();
-							datos.numInt = numInt.val();
+							datos.numeroExterior = numeroExterior.val();
+							datos.numeroInterior = numeroInterior.val();
 							datos.colonia = colonia.val();
-							datos.entreCalle1 = entreCalle1.val();
-				            datos.entreCalle2 = entreCalle2.val();
-				            datos.cp = cp.val();
+							datos.cruzamiento1 = cruzamiento1.val();
+				            datos.cruzamiento2 = cruzamiento2.val();
+				            datos.codigoPostal = codigoPostal.val();
 				            datos.idEstado = idEstado.val();
 				            datos.idMunicipio = idMunicipio.val();
 				            datos.idLocalidad = idLocalidad.val()
@@ -312,8 +375,8 @@ $(document).ready(function() {
 
 				            console.log(formData);
 
-				            var urlPost = "${pageContext.request.contextPath}/cajas/domicilio";
-				            var urlDomicilio = "${pageContext.request.contextPath}/views/catalogos/domicilio/domicilio.jsp";
+				            var urlPost = "${pageContext.request.contextPath}/cajas/direcciones";
+				            var urlDireccion = "${pageContext.request.contextPath}/views/catalogos/direcciones/crearDireccion.jsp";
 
 				            $.ajax({
 				                type : 'POST',
@@ -329,7 +392,7 @@ $(document).ready(function() {
 				                        closeOnCancel : false
 				                    },
 				                        function() {
-				                        window.location = urlDomicilio;
+				                        window.location = urlDireccion;
 				                        });
 				                },
 				                error : function(jqXHR,textStatus,errorThrown) {
@@ -359,97 +422,20 @@ $(document).ready(function() {
 				                        },
 				                    }
 				                },
-				                'inputNum' : { //validación del campo
-				                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-				                    validators : { //validaciones
-				                        notEmpty : {
-				                            message : 'Ingrese Numero del Domicilio'
-				                        },
-				                       
-				                    }
-				                }
-				                'inputColonia' : { //validación del campo
-				                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-				                    validators : { //validaciones
-				                        notEmpty : {
-				                            message : 'Ingrese Colonia'
-				                        },
-				                       
-				                    }
-				                }
-				                'inputCP' : { //validación del campo
-				                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-				                    validators : { //validaciones
-				                        notEmpty : {
-				                            message : 'Ingrese Codigo Postal'
-				                        },
-				                       
-				                    }
-				                }
-				                'selectEdo' : { //validación del campo
-				                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-				                    validators : { //validaciones
-				                        notEmpty : {
-				                            message : 'Seleccione un Estado'
-				                        },
-				                       
-				                    }
-				                }
-				                'selectMunicipio' : { //validación del campo
-				                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-				                    validators : { //validaciones
-				                        notEmpty : {
-				                            message : 'Seleccione un Municipio'
-				                        },
-				                       
-				                    }
-				                }
-				                'selectLocalidad' : { //validación del campo
-				                    trigger : 'blur', //Se especifica cuando se acciona la validación del campo
-				                    validators : { //validaciones
-				                        notEmpty : {
-				                            message : 'Seleccione una Localidad'
-				                        },
-				                       
-				                    }
-				                }
+				                
 				            }
 				        });
+					 
+				    $('#crear').click(function() {
+		        		var urlCrearDireccion = "${pageContext.request.contextPath}/views/catalogos/direcciones/crearDireccion.jsp";
+		        		window.location = urlCrearDireccion;
+		        	});
 					
 					 
-				    // Errores
-			        $.ajaxSetup(
-			            {
-			                error : function(x, status, error) {
-			                    if (x.status === 400) {
-			                        var result = x.responseJSON;
-			                        swal({
-			                            title : "Error " + result.code,
-			                            text : result.message,
-			                            type : "error",
-			                            closeOnCancel : false
-			                        });
-			                    } else if (x.status === 500) {
-			                            swal({
-			                            title : "Error 500",
-			                            text : "Disculpe las molestias no podemos procesar su solicitud.",
-			                            type : "error",
-			                            closeOnCancel : false
-			                            });
-			                    }
-			                }
-			            });
-					
-					
-					
+				   
 					
 					
 			});
 	
-
-
-	
-	
-										
 </script>
 </html>

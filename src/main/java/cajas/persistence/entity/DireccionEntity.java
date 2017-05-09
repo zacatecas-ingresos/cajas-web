@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 	@Entity
 	@Table(name = "Direcciones", schema = "contribuyente")
-	public class DomicilioEntity implements Serializable {
+	public class DireccionEntity implements Serializable {
 
 		
 		/**
@@ -24,7 +24,7 @@ import javax.persistence.Table;
 		private static final long serialVersionUID = -3237900983695423992L;
 
 		@Id
-		@Column(name = "idDireccion")
+		@Column(name = "IdDireccion")
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Integer idDireccion;
 
@@ -52,7 +52,7 @@ import javax.persistence.Table;
 		private MunicipioEntity idMunicipio;
 		
 		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name = "IdLocalidad")
+		@JoinColumn(name = "IdLocalida")
 		private LocalidadEntity idLocalidad;
 		
 		@Column(name = "CodigoPostal")
@@ -94,7 +94,7 @@ import javax.persistence.Table;
 		@Column(name = "FechaUltimaModificacion")
 		private Date fechaUltimaModificacion;
 
-		@Column(name = "DireccionDompuesta")
+		@Column(name = "DireccionCompuesta")
 		private String direccionCompuesta;
 
 		@Column(name = "Calle")
@@ -123,6 +123,14 @@ import javax.persistence.Table;
 
 		public void setCiudad(String ciudad) {
 			this.ciudad = ciudad;
+		}
+
+		public Integer getIdColonia() {
+			return idColonia;
+		}
+
+		public void setIdColonia(Integer idColonia) {
+			this.idColonia = idColonia;
 		}
 
 		public String getColonia() {
@@ -221,6 +229,22 @@ import javax.persistence.Table;
 			this.referencia = referencia;
 		}
 
+		public Integer getIdVialidad() {
+			return idVialidad;
+		}
+
+		public void setIdVialidad(Integer idVialidad) {
+			this.idVialidad = idVialidad;
+		}
+
+		public Integer getIdInmueble() {
+			return idInmueble;
+		}
+
+		public void setIdInmueble(Integer idInmueble) {
+			this.idInmueble = idInmueble;
+		}
+
 		public Integer getEstatus() {
 			return estatus;
 		}
@@ -301,33 +325,7 @@ import javax.persistence.Table;
 			this.idSituacionDomicilio = idSituacionDomicilio;
 		}
 
-		public static long getSerialversionuid() {
-			return serialVersionUID;
-		}
-
-		public Integer getIdColonia() {
-			return idColonia;
-		}
-
-		public void setIdColonia(Integer idColonia) {
-			this.idColonia = idColonia;
-		}
-
-		public Integer getIdVialidad() {
-			return idVialidad;
-		}
-
-		public void setIdVialidad(Integer idVialidad) {
-			this.idVialidad = idVialidad;
-		}
-
-		public Integer getIdInmueble() {
-			return idInmueble;
-		}
-
-		public void setIdInmueble(Integer idInmueble) {
-			this.idInmueble = idInmueble;
-		}
+	
 
 		
 

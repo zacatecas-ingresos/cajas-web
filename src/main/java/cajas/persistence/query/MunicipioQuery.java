@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import cajas.persistence.entity.EstadoEntity;
 import cajas.persistence.entity.MunicipioEntity;
 
 public class MunicipioQuery {
@@ -27,6 +28,16 @@ public class MunicipioQuery {
 
     public MunicipioQuery(EntityManager entityManager) {
         this.entityManager = entityManager;
+    }
+    
+    public final static String BUSCAR_MUNICIPIOS_POR_UN_ESTADO =  "from MunicipioEntity m where estado = : estado";
+    
+    public List<MunicipioEntity> obterMunicipiosPorEstado(EstadoEntity estado){
+    	TypedQuery<MunicipioEntity> consulta = entityManager.createQuery(BUSCAR_MUNICIPIOS_POR_UN_ESTADO, MunicipioEntity.class );
+    	consulta.setParameter("estado", estado);
+    	return consulta.getResultList();
+    	
+    	
     }
     
     

@@ -72,7 +72,7 @@
                     <h1>Direcciones</h1>
                 </section>
 
-                <!-- Main content Localidades -->
+                <!-- Main content direcciones -->
                 <section class="content">
                     <div class="row">
                         <div class="col-md-4 col-md-offset-4">
@@ -223,7 +223,7 @@ $(document).ready(function() {
     
     // Editar direccion
     $('#editar').click(function() {
-        if (idDirecciones === null) {
+        if (idDireccion == null) {
                 swal(
                         {
                             title : 'No ha seleccionado ninguna Direccion.',
@@ -294,21 +294,33 @@ $(document).ready(function() {
     );
 });
 
+
 function llenarTablaDirecciones(data) {
     $('#tbldireccion > tbody').find('tr').remove();
     var tableBody = $('#tbldireccion > tbody');
     for (var i = 0; i < data.length; i++) {
         var row = 
                 '<tr>'
-                + '<td class=\"hidden id\">' + data[i].calle + '</td>'
+                + '<td class=\"hidden id\">' + data[i].idDireccion + '</td>'
                 + '<td>' + (i + 1) + '</td>'
-                + '<td>' + data[i].numeroExterior + '</td>'
-                + '<td>' + data[i].colonia + '</td>'
+                + '<td>' + data[i].calle+ '</td>'
+                + '<td>' + data[i].NumeroExterior + '</td>'
+                + '<td>' + data[i].colonia+ '</td>'
                 + '<td>' + data[i].codigoPostal + '</td>'
+                + '<td>' + data[i].idEstado + '</td>'
+                + '<td>' + data[i].IdMunicipio + '</td>'
+                + '<td>' + data[i].idLocalidad + '</td>'
                 + '</tr>';
         $(tableBody).append(row);
     }
 };
+
+
+
+
+
+
+
 $('#crear').click(function() {
 	var urlCrearDireccion = "${pageContext.request.contextPath}/views/catalogos/direcciones/crearDireccion.jsp";
 	window.location = urlCrearDireccion;

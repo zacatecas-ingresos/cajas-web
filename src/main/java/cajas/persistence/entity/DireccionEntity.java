@@ -44,7 +44,7 @@ import javax.persistence.Table;
 		private String numeroInterior;
 		
 		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name = "idEstado")
+		@JoinColumn(name = "IdEstado")
 		private EstadoEntity idEstado;
 		
 		@ManyToOne(fetch = FetchType.LAZY)

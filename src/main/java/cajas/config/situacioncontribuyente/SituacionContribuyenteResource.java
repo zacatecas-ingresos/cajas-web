@@ -34,7 +34,7 @@ public class SituacionContribuyenteResource {
     @GET
     @Path ("{idSituacionContribuyente}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public SituacionContribuyente obtenerEstado(@PathParam("idSituacionContribuyente") Integer idSituacionContribuyente) {
+    public SituacionContribuyente obtenerSituacionContribuyente(@PathParam("idSituacionContribuyente") Integer idSituacionContribuyente) {
         return situacionContribuyenteEJB.obtenerSituacionContribuyente(idSituacionContribuyente);
     }
     

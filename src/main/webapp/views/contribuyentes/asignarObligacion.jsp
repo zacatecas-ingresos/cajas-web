@@ -442,19 +442,31 @@ function addObligacion(){
 	  	 	  		 
 	  	
 	  		 					  	
-							if(!!Obligacion && !!Dias && !!Fecha  && !!Tipo){
- 			 				 var tableDatos = $('#tblObligaciones > tbody'); 		   			  			   
-							   		 var row = '<tr>'
-									+ '<td class=\"Obligacion\" >' + Obligacion + '</td>'
-									+ '<td class=\"Dias\">' + Dias + '</td>'
-									+ '<td class=\"Fecha Alta\">' + Fecha + '</td>'					
-									+ '<td>-</td>'
-									+ '<td class=\"Tipo de Obliagcion\">' + Tipo + '</td>'
-									+ '<td class=\"\"><button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-trash"></span> </button></td>'
-									+ '</tr>';
-									tableDatos.append(row);
-									borrar();
-									}
+						if(!!Obligacion && !!Dias && !!Fecha  && !!Tipo){
+							
+							if($('#tblObligaciones tr > td:contains('+Obligacion+')').length > 1){
+								swal({
+									title : "Error ",
+									text : "Esta obligación ya se Agrego",
+									type : "error",
+									closeOnCancel : false
+								});
+								borrar();
+							}else{
+								 var tableDatos = $('#tblObligaciones > tbody'); 		   			  			   
+						   		 var row = '<tr>'
+								+ '<td class=\"Obligacion\" >' + Obligacion + '</td>'
+								+ '<td class=\"Dias\">' + Dias + '</td>'
+								+ '<td class=\"Fecha Alta\">' + Fecha + '</td>'					
+								+ '<td>-</td>'
+								+ '<td class=\"Tipo de Obliagcion\">' + Tipo + '</td>'
+								+ '<td class=\"\"><button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-trash"></span> </button></td>'
+								+ '</tr>';
+								tableDatos.append(row);
+								borrar();
+							}
+							 			 	
+						}
 				
 }
 		   	

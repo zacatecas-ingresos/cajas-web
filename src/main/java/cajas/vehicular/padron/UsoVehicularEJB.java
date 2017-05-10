@@ -33,7 +33,7 @@ public class UsoVehicularEJB {
 			}
 			return usosVehiculo;
 		} catch (NoResultException ex) {
-			throw new BusinessException("No hay Documentos Registrados.");
+			throw new BusinessException("No hay Usos de Vehiculos Registrados.");
 		}
 	}
 	

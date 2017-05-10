@@ -302,9 +302,8 @@ function llenarTablaDirecciones(data) {
         var row = 
                 '<tr>'
                 + '<td class=\"hidden id\">' + data[i].idDireccion + '</td>'
-                + '<td>' + (i + 1) + '</td>'
                 + '<td>' + data[i].calle+ '</td>'
-                + '<td>' + data[i].NumeroExterior + '</td>'
+                + '<td>' + data[i].numeroExterior + '</td>'
                 + '<td>' + data[i].colonia+ '</td>'
                 + '<td>' + data[i].codigoPostal + '</td>'
                 + '<td>' + data[i].idEstado + '</td>'

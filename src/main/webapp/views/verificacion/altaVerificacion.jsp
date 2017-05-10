@@ -765,7 +765,6 @@
 		$('#selectClase').change(function(){
 			$('#selectTipo').empty();
 			var idClaseVehiculo = $(this).val();
-			console.log(idClaseVehiculo);
 			var urlGet = "${pageContext.request.contextPath}/cajas/catalogos/tipovehiculo/obtenerListaPorIdClaseVehiculo?idClaseVehiculo=" + idClaseVehiculo;
 	        $.ajax({
 				type : "GET",
@@ -773,7 +772,7 @@
 				url : urlGet,
 				success : function(data) {
 			        $.each(data, function(key, item) {
-			            $('#selectTipo').append($('<option>').text(item.nombre).attr('value', item.idClaseVehiculo));
+			            $('#selectTipo').append($('<option>').text(item.nombre).attr('value', item.idTipoVehiculo));
 			        });
 				},
 				error : function(jqXHR, textStatus, errorThrown) {

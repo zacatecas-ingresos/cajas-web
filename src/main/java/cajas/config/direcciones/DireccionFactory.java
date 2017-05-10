@@ -28,6 +28,10 @@ public class DireccionFactory {
     // DTO a entidad    
     public Direccion entidadADto(DireccionEntity entidad) {
     	Direccion dto = new Direccion();
+    	dto.setCalle(entidad.getCalle());
+    	dto.setNumeroExterior(entidad.getNumeroExterior());
+    	dto.setColonia(entidad.getColonia());
+    	dto.setCodigoPostal(entidad.getCodigoPostal());
 		return dto;
         
    

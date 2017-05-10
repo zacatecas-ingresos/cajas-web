@@ -38,6 +38,7 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="${pageContext.request.contextPath}/views/contribuyentes/contribuyente.jsp"><span>Administración</span></a></li>
+            <li><a href="${pageContext.request.contextPath}/views/contribuyentes/asignarObligacion.jsp"><span>Asignar Obligación</span></a></li>
         </ul>
     </li>
 </ul>

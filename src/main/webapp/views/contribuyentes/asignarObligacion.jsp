@@ -7,7 +7,6 @@
 
 		<!-- Bootstrap -->
 		<link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-
 		<!-- Font Awesome -->
 		<link href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -88,8 +87,8 @@
 		                            </div>
 								</div>
 							</div>
-							
-							<table id="tblContribuyente" class="table table-hover voffset4" >
+<div id='oculto' style='display:none;'>
+							<table id="tblContribuyente" class="table table-responsive voffset4" >
 								<tbody>
 									<tr class="bg-primary">
 										<th><abbr title="Registro federal de contribuyentes">RFC</abbr></th>
@@ -100,7 +99,8 @@
 									</tr>
 								</tbody>
 							</table>
-
+</div>
+<div id='oculto1' style='display:none;'>
 							<div class="row">
 								<div class="col-md-4">
 									<button id="seleccionarContribuyente" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i>&nbsp;&nbsp;Ver contribuyente</button>
@@ -108,7 +108,7 @@
 							</div>
 						</div>
 					</div>
-
+<div>
 					<div id="panelContribuyente" class="box box-success hidden">
 						<div class="box-header">
 							<h3 class="box-title">Contribuyentes</h3>
@@ -138,29 +138,24 @@
 							</form>
 						</div>
 					</div>
-
-					<div id="panelObligacion" class="box box-primary hidden">
-						<div class="box-header">
+			<div id='oculto2' style='display:none;'>
+						<div id="panelObligacion" class="box box-primary hidden">
+							<div class="box-header">
 							<h3 class="box-title">Registrar Obligación al Contribuyente</h3>
-						</div>
-						<div class="box-body">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="selectObligacion">Seleccione la Obligación</label>
-									
-											
-													<div class="form-group">		
+							</div>
+								<div class="box-body">
+									<div class="col-md-4">
+										<div class="form-group">
+														<label for="selectObligacion">Seleccione la Obligación</label>								
+														<div class="form-group">		
 														<label for="selectOblig" class="control-label">Obligacion</label>
 														<select 
 														id="selectOblig" class="form-control" name="selectOblig" >
-														</select>				
-											
-													</div>
-																									    										
-									
-								</div>
-							</div>
-						</div>						
+														</select>		
+														</div>
+										</div>
+									</div>
+								</div>						
 					<div class="box-body">
 						<form id="formContribuyente" class="form-horizontal">
 								<div class="form-group">
@@ -175,14 +170,8 @@
                                 <div class="col-sm-4">
                                     <input id="vencimiento" name="vencimiento" type="text" class="form-control" />
                                 </div>
-                           		 </div>
-									<div class="form-group">
-                                <label for="estatus" class="col-sm-2 control-label">Estatus</label>
-                                <div class="col-sm-4">
-                                    <input id="estatus" name="estatus" type="text" class="form-control" />
-                                </div>
-                           		 </div>						
-						
+                           		 </div>								
+					
 								<div class="form-group">
                                 <label for="TipoObliagcion" class="col-sm-2 control-label">Tipo de Obligacion</label>
 	                                <div class="col-sm-4">
@@ -191,29 +180,31 @@
                            		 </div>		
                           </div>						
 						</div>	
+					
 					</FORM>
-						<table id="tblObligaciones" class="table table-hover voffset4" >
+					<div id='oculto3' style='display:none;'>
+						<table id="tblObligaciones" class="table table-responsive voffset4" >
 								<tbody>
 									<tr class="bg-primary">
-										<th><abbr title="X">Obligacion</abbr></th>										
+										<th>Obligacion</th>											
 										<th>Dia de Vencimiento</th>
 										<th>Fecha de Inicio</th>
-										<th>Estatus</th>
 										<th>Usuario de Alta</th>
 										<th>Tipo de obligacion</th>
+										<th>Accion</th>
+										
 									</tr>
-								</tbody>
+							</tbody>
+					
 							</table>
-						<div class="box-footer">
-							<button id="cancelar-btn" type="button" class="btn btn-danger btn-lg">
-								<i class="fa fa-close"></i> Cancelar
-							</button>
-							<button id="agregar" type="button" class="btn btn-primary btn-lg pull-right">
-								<i class="fa fa-plus"></i> Agregar
-								
-							</button>
-						</div>
-					</div>
+						</div>	
+										<div class="box-footer">
+											<button id="cancelar-btn" type="button" class="btn btn-danger btn-lg">
+											<i class="fa fa-close"></i> Cancelar</button>
+											<button id="agregar" type="button" class="btn btn-primary btn-lg pull-right">
+											<i class="fa fa-plus"></i> Agregar</button>
+										</div>
+					</div>							
 				</section>
 				<!-- Fin contenido Registrar Usuario -->
 			</div>
@@ -295,9 +286,10 @@ $(document).ready(function() {
 		
 
 	});
-			
+	    
 	$('#busqueda').keyup(function() {
-			buscar();		
+			buscar();	
+			
 		}
 	);
 
@@ -321,25 +313,33 @@ $(document).ready(function() {
 			
     	} 
     	
-    	//alert(rfcContribuyente.nombre);
-        
     });
 	
 	$('#seleccionarContribuyente').click(function() {
-		console.log("iniciarseleccion");
 		
-			mostrarContribuyente(rfcContribuyente);	
-			
-			
+		if(rfcContribuyente == null){
+			swal(
+					{
+						title : "No ha seleccionado a un contribuyente.",
+						type : "error",
+						closeOnCancel : false
+					}
+				);
+		}else{
+					
+			mostrarContribuyente(rfcContribuyente);						
 		}
+	}
 	);
 	
 
 	
 	$('#agregar').click(function() {
-		addObligacion();
 		
+		addObligacion();
+			
 	});
+	
 	//Muestra TODAS las Obligaciones
 	var urlGetObligaciones = "${pageContext.request.contextPath}/cajas/obligaciones";
 	$.ajax({
@@ -348,26 +348,35 @@ $(document).ready(function() {
 		url : urlGetObligaciones,
 		success : function(data) {
 	        $.each(data, function(key, item) {
+	        	
 	            $('#selectOblig').append($('<option>').text(item.obligacion).attr('value', item.idObligacion));
-	           
-	        });
+	              });
+	     
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(textStatus + " " + errorThrown);
 		}
 	});
-	
-	
+	//Elimina row
+	$(document).on('click', 'button.btn-success', function () {
+	     $(this).closest('tr').remove();
+	     return false;
+	 }); 	
 });
 
 
 
 function buscar() {
+		
 	var criterio = $('#busqueda').val();
 	
 	if(criterio.length > 3) {
-		//console.log("Iniciando busqueda");
-
+			{
+			document.getElementById('oculto').style.display = 'block';
+			}
+			{
+			document.getElementById('oculto1').style.display = 'block';
+			}
     	var urlGet = '${pageContext.request.contextPath}/cajas/contribuyentes/consulta?porCriterio=' + criterio;
 	    $.ajax({
 	        type: 'GET',
@@ -406,53 +415,82 @@ function llenarTablaContribuyentes(data) {
 function mostrarContribuyente(contribuyente) {
 	//console.log("Iniciando mostrar contribuyente");
 	
-	
+	{
+		document.getElementById('oculto2').style.display = 'block';
+	}
 	$('#inputNombre').val(contribuyente.nombre);
 	$('#inputRfc').val(contribuyente.rfc);
-	$('#inputTipo').val(contribuyente.TipoPersona);
-	
+	$('#inputTipo').val(contribuyente.TipoPersona);	
 	$('#panelContribuyente').removeClass('hidden');
 	$('#panelObligacion').removeClass('hidden');
-
+	// $('#TipoObliagcion').val(obligacion.tipoObligacion);
 	} 
 
 	
+	//Agrega la Obligacion seleccionada
 function addObligacion(){ 
-	
-	   var Obligacion=$("#selectOblig").val();
-	   
-	   var Dias=$("#vencimiento").val();
-	   var Fecha=$("#fechaAlta").val(); 
-	   var Estatus=$("#estatus").val(); 
-	   var Tipo=$("#TipoObliagcion").val(); 	
-
-				if(!!Obligacion && !!Dias && !!Fecha && !!Estatus && !!Tipo){
-			   	var tableDatos = $('#tblObligaciones > tbody');   		   
-				  			   
-				    var row = '<tr>'
-						+ '<td class=\"Obligacion\" >' + Obligacion + '</td>'
-						  + '<button class="btn removemebtn">Remove Row!!'
-						+ '<td class=\"Dias\">' + Dias + '</td>'
-						+ '<td class=\"Fecha Alta\">' + Fecha + '</td>'
-						+ '<td class=\"Estatus\">' + Estatus + '</td>'
-						+ '<td>-</td>'
-						+ '<td class=\"Tipo de Obliagcion\">' + Tipo + '</td>'
-						+ '</tr>';
-						tableDatos.append(row);
-						borrar();
-						}
+   
+		{
+		document.getElementById('oculto3').style.display = 'block';
 		}
-	   	
+	  	
+			 var Obligacion=$("#selectOblig").val();	
+	  	 	 var Dias=$("#vencimiento").val();
+		  	 var Fecha=$("#fechaAlta").val(); 
+	  		 var Tipo=$("#TipoObliagcion").val(); 
+	  	 	    
+	  	 	  		 
+	  	
+	  		 					  	
+							if(!!Obligacion && !!Dias && !!Fecha  && !!Tipo){
+ 			 				 var tableDatos = $('#tblObligaciones > tbody'); 		   			  			   
+							   		 var row = '<tr>'
+									+ '<td class=\"Obligacion\" >' + Obligacion + '</td>'
+									+ '<td class=\"Dias\">' + Dias + '</td>'
+									+ '<td class=\"Fecha Alta\">' + Fecha + '</td>'					
+									+ '<td>-</td>'
+									+ '<td class=\"Tipo de Obliagcion\">' + Tipo + '</td>'
+									+ '<td class=\"\"><button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-trash"></span> </button></td>'
+									+ '</tr>';
+									tableDatos.append(row);
+									borrar();
+									}
+				
+}
+		   	
 	function borrar(){
 		$("#selectObligacion").val('');
 		$("#vencimiento").val('');
 		$("#fechaAlta").val('');
-		$("#estatus").val('');
+		
 		$("#TipoObliagcion").val('');
 	}
-	
-	
+	//Errores
+	$.ajaxSetup({
+			error : function(x, status, error) {
+				if (x.status == 400) {
+					var result = x.responseJSON;
+						swal({
+							title : "Error " + result.code,
+							text : result.message,
+							type : "error",
+							closeOnCancel : false
+						});
+				} else if (x.status == 500) {
+						swal({
+						title : "Error 500",
+						text : "Disculpe las molestias no podemos procesar su solicitud.",
+						type : "error",
+						closeOnCancel : false
+					});
+				}
+		}
+	});
 
+
+
+
+	
 	</script>
 	</body>
 </html>

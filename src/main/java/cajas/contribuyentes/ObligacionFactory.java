@@ -26,7 +26,7 @@ public class ObligacionFactory {
                obligacion.setIdObligacion(dto.getIdObligacion());
 	        }
 
-//	        obligacion.setObligacion(dto.getObligacion());
+	        obligacion.setObligacion(dto.getObligacion());
 	        obligacion.setDiaVencimiento(dto.getDiaVencimiento());
 	        obligacion.setFechaInicio(dto.getFechaInicio());
 	        obligacion.setTipoObligacion(dto.getTipoObligacion());
@@ -38,12 +38,12 @@ public class ObligacionFactory {
 	    public Obligacion obligacionADto(ObligacionEntity obligacion) {
 	        Obligacion dto = new Obligacion();
 
-	        obligacion.setIdObligacion(dto.getIdObligacion());
-//	        obligacion.setObligacion(dto.getObligacion());
-	        obligacion.setDiaVencimiento(dto.getDiaVencimiento());
-	        obligacion.setFechaInicio(dto.getFechaInicio());
-	        obligacion.setTipoObligacion(dto.getTipoObligacion());
-	        obligacion.setDiasProrroga(dto.getDiasTiempoProrroga());
+	        dto.setIdObligacion(obligacion.getIdObligacion());
+	        dto.setObligacion(obligacion.getObligacion());
+	        dto.setDiaVencimiento(obligacion.getDiaVencimiento());
+	        dto.setFechaInicio(obligacion.getFechaInicio());
+	        dto.setTipoObligacion(obligacion.getTipoObligacion());
+	        dto.setDiasTiempoProrroga(obligacion.getDiasProrroga());
 	        
 	        return dto;
 	    }

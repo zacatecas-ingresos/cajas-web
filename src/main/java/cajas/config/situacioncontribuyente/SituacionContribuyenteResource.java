@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Alejandro Perez
  */
-@Path("ituacionContribuyente")
+@Path("situacionContribuyente")
 public class SituacionContribuyenteResource {
     @EJB
     private SituacionContribuyenteEJB situacionContribuyenteEJB;

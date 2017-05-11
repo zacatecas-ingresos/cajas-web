@@ -238,7 +238,7 @@ $(document).ready(function() {
         }
     });
     
-    //Elimina localidad
+    //Elimina Direccion
     $('#eliminar').click(
         function() {
             if (idDireccion === null) {
@@ -294,7 +294,6 @@ $(document).ready(function() {
     );
 });
 
-
 function llenarTablaDirecciones(data) {
     $('#tbldireccion > tbody').find('tr').remove();
     var tableBody = $('#tbldireccion > tbody');
@@ -313,13 +312,6 @@ function llenarTablaDirecciones(data) {
         $(tableBody).append(row);
     }
 };
-
-
-
-
-
-
-
 $('#crear').click(function() {
 	var urlCrearDireccion = "${pageContext.request.contextPath}/views/catalogos/direcciones/crearDireccion.jsp";
 	window.location = urlCrearDireccion;

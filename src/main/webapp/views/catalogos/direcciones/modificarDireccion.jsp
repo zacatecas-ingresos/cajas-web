@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -274,20 +275,20 @@
 					  
 					 });
 					 
-					 var urlGetMunicipio = "${pageContext.request.contextPath}/cajas/municipios";
-					 $.ajax({
-					  type : "GET",
-					  dataType : 'json',
-					  url : urlGetMunicipio,
-					  success : function(data) {
-					         $.each(data, function(key, item) {
-					             $('#selectMunicipio').append($('<option>').text(item.municipio).attr('value', item.idMunicipio));
-					         });
-					  },
-					  error : function(jqXHR, textStatus, errorThrown) {
-					   console.log(textStatus + " " + errorThrown);
-					  }
-					 });
+// 					 var urlGetMunicipio = "${pageContext.request.contextPath}/cajas/municipios";
+// 					 $.ajax({
+// 					  type : "GET",
+// 					  dataType : 'json',
+// 					  url : urlGetMunicipio,
+// 					  success : function(data) {
+// 					         $.each(data, function(key, item) {
+// 					             $('#selectMunicipio').append($('<option>').text(item.municipio).attr('value', item.idMunicipio));
+// 					         });
+// 					  },
+// 					  error : function(jqXHR, textStatus, errorThrown) {
+// 					   console.log(textStatus + " " + errorThrown);
+// 					  }
+// 					 });
 					 
 					 
 					 
@@ -296,20 +297,20 @@
 						  
 						 });
 						 
-						 var urlGetLocalidad = "${pageContext.request.contextPath}/cajas/localidades";
-						 $.ajax({
-						  type : "GET",
-						  dataType : 'json',
-						  url : urlGetLocalidad,
-						  success : function(data) {
-						         $.each(data, function(key, item) {
-						             $('#selectLocalidad').append($('<option>').text(item.localidad).attr('value', item.idLocalidad));
-						         });
-						  },
-						  error : function(jqXHR, textStatus, errorThrown) {
-						   console.log(textStatus + " " + errorThrown);
-						  }
-						 });
+// 						 var urlGetLocalidad = "${pageContext.request.contextPath}/cajas/localidades";
+// 						 $.ajax({
+// 						  type : "GET",
+// 						  dataType : 'json',
+// 						  url : urlGetLocalidad,
+// 						  success : function(data) {
+// 						         $.each(data, function(key, item) {
+// 						             $('#selectLocalidad').append($('<option>').text(item.localidad).attr('value', item.idLocalidad));
+// 						         });
+// 						  },
+// 						  error : function(jqXHR, textStatus, errorThrown) {
+// 						   console.log(textStatus + " " + errorThrown);
+// 						  }
+// 						 });
 			
 			
 			
@@ -458,6 +459,45 @@
         		var urlCrearDireccion = "${pageContext.request.contextPath}/views/catalogos/direcciones/crearDireccion.jsp";
         		window.location = urlCrearDireccion;
         	});
+        	
+        	 $('#selectEdo').change(function(){
+					$('#selectMunicipio').empty();
+					var idEstado = $(this).val();
+					var urlGet = "${pageContext.request.contextPath}/cajas/municipios/obtenerListaPorIdEstado?idEstado=" + $('#selectEdo').val();
+			        $.ajax({
+						type : "GET",
+						dataType : 'json',
+						url : urlGet,
+						success : function(data) {
+					        $.each(data, function(key, item) {
+					            $('#selectMunicipio').append($('<option>').text(item.municipio).attr('value', item.idMunicipio));
+					        });
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							console.log(textStatus + " " + errorThrown);
+						}
+			        })
+				});
+				
+			    
+			    $('#selectMunicipio').change(function(){
+					$('#selectLocalidad').empty();
+					var idMunicipio = $(this).val();
+					var urlGet = "${pageContext.request.contextPath}/cajas/localidades/obtenerListaPorIdMunicipio?idMunicipio=" + $('#selectMunicipio').val();
+			        $.ajax({
+						type : "GET",
+						dataType : 'json',
+						url : urlGet,
+						success : function(data) {
+					        $.each(data, function(key, item) {
+					            $('#selectLocalidad').append($('<option>').text(item.localidad).attr('value', item.idLocalidad));
+					        });
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							console.log(textStatus + " " + errorThrown);
+						}
+			        })
+				});
         	//Editar Localidad
         	$('#home').click(function(){
         			var urlEditarDireccion = "${pageContext.request.contextPath}/views/catalogos/direcciones/direccion.jsp";

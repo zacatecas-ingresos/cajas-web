@@ -81,8 +81,8 @@ public class VehiculoEntity implements Serializable{
 	@Column(name = "Motor")
 	private String motor;
 	
-	@Column(name = "Rfc")
-	private String rfc;
+	@Column(name = "Rfv")
+	private String rfv;
 	
 	@Column(name = "Nrpv")
 	private String nrpv;
@@ -286,12 +286,12 @@ public class VehiculoEntity implements Serializable{
 		this.motor = motor;
 	}
 
-	public String getRfc() {
-		return rfc;
+	public String getRfv() {
+		return rfv;
 	}
 
-	public void setRfc(String rfc) {
-		this.rfc = rfc;
+	public void setRfv(String rfv) {
+		this.rfv = rfv;
 	}
 
 	public String getNrpv() {

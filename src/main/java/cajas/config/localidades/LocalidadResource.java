@@ -13,6 +13,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+
+import cajas.exception.BusinessException;
+
 
 
 
@@ -29,6 +34,14 @@ public class LocalidadResource {
         public Localidad obtenerLocalidad(@QueryParam("idLocalidad") Integer idLocalidad) {
             return localidadEjb.obtenerLocalidad(idLocalidad);
             
+        }
+        
+        
+        @GET
+        @Path("localidadPorId")
+        @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+        public List<Localidad> buscarLocalidad(@QueryParam("porNombreLocalidad") String localidad) {
+            return localidadEjb.buscarLocalidad(localidad);
         }
         
         @POST
@@ -62,5 +75,17 @@ public class LocalidadResource {
             return localidadEjb.obtenerLocalidades();
             
         }
+        
+        @GET
+    	@Path("/obtenerListaPorIdMunicipio")
+    	@Produces({"application/json"})
+    	public Response obtenerListaPorIdMunicipio(@QueryParam("idMunicipio") Integer idMunicipio) {
+    		try{
+    			List<Localidad> localidadList = localidadEjb.buscarLocalidadesPorMunicipio(idMunicipio);
+    			return Response.ok(localidadList).build();
+    		}catch(BusinessException ex){
+    			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();
+    		}
+    		}
     
 }

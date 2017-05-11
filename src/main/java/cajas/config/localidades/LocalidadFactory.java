@@ -29,7 +29,7 @@ public class LocalidadFactory {
     
     // DTO a entidad    
     public Localidad entidadADto(LocalidadEntity entidad) {
-        Localidad dto = new Localidad();
+        Localidad dto = new Localidad(entidad);
                 
         
         

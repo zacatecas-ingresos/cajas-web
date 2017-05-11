@@ -175,7 +175,7 @@
     <!-- Fin scripts -->
     <script>
 $(document).ready(function() {
-    var idEstado;
+    var idMunicipio;
     
     $.ajax({
         type : 'GET',
@@ -225,7 +225,7 @@ $(document).ready(function() {
     
     // Editar municipio
     $('#editar').click(function() {
-        if (idMunicipio === null) {
+        if (idMunicipio == null) {
                 swal(
                         {
                             title : 'No ha seleccionado ningun Municipio.',
@@ -237,6 +237,49 @@ $(document).ready(function() {
             // Redirececciona a la edición del elemento selecionado.
             var urlEditarMunicipio = '${pageContext.request.contextPath}/views/catalogos/municipios/modificarMunicipio.jsp?id=' + idMunicipio;
             window.location = urlEditarMunicipio;					
+        }
+    });
+    
+    function llenarTablaMunicipios(data) {
+        $('#tblMunicipio > tbody').find('tr').remove();
+        var tableBody = $('#tblMunicipio > tbody');
+        for (var i = 0; i < data.length; i++) {
+            var row = 
+                    '<tr>'
+                    + '<td class=\"hidden id\">' + data[i].idMunicipio + '</td>'
+                    + '<td>' + (i + 1) + '</td>'
+                    + '<td>' + data[i].abreviacionMunicipio + '</td>'
+                    + '<td>' + data[i].municipio + '</td>'
+                    + '</tr>';
+            $(tableBody).append(row);
+        }
+    };
+    $('#crear').click(function() {
+    	var urlCrearMunicipio = "${pageContext.request.contextPath}/views/catalogos/municipios/crearMunicipio.jsp";
+    	window.location = urlCrearMunicipio;
+    });
+
+
+
+    //Errores
+    $.ajaxSetup({
+        error: function (x, status, error) {	        	
+            if (x.status === 400) {
+            	var result = x.responseJSON;
+            	swal({
+    				title:"Error " + result.code, 
+    				text:result.message, 
+    				type:"error",
+    				closeOnCancel: false
+    			});	            		               
+            } else if(x.status === 500) {
+            	swal({
+    				title:"Error 500", 
+    				text:"Disculpe las molestias no podemos procesar su solicitud.", 
+    				type:"error",
+    				closeOnCancel: false
+    			});
+            }
         }
     });
     
@@ -295,48 +338,7 @@ $(document).ready(function() {
     );
 });
 
-function llenarTablaMunicipios(data) {
-    $('#tblMunicipio > tbody').find('tr').remove();
-    var tableBody = $('#tblMunicipio > tbody');
-    for (var i = 0; i < data.length; i++) {
-        var row = 
-                '<tr>'
-                + '<td class=\"hidden id\">' + data[i].idMunicipio + '</td>'
-                + '<td>' + (i + 1) + '</td>'
-                + '<td>' + data[i].abreviacionMunicipio + '</td>'
-                + '<td>' + data[i].municipio + '</td>'
-                + '</tr>';
-        $(tableBody).append(row);
-    }
-};
-$('#crear').click(function() {
-	var urlCrearMunicipio = "${pageContext.request.contextPath}/views/catalogos/municipios/crearMunicipio.jsp";
-	window.location = urlCrearMunicipio;
-});
 
-
-
-//Errores
-$.ajaxSetup({
-    error: function (x, status, error) {	        	
-        if (x.status === 400) {
-        	var result = x.responseJSON;
-        	swal({
-				title:"Error " + result.code, 
-				text:result.message, 
-				type:"error",
-				closeOnCancel: false
-			});	            		               
-        } else if(x.status === 500) {
-        	swal({
-				title:"Error 500", 
-				text:"Disculpe las molestias no podemos procesar su solicitud.", 
-				type:"error",
-				closeOnCancel: false
-			});
-        }
-    }
-});
 
 
         </script>

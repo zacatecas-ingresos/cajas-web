@@ -1,12 +1,15 @@
 package cajas.config.municipios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import cajas.exception.BusinessException;
+import cajas.persistence.entity.EstadoEntity;
 import cajas.persistence.entity.MunicipioEntity;
 import cajas.persistence.query.MunicipioQuery;
 import javax.annotation.PostConstruct;
@@ -74,5 +77,24 @@ public class MunicipioEJB {
 		List<Municipio> municipiodtos = municipioFactory.entidadesADtos(municipioEntities);
 		return municipiodtos;
 	}
+	
+	
+	
+	public List<Municipio> buscarMunicipiosUnEstado(Integer idEstado) {
+		List<Municipio> municipioList = new ArrayList<>();
+		try {
+			EstadoEntity estadoEntity = entityManager.find(EstadoEntity.class, idEstado);
+			
+			MunicipioPorEstadoQuery municipioPorEstadoQuery = new MunicipioPorEstadoQuery(entityManager);
+			List<MunicipioEntity> MunicipioEntityList = null;
+			MunicipioEntityList = municipioPorEstadoQuery.consultar(estadoEntity);
+			for(MunicipioEntity municipioEntity : MunicipioEntityList) {
+				municipioList.add(new Municipio(municipioEntity));
+			}
+		} catch (NoResultException ex) {
+		}
+		return municipioList;
+	}
+	
 
 }

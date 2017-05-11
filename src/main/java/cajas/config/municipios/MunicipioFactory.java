@@ -30,15 +30,8 @@ public class MunicipioFactory {
     
     // DTO a entidad
     public Municipio entidadADto(MunicipioEntity entidad) {
-        Municipio dto = new Municipio();
+        Municipio dto = new Municipio(entidad);
         
-        // Set
-        // carro.color = "azul";
-        // carro.setColor("azul");
-        
-        // Get
-        // colorCarro = carro.color;
-        // colorCarro = carro.getColor();
         
         dto.setIdMunicipio(entidad.getIdMunicipio());
         dto.setAbreviacionMunicipio(entidad.getAbreviacionMunicipio());

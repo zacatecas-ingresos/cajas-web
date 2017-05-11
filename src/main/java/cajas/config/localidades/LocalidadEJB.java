@@ -1,14 +1,16 @@
 package cajas.config.localidades;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import cajas.exception.BusinessException;
-import cajas.persistence.entity.ContribuyenteEntity;
 import cajas.persistence.entity.LocalidadEntity;
+import cajas.persistence.entity.MunicipioEntity;
 import cajas.persistence.query.LocalidadQuery;
 import javax.annotation.PostConstruct;
 
@@ -77,4 +79,22 @@ public class LocalidadEJB {
 		List<Localidad> localidaddtos = localidadFactory.entidadesADtos(localidadEntities);
 		return localidaddtos;
     }
+    
+    public List<Localidad> buscarLocalidadesPorMunicipio(Integer idMunicipio) {
+		List<Localidad> localidadList = new ArrayList<>();
+		try {
+			MunicipioEntity municipioEntity = entityManager.find(MunicipioEntity.class, idMunicipio);
+			
+			LocalidadPorMunicipioQuery localidadPorMunicipioQuery = new LocalidadPorMunicipioQuery(entityManager);
+			List<LocalidadEntity> LocalidadEntityList = null;
+			LocalidadEntityList = localidadPorMunicipioQuery.consultar(municipioEntity);
+			for(LocalidadEntity localidadEntity : LocalidadEntityList) {
+				localidadList.add(new Localidad(localidadEntity));
+			}
+		} catch (NoResultException ex) {
+		}
+		return localidadList;
+	}
+    
+    
 }

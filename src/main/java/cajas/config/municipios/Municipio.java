@@ -1,5 +1,7 @@
 package cajas.config.municipios;
 
+import cajas.persistence.entity.MunicipioEntity;
+
 public class Municipio {
 
     
@@ -8,6 +10,18 @@ public class Municipio {
     private String AbreviacionMunicipio;
     private String municipio;
     private Integer IdMunicipioTemporal;
+    
+    public Municipio(MunicipioEntity municipioEntity) {
+		this.setAbreviacionMunicipio(municipioEntity.getAbreviacionMunicipio());
+		this.setMunicipio(municipioEntity.getMunicipio());
+		this.setIdMunicipio(municipioEntity.getIdMunicipio());
+		this.setIdEstado(municipioEntity.getEstado().getIdEstado());
+		this.setIdMunicipioTemporal(municipioEntity.getIdMunicipioTemporal());
+    }
+ 
+    
+    
+    
 	public Integer getIdMunicipio() {
 		return IdMunicipio;
 	}

@@ -299,7 +299,7 @@ $(document).ready(function() {
 					  
 					 });
 					 
-					 var urlGetMunicipio = "${pageContext.request.contextPath}/cajas/municipios";
+					/* var urlGetMunicipio = "${pageContext.request.contextPath}/cajas/municipios";
 					 $.ajax({
 					  type : "GET",
 					  dataType : 'json',
@@ -312,7 +312,7 @@ $(document).ready(function() {
 					  error : function(jqXHR, textStatus, errorThrown) {
 					   console.log(textStatus + " " + errorThrown);
 					  }
-					 });
+					 });*/
 					 
 					 
 					 
@@ -321,7 +321,7 @@ $(document).ready(function() {
 						  
 						 });
 						 
-						 var urlGetLocalidad = "${pageContext.request.contextPath}/cajas/localidades";
+						/* var urlGetLocalidad = "${pageContext.request.contextPath}/cajas/localidades";
 						 $.ajax({
 						  type : "GET",
 						  dataType : 'json',
@@ -334,7 +334,7 @@ $(document).ready(function() {
 						  error : function(jqXHR, textStatus, errorThrown) {
 						   console.log(textStatus + " " + errorThrown);
 						  }
-						 });
+						 });  */
 					 
 					 
 				 
@@ -431,9 +431,45 @@ $(document).ready(function() {
 		        		window.location = urlCrearDireccion;
 		        	});
 					
-					 
-				   
+
+				    $('#selectEdo').change(function(){
+						$('#selectMunicipio').empty();
+						var idEstado = $(this).val();
+						var urlGet = "${pageContext.request.contextPath}/cajas/municipios/obtenerListaPorIdEstado?idEstado=" + $('#selectEdo').val();
+				        $.ajax({
+							type : "GET",
+							dataType : 'json',
+							url : urlGet,
+							success : function(data) {
+						        $.each(data, function(key, item) {
+						            $('#selectMunicipio').append($('<option>').text(item.municipio).attr('value', item.idMunicipio));
+						        });
+							},
+							error : function(jqXHR, textStatus, errorThrown) {
+								console.log(textStatus + " " + errorThrown);
+							}
+				        })
+					});
 					
+				    
+				    $('#selectMunicipio').change(function(){
+						$('#selectLocalidad').empty();
+						var idMunicipio = $(this).val();
+						var urlGet = "${pageContext.request.contextPath}/cajas/localidades/obtenerListaPorIdMunicipio?idMunicipio=" + $('#selectMunicipio').val();
+				        $.ajax({
+							type : "GET",
+							dataType : 'json',
+							url : urlGet,
+							success : function(data) {
+						        $.each(data, function(key, item) {
+						            $('#selectLocalidad').append($('<option>').text(item.localidad).attr('value', item.idLocalidad));
+						        });
+							},
+							error : function(jqXHR, textStatus, errorThrown) {
+								console.log(textStatus + " " + errorThrown);
+							}
+				        })
+					});
 					
 			});
 	

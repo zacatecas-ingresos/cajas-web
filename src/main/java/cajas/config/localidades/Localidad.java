@@ -1,5 +1,7 @@
 package cajas.config.localidades;
 
+import cajas.persistence.entity.LocalidadEntity;
+
 public class Localidad {
 
     
@@ -9,7 +11,19 @@ public class Localidad {
     private String AbreviacionLocalidad;
     private String Localidad;
     private Integer IdLocalidadTemporal;
-    private Integer IdMunicipioTemporal;
+    
+    public Localidad(LocalidadEntity localidadEntity){
+    	this.setIdLocalidad(localidadEntity.getIdLocalidad());
+    	this.setAbreviacionLocalidad(localidadEntity.getAbreviacionLocalidad());
+    	this.setLocalidad(localidadEntity.getLocalidad());
+    	this.setIdLocalidadTemporal(localidadEntity.getIdLocalidadTemporal());
+    	this.setIdMunicipio(localidadEntity.getMunicipio().getIdMunicipio());
+    	this.setIdEstado(localidadEntity.getEstado().getIdEstado());
+    	
+    	
+    	
+    	
+    }
 	
     
     public Integer getIdLocalidad() {
@@ -48,13 +62,7 @@ public class Localidad {
 	public void setIdLocalidadTemporal(Integer idLocalidadTemporal) {
 		IdLocalidadTemporal = idLocalidadTemporal;
 	}
-	public Integer getIdMunicipioTemporal() {
-		return IdMunicipioTemporal;
-	}
-	public void setIdMunicipioTemporal(Integer idMunicipioTemporal) {
-		IdMunicipioTemporal = idMunicipioTemporal;
-	}
-    
+	
     
     
 

@@ -1,15 +1,14 @@
 package cajas.vehicular.padron;
-import cajas.persistence.entity.AgenciaVehicularEntity;
+import cajas.persistence.entity.AgenciaEntity;
 
 public class AgenciaVehiculo {
 	private Integer idAgencia;
 	private Integer idEstado;
 	private String rfc;
-	private String abreviatura;
 	private String nombre;
-	private Boolean estatus;
+	private Integer estatus;
 	
-	public AgenciaVehiculo agenciaVehiculo(AgenciaVehicularEntity agenciaVehicularEntity){
+	public AgenciaVehiculo agenciaVehiculo(AgenciaEntity agenciaVehicularEntity){
 		AgenciaVehiculo agenciaVehiculo = new AgenciaVehiculo();
 		
 		agenciaVehiculo.setIdAgencia(agenciaVehicularEntity.getIdAgencia());
@@ -17,15 +16,12 @@ public class AgenciaVehiculo {
 		if(agenciaVehicularEntity.getEstado() != null){
 			agenciaVehiculo.setIdEstado(agenciaVehicularEntity.getEstado().getIdEstado());			
 		}
-		agenciaVehiculo.setAbreviatura(agenciaVehicularEntity.getAbreviatura());
 		agenciaVehiculo.setNombre(agenciaVehicularEntity.getNombre());
 		agenciaVehiculo.setRfc(agenciaVehicularEntity.getRfc());
 		agenciaVehiculo.setEstatus(agenciaVehicularEntity.getEstatus());
 		
 		return agenciaVehiculo;
 	}
-	
-	
 	
 	public Integer getIdAgencia() {
 		return idAgencia;
@@ -45,22 +41,16 @@ public class AgenciaVehiculo {
 	public void setRfc(String rfc) {
 		this.rfc = rfc;
 	}
-	public String getAbreviatura() {
-		return abreviatura;
-	}
-	public void setAbreviatura(String abreviatura) {
-		this.abreviatura = abreviatura;
-	}
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Boolean getEstatus() {
+	public Integer getEstatus() {
 		return estatus;
 	}
-	public void setEstatus(Boolean estatus) {
+	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
 	

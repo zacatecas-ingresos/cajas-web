@@ -10,8 +10,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import cajas.exception.BusinessException;
-import cajas.persistence.entity.AgenciaVehicularEntity;
-import cajas.persistence.query.AgenciaVehiculoQuery;
+import cajas.persistence.entity.AgenciaEntity;
+import cajas.persistence.query.AgenciaQuery;
 
 @Stateless
 public class AgenciaVehicularEJB {
@@ -20,14 +20,14 @@ public class AgenciaVehicularEJB {
 	private EntityManager entityManager;
 	
 	@Inject
-	AgenciaVehiculoQuery agenciaVehicularQuery;
+	AgenciaQuery agenciaVehicularQuery;
 	
 	public List<AgenciaVehiculo> obtenerAgenciasVehiculos() {
 		try {
-			List<AgenciaVehicularEntity> agenciasVehiculosEntity = agenciaVehicularQuery.obtenerAgenciasVehicularesQuery();
+			List<AgenciaEntity> agenciasVehiculosEntity = agenciaVehicularQuery.obtenerAgenciasVehicularesQuery();
 			List<AgenciaVehiculo> agenciasVehiculos = new ArrayList<>();
 			
-			for (AgenciaVehicularEntity agenciaVehiculoEntity : agenciasVehiculosEntity) {
+			for (AgenciaEntity agenciaVehiculoEntity : agenciasVehiculosEntity) {
 				AgenciaVehiculo agencia = new AgenciaVehiculo();
 				agencia = agencia.agenciaVehiculo(agenciaVehiculoEntity);
 				agenciasVehiculos.add(agencia);		

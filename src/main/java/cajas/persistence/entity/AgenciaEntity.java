@@ -12,8 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "AgenciasVehiculares", schema="vehicular")
-public class AgenciaVehicularEntity implements Serializable{
+@Table( name = "Agencias", schema="vehicular")
+public class AgenciaEntity implements Serializable{
 
 	private static final long serialVersionUID = -3765122932636977211L;
 
@@ -26,17 +26,14 @@ public class AgenciaVehicularEntity implements Serializable{
 	@JoinColumn(name = "IdEstado")
 	private EstadoEntity estado;
 	
-	@Column( name = "Rfc")
+	@Column( name = "RFC")
 	private String rfc;
 	
-	@Column( name = "Abreviatura" )
-	private String abreviatura;
-	
-	@Column( name = "Nombre" )
+	@Column( name = "Agencia" )
 	private String nombre;
 	
 	@Column( name = "Estatus")
-	private Boolean estatus;
+	private Integer estatus;
 
 	public Integer getIdAgencia() {
 		return idAgencia;
@@ -62,14 +59,6 @@ public class AgenciaVehicularEntity implements Serializable{
 		this.rfc = rfc;
 	}
 
-	public String getAbreviatura() {
-		return abreviatura;
-	}
-
-	public void setAbreviatura(String abreviatura) {
-		this.abreviatura = abreviatura;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -78,11 +67,11 @@ public class AgenciaVehicularEntity implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public Boolean getEstatus() {
+	public Integer getEstatus() {
 		return estatus;
 	}
 
-	public void setEstatus(Boolean estatus) {
+	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
 	

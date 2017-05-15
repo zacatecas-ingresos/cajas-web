@@ -17,8 +17,10 @@ public class ClaseVehiculoEntity implements Serializable {
 	@Column(name = "IdClaseVehiculo")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idClaseVehiculo;
+	
 	@Column(name = "ClaseVehiculo")
 	private String nombre;
+	
 	@Column(name = "Estatus")
 	private Integer estatus;
 

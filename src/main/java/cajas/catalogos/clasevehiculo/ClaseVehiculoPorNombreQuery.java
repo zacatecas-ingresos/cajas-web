@@ -16,7 +16,7 @@ public class ClaseVehiculoPorNombreQuery {
 	public List<ClaseVehiculoEntity> consultar(String criterio) {
 		List<ClaseVehiculoEntity> claseVehiculoEntity = entityManager
 				.createQuery(
-						"FROM ClaseVehiculoEntity mv WHERE LOWER(mv.nombre) LIKE :criterio OR LOWER(mv.abreviacion) LIKE :criterio",
+						"FROM ClaseVehiculoEntity mv WHERE LOWER(mv.nombre) LIKE :criterio",
 						ClaseVehiculoEntity.class)
 				.setParameter("criterio", "%" + criterio.toLowerCase() + "%").getResultList();
 		return claseVehiculoEntity;

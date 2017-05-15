@@ -23,7 +23,6 @@ public class TipoVehiculoEJB {
 		try {
 			TipoVehiculoEntity tipoVehiculoEntity = new TipoVehiculoEntity();
 			tipoVehiculoEntity.setNombre(tipoVehiculo.getNombre());
-			tipoVehiculoEntity.setAbreviatura(tipoVehiculo.getAbreviatura());
 			tipoVehiculoEntity.setEstatus(tipoVehiculo.getEstatus());
 			entityManager.persist(tipoVehiculoEntity);
 		} catch (PersistenceException ex) {
@@ -46,7 +45,6 @@ public class TipoVehiculoEJB {
 		try {
 			TipoVehiculoEntity tipoVehiculoEntity = entityManager.find(TipoVehiculoEntity.class, tipoVehiculo.getIdTipoVehiculo());
 			tipoVehiculoEntity.setNombre(tipoVehiculo.getNombre());
-			tipoVehiculoEntity.setAbreviatura(tipoVehiculo.getAbreviatura());
 			tipoVehiculoEntity.setEstatus(tipoVehiculo.getEstatus());
 			entityManager.merge(tipoVehiculoEntity);
 		} catch (NoResultException ex) {

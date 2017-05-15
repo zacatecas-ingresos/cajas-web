@@ -10,11 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "EstatusVerificacionesVehiculares", schema = "vehicular")
+@Table(name = "EstatusVerificacion", schema = "vehicular")
 public class EstatusVerificacionEntity implements Serializable {
 	private static final long serialVersionUID = 3932729104626046760L;
 	@Id
-	@Column(name = "IdEstatusVerificacionVehicular")
+	@Column(name = "IdEstatusVerificacion")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idEstatusVerificacion;
 

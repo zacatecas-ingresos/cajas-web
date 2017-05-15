@@ -25,31 +25,31 @@ public class VehiculoEntity implements Serializable{
 	private Integer idVehiculo;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IdCombustible")
+	@JoinColumn(name = "IdTipoCombustible")
 	private TipoCombustibleEntity combustibleVehicular;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IdMarca")
+	@JoinColumn(name = "IdMarcarVehiculo")
 	private MarcaVehiculoEntity marcaVehicular;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IdServicio")
+	@JoinColumn(name = "IdTipoServicio")
 	private ServicioVehiculoEntity servicioVehicular;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IdUso")
+	@JoinColumn(name = "IdUsoVehiculo")
 	private UsoVehiculoEntity usoVehicular;
 		
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IdClase")
+	@JoinColumn(name = "IdClaseVehiculo")
 	private ClaseVehiculoEntity claseVehicular;
 		
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IdTipo")
+	@JoinColumn(name = "IdTipoVehiculo")
 	private TipoVehiculoEntity tipoVehicular;
 		
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IdDireccion")
+	@JoinColumn(name = "IdDomicilio")
 	private DireccionEntity direccionVehicular;
 	
 	@Column(name = "Estatus")
@@ -58,8 +58,8 @@ public class VehiculoEntity implements Serializable{
 	@Column(name = "PlacaActual")
 	private String placaActual;
 	
-	@Column(name = "PlacaNueva")
-	private String placaNueva;
+	@Column(name = "PlacaAnterior")
+	private String placaAnterior;
 	
 	@Column(name = "Linea")
 	private String linea;
@@ -72,19 +72,19 @@ public class VehiculoEntity implements Serializable{
 	@JoinColumn(name = "IdModulo")
 	private*/
 	
-	@Column(name = "idModulo")
-	private Integer idModulo;
+	@Column(name = "IdRecaudacionRegistra")
+	private Integer idRecaudacionRegistra;
 	
-	@Column(name = "Vin")
-	private String vin;
+	@Column(name = "Serie")
+	private String serie;
 	
 	@Column(name = "Motor")
 	private String motor;
 	
-	@Column(name = "Rfv")
+	@Column(name = "RFV")
 	private String rfv;
 	
-	@Column(name = "Nrpv")
+	@Column(name = "NRPV")
 	private String nrpv;
 	
 	@Column(name = "Color")
@@ -93,7 +93,7 @@ public class VehiculoEntity implements Serializable{
 	@Column(name = "Version")
 	private String version;
 	
-	@Column(name = "OficialGobierno")
+	@Column(name = "VehiculoOficial")
 	private Boolean oficialGobierno;
 	
 	@Column(name = "Cilindros")
@@ -114,21 +114,21 @@ public class VehiculoEntity implements Serializable{
 	@Column(name = "ImporteFactura")
 	private Double importeFactura;
 	
-	@Column(name = "AgenciaRfc")
+	@Column(name = "AgenciaRFC")
 	private String agenciaRfc;
 	
-	@Column(name = "Fecha")
+	@Column(name = "FechaRegistro")
 	private Date fecha;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idDocumentoPedimento")
 	private DocumentoPedimentoEntity documentoPedimento;
 	
-	@Column(name = "FechaRegularizacion")
-	private Date fechaRegularizacion;
+	@Column(name = "FechaRegularizacionString")
+	private String fechaRegularizacion;
 	
 	@Column(name = "Procedencia")
-	private Boolean procedencia;
+	private String procedencia;
 	
 	@Column(name = "FolioCalcamonia")
 	private Integer folioCalcamonia;
@@ -136,7 +136,7 @@ public class VehiculoEntity implements Serializable{
 	@Column(name = "FolioRegularizacion")
 	private String folioRegularizacion;
 	
-	@Column(name = "UltimoPago")
+	@Column(name = "AfiscalUltimoPago")
 	private Integer ultimoPago;
 	
 	@Column(name = "NumeroPuertas")
@@ -146,7 +146,7 @@ public class VehiculoEntity implements Serializable{
 	private Boolean nuevoAgencia;
 	
 	@Column(name = "FolioVerificacion")
-	private Integer folioVerificacion;
+	private String folioVerificacion;
 	
 	@Column(name = "FechaVerificacion")
 	private Date fechaVerificacion;
@@ -238,12 +238,12 @@ public class VehiculoEntity implements Serializable{
 		this.placaActual = placaActual;
 	}
 
-	public String getPlacaNueva() {
-		return placaNueva;
+	public String getPlacaAnterior() {
+		return placaAnterior;
 	}
 
-	public void setPlacaNueva(String placaNueva) {
-		this.placaNueva = placaNueva;
+	public void setPlacaAnterior(String placaAnterior) {
+		this.placaAnterior = placaAnterior;
 	}
 
 	public String getLinea() {
@@ -262,20 +262,20 @@ public class VehiculoEntity implements Serializable{
 		this.modelo = modelo;
 	}
 
-	public Integer getIdModulo() {
-		return idModulo;
+	public Integer getIdRecaudacionRegistra() {
+		return idRecaudacionRegistra;
 	}
 
-	public void setIdModulo(Integer idModulo) {
-		this.idModulo = idModulo;
+	public void setIdRecaudacionRegistra(Integer idRecaudacionRegistra) {
+		this.idRecaudacionRegistra = idRecaudacionRegistra;
 	}
 
-	public String getVin() {
-		return vin;
+	public String getSerie() {
+		return serie;
 	}
 
-	public void setVin(String vin) {
-		this.vin = vin;
+	public void setSerie(String serie) {
+		this.serie = serie;
 	}
 
 	public String getMotor() {
@@ -398,19 +398,19 @@ public class VehiculoEntity implements Serializable{
 		this.documentoPedimento = documentoPedimento;
 	}
 
-	public Date getFechaRegularizacion() {
+	public String getFechaRegularizacion() {
 		return fechaRegularizacion;
 	}
 
-	public void setFechaRegularizacion(Date fechaRegularizacion) {
+	public void setFechaRegularizacion(String fechaRegularizacion) {
 		this.fechaRegularizacion = fechaRegularizacion;
 	}
 
-	public Boolean getProcedencia() {
+	public String getProcedencia() {
 		return procedencia;
 	}
 
-	public void setProcedencia(Boolean procedencia) {
+	public void setProcedencia(String procedencia) {
 		this.procedencia = procedencia;
 	}
 
@@ -454,11 +454,11 @@ public class VehiculoEntity implements Serializable{
 		this.nuevoAgencia = nuevoAgencia;
 	}
 
-	public Integer getFolioVerificacion() {
+	public String getFolioVerificacion() {
 		return folioVerificacion;
 	}
 
-	public void setFolioVerificacion(Integer folioVerificacion) {
+	public void setFolioVerificacion(String folioVerificacion) {
 		this.folioVerificacion = folioVerificacion;
 	}
 
@@ -485,16 +485,6 @@ public class VehiculoEntity implements Serializable{
 	public void setBlindado(Boolean blindado) {
 		this.blindado = blindado;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 }

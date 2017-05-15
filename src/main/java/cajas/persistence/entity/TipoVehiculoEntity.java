@@ -20,14 +20,16 @@ public class TipoVehiculoEntity implements Serializable {
 	@Column(name = "IdTipoVehiculo")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idTipoVehiculo;
-	
+
+	@Column(name = "TipoVehiculo")
+	private Integer tipoVehiculo;
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IdClaseVehiculo")
     private ClaseVehiculoEntity claseVehiculo;
-	
-	@Column(name = "TipoVehiculo")
+	@Column(name = "Abreviatura")
+	private String abreviatura;
+	@Column(name = "Nombre")
 	private String nombre;
-	
 	@Column(name = "Estatus")
 	private Boolean estatus;
 
@@ -37,11 +39,23 @@ public class TipoVehiculoEntity implements Serializable {
 	public void setIdTipoVehiculo(Integer idTipoVehiculo) {
 		this.idTipoVehiculo = idTipoVehiculo;
 	}
+	public Integer getTipoVehiculo() {
+		return tipoVehiculo;
+	}
+	public void setTipoVehiculo(Integer tipoVehiculo) {
+		this.tipoVehiculo = tipoVehiculo;
+	}
 	public ClaseVehiculoEntity getClaseVehiculo() {
 		return claseVehiculo;
 	}
 	public void setClaseVehiculo(ClaseVehiculoEntity claseVehiculo) {
 		this.claseVehiculo = claseVehiculo;
+	}
+	public String getAbreviatura() {
+		return abreviatura;
+	}
+	public void setAbreviatura(String abreviatura) {
+		this.abreviatura = abreviatura;
 	}
 	public String getNombre() {
 		return nombre;

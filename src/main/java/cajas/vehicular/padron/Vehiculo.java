@@ -17,11 +17,11 @@ public class Vehiculo {
 	private Integer IdDireccion;
 	private Integer estatus;
 	private String placaActual;
-	private String placaNueva;
+	private String placaAnterior;
 	private String linea;
 	private Integer modelo;
-	private Integer idModulo;
-	private String vin;
+	private Integer idRecaudacionRegistra;
+	private String serie;
 	private String motor;
 	private String rfv;
 	private String nrpv;
@@ -38,13 +38,13 @@ public class Vehiculo {
 	private String fecha;
 	private Integer idDocumentoPedimento;
 	private String fechaRegularizacion;
-	private Boolean procedencia;
+	private String procedencia;
 	private Integer folioCalcamonia;
 	private String folioRegularizacion;
 	private Integer ultimoPago;
 	private Integer numeroPuertas;
 	private Boolean nuevoAgencia;
-	private Integer folioVerificacion;
+	private String folioVerificacion;
 	private String fechaVerificacion;
 	private Integer idAgencia;
 	private Boolean blindado;
@@ -82,12 +82,12 @@ public class Vehiculo {
 		}
 		
 		vehiculo.setEstatus(vehiculoEntity.getEstatus());
-		vehiculo.setPlacaNueva(vehiculoEntity.getPlacaNueva());
+		vehiculo.setPlacaAnterior(vehiculoEntity.getPlacaAnterior());
 		vehiculo.setPlacaActual(vehiculoEntity.getPlacaActual());
 		vehiculo.setLinea(vehiculoEntity.getLinea());
 		vehiculo.setModelo(vehiculoEntity.getModelo());
-		vehiculo.setIdModulo(vehiculoEntity.getIdModulo());
-		vehiculo.setVin(vehiculoEntity.getVin());
+		vehiculo.setIdRecaudacionRegistra(vehiculoEntity.getIdRecaudacionRegistra());
+		vehiculo.setSerie(vehiculoEntity.getSerie());
 		vehiculo.setMotor(vehiculoEntity.getMotor());
 		vehiculo.setRfv(vehiculoEntity.getRfv());
 		vehiculo.setNrpv(vehiculoEntity.getNrpv());
@@ -204,12 +204,15 @@ public class Vehiculo {
 	public void setPlacaActual(String placaActual) {
 		this.placaActual = placaActual;
 	}
-	public String getPlacaNueva() {
-		return placaNueva;
+
+	public String getPlacaAnterior() {
+		return placaAnterior;
 	}
-	public void setPlacaNueva(String placaNueva) {
-		this.placaNueva = placaNueva;
+
+	public void setPlacaAnterior(String placaAnterior) {
+		this.placaAnterior = placaAnterior;
 	}
+
 	public String getLinea() {
 		return linea;
 	}
@@ -222,18 +225,23 @@ public class Vehiculo {
 	public void setModelo(Integer modelo) {
 		this.modelo = modelo;
 	}
-	public Integer getIdModulo() {
-		return idModulo;
+
+	public Integer getIdRecaudacionRegistra() {
+		return idRecaudacionRegistra;
 	}
-	public void setIdModulo(Integer idModulo) {
-		this.idModulo = idModulo;
+
+	public void setIdRecaudacionRegistra(Integer idRecaudacionRegistra) {
+		this.idRecaudacionRegistra = idRecaudacionRegistra;
 	}
-	public String getVin() {
-		return vin;
+
+	public String getSerie() {
+		return serie;
 	}
-	public void setVin(String vin) {
-		this.vin = vin;
+
+	public void setSerie(String serie) {
+		this.serie = serie;
 	}
+	
 	public String getMotor() {
 		return motor;
 	}
@@ -330,10 +338,10 @@ public class Vehiculo {
 	public void setFechaRegularizacion(String fechaRegularizacion) {
 		this.fechaRegularizacion = fechaRegularizacion;
 	}
-	public Boolean getProcedencia() {
+	public String getProcedencia() {
 		return procedencia;
 	}
-	public void setProcedencia(Boolean procedencia) {
+	public void setProcedencia(String procedencia) {
 		this.procedencia = procedencia;
 	}
 	public Integer getFolioCalcamonia() {
@@ -366,10 +374,10 @@ public class Vehiculo {
 	public void setNuevoAgencia(Boolean nuevoAgencia) {
 		this.nuevoAgencia = nuevoAgencia;
 	}
-	public Integer getFolioVerificacion() {
+	public String getFolioVerificacion() {
 		return folioVerificacion;
 	}
-	public void setFolioVerificacion(Integer folioVerificacion) {
+	public void setFolioVerificacion(String folioVerificacion) {
 		this.folioVerificacion = folioVerificacion;
 	}
 	public String getFechaVerificacion() {

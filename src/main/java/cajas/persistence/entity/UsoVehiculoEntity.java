@@ -18,14 +18,11 @@ public class UsoVehiculoEntity implements Serializable{
 	private static final long serialVersionUID = 7064583484490997462L;
 
 	@Id
-	@Column( name = "IdUso")
+	@Column( name = "IdUsoVehiculo")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idUso;
 	
-	@Column( name = "Abreviatura" )
-	private String abreviatura;
-	
-	@Column( name = "Nombre" )
+	@Column( name = "UsoVehiculo" )
 	private String nombre;
 	
 	@Column( name = "Estatus" )
@@ -38,15 +35,7 @@ public class UsoVehiculoEntity implements Serializable{
 	public void setIdUso(Integer idUso) {
 		this.idUso = idUso;
 	}
-
-	public String getAbreviatura() {
-		return abreviatura;
-	}
-
-	public void setAbreviatura(String abreviatura) {
-		this.abreviatura = abreviatura;
-	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}

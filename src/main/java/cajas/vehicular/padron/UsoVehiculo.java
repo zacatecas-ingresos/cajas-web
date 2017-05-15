@@ -3,14 +3,12 @@ import cajas.persistence.entity.UsoVehiculoEntity;
 
 public class UsoVehiculo {
 	public Integer idUso;
-	public String abreviatura;
 	public String nombre;
 	public Boolean estatus;
 	
 	public UsoVehiculo usoVehiculo(UsoVehiculoEntity usoVehiculoEntity){
 		UsoVehiculo usoVehiculo = new UsoVehiculo();
 		usoVehiculo.setIdUso(usoVehiculoEntity.getIdUso());
-		usoVehiculo.setAbreviatura(usoVehiculoEntity.getAbreviatura());
 		usoVehiculo.setNombre(usoVehiculoEntity.getNombre());
 		usoVehiculo.setEstatus(usoVehiculoEntity.getEstatus());
 		
@@ -22,12 +20,6 @@ public class UsoVehiculo {
 	}
 	public void setIdUso(Integer idUso) {
 		this.idUso = idUso;
-	}
-	public String getAbreviatura() {
-		return abreviatura;
-	}
-	public void setAbreviatura(String abreviatura) {
-		this.abreviatura = abreviatura;
 	}
 	public String getNombre() {
 		return nombre;

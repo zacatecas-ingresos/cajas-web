@@ -20,10 +20,10 @@ public class MarcaVehiculoEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idMarcaVehiculo;
 
-	@Column(name = "Nombre")
+	@Column(name = "RazonSocial")
 	private String nombre;
 
-	@Column(name = "Abreviatura")
+	@Column(name = "MarcaVehiculo")
 	private String abreviatura;
 
 	@Column(name = "Estatus")

@@ -5,14 +5,12 @@ import cajas.persistence.entity.ClaseVehiculoEntity;
 public class ClaseVehiculo {
 	private Integer idClaseVehiculo;
 	private String nombre;
-	private String abreviatura;
-	private Boolean estatus;
+	private Integer estatus;
 
 	public ClaseVehiculo() {
 	}
 
 	public ClaseVehiculo(ClaseVehiculoEntity claseVehiculoEntity) {
-		this.setAbreviatura(claseVehiculoEntity.getAbreviacion());
 		this.setEstatus(claseVehiculoEntity.getEstatus());
 		this.setIdClaseVehiculo(claseVehiculoEntity.getIdClaseVehiculo());
 		this.setNombre(claseVehiculoEntity.getNombre());
@@ -30,16 +28,10 @@ public class ClaseVehiculo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getAbreviatura() {
-		return abreviatura;
-	}
-	public void setAbreviatura(String abreviatura) {
-		this.abreviatura = abreviatura;
-	}
-	public Boolean getEstatus() {
+	public Integer getEstatus() {
 		return estatus;
 	}
-	public void setEstatus(Boolean estatus) {
+	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
 }

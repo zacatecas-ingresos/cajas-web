@@ -17,12 +17,10 @@ public class ClaseVehiculoEntity implements Serializable {
 	@Column(name = "IdClaseVehiculo")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idClaseVehiculo;
-	@Column(name = "Nombre")
+	@Column(name = "ClaseVehiculo")
 	private String nombre;
-	@Column(name = "Abreviacion")
-	private String abreviacion;
 	@Column(name = "Estatus")
-	private Boolean estatus;
+	private Integer estatus;
 
 	public Integer getIdClaseVehiculo() {
 		return idClaseVehiculo;
@@ -36,16 +34,10 @@ public class ClaseVehiculoEntity implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getAbreviacion() {
-		return abreviacion;
-	}
-	public void setAbreviacion(String abreviacion) {
-		this.abreviacion = abreviacion;
-	}
-	public Boolean getEstatus() {
+	public Integer getEstatus() {
 		return estatus;
 	}
-	public void setEstatus(Boolean estatus) {
+	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
 }

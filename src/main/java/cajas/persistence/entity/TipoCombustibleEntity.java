@@ -8,24 +8,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CombustiblesVehiculos", schema = "vehicular")
-public class CombustibleVehiculoEntity implements Serializable{
+@Table(name = "TiposCombustibles", schema = "vehicular")
+public class TipoCombustibleEntity implements Serializable{
 
 	private static final long serialVersionUID = -1330215080313507252L;
 	
 	@Id
-	@Column(name = "IdCombustible")
+	@Column(name = "IdTipoCombustible")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idCombustible;
+	private Integer idCombustible;	
 	
-	@Column( name  = "Abreviatura")
-	private String abreviatura;
-	
-	@Column( name = "Nombre" )
+	@Column( name = "TipoCombustible" )
 	private String nombre;
 	
 	@Column( name = "Estatus" )
-	private Boolean estatus;
+	private Integer estatus;
 
 	public Integer getIdCombustible() {
 		return idCombustible;
@@ -35,13 +32,6 @@ public class CombustibleVehiculoEntity implements Serializable{
 		this.idCombustible = idCombustible;
 	}
 
-	public String getAbreviatura() {
-		return abreviatura;
-	}
-
-	public void setAbreviatura(String abreviatura) {
-		this.abreviatura = abreviatura;
-	}
 
 	public String getNombre() {
 		return nombre;
@@ -51,11 +41,11 @@ public class CombustibleVehiculoEntity implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public Boolean getEstatus() {
+	public Integer getEstatus() {
 		return estatus;
 	}
 
-	public void setEstatus(Boolean estatus) {
+	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
 	

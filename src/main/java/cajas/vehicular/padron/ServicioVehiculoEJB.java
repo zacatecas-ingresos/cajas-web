@@ -10,7 +10,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import cajas.exception.BusinessException;
-import cajas.persistence.entity.CombustibleVehiculoEntity;
+import cajas.persistence.entity.TipoCombustibleEntity;
 import cajas.persistence.entity.ServicioVehiculoEntity;
 import cajas.persistence.query.ServicioVehiculoQuery;
 

@@ -26,7 +26,7 @@ public class VehiculoEntity implements Serializable{
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IdCombustible")
-	private CombustibleVehiculoEntity combustibleVehicular;
+	private TipoCombustibleEntity combustibleVehicular;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IdMarca")
@@ -153,7 +153,7 @@ public class VehiculoEntity implements Serializable{
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idAgencia")
-	private AgenciaVehicularEntity agenciaVehicular;
+	private AgenciaEntity agenciaVehicular;
 	
 	@Column(name = "Blindado")
 	private Boolean blindado;
@@ -166,11 +166,11 @@ public class VehiculoEntity implements Serializable{
 		this.idVehiculo = idVehiculo;
 	}
 
-	public CombustibleVehiculoEntity getCombustibleVehicular() {
+	public TipoCombustibleEntity getCombustibleVehicular() {
 		return combustibleVehicular;
 	}
 
-	public void setCombustibleVehicular(CombustibleVehiculoEntity combustibleVehicular) {
+	public void setCombustibleVehicular(TipoCombustibleEntity combustibleVehicular) {
 		this.combustibleVehicular = combustibleVehicular;
 	}
 
@@ -470,11 +470,11 @@ public class VehiculoEntity implements Serializable{
 		this.fechaVerificacion = fechaVerificacion;
 	}
 
-	public AgenciaVehicularEntity getAgenciaVehicular() {
+	public AgenciaEntity getAgenciaVehicular() {
 		return agenciaVehicular;
 	}
 
-	public void setAgenciaVehicular(AgenciaVehicularEntity agenciaVehicular) {
+	public void setAgenciaVehicular(AgenciaEntity agenciaVehicular) {
 		this.agenciaVehicular = agenciaVehicular;
 	}
 

@@ -1,17 +1,15 @@
 package cajas.vehicular.padron;
 
-import cajas.persistence.entity.CombustibleVehiculoEntity;
+import cajas.persistence.entity.TipoCombustibleEntity;
 
-public class CombustibleVehiculo {
+public class TipoCombustible {
 	private Integer idCombustible;
-	private String abreviatura;
 	private String nombre;
-	private Boolean estatus;
+	private Integer estatus;
 	
-	public CombustibleVehiculo combustibleVehiculoEntity(CombustibleVehiculoEntity combustibleVehiculoEntity){
-		CombustibleVehiculo combustibleVehiculo = new CombustibleVehiculo();
+	public TipoCombustible combustibleVehiculoEntity(TipoCombustibleEntity combustibleVehiculoEntity){
+		TipoCombustible combustibleVehiculo = new TipoCombustible();
 		combustibleVehiculo.setIdCombustible(combustibleVehiculoEntity.getIdCombustible());
-		combustibleVehiculo.setAbreviatura(combustibleVehiculoEntity.getAbreviatura());
 		combustibleVehiculo.setNombre(combustibleVehiculoEntity.getNombre());
 		combustibleVehiculo.setEstatus(combustibleVehiculoEntity.getEstatus());		
 		return combustibleVehiculo;
@@ -24,22 +22,16 @@ public class CombustibleVehiculo {
 	public void setIdCombustible(Integer idCombustible) {
 		this.idCombustible = idCombustible;
 	}
-	public String getAbreviatura() {
-		return abreviatura;
-	}
-	public void setAbreviatura(String abreviatura) {
-		this.abreviatura = abreviatura;
-	}
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Boolean getEstatus() {
+	public Integer getEstatus() {
 		return estatus;
 	}
-	public void setEstatus(Boolean estatus) {
+	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
 

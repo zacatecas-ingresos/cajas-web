@@ -8,26 +8,26 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import cajas.exception.BusinessException;
-import cajas.persistence.entity.CombustibleVehiculoEntity;
+import cajas.persistence.entity.TipoCombustibleEntity;
 import cajas.persistence.entity.UsoVehiculoEntity;
-import cajas.persistence.query.CombustibleVehiculoQuery;
+import cajas.persistence.query.TipoCombustibleQuery;
 
 @Stateless
-public class CombustibleVehiculoEJB {
+public class TipoCombustibleEJB {
 
 	@PersistenceContext(name = "sitDS")
 	private EntityManager entityManager;
 	
 	@Inject
-	CombustibleVehiculoQuery combustibleQuery;
+	TipoCombustibleQuery combustibleQuery;
 	
-	public List<CombustibleVehiculo> obtenerCombustibleVehiculo() {
+	public List<TipoCombustible> obtenerCombustibleVehiculo() {
 		try {
-			List<CombustibleVehiculoEntity> combustiblesVehiculosEntity = combustibleQuery.obtenerCombustiblesQuery();
-			List<CombustibleVehiculo> combustiblesVehiculos = new ArrayList<>();
+			List<TipoCombustibleEntity> combustiblesVehiculosEntity = combustibleQuery.obtenerCombustiblesQuery();
+			List<TipoCombustible> combustiblesVehiculos = new ArrayList<>();
 			
-			for (CombustibleVehiculoEntity combustibleVehiculoEntity : combustiblesVehiculosEntity) {
-				CombustibleVehiculo combustible = new CombustibleVehiculo();
+			for (TipoCombustibleEntity combustibleVehiculoEntity : combustiblesVehiculosEntity) {
+				TipoCombustible combustible = new TipoCombustible();
 				combustible = combustible.combustibleVehiculoEntity(combustibleVehiculoEntity);
 				combustiblesVehiculos.add(combustible);		
 			}

@@ -15,10 +15,10 @@ import cajas.exception.BusinessException;
 
 
 @Path("/vehicular/padron/combustiblevehicular")
-public class CombustibleVehiculoResource {
+public class TipoCombustibleResource {
 	
 	@EJB
-	CombustibleVehiculoEJB combustibleEJB;
+	TipoCombustibleEJB combustibleEJB;
 	
 	/*****Obtiene todos los usos de vehiculos*********/
 	@GET
@@ -26,7 +26,7 @@ public class CombustibleVehiculoResource {
 	@Produces({ "application/json" })
 	public Response obtenerCombustiblesVehiculos() {
 		try {
-			List<CombustibleVehiculo> combustibles = combustibleEJB.obtenerCombustibleVehiculo();
+			List<TipoCombustible> combustibles = combustibleEJB.obtenerCombustibleVehiculo();
 			return Response.ok(combustibles).build();
 		} catch (BusinessException ex) {
 			return Response.status(Status.NOT_IMPLEMENTED).tag(ex.getMessage()).build();

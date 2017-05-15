@@ -24,6 +24,12 @@ public class DocumentoPedimentoEntity implements Serializable{
 	
 	@Column ( name = "Estatus" )
 	private Integer estatus;
+	
+	@Column ( name = "ModeloA" )
+	private Integer modeloA;
+	
+	@Column ( name = "ModeloC" )
+	private Integer modeloC;
 
 	
 	public Integer getIdDocumentoPedimento() {
@@ -49,5 +55,23 @@ public class DocumentoPedimentoEntity implements Serializable{
 	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
+
+	public Integer getModeloA() {
+		return modeloA;
+	}
+
+	public void setModeloA(Integer modeloA) {
+		this.modeloA = modeloA;
+	}
+
+	public Integer getModeloC() {
+		return modeloC;
+	}
+
+	public void setModeloC(Integer modeloC) {
+		this.modeloC = modeloC;
+	}
+	
+	
 
 }

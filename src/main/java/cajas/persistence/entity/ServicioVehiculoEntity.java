@@ -19,7 +19,7 @@ public class ServicioVehiculoEntity implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column ( name = "IdServicio")
+	@Column ( name = "IdServicioVehiculo")
 	private Integer idServicio;
 	
 	@Column ( name = "Abreviatura" )

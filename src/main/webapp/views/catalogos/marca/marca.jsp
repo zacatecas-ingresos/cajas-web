@@ -256,8 +256,8 @@ $(document).ready(function(){
 		var table = $('#tablaMarcas').find('tbody').find('tr');
 
 		var urlGet;
-		var urlMarca = "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo/buscarPorCriterio/";
-		var urlMarca = "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo/buscarPorCriterio/"+"?parametro="+input;
+		var urlMarca = "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo/buscarMarcaVehiculos/";
+		var urlMarca = "${pageContext.request.contextPath}/cajas/catalogos/marcavehiculo/buscarMarcaVehiculos/"+"?parametro="+input;
 
 		if(input === null){
 			urlGet = urlMarca;

@@ -50,7 +50,7 @@ public class MarcaVehiculoResource {
 	@GET
 	@Path("/buscarPorCriterio")
 	@Produces({"application/json"})
-	public Response buscarMarcaVehiculoPorCriterio(@QueryParam("criterio") String criterio) {
+	public Response buscarMarcaVehiculoPorCriterio(@QueryParam("parametro") String criterio) {
 		try {
 			List<MarcaVehiculo> marcaVehiculoList = marcaVehiculoEjb.obtenerMarcasVehiculoFiltro(criterio);
 			return Response.ok(marcaVehiculoList).build();
